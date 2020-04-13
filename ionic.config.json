@@ -1,0 +1,7 @@
+{
+  "name": "candyChase2020Ionic5",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
