@@ -102,6 +102,12 @@ https://circleci.com/docs/2.0/deployment-examples/index.html#heroku
         ` brew tap heroku/brew && brew install heroku `
     check logs details : 
         `heroku logs -a candychase2020-ionic5`
+    login:
+        ` heroku auth:login ` / `heroku auth:logout`
+    restart dynos:
+        `heroku restart -a candychase2020-ionic5`
+
+cli commands : https://devcenter.heroku.com/articles/heroku-cli-commands
 
 
 => build heroku : OK but deploy err : 
