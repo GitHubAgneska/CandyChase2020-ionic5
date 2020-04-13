@@ -71,6 +71,8 @@ Step 4: Sign up for Circle CI and add your project. Your project should start bu
 ---
 
 SETTING UP AUTOMATIC DEPLOY  ON HEROKU
+
+
 https://circleci.com/docs/2.0/env-vars/index.html#setting-an-environment-variable-in-a-project
 
 https://circleci.com/docs/2.0/deployment-examples/index.html#heroku
@@ -94,4 +96,20 @@ https://circleci.com/docs/2.0/deployment-examples/index.html#heroku
                     only: master
     `
 
-    
+
+
+[ install heroku cli ] 
+        ` brew tap heroku/brew && brew install heroku `
+    check logs details : 
+        `heroku logs -a candychase2020-ionic5`
+
+
+=> build heroku : OK but deploy err : 
+
+    candyChase2020Ionic5@0.0.1 start /app
+    ng serve
+    sh: 1: ng: not found
+
+
+    => adding to package.json : 
+    ` "heroku-postbuild": "ng build --prod" `
