@@ -1,19 +1,7 @@
 version: 2
 # conf for heroku auto deploy with circle-ci
 # https://circleci.com/docs/2.0/deployment-integrations/#heroku
-orbs:
-    heroku: circleci/heroku@0.0.10. # Invoke the Heroku orb
-    
-    workflows:
-        heroku_deploy:
-        jobs:
-            - build
-            - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-                requires:
-                - build
-                filters:
-                branches:
-                    only: master
+
 jobs:
     build:
         working_directory: ~/my-project
@@ -30,3 +18,18 @@ jobs:
                 - "node_modules"
         - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
         - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+
+
+orbs:
+    heroku: circleci/heroku@0.0.10. # Invoke the Heroku orb
+    
+    workflows:
+        heroku_deploy:
+        jobs:
+            - build
+            - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+                requires:
+                - build
+                filters:
+                branches:
+                    only: master
