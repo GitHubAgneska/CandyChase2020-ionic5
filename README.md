@@ -119,3 +119,19 @@ cli commands : https://devcenter.heroku.com/articles/heroku-cli-commands
 
     => adding to package.json : 
     ` "heroku-postbuild": "ng build --prod" `
+
+
+
+===> DEPLOY TO HEROKU SOLUTION
+https://itnext.io/how-to-deploy-angular-application-to-heroku-1d56e09c5147
+
++ uncomment /www in .gitignore
++ change path in 'server.js' dist to => www
++ run `ng build --watch `
+
+
+========================================
+
+ADDING FIREBASE
+
+`npm install @angular/fire firebase --save`
