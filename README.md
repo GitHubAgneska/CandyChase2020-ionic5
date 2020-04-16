@@ -133,5 +133,72 @@ https://itnext.io/how-to-deploy-angular-application-to-heroku-1d56e09c5147
 ========================================
 
 ADDING FIREBASE
+https://ionicthemes.com/tutorials/about/building-a-ionic-firebase-app-step-by-step
 
 `npm install @angular/fire firebase --save`
+
+
+-----
+adding image picker plugin
+
+ionic cordova plugin add cordova-plugin-telerik-imagepicker
+npm install @ionic-native/image-picker
+
+
+--- GIT-SECRET => store firebase credentials and config in circleCI CI/CD environment
+
+https://git-secret.io/#using-gpg
+https://dzone.com/articles/jenkins-cicd-with-git-secrets
+
+` brew install git-secret `
+
+NOTE ------- 
+A CA file has been bootstrapped using certificates from the system
+keychain. To add additional certificates, place .pem files in
+  /usr/local/etc/openssl@1.1/certs
+
+and run
+  /usr/local/opt/openssl@1.1/bin/c_rehash
+
+openssl@1.1 is keg-only, which means it was not symlinked into /usr/local,
+because macOS provides LibreSSL.
+
+If you need to have openssl@1.1 first in your PATH run:
+  echo 'export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find openssl@1.1 you may need to set:
+  export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+  export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
+For pkg-config to find openssl@1.1 you may need to set:
+  export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+--------
+
+
+` git secret init ` 
+
+` gpg --gen-key `
+
+Add the first user to the git-secret repo keyring by running 
+` git secret tell your@gpg.email `
+
+see key id
+` gpg --list-secret-keys `
+
+Export / retrieve gpg private key:
+`gpg -a --export-secret-keys $keyid > gpg-secret.key `
+` gpg --export-ownertrust > gpg-ownertrust.txt `
+
+tell CircleCI key to secret files =>
+add environment variable : 
+name : GPG_PRIVATE_KEY
+value : gpg-secret key
+
+add files to hide:
+` git secret add <filename> `
+
+encrypt files:
+` git secret hide `
+
+decrypt if needed:
+` git secret reveal `

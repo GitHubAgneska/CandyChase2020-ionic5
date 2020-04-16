@@ -29,3 +29,7 @@ npm-debug.log*
 /platforms
 /plugins
 #/www
+.gitsecret/keys/random_seed/
+!*.secret
+credentials.ts
+gpg-ownertrust.txt
