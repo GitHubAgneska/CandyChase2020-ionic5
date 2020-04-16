@@ -18,7 +18,7 @@ export class AppComponent {
   ) {
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
+    // firebase.analytics();
   }
 
   initializeApp() {
