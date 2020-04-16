@@ -31,5 +31,5 @@ npm-debug.log*
 #/www
 .gitsecret/keys/random_seed/
 !*.secret
-credentials.ts
+
 gpg-ownertrust.txt
