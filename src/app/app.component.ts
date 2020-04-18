@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import * as firebase from 'firebase/app';
-import { firebaseConfig } from 'credentials';
+// import * as firebase from 'firebase/app';
+// import { firebaseConfig } from 'credentials';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -17,7 +17,7 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
-    firebase.initializeApp(firebaseConfig);
+    // firebase.initializeApp(firebaseConfig);
     // firebase.analytics();
   }
 

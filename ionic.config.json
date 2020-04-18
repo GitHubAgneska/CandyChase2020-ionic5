@@ -1,7 +1,8 @@
 {
   "name": "candyChase2020Ionic5",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

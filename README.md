@@ -132,11 +132,13 @@ https://itnext.io/how-to-deploy-angular-application-to-heroku-1d56e09c5147
 
 ========================================
 
-ADDING FIREBASE
+ADDING FIREBASE 
 https://ionicthemes.com/tutorials/about/building-a-ionic-firebase-app-step-by-step
 
 `npm install @angular/fire firebase --save`
 
+( + analytics:
+`npm install @ionic-native/firebase-analytics`)
 
 -----
 adding image picker plugin
@@ -145,7 +147,7 @@ ionic cordova plugin add cordova-plugin-telerik-imagepicker
 npm install @ionic-native/image-picker
 
 
---- GIT-SECRET => store firebase credentials and config in circleCI CI/CD environment
+--- GIT-SECRET => test to store firebase credentials and configurate for circleCI CI/CD environment
 
 https://git-secret.io/#using-gpg
 https://dzone.com/articles/jenkins-cicd-with-git-secrets
@@ -202,3 +204,35 @@ encrypt files:
 
 decrypt if needed:
 ` git secret reveal `
+
+
+===
+
+importing 'firebase config' from 'credentials.ts' into app.component.ts for 'firebase.initializeApp(firebaseConfig)' =>  
+
+because 'credentials.ts' is in .gitignore, build fails in circleci with npm error:
+ ' src/app/app.component.ts:3:32 - error TS2307: Cannot find module 'credentials' '
+
+ ==> missing orb in config.yml at run time ?
+ https://circleci.com/orbs/registry/orb/lyvly/git-secret
+
+
+---> removing credentials from .gitignore for now (dropping git secret process for now)
+
+---> moving firebaseConfig to environment/environment.prod
+
+---> adding 'AngularFireModule.initializeApp(environment.firebaseConfig)'in app.module (instead of app.component)
+
+ ====
+
+ ADDING CAPACITOR
+` ionic integrations enable capacitor `
+
+=====
+
+ADDING lab-mode to Test app on multiple platform types in the browser
+` npm i @ionic/lab --save-dev `
+serve with lab flag:
+` ionic serve --lab `
+
+=====
