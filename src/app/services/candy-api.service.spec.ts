@@ -32,7 +32,7 @@ describe('CandyApiService testing', () => {
 
   it('can test HttpClient.get', () => {
     const mockData: CandyI[] = [
-      { _id: '1 ', product_name: 'testName1' },
+      { _id: '1', product_name: 'testName1' },
       { _id: '2', product_name: 'testName2' },
       { _id: '3', product_name: 'testName3' }
     ];
