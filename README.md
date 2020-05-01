@@ -223,6 +223,8 @@ because 'credentials.ts' is in .gitignore, build fails in circleci with npm erro
 
 ---> adding 'AngularFireModule.initializeApp(environment.firebaseConfig)'in app.module (instead of app.component)
 
+---> fix npm error 'node_modules/@angular/fire/angularfire2.d.ts:37:49 - error TS2344: Type 'T[K]' does not satisfy the constraint ... ' => add 'compilerOptions: {"skipLibCheck": true }' to tsconfig.ts
+
  ====
 
  ADDING CAPACITOR
