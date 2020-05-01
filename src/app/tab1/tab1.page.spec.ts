@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+// import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { Tab1Page } from './tab1.page';
 import { CandyApiService } from '../services/candy-api.service';
@@ -22,7 +22,9 @@ describe('Tab1Page', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [Tab1Page],
-      imports: [IonicModule.forRoot(), ExploreContainerComponentModule],
+      imports: [IonicModule.forRoot(), 
+        // ExploreContainerComponentModule
+      ],
       providers: [ { provide: CandyApiService, useValue: candyApiServiceStub } ]
     }).compileComponents();
 
