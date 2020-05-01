@@ -15,4 +15,4 @@ import { HomeComponent } from './home.component';
     ],
     declarations: [HomeComponent]
 })
-export class Tab1PageModule { }
+export class HomeModule { }

@@ -15,4 +15,4 @@ import { CandyListComponent } from './candy-list.component';
     ],
     declarations: [CandyListComponent]
 })
-export class Tab1PageModule { }
+export class CandyListModule { }

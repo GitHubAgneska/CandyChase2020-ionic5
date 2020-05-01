@@ -15,4 +15,4 @@ import { BackpackComponent } from './backpack.component';
     ],
     declarations: [BackpackComponent]
 })
-export class Tab1PageModule { }
+export class BackpackModule { }
