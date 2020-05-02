@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CandyApiService } from '../services/candy-api.service';
-import { CandyI, CandyChecklistI } from '../../models/candy.interface';
+import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',

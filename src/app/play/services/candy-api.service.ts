@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
-import { Candy } from '../../models/candy.model';
-import { CandyI } from '../../models/candy.interface';
+import { Candy } from '../../shared/models/candy.model';
+import { CandyI } from '../../shared/models/candy.interface';
 
 @Injectable({
   providedIn: 'root'

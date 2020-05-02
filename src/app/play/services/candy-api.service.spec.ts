@@ -2,8 +2,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CandyApiService } from './candy-api.service';
-import { CandyI } from '../../models/candy.interface';
-import { Candy } from 'src/models/candy.model';
+import { CandyI } from '../../shared/models/candy.interface';
+import { Candy } from 'src/app/shared/models/candy.model';
 
 describe('CandyApiService testing', () => {
 
