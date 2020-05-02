@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CandyListComponent } from './candy-list.component';
 
+
 @NgModule({
     imports: [
         IonicModule,
