@@ -7,8 +7,11 @@ describe('new App', () => {
     page = new AppPage();
   });
 
+/* 
+  -- test that came with initial project creation
   it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getPageTitle()).toContain('Tab 1');
-  });
+      page.navigateTo();
+      expect(page.getPageTitle()).toContain('Tab 1');
+    }); */
+
 });

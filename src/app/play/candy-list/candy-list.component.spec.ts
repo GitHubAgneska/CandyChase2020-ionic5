@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { cold, getTestScheduler } from 'jasmine-marbles';
+import { By } from '@angular/platform-browser';
 import { CandyApiService } from '../services/candy-api.service';
 import { CandyListComponent } from './candy-list.component';
 import { ShortenStringPipe } from 'src/app/shared/pipes/shorten-string/shorten-string';
@@ -35,6 +36,13 @@ describe('CandyListComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should find the <ion-title> with fixture.debugElement.query(By.css)', () => {
+    const pageDebug: DebugElement = fixture.debugElement;
+    const titleDebug = pageDebug.query(By.css('ion-title'));
+    const pageTitle: HTMLElement = titleDebug.nativeElement;
+    expect(pageTitle.textContent).toEqual('Candy to find');
+  });
+
   it('#component should call observable via service and return an array candyList', () => {
     const pageElement: HTMLElement = fixture.nativeElement;
     expect(pageElement.textContent).toContain('loading...');
@@ -49,5 +57,5 @@ describe('CandyListComponent', () => {
   });
 
   /* TODO  : add dom test for pipe */
-  
+
 });
