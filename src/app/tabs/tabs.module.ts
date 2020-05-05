@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TabsPageRoutingModule } from './tabs-routing.module';
 import { TabsPage } from './tabs.page';
-import { AgeSelectComponent } from '../play/age-select/age-select.component';
+// import { AgeSelectComponent } from '../play/age-select/age-select.component';
 
 
 @NgModule({
@@ -15,6 +15,8 @@ import { AgeSelectComponent } from '../play/age-select/age-select.component';
     FormsModule,
     TabsPageRoutingModule,
   ],
-  declarations: [TabsPage, AgeSelectComponent],
+  declarations: [TabsPage,
+   //  AgeSelectComponent
+  ],
 })
 export class TabsPageModule {}

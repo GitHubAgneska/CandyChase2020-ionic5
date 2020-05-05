@@ -9,14 +9,16 @@ const routes: Routes = [
   { path: '', component: WelcomePageComponent },
   { path: 'home', component: HomeComponent },
 
-  { path: '', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule) },
-
-  { path: 'play', children: [
-    { path: '', loadChildren: () =>
-        import('./play/candy-list/candy-list.module').then(m => m.CandyListModule)
-    }]},
+  { path: 'play', loadChildren: () => import('./play/play.module').then(m => m.PlayModule) },
 
   { path: 'static', loadChildren: () => import('./static-pages/static-pages.module').then(m => m.StaticPagesModule) },
+
+  { path: '', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule) },
+
+/*   { path: 'play', children: [
+    { path: '', loadChildren: () =>
+        import('./play/candy-list/candy-list.module').then(m => m.CandyListModule)
+    }]}, */
 
 ];
 @NgModule({
