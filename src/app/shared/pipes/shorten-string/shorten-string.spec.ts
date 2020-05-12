@@ -1,6 +1,3 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
-
 import { ShortenStringPipe } from 'src/app/shared/pipes/shorten-string/shorten-string';
 
 describe('Pipe: ShortenStringPipe', () => {

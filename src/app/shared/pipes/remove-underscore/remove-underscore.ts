@@ -6,10 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class RemoveUnderscorePipe implements PipeTransform {
 
-  
+
   transform(value: string) {
 
-    let toReplace = /[-_]/gm;
+    const toReplace = /[-_]/gm;
     if (value) {
       return value = value.toString().replace(toReplace , ' ');
     }

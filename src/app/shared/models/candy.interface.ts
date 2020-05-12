@@ -1,6 +1,6 @@
 export interface CandyI {
 
-    _id: string;
+    _id: string | number;
     product_name: string;
     generic_name_fr?: string;
     image_front_url?: string;

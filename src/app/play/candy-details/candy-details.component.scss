@@ -1,0 +1,104 @@
+
+
+    .candyDetailsPage-container{
+
+        background-image: url('src/assets/graphicMat/gradient_bats_1920.png');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        width: 100%;
+
+        .candyDetailsPage {
+            display:flex;
+            flex-direction: column;
+            width: 80%;
+            margin:5% auto;
+            .candyItemTitle {
+                position: sticky;
+                width: 100%;
+                // height: 10vh;
+                padding: 2%;
+                margin: 10% auto;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-content: center;
+                align-items: center;    
+                border: 3px solid orange;
+                border-radius: 50px;
+                .candyThumbnail {
+                    height: 6rem;
+                    width: 6rem;
+                    background-color:pink;
+                    align-content: center;
+                    align-items: center;
+                    overflow:hidden;
+                    border-radius: 50%;
+                }
+                h1{
+                    color: #B1C9FB;
+                    font-family: 'Titan One', cursive;
+                    text-transform: uppercase;
+                    border-bottom: none;
+                    font-size: 5vw;
+                }
+            }
+            .candy-checklist {
+                width:100%;
+                border: 5px solid pink;
+                border-radius:15px;
+                ul { 
+                    padding:5%;
+                    list-style-type: none;
+                    font-family: 'Titan One', cursive;
+                    font-size: 3.5vw;
+                    color: orange;
+                    li { padding: 3% 0%;}
+                    li img {
+                        max-width:25px;
+                        padding:3%;
+                    }
+                }
+            }
+            .rubrik {
+                h1 { // ingredients / allergens / nutriscore titles
+                    font-family: 'Titan One', cursive;
+                    font-size: 5vw;
+                    color:  #B1C9FB;
+                    text-align: center;
+                    border-bottom: 2px solid;
+                    line-height: 3;
+                    .selected {
+                        font-size: 7vw;
+                    }
+                    .arrowIcon {
+                        background: url('src/assets/icon/icon_arrowDown.png') 0 0 no-repeat;
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+            }
+            .candyIngredients, .candyNutriscore, .candyAllergens {
+                
+                table {  margin: auto; width: 100%; }
+                table,td, tr {
+                    margin-top:5%; 
+                    border: 2px solid  #B1C9FB;
+                    font-family: 'Titan One', cursive;
+                    font-size: 4vw;
+                    color: orange;
+                    padding:2%;
+
+                }
+            }
+        }
+    }
+
+    .plus-btn > button{
+        width: 50px;
+        height:50px;
+        background-color: transparent;
+        }
+
+
+

@@ -3,7 +3,6 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AgeSelectComponent } from './age-select.component';
 
-
 class RouterMock {
 
   navigateByUrl(url: string) {

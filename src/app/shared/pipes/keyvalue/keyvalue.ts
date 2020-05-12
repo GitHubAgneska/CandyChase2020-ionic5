@@ -7,14 +7,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class KeyvaluePipe implements PipeTransform {
 
-    transform(object: Object) {
-      let a = [];
-      for ( let key in object) {
+    transform(object: object) {
+      const a = [];
+      for ( const key in object) {
         if (object.hasOwnProperty(key)) {
-          a.push({key: key, value: object[key]});
+          a.push({key, value: object[key]});
         }
       }
-      console.log("je suis keyvalue pipe object: ", a);
+      console.log('je suis keyvalue pipe object: ', a);
       return a;
   }
 }

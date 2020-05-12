@@ -1,3 +1,93 @@
-<p>
-  candy-details works!
-</p>
+<ion-header>
+  <ion-toolbar color="customColor">
+    <ion-title text-center class="mainTitles">Candy Infos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="candyDetailsPage-container">
+  <div class="candyDetailsPage" *ngIf="candyItem">
+
+      <div class="candyItemTitle">
+        <div class="candyThumbnail">
+          <img src="{{candyItem.image_front_url}}">
+        </div>
+        <div>
+          <h1>{{ candyItem.product_name | shortenString:30 }}</h1>
+        </div> 
+      </div>
+
+      <div class="candy-checklist row">
+        <ul class="col">
+          <li class="row">
+            <div *ngIf="organic;else elseblock"><img [src]=iconTrue /></div>
+            <ng-template #elseblock><img [src]=iconFalse /></ng-template>
+            Organic
+          </li>
+          <li class="row">
+          <div *ngIf="additives;else elseblock"><img [src]=iconTrue /></div>
+          <ng-template #elseblock><img [src]=iconFalse /></ng-template>
+          Additives</li>
+<!--           <li class="row">
+          <div *ngIf="preservatives;else elseblock"><img [src]=iconTrue /></div>
+          <ng-template #elseblock><img [src]=iconFalse /></ng-template>
+          Preservatives</li> -->
+        </ul> 
+        <ul class="col">
+          <li class="row">
+          <div *ngIf="glutenFree;else elseblock"><img [src]=iconTrue /></div>
+          <ng-template #elseblock><img [src]=iconFalse /></ng-template>
+          Gluten free</li>
+          <li class="row">
+          <div *ngIf="vegan;else elseblock"><img [src]=iconTrue /></div>
+          <ng-template #elseblock><img [src]=iconFalse /></ng-template>
+          Vegan</li>
+          <li class="row">
+          <div *ngIf="vegetarian;else elseblock"><img [src]=iconTrue /></div>
+          <ng-template #elseblock><img [src]=iconFalse /></ng-template>
+          Vegetarian</li>
+        </ul> 
+      </div>
+      <div class="rubrik">
+        <h1 (click)="toggleIngredients()">Ingredients hierarchy<span class="arrowIcon"></span></h1>
+        <div class="candyIngredients" *ngIf="showIngredients">
+          <table>
+            <tr *ngFor="let i of candyItem.ingredients_tags">
+              <td>
+                {{ i | removeChars | removeUnderscore }}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="rubrik">
+        <h1 (click)="toggleNutriscore()">Nutriscore</h1>
+        <div class="candyNutriscore" *ngIf="showNutriscore">
+          <table>
+            <tr *ngFor="let i of candyItem.nutriscore_data | keyvalue">
+              <td>
+                {{ i.key | removeUnderscore }}
+              </td>
+              <td>
+                {{ i.value }}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
+      <div class="rubrik">
+        <h1 (click)="toggleAllergens()">Allergens</h1>
+        <div class="candyAllergens" *ngIf="showAllergens">
+          <table>
+            <tr *ngFor="let i of candyItem.allergens_hierarchy">
+              <td>
+                {{ i | removeChars }}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+  </div>
+</ion-content>

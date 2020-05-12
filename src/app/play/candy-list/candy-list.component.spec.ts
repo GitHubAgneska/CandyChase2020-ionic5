@@ -3,9 +3,11 @@ import { IonicModule } from '@ionic/angular';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { By } from '@angular/platform-browser';
 import { CandyApiService } from '../services/candy-api.service';
+import { BackpackService } from '../services/backpack.service';
 import { CandyListComponent } from './candy-list.component';
 import { ShortenStringPipe } from 'src/app/shared/pipes/shorten-string/shorten-string';
 import { DebugElement } from '@angular/core';
+import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 
 const candyApiServiceStub = {
   getAllCandyFromApi() {
@@ -13,6 +15,13 @@ const candyApiServiceStub = {
     return candyList$;
   }
 };
+
+const backpackServiceStub = {
+  addCandyToBackpack(candyItem: CandyI) {
+    // TO DO
+  }
+};
+
 describe('CandyListComponent', () => {
   let component: CandyListComponent;
   let fixture: ComponentFixture<CandyListComponent>;
@@ -22,7 +31,10 @@ describe('CandyListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CandyListComponent, ShortenStringPipe ],
       imports: [IonicModule.forRoot()],
-      providers: [ { provide: CandyApiService, useValue: candyApiServiceStub }, ShortenStringPipe ]
+      providers: [
+        { provide: CandyApiService, useValue: candyApiServiceStub },
+        { provide: BackpackService, useValue: backpackServiceStub },
+        ShortenStringPipe ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CandyListComponent);
@@ -43,7 +55,7 @@ describe('CandyListComponent', () => {
     expect(pageTitle.textContent).toEqual('Candy to find');
   });
 
-  it('#component should call observable via service and return an array candyList', () => {
+  it('#component should (call observable via service and) display a list of candy items', () => {
     const pageElement: HTMLElement = fixture.nativeElement;
     expect(pageElement.textContent).toContain('loading...');
     const candyList = pageElement.querySelectorAll('.candyList');
@@ -57,5 +69,26 @@ describe('CandyListComponent', () => {
   });
 
   /* TODO  : add dom test for pipe */
+
+
+// testing behavior subjects :
+// https://github.com/ReactiveX/rxjs/blob/master/spec/subjects/BehaviorSubject-spec.ts
+
+  /* it('should update backpack (behavior subject)', async(() => {
+          let service: BackpackService;
+          service = TestBed.get(BackpackService);
+          let itemsInBackpack: CandyI[];
+          let itemToAddToBackpack: CandyI;
+
+          const testBackpack: CandyI[] = [
+              { _id: 1, product_name: 'A' },
+              { _id: 2, product_name: 'B' }
+          ];
+          service.update_backpack(itemToAddToBackpack);
+          service.users.subscribe(users => {
+              expect(users).toBe(testUser);
+          });
+      })); */
+
 
 });
