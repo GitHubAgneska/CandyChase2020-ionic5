@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 // import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { RouteReuseStrategy } from '@angular/router';
-import { IonicModule, IonicRouteStrategy, NavParams } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SharedModule } from './shared/shared.module';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -45,7 +45,7 @@ import { MessageService } from './play/services/message.service';
     HttpClientModule,
     AppRoutingModule,
     IonicModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    // AngularFireModule.initializeApp(environment.firebaseConfig),
     SharedModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -55,7 +55,6 @@ import { MessageService } from './play/services/message.service';
     HttpClient,
     HttpErrorHandler,
     MessageService,
-    NavParams,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

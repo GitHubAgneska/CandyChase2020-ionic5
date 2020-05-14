@@ -20,7 +20,7 @@ const playModuleRoutes: Routes = [
         { path: 'addresses', component: AddressesComponent },
             // candyList module not active atm
             // loadChildren: () => import('../play/candy-list/candy-list.module').then(m => m.CandyListModule) },
-        { path: 'candyDetails', component: CandyDetailsComponent },
+        { path: 'candyDetails/:id', component: CandyDetailsComponent },
         { path: 'backpack', component: BackpackComponent },
         { path: 'level', component: LevelComponent },
         { path: 'cards', component: CardsComponent }

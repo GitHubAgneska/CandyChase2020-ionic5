@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-about',
@@ -8,7 +8,7 @@ import { NavController, NavParams } from '@ionic/angular';
 })
 export class AboutComponent implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor() { }
 
   ngOnInit() {}
 

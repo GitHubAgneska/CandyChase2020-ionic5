@@ -7,9 +7,12 @@ import * as L from 'leaflet';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
+
   public map: any;
 
-  constructor() { }
+  constructor(
+
+    ) { }
 
   ngOnInit() {
     this.loadMap();

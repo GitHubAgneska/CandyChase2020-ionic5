@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackpackService } from '../services/backpack.service';
 import { CandyI, CandyChecklistI } from 'src/app/shared/models/candy.interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class BackpackComponent implements OnInit {
 
   constructor(
     private backpackService: BackpackService,
+    private router: Router
   ) {
     this.totalCandy = 0;
   }
@@ -31,6 +33,8 @@ export class BackpackComponent implements OnInit {
   }
 
   seeCandyInfos(id: string | number) {
+
+    this.router.navigate(['candyDetails' + '/' + id]);
     // this.navCtrl.push(CandyDetailsPage, { idparam: id });
   }
 

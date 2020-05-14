@@ -1,0 +1,47 @@
+[
+        {
+            "idLevel": 1,
+            "levelName": "1",
+            
+            "levelImg": "assets/graphicMat/fantom.png" ,
+            "bannerMessage": "assets/graphicMat/banner_text_ghost.png",
+            "levelCard": "assets/graphicMat/ghost_card.png",
+            "levelCardName":"ghost card"
+        },
+        {
+            "idLevel": 2,
+            "levelName": "2",
+            
+            "levelImg": "assets/graphicMat/color_pumpkin.png",
+            "bannerMessage": "assets/graphicMat/banner_text_pumpkin.png",
+            "levelCard": "assets/graphicMat/pumpkin_card.png",
+            "levelCardName":"pumpkin card"
+        },
+        {
+            "idLevel": 3,
+            "levelName": "3",
+            
+            "levelImg": "assets/graphicMat/black_cat.png",
+            "bannerMessage": "assets/graphicMat/banner_text_blackcat.png",
+            "levelCard": "assets/graphicMat/blackcat_card.png",
+            "levelCardName":"black-cat card"
+        },
+        {
+            "idLevel": 4,
+            "levelName": "4",
+            
+            "levelImg": "assets/graphicMat/witch.png",
+            "bannerMessage": "assets/graphicMat/banner_text_witch.png",
+            "levelCard": "assets/graphicMat/witch_card.png",
+            "levelCardName":"witch card"
+        },
+        {
+            "idLevel": 5,
+            "levelName": "5",
+            
+            "levelImg": "",
+            "bannerMessage": "",
+            "levelCard": "",
+            "levelCardName":""
+        }
+    ]

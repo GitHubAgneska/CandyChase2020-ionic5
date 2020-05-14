@@ -3,7 +3,6 @@ import { IonicModule } from '@ionic/angular';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NavController, NavParams } from '@ionic/angular';
 
 import { CandyApiService } from '../services/candy-api.service';
 import { KeyvaluePipe } from 'src/app/shared/pipes/keyvalue/keyvalue';
@@ -39,8 +38,7 @@ describe('CandyDetailsComponent', () => {
       ],
       providers: [
         { provide: CandyApiService, useValue: candyApiServiceStub },
-        KeyvaluePipe, RemoveUnderscorePipe, RemoveCharsPipe, ShortenStringPipe,
-        NavParams
+        KeyvaluePipe, RemoveUnderscorePipe, RemoveCharsPipe, ShortenStringPipe
       ]
     }).compileComponents();
 

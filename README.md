@@ -241,7 +241,12 @@ serve with lab flag:
 
 =====
 
-NOTE ABOUT GEOLOC (ionic-native/geolocation) 
+NOTE ABOUT GEOLOC (ionic-native geolocation) 
+
+import like so:
+``` import { Geolocation } from '@ionic-native/geolocation/ngx'; ``` 
+(not using 'ngx' at the end will cause build error 'can't resolve all parameters for 
+[ services where injected ])
 
 ```
 Geolocation.getCurrentPosition().then((data) => {

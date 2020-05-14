@@ -5,8 +5,6 @@ import { StaticPagesRoutingModule } from './static-pages-routing.module';
 import { AboutComponent } from './about/about.component';
 import { LegalComponent } from './legal/legal.component';
 import { RulesComponent } from './rules/rules.component';
-// import { HomeComponent } from '../home/home.component';
-
 
 @NgModule({
   declarations: [

@@ -20,9 +20,10 @@ import { CardsComponent } from './cards/cards.component';
 import { LevelComponent } from './level/level.component';
 import { MapComponent } from './map/map.component';
 import { BackpackService } from './services/backpack.service';
+import { GeolocService } from './services/geoloc.service';
 // import { AgeSelectComponent } from './age-select/age-select.component';
 
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 @NgModule({
   declarations: [
     // AgeSelectComponent,
@@ -49,7 +50,8 @@ import { BackpackService } from './services/backpack.service';
     RemoveUnderscorePipe,
     ShortenStringPipe,
     RemoveCharsPipe,
-    BackpackService
+    BackpackService,
+    GeolocService
   ]
 })
 export class PlayModule { }

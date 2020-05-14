@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Geolocation } from '@ionic-native/geolocation';
-import { CoordinatesI, LocationI } from 'src/app/shared/models/coordinates.interface';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationI } from 'src/app/shared/models/coordinates.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GeolocService {
 
   public location: LocationI;
   public currentLat: number;
   public currentLong: number;
 
-/*   const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  }; */
+  /*   const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    }; */
 
-  constructor(public geolocation: Geolocation) {
-    this.location = {lat: 0, lng: 0};
+  constructor( public geolocation: Geolocation ) {
+    // this.location = { lat: 0, lng: 0 };
     this.currentLat = 0;
     this.currentLong = 0;
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +9,7 @@ import { NavController, NavParams } from '@ionic/angular';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private router: Router,
-    public navCtrl: NavController,
-    public navParams: NavParams
+    private router: Router
     ) { }
 
   ngOnInit() {}
