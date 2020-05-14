@@ -12,7 +12,7 @@ export interface CoordinatesI {
 }
 
 
-export interface Location {
+export interface LocationI {
 
     lat: number;
     lng: number;

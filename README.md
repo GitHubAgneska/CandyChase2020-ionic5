@@ -240,3 +240,39 @@ serve with lab flag:
 ` ionic serve --lab `
 
 =====
+
+NOTE ABOUT GEOLOC (ionic-native/geolocation) 
+
+```
+Geolocation.getCurrentPosition().then((data) => {
+      console.log('My latitude : ', data.coords.latitude);
+      console.log('My longitude: ', data.coords.longitude);
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+```
+
+   => firefox err 'Error message : User denied geolocation prompt'
+
+FIX :  Finder->apple->System Preferences->Security & Privacy-> Privacy then add Firefox and Safari to the whitelist
+
+
+   => coords non accurate under chrome : issue related to mac os catalina update (unresolved atm - 05152020)
+   https://support.google.com/chrome/thread/15257607?hl=en
+   https://support.google.com/accounts/thread/19694840?hl=en
+   https://bugs.chromium.org/p/chromium/issues/detail?id=1035290
+
+
+===
+Leaflet
+
+for full source code with unit tests, download repo
+https://github.com/Leaflet/Leaflet
+
+
+import like so:
+import * as L from 'leaflet';
+
+===
+

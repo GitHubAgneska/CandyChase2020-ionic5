@@ -13,6 +13,10 @@ import { SharedModule } from './shared/shared.module';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+// Geoloc
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
 //  firebase imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -26,7 +30,6 @@ import { AgeSelectComponent } from './play/age-select/age-select.component';
 // environment
 import { environment } from '../environments/environment';
 import { MessageService } from './play/services/message.service';
-
 
 @NgModule({
   declarations: [
@@ -55,7 +58,8 @@ import { MessageService } from './play/services/message.service';
     NavParams,
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    NativeGeocoder
 
   ],
   bootstrap: [AppComponent]

@@ -1,26 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
-import { CoordinatesI } from 'src/app/shared/models/coordinates.interface';
+import { CoordinatesI, LocationI } from 'src/app/shared/models/coordinates.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeolocService {
 
-  public coords: CoordinatesI;
+  public location: LocationI;
+  public currentLat: number;
+  public currentLong: number;
 
-  constructor(public geolocation: Geolocation) { }
+/*   const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  }; */
 
-  // access/modify current coords
-  public setCoords(coords: any) {
-    this.coords = coords;
+  constructor(public geolocation: Geolocation) {
+    this.location = {lat: 0, lng: 0};
+    this.currentLat = 0;
+    this.currentLong = 0;
   }
-  public getCoords() {
-    return this.coords;
-  }
 
-  // get current location
-  public getLocation() {
+  public getCurrentLocation() {
+
+    Geolocation.getCurrentPosition().then((data) => {
+      console.log('My latitude : ', data.coords.latitude);
+      console.log('My longitude: ', data.coords.longitude);
+
+      this.currentLat = data.coords.latitude;
+      this.currentLong = data.coords.longitude;
+      console.log('get loc, current coords = : ' + this.currentLat, this.currentLong);
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
 
   }
 

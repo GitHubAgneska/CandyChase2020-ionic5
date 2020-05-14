@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,13 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      Geolocation.getCurrentPosition().then((data) => {
+        console.log('My latitude : ', data.coords.latitude);
+        console.log('My longitude: ', data.coords.longitude);
+      },
+        err => {
+          alert('Error message : ' + err.message);
+        });
     });
   }
 }
