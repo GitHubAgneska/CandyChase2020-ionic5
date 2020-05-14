@@ -1,3 +1,53 @@
-<p>
-  backpack works!
-</p>
+<ion-header>
+  <ion-toolbar color="customColor">
+    <ion-title text-center class="mainTitles">Backpack</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="backpackPage-container">
+
+  <div class="backpack-elements-container" *ngIf="collectedCandy">
+    <div class="bag-illust">
+      <img src="assets/graphicMat/candyBag.png" alt="" />
+    </div>
+
+    <div class="totalcandy">
+      <h2>Total candy</h2>
+      <h2>{{ totalCandy }}</h2>
+    </div>
+
+    <div class="cornCandy-container">
+      <ng-container *ngFor="let i of [].constructor(3)">
+        <img src="assets/graphicMat/corn_candy.png" alt="" />
+      </ng-container>
+    </div>
+
+    <div class="totalpoints">
+      <h2>You have</h2>
+      <h2>{{ totalCandy }} points !</h2>
+    </div>
+
+<!-- TO DO : get level (banner) at init --
+      <div class="current-level">
+          <h2>Current level</h2>
+          <h2>{{levelName}}</h2>
+      </div> -->
+
+    <div class="myCollectedCandy" *ngFor="let item of collectedCandy">
+      <div class="candyItem">
+        <div class="candyThumbnail">
+          <img src="{{item.image_front_url}}">
+        </div>
+        <div class="candyName">
+          <!-- <h2>{{data.brands_tags[1]}}</h2> -->
+          <h1>{{ item.product_name | shortenString:30 }}</h1>
+          <button (click)="seeCandyInfos(item._id)">see infos</button>
+        </div>
+        <div class="amount">
+          <h1>{{ item.amountInBackpack }}</h1>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

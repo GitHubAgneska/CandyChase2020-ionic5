@@ -55,7 +55,7 @@ describe('CandyListComponent', () => {
     expect(pageTitle.textContent).toEqual('Candy to find');
   });
 
-  it('#component should (call observable via service and) display a list of candy items', () => {
+  it('should (call observable via service and) display a list of candy items', () => {
     const pageElement: HTMLElement = fixture.nativeElement;
     expect(pageElement.textContent).toContain('loading...');
     const candyList = pageElement.querySelectorAll('.candyList');

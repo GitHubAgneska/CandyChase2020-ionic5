@@ -13,8 +13,10 @@ export class AgeSelectComponent implements OnInit {
   ngOnInit() {}
 
   setAge() {
-    this.router.navigate(['/tabs']);
-
+    this.router.navigate(['/play']);
   }
+
+
+
 
 }

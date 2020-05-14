@@ -1,12 +1,64 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { of, Observable } from 'rxjs';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { MessageService } from './message.service';
 import { CandyApiService } from './candy-api.service';
 import { CandyI } from '../../shared/models/candy.interface';
 
-describe('CandyApiService', () => {
+// TESTING USING HTTPCLIENT SPY
+
+describe( 'CandyApiService', () => {
+
+  let httpClientSpy: { get: jasmine.Spy };
+  let httpErrorHandlerSpy: { get: jasmine.Spy};
+  let candyApiService: CandyApiService;
+
+  beforeEach(() => {
+
+    // TODO: spy on other methods too
+
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    candyApiService = new CandyApiService(httpClientSpy as any, httpErrorHandlerSpy as any);
+
+  });
+
+/*   it('should return expected candylist', () => {
+
+    const expectedRawDataFromApi = { page_size: 50, page: 1, count: '6882', products: [{ _id: '1', product_name: 'testName1' },
+    { _id: '2', product_name: 'testName2' },
+    { _id: '3', product_name: 'testName3' }]};
+
+    const  expectedCandy: CandyI[] = expectedRawDataFromApi.products;
+
+    httpClientSpy.get.and.returnValue(of(expectedRawDataFromApi));
+
+    // TO COMPLETE
+    candyApiService.getAllCandyFromApi().subscribe((data) => {
+      expect(data).toBeDefined();
+      expect(data).toEqual(expectedRawDataFromApi)
+
+    });
+
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+
+  }); */
+
+
+});
+
+
+
+
+
+
+
+
+
+/*  TESTING USING HTTPTESTINGCONTROLLER
+
+  describe('CandyApiService', () => {
 
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
@@ -44,7 +96,7 @@ describe('CandyApiService', () => {
     });
 
     // -----------------------------------------------------------------------
-    it('should return expected candylist as an observable', () => {
+    it('should return expected candylist', () => {
 
       candyApiService.getAllCandyFromApi().subscribe(
         data => expect(data).toEqual(expectedCandy, 'should return expected candy'), fail);
@@ -139,3 +191,4 @@ describe('CandyApiService', () => {
 
 
 });
+ */

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AgeSelectComponent } from '../play/age-select/age-select.component';
+// import { AgeSelectComponent } from '../play/age-select/age-select.component';
 import { CandyListComponent } from '../play/candy-list/candy-list.component';
 import { CandyDetailsComponent } from './candy-details/candy-details.component';
 import { BackpackComponent } from '../play/backpack/backpack.component';
@@ -12,21 +12,19 @@ import { AddressesComponent } from './addresses/addresses.component';
 
 const playModuleRoutes: Routes = [
 
-    { path: 'play', component: AgeSelectComponent, children: [
-
+   // { path: '', component: AgeSelectComponent, children: [
+        // { path: '', redirectTo: '/candyList'},
+        { path: '', component: CandyListComponent },
+        { path: 'candyList', component: CandyListComponent },
         { path: 'map', component: MapComponent },
         { path: 'addresses', component: AddressesComponent },
-
-        { path: 'candyList', component: CandyListComponent },
             // candyList module not active atm
             // loadChildren: () => import('../play/candy-list/candy-list.module').then(m => m.CandyListModule) },
         { path: 'candyDetails', component: CandyDetailsComponent },
-
         { path: 'backpack', component: BackpackComponent },
-
         { path: 'level', component: LevelComponent },
-        { path: 'cards', component: CardsComponent },
-    ]}
+        { path: 'cards', component: CardsComponent }
+    // ]}
 ];
 
 @NgModule({

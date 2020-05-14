@@ -14,7 +14,7 @@ export class KeyvaluePipe implements PipeTransform {
           a.push({key, value: object[key]});
         }
       }
-      console.log('je suis keyvalue pipe object: ', a);
+      // console.log('je suis keyvalue pipe object: ', a);
       return a;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LevelI } from 'src/app/shared/models/level.interface';
 
 @Component({
   selector: 'app-level',
@@ -7,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LevelComponent implements OnInit {
 
+  public currentLevel: LevelI;
+  public nextLevel: LevelI;
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setLevel();
+  }
+
+  public setLevel() {}
+
+  public goToMyCards() {}
 
 }

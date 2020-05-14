@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-legal',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LegalComponent implements OnInit {
 
-  constructor() { }
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ngOnInit() {}
 

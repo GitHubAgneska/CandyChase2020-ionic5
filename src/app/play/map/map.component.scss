@@ -1,0 +1,28 @@
+.mapPage-container {
+    height: 100vh;
+    width: 100%;
+    background-image: url("src/assets/graphicMat/gradient_bats_1920.png");
+    background-size: cover;
+    background-position: center;
+
+    .mapContainer {
+        width: 80%;
+        height: 80%;
+        border: 5px solid black;
+        margin: 10% auto;
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        // customize zoom controls
+        .leaflet-bar {
+            margin-top: 50vh;
+        }
+
+        .scroll-content {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+    }
+}

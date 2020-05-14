@@ -19,12 +19,13 @@ import { AddressesComponent } from './addresses/addresses.component';
 import { CardsComponent } from './cards/cards.component';
 import { LevelComponent } from './level/level.component';
 import { MapComponent } from './map/map.component';
-import { AgeSelectComponent } from './age-select/age-select.component';
+import { BackpackService } from './services/backpack.service';
+// import { AgeSelectComponent } from './age-select/age-select.component';
 
 
 @NgModule({
   declarations: [
-    AgeSelectComponent,
+    // AgeSelectComponent,
     CandyListComponent,
     CandyDetailsComponent,
     BackpackComponent,
@@ -48,6 +49,7 @@ import { AgeSelectComponent } from './age-select/age-select.component';
     RemoveUnderscorePipe,
     ShortenStringPipe,
     RemoveCharsPipe,
+    BackpackService
   ]
 })
 export class PlayModule { }

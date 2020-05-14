@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from '@ionic/angular';
 import { CandyApiService } from '../services/candy-api.service';
 import { KeyvaluePipe } from 'src/app/shared/pipes/keyvalue/keyvalue';
+import { ShortenStringPipe } from 'src/app/shared/pipes/shorten-string/shorten-string';
 import { RemoveUnderscorePipe } from 'src/app/shared/pipes/remove-underscore/remove-underscore';
 import { RemoveCharsPipe } from 'src/app/shared/pipes/remove-chars/remove-chars';
 import { CandyI, CandyChecklistI } from 'src/app/shared/models/candy.interface';
@@ -38,7 +39,8 @@ export class CandyDetailsComponent implements OnInit {
     public candyApiService: CandyApiService,
     public keyvaluepipe: KeyvaluePipe,
     public removeUnderscore: RemoveUnderscorePipe,
-    public removeChars: RemoveCharsPipe
+    public removeChars: RemoveCharsPipe,
+    public shortenStringPipe: ShortenStringPipe
   ) {
     this.candyId = this.navParams.get('idparam');
     this.candyItem = {

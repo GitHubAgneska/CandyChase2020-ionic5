@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BackpackService } from '../services/backpack.service';
+import { CandyI, CandyChecklistI } from 'src/app/shared/models/candy.interface';
+
 
 @Component({
   selector: 'app-backpack',
@@ -7,8 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BackpackComponent implements OnInit {
 
-  constructor() { }
+  public candyItem: CandyI;
+  public collectedCandy: CandyI[];
 
-  ngOnInit() {}
+  constructor(
+    private backpackService: BackpackService,
+
+  ) { }
+
+  ngOnInit() {
+    // retrieve all candy items
+    this.setBackpack();
+  }
+
+  public setBackpack() {
+    this.backpackService.getCurrentBackpack().subscribe(data => this.collectedCandy = data);
+    console.log('COLLECTED CANDY RETRIEVED ON INIT: ', this.collectedCandy);
+  }
 
 }

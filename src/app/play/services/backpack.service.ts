@@ -10,15 +10,22 @@ export class BackpackService {
 
     // keep track of backpack state --
     private backpack$ = new BehaviorSubject([]);
-    currentBackpack = this.backpack$.asObservable();
 
     // keep track of candy total --
     private totalCandyInBackpack$ = new BehaviorSubject(0);
-    currentBackpackCount = this.totalCandyInBackpack$.asObservable();
 
     constructor() {
         this.itemsInBackpack = [];
     }
+
+    public getCurrentBackpack() {
+        return this.backpack$.asObservable();
+    }
+
+    public getCurrentBackpackCount() {
+        return this.totalCandyInBackpack$.asObservable();
+    }
+
     // method for components to update backpack
     public update_backpack(itemsInBackpack: CandyI[]) {
         this.backpack$.next(itemsInBackpack);

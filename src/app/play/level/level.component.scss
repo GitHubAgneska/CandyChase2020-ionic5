@@ -1,0 +1,108 @@
+// @import "assets/fonts/flyingleather.ttf";
+
+// * {font-family: "flyingleather";}
+.levelPage-container {
+    height: 100vh;
+    width: 100%;
+    margin-top: 1rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(255, 145, 36, 0.7) 25%, rgba(0, 0, 0, 1) 48%);
+    background-size: cover;
+    background-position: center;
+
+    .levelElements {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .levelNumber {
+            color: orange;
+            width: 50%;
+            padding: 3%;
+            h2 {
+                text-align: center;
+                border-bottom: 3px solid orange;
+                line-height: 0.1em;
+                margin: 10px 0 20px;
+            }
+            h2 span {
+                padding: 0 10px;
+                background-color: black;
+                font-size: 9vw;
+                font-family: "Titan One", cursive;
+                color: #b1c9fb;
+            }
+        }
+        .ribbon {
+            height: 10vh;
+            color: orange;
+            img {
+                width: 80%;
+                display: block;
+                margin: auto;
+            }
+        }
+        .levelImage {
+            width: 100%;
+            height: 38vh;
+            // background-color: blue;
+            background-image: url("src/assets/graphicMat/circles.png");
+            background-repeat: no-repeat;
+            background-size: auto;
+            // background-attachment: fixed;
+            background-position: center;
+            img {
+                height: 100%;
+                //width:45%;
+                display: block;
+                margin: auto;
+            }
+        }
+    }
+    .level-bottom-elements {
+        //padding-top: 3%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        width: 100%;
+
+        .level-bubble,
+        .next-level-card {
+            width: 40%;
+            height: 20vh;
+            display: block;
+            margin: auto;
+        }
+        .level-bubble {
+            background-image: url("src/assets/graphicMat/bubble2.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+
+            h2 {
+                padding: 12%;
+                text-align: center;
+                line-height: 1;
+                font-size: 5vw;
+                font-family: "Titan One", cursive;
+                color: #c45844;
+                span {
+                    font-size: 6vw;
+                    color: #ff340f;
+                }
+            }
+        }
+        .next-level-card {
+            width: 40%;
+            align-self: center;
+            img {
+                width: 60%;
+                display: block;
+                margin: auto;
+            }
+        }
+    }
+}

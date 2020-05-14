@@ -1,4 +1,70 @@
+<!-- 
 <p>
   home works!
   <ion-button (click)="play()">start</ion-button>
-</p>
+</p> -->
+
+<ion-header>
+  <ion-toolbar color="customColor">
+    <ion-title text-center class="mainTitles">Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="homepage-container card-background-page">
+
+  <div class="menu-container">
+
+    <ion-row>
+      <ion-col>
+        <img src="assets/graphicMat/menu_rules.png" alt="menu-rules" (click)="goToRules()" />
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <img src="assets/graphicMat/menu_play.png" alt="menu-login" (click)="start()" />
+      </ion-col>
+      <ion-col>
+        <img src="assets/graphicMat/menu_login.png" alt="menu-login" (click)="goToLogin()" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <img src="assets/graphicMat/menu_about.png" alt="menu-about" (click)="goToAbout()"/>
+      </ion-col>      
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <img src="assets/graphicMat/menu_legal.png" alt="menu-legal" (click)="goToLegal()"/>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+
+  </div>
+</ion-content>
+
+<!--     <ion-fab>
+      <button ion-fab><img src="assets/graphicmat/zoomIn.png" alt="plus-button" /></button>
+    </ion-fab> -->
+
+<!-- test ion fab button -->
+  <!--  <ion-fab bottom right>
+      <button ion-fab>Share</button>
+      <ion-fab-list side="top">
+        <button ion-fab>Facebook</button>
+        <button ion-fab>Twitter</button>
+        <button ion-fab>Youtube</button>
+      </ion-fab-list>
+      <ion-fab-list side="left">
+        <button ion-fab>Vimeo</button>
+      </ion-fab-list>
+    </ion-fab> -->

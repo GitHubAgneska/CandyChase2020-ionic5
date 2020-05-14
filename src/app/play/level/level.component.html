@@ -1,3 +1,36 @@
-<p>
-  level works!
-</p>
+<ion-header>
+  <ion-toolbar color="customColor">
+    <ion-title text-center>Your level</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="levelPage-container">
+
+  <div class="levelElements">
+    <!-- <div>
+        <p>you have {{ totalPoints }} points</p> 
+    </div> -->
+    <div class="levelNumber">
+      <h2><span>{{ currentLevel.levelName }}</span></h2>
+    </div>
+
+    <div class="ribbon">
+      <img src="{{ currentLevel.bannerMessage }}" alt="" />
+    </div>
+
+    <div class="levelImage">
+      <img src="{{ currentLevel.levelImg }}" alt="" />
+    </div>
+  </div>
+
+  <div class="level-bottom-elements">
+    <div class="level-bubble">
+      <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2>
+    </div>
+    <div class="next-level-card">
+      <img src="{{ nextLevel.levelCard}}" alt="" />
+    </div>
+  </div>
+  <button (click)="goToMyCards()">see my cards</button>
+
+</ion-content>

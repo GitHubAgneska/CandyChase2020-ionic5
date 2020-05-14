@@ -47,6 +47,8 @@ export class CandyListComponent implements OnInit {
   public itemsInBackpack: CandyI[];
   public totalCandy: number;
 
+  public totalCandy$: Observable<number>;
+
   ngOnInit() {
     this.loading = true;
     this.candyApiService.getAllCandyFromApi()
@@ -60,7 +62,8 @@ export class CandyListComponent implements OnInit {
   }
   addCandyToBackpack(candyItem: CandyI) {
 
-    this.backpackService.currentBackpackCount.subscribe(data => this.totalCandy = data);
+    this.totalCandy$ = this.backpackService.getCurrentBackpackCount();
+    // this.backpackService.currentBackpackCount.subscribe(data => this.totalCandy = data);
 
     this.candyItem = candyItem;
     this.candyItem.product_name = candyItem.product_name;
