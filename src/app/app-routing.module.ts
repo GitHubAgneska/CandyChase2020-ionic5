@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { HomeComponent } from './home/home.component';
-import { AgeSelectComponent } from './play/age-select/age-select.component';
+import { AgeSelectComponent } from './age-select/age-select.component';
 
 const routes: Routes = [
 

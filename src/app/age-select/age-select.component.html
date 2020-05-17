@@ -1,16 +1,18 @@
-<p>
+<!-- <p>
   age-select works!
   <ion-button (click)="setAge()">3 - 6</ion-button>
-</p>
+</p> -->
 
 <ion-content class="ageSelectPage-container">
 
   <div class="mapSelectAge">
 
     <p>Select your age!</p>
-    <button>3 - 6</button>
-    <button>7 - 9</button>
-    <button>+ 10</button>
+    <div *ngFor= "let b of buttons" (click)="selectAge(b.ageRange)">
+      <button> {{ b.age }} </button>
+    </div>
+
+  <button (click)="selectAge(3)"></button>
 
   </div>
   

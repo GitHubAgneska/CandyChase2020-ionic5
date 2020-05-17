@@ -243,6 +243,8 @@ serve with lab flag:
 
 NOTE ABOUT GEOLOC (ionic-native geolocation) 
 
+=> USE @ionic-native/geolocation@5.20.0 (issues with latest versions)
+
 import like so:
 ``` import { Geolocation } from '@ionic-native/geolocation/ngx'; ``` 
 (not using 'ngx' at the end will cause build error 'can't resolve all parameters for 
@@ -280,4 +282,19 @@ import like so:
 import * as L from 'leaflet';
 
 ===
+
+NOTE on @Viewchild (used to display map)
+
+add { static: false } as a second option for @ViewChild. This causes the query results to be resolved after change detection runs, allowing your @ViewChild to be updated after the value changes.
+
+===
+
+NPM high security vulnerability 'http-proxy Denial of Service' => no fix atm
+
+https://stackoverflow.com/questions/61849075/denial-of-service-http-proxy-ionic-angular
+
+
+check if affects prod
+``` npm audit --prod ```
+=== 
 

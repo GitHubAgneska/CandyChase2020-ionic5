@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TabsPageRoutingModule } from './tabs-routing.module';
 import { TabsPage } from './tabs.page';
+import { SharedModule } from '../shared/shared.module';
 // import { AgeSelectComponent } from '../play/age-select/age-select.component';
 
 
@@ -14,6 +15,7 @@ import { TabsPage } from './tabs.page';
     CommonModule,
     FormsModule,
     TabsPageRoutingModule,
+    SharedModule
   ],
   declarations: [TabsPage,
    //  AgeSelectComponent

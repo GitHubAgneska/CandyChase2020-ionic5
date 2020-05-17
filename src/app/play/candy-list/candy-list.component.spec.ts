@@ -48,7 +48,7 @@ describe('CandyListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should find the <ion-title> with fixture.debugElement.query(By.css)', () => {
+  it('should display title', () => {
     const pageDebug: DebugElement = fixture.debugElement;
     const titleDebug = pageDebug.query(By.css('ion-title'));
     const pageTitle: HTMLElement = titleDebug.nativeElement;

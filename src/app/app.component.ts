@@ -26,13 +26,13 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      Geolocation.getCurrentPosition().then((data) => {
+    /*  Geolocation.getCurrentPosition().then((data) => {
         console.log('My latitude : ', data.coords.latitude);
         console.log('My longitude: ', data.coords.longitude);
       },
         err => {
           alert('Error message : ' + err.message);
-        });
+        }); */
     });
   }
 }

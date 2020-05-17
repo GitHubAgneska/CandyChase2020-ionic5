@@ -10,10 +10,7 @@
         height: 80%;
         border: 5px solid black;
         margin: 10% auto;
-        #map {
-            height: 100%;
-            width: 100vw;
-        }
+        #map { height: 100%; width: 100%; }
 
         // customize zoom controls
         .leaflet-bar {

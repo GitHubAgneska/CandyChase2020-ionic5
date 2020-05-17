@@ -14,8 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 // Geoloc
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
 
 //  firebase imports
 import { AngularFireModule } from '@angular/fire';
@@ -25,7 +24,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { HomeComponent } from './home/home.component';
-import { AgeSelectComponent } from './play/age-select/age-select.component';
+import { AgeSelectComponent } from './age-select/age-select.component';
 
 // environment
 import { environment } from '../environments/environment';
@@ -58,7 +57,8 @@ import { MessageService } from './play/services/message.service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    NativeGeocoder
+    // Geolocation
+
 
   ],
   bootstrap: [AppComponent]
