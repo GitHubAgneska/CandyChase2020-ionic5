@@ -271,6 +271,9 @@ MIT
 @ionic-native/geolocation
 MIT
 
+@ionic-native/native-geocoder
+MIT
+
 @ionic-native/splash-screen
 MIT
 

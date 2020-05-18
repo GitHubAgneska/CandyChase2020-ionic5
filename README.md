@@ -298,3 +298,27 @@ check if affects prod
 ``` npm audit --prod ```
 === 
 
+@cordova-plugin-nativegeocoder
+using 3.3.0
+
+@ionic-native/native-geocoder
+using 5.20.0
+=> browser err : 'cordova not available' 
+    -> browser platform needed 
+
+=> CORDOVA ADD PLATFORMS : 
+
+``` cordova platform ls```  => to see available versions for the current CLI version
+here, to add browser: 
+``` ionic cordova platform add browser@6.0.0 ```
+(```ionic cordova platform add browser``` won't work )
+
+ ( + CHECK INSTALLS : ``` ionic info ```)
+
+
+ ==>  +  ``` ionic cordova run browser --no-native-run ``` 
+
+=== 
+
+
+

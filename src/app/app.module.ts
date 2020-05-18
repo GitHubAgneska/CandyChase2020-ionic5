@@ -4,6 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpErrorHandler } from './play/services/http-error-handler.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+// import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 // import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { RouteReuseStrategy } from '@angular/router';
@@ -15,6 +16,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 // Geoloc
 import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
 
 //  firebase imports
 import { AngularFireModule } from '@angular/fire';
@@ -58,6 +61,7 @@ import { MessageService } from './play/services/message.service';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     // Geolocation
+    NativeGeocoder
 
 
   ],
