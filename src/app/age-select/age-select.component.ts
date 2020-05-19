@@ -32,9 +32,10 @@ export class AgeSelectComponent implements OnInit {
 
   public selectAge(ageRange: number) {
     this.userAgeRange = ageRange;
-    console.log(this.userAgeRange);
+    // console.log('user age= ', this.userAgeRange);
 
     this.geolocService.setAgeRange(this.userAgeRange);
+    // this.geolocService.findAllowedDistance(this.userAgeRange);
     this.router.navigate(['/play']);
   }
 

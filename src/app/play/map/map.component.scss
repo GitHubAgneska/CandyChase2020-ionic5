@@ -23,3 +23,7 @@
         }
     }
 }
+
+// to avoid console warning 'will-change memory is too high..'
+// .leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated { will-change:auto !important; }
+//  commented out => f's up page display :(

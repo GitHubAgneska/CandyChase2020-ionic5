@@ -13,6 +13,8 @@ export class MapComponent implements OnInit {
   public map: any;
 
   public age: number;
+  public allowedDistance: number;
+  public mapBounds: number[];
 
   constructor(
     private geolocService: GeolocService
@@ -20,10 +22,25 @@ export class MapComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    // this.geolocService.getCurrentLocation();
+    this.initMapWithParams();
+  }
+
+  public initMapWithParams() {
+
+    // this.geolocService.getCurrentLocation();
+
     this.age = this.geolocService.getAgeRange();
-    console.log(this.age);
-    this.geolocService.getCurrentLocation();
-    this.geolocService.loadMap();
+    console.log('user age= ', this.age);
+
+    this.allowedDistance = this.geolocService.findAllowedDistance(this.age);
+    console.log('dist= ', this.allowedDistance);
+
+
+    this.mapBounds = this.geolocService.calculateMapBounds(this.allowedDistance);
+    console.log('mapBounds= ', this.mapBounds);
+
+    this.geolocService.loadMapWithBounds();
   }
 
 
