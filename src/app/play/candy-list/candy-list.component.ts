@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CandyApiService } from '../services/candy-api.service';
 import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
-import { ShortenStringPipe } from 'src/app/shared/pipes/shorten-string/shorten-string';
+import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
 import { Observable } from 'rxjs';
 
-import { BackpackService } from '../services/backpack.service';
+import { UserStatsService } from '../services/user-stats.service';
 import { ToastController } from '@ionic/angular';
 
 
@@ -17,7 +17,7 @@ export class CandyListComponent implements OnInit {
 
   constructor(
     private candyApiService: CandyApiService,
-    private backpackService: BackpackService,
+    private userStatsService: UserStatsService,
     public shortenString: ShortenStringPipe,
     public toastController: ToastController) {
 
@@ -62,8 +62,7 @@ export class CandyListComponent implements OnInit {
   }
   addCandyToBackpack(candyItem: CandyI) {
 
-    this.totalCandy$ = this.backpackService.getCurrentBackpackCount();
-    // this.backpackService.currentBackpackCount.subscribe(data => this.totalCandy = data);
+    this.totalCandy$ = this.userStatsService.getCurrentBackpackCount();
 
     this.candyItem = candyItem;
     this.candyItem.product_name = candyItem.product_name;
@@ -91,9 +90,9 @@ export class CandyListComponent implements OnInit {
     // console.log(this.itemsInBackpack.forEach(item => console.log(item.amountInBackpack)));
 
     // save new total of all candy
-    this.backpackService.update_totalCandyCount(this.totalCandy += 1);
-    // save backpack new state
-    this.backpackService.update_backpack(this.itemsInBackpack);
+    this.userStatsService.update_totalCandyCount(this.totalCandy += 1);
 
+    // save backpack new content
+    this.userStatsService.update_backpackContent(this.itemsInBackpack);
   }
 }

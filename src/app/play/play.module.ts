@@ -12,6 +12,7 @@ import { ShortenStringPipe } from '../shared/pipes/shorten-string/shorten-string
 import { RemoveCharsPipe } from '../shared/pipes/remove-chars/remove-chars';
 
 import { PlayRoutingModule } from './play-routing.module';
+
 import { CandyListComponent } from './candy-list/candy-list.component';
 import { CandyDetailsComponent } from './candy-details/candy-details.component';
 import { BackpackComponent } from './backpack/backpack.component';
@@ -19,7 +20,10 @@ import { AddressesComponent } from './addresses/addresses.component';
 import { CardsComponent } from './cards/cards.component';
 import { LevelComponent } from './level/level.component';
 import { MapComponent } from './map/map.component';
-import { BackpackService } from './services/backpack.service';
+import { UserStatsComponent } from './user-stats/user-stats.component';
+
+import { LevelApiService } from './services/level-api.service';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import { BackpackService } from './services/backpack.service';
     AddressesComponent,
     CardsComponent,
     LevelComponent,
-    MapComponent
+    MapComponent,
+    UserStatsComponent
 
   ],
   imports: [
@@ -47,7 +52,7 @@ import { BackpackService } from './services/backpack.service';
     RemoveUnderscorePipe,
     ShortenStringPipe,
     RemoveCharsPipe,
-    BackpackService
+    LevelApiService
   ]
 })
 export class PlayModule { }

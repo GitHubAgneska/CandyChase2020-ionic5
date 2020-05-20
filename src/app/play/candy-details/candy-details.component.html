@@ -27,10 +27,6 @@
           <div *ngIf="additives;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
           Additives</li>
-<!--           <li class="row">
-          <div *ngIf="preservatives;else elseblock"><img [src]=iconTrue /></div>
-          <ng-template #elseblock><img [src]=iconFalse /></ng-template>
-          Preservatives</li> -->
         </ul> 
         <ul class="col">
           <li class="row">
@@ -47,6 +43,7 @@
           Vegetarian</li>
         </ul> 
       </div>
+      
       <div class="rubrik">
         <h1 (click)="toggleIngredients()">Ingredients hierarchy<span class="arrowIcon"></span></h1>
         <div class="candyIngredients" *ngIf="showIngredients">

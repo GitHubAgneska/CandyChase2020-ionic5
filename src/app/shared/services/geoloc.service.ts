@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Coordinates } from 'src/app/shared/models/coordinates.model';
+import { Coordinates } from '../../shared/models/coordinates.model';
 import * as L from 'leaflet';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 
@@ -141,7 +141,7 @@ export class GeolocService {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 18,
       tileSize: 512,
-      zoomOffset: -1
+      zoomOffset: 0
     }).addTo(this.map);
 
     this.map.locate({ setView: true, maxZoom: 16 })
@@ -150,6 +150,7 @@ export class GeolocService {
         const radius = e.accuracy;
         L.marker(e.latlng).addTo(this.map)
           .bindPopup('You are here!').openPopup();
+        this.addBounds(bounds);
         /*  L.rectangle(bounds, { color: '#00000', weight: 1 })
             .addTo(this.map);
           this.map.fitBounds(bounds); */
@@ -157,7 +158,6 @@ export class GeolocService {
       .on('locationerror', (err: { message: any; }) => {
         alert(err.message);
       });
-    this.addBounds(bounds);
   }
 
   // add bounds around current position on map

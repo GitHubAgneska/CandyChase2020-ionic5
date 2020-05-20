@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserStatsService } from '../services/user-stats.service';
+import { LevelI } from '../../shared/models/level.interface';
+import { LevelApiService } from '../services/level-api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cards',
@@ -7,8 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
 
-  constructor() { }
+/*public level: LevelI;
+  public levels: LevelI[];
+  public levels$: Observable<any[]> = new Observable(); */
 
-  ngOnInit() {}
+  constructor(
+    private userStatsService: UserStatsService,
+    private levelApiService: LevelApiService
+  ) {
+/*  this.levels = [];
+    this.level = { idLevel: 1, levelName: '1', levelImg: '', bannerMessage: '', levelCard: '', levelCardName: '' };
+   */
+  }
+
+  ngOnInit() {
+
+/*  test
+    this.levels = this.userStatsService.retrieveLevelList(); // OK
+    console.log(this.levels);
+    this.level =  this.userStatsService.retrieveDefaultLevel();
+    console.log(this.level);
+*/
+  }
 
 }

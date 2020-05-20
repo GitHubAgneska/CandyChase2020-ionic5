@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CandyApiService } from '../services/candy-api.service';
-import { KeyvaluePipe } from 'src/app/shared/pipes/keyvalue/keyvalue';
-import { ShortenStringPipe } from 'src/app/shared/pipes/shorten-string/shorten-string';
-import { RemoveUnderscorePipe } from 'src/app/shared/pipes/remove-underscore/remove-underscore';
-import { RemoveCharsPipe } from 'src/app/shared/pipes/remove-chars/remove-chars';
-import { CandyI, CandyChecklistI } from 'src/app/shared/models/candy.interface';
+import { KeyvaluePipe } from '../../shared/pipes/keyvalue/keyvalue';
+import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
+import { RemoveUnderscorePipe } from '../../shared/pipes/remove-underscore/remove-underscore';
+import { RemoveCharsPipe } from '../../shared/pipes/remove-chars/remove-chars';
+import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -39,9 +39,8 @@ export class CandyDetailsComponent implements OnInit {
     public keyvaluepipe: KeyvaluePipe,
     public removeUnderscore: RemoveUnderscorePipe,
     public removeChars: RemoveCharsPipe,
-    public shortenStringPipe: ShortenStringPipe
+    public shortenString: ShortenStringPipe
   ) {
-    this.candyId = this.activatedRoute.snapshot.params.id;
     this.candyItem = {
       _id: '', product_name: '', generic_name_fr: '',
       image_front_url: '', brands_tags: [], ingredients_tags: [],
@@ -63,11 +62,20 @@ export class CandyDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.displayCandyInfo(this.candyId);
+  }
+
+  
+  public displayCandyInfo(candyId: string | number)  {
+
+    this.activatedRoute.paramMap.subscribe(param => {
+      this.candyId = param.get('id');
+    });
+    console.log('activated route param= ', this.candyId);
 
     this.candyApiService.getCandyById(this.candyId)
     .subscribe( (response: CandyI ) => {
       this.candyItem = response;
-      // this.candyOfList = response;
 
       this.candyItem.product_name = response.product_name;
       this.candyItem.image_front_url = response.image_front_url;

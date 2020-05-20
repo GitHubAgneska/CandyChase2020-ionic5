@@ -9,22 +9,24 @@ import { LevelComponent } from './level/level.component';
 import { CardsComponent } from './cards/cards.component';
 import { MapComponent } from './map/map.component';
 import { AddressesComponent } from './addresses/addresses.component';
+import { UserStatsComponent } from './user-stats/user-stats.component';
 
 const playModuleRoutes: Routes = [
 
-   // { path: '', component: AgeSelectComponent, children: [
-        // { path: '', redirectTo: '/candyList'},
-        { path: '', component: CandyListComponent },
+        { path: '', redirectTo: 'user-stats'},
+        { path: 'user-stats', component: UserStatsComponent },
         { path: 'candyList', component: CandyListComponent },
         { path: 'map', component: MapComponent },
         { path: 'addresses', component: AddressesComponent },
             // candyList module not active atm
             // loadChildren: () => import('../play/candy-list/candy-list.module').then(m => m.CandyListModule) },
+        // { path: 'candyDetails', component: CandyDetailsComponent },
         { path: 'candyDetails/:id', component: CandyDetailsComponent },
         { path: 'backpack', component: BackpackComponent },
         { path: 'level', component: LevelComponent },
-        { path: 'cards', component: CardsComponent }
-    // ]}
+        { path: 'cards', component: CardsComponent },
+        { path: 'user-stats', component: UserStatsComponent }
+
 ];
 
 @NgModule({

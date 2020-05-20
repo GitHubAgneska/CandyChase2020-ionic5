@@ -3,9 +3,10 @@ import { IonicModule } from '@ionic/angular';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { By } from '@angular/platform-browser';
 import { CandyApiService } from '../services/candy-api.service';
-import { BackpackService } from '../services/backpack.service';
+import { UserStatsService } from '../services/user-stats.service';
+
 import { CandyListComponent } from './candy-list.component';
-import { ShortenStringPipe } from 'src/app/shared/pipes/shorten-string/shorten-string';
+import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
 import { DebugElement } from '@angular/core';
 import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 
@@ -16,7 +17,7 @@ const candyApiServiceStub = {
   }
 };
 
-const backpackServiceStub = {
+const userStatsServiceStub = {
   addCandyToBackpack(candyItem: CandyI) {
     // TO DO
   }
@@ -33,7 +34,7 @@ describe('CandyListComponent', () => {
       imports: [IonicModule.forRoot()],
       providers: [
         { provide: CandyApiService, useValue: candyApiServiceStub },
-        { provide: BackpackService, useValue: backpackServiceStub },
+        { provide: UserStatsService, useValue: userStatsServiceStub },
         ShortenStringPipe ]
     }).compileComponents();
 
