@@ -1,12 +1,7 @@
 
+@import "src/theme/variables.scss";
 
     .candyDetailsPage-container{
-
-        background-image: url('src/assets/graphicMat/gradient_bats_1920.png');
-        background-size: cover;
-        background-position: center;
-        height: 100vh;
-        width: 100%;
 
         .candyDetailsPage {
             display:flex;
@@ -40,7 +35,7 @@
                     font-family: 'Titan One', cursive;
                     text-transform: uppercase;
                     border-bottom: none;
-                    font-size: 5vw;
+                    font-size: $xxs-fontSize;
                 }
             }
             .candy-checklist {

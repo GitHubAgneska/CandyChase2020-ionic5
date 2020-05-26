@@ -1,0 +1,69 @@
+.homepage-container {
+
+    display: flex;
+    flex-direction: column;
+
+    .titles-container {
+        width: 75%;
+        height: 50vh;
+        margin: 3rem auto;
+        background-image: url("src/assets/graphicMat/circles.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .candyTitle {
+            margin-top: 20%;
+        }
+
+        p {
+            // 'chase' title
+            font-family: "flyingleather";
+            font-size: 20vw;
+            color: orange;
+            opacity: 0.8;
+            // text-shadow: 0 5px 10px #000000;
+            margin-top: 0px;
+            transform: scale(1, 1.2);
+            -webkit-transform: scale(1, 1.2); /* Safari and Chrome */
+            -moz-transform: scale(1, 1.2); /* Firefox */
+            -ms-transform: scale(1, 1.2); /* IE 9+ */
+            -o-transform: scale(1, 1.2); /* Opera */
+        }
+    }
+    .startButton {
+        width: 80vw;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid orange;
+        border-radius: 50px;
+        font-size: 2rem;
+        font-family: "Titan One", cursive;
+        color: orange;
+        text-transform: uppercase;
+        letter-spacing: 5vw;
+        p {
+            padding: 5%;
+            margin: 0;
+        }
+    }
+    @media (min-width: 720px) {
+        .startButton  {
+            width: 55%;
+        }
+    }
+}
+@media (min-width: 720px) {
+    .homepage-container  {
+        width: 90%;
+        height:90%;
+    }
+}

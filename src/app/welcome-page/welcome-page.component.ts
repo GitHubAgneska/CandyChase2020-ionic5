@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome-page.component.scss'],
 })
 export class WelcomePageComponent implements OnInit {
+  public imgCandyTitle = 'assets/graphicMat/title_candy.png';
 
   constructor(private router: Router) { }
 

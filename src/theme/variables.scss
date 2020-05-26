@@ -1,51 +1,13 @@
 // Ionic Variables and Theming
 
 :root {
-    // include fonts
-    $font-path: "../assets/fonts";
 
-    // 'left-to-righ' -'right-to-left'- 'multi'
-    $app-direction: ltr;
+  --ion-color-primary:  #ffa500;
+  --ion-color-secondary:  #B4CDFF;
+  --ion-color-tertiary: #ffc0cb;
 
-    // @import "ionic.globals";
 
-    // Shared Variables---------------------------------
-    // (override default Ionic Sass variables )
-
-    // $content-padding: 10px; /* default = 16px */
-
-    // navbar (top)
-    // (background-color is 'custom-color: transparent' )
-    .header .toolbar-title {
-      color: orange !important;
-      font-family: "flyingleather";
-      font-size: 9vw;
-    }
-
-    .header {
-      box-shadow: -1px 27px 35px 5px rgba(0,0,0,0.82);
-      -webkit-box-shadow: -1px 27px 35px 5px rgba(0,0,0,0.82);
-      -moz-box-shadow: -1px 27px 35px 5px rgba(0,0,0,0.82);
-
-    }
-
-    .toolbar-title-ios {
-      font-weight:100 !important;
-    }
-
-    .toolbar-ios {
-      min-height: 55px !important;
-    }
-
-    .back-button.show-back-button  {
-      font-family: 'Titan One', cursive;
-      color:  #4b4b4b !important;
-    }
-
-    // Color Variables---------------------------------
     $colors: (
-      primary:    #488aff,
-      secondary:  #32db64,
       danger:     #f53d3d,
       light:      #f4f4f4,
       dark:       #222,
@@ -62,229 +24,21 @@
 
 
 
-    // App iOS Variables------------------------------
-    // iOS only Sass variables can go here
+  
 
-
-    // tab bar 
-    .tabs-ios .tabbar {
-      background: orange !important;
-      box-shadow: 2px 3px 35px 15px rgba(0,0,0,0.82);
-      -webkit-box-shadow: 2px 3px 35px 15px rgba(0,0,0,0.82);
-      -moz-box-shadow: 2px 3px 35px 15px rgba(0,0,0,0.82);
-
-      width: 90% !important;
-      // max-width: 600px;
-      border-radius: 10px;
-      margin: 0% 5% 5% 5% !important;
-      height: 56px;
-      max-height: 56px;
-    }
-    // tab titles
-    .tabs-ios .tab-button {
-      color:#000000 !important;
-      // font-family: "PTSans-Regular";
-      // font-family: "flyingleather";
-      font-family: 'Titan One', cursive;
-      font-weight:100;
-    }
-    // tab titles selected
-    .tabs-ios .tab-button[aria-selected=true] {
-      color: white !important;
-    }
-    // tab icons
-    .tabs-ios .tab-button-icon  {
-      color:#000000  !important;
-      padding-bottom: 3px;
-    }
-
-
-          // use example -----
-          /* Set variables for all MODES */
-
-          //  :root {
-          //   Set the background of the entire app */
-          //   --ion-background-color: #ff3700;
-
-            /* Set the font family of the entire app */
-          //  --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
-          // }
-
-          /* Set text color of the entire app for iOS only */
-          // .ios {
-          //  --ion-text-color: #000;
-          // }
-
-          /* Set text color of the entire app for Material Design only */
-          // .md {
-          //   --ion-text-color: #222;
-          // }
-          //----------
-
-
-    // App Material Design Variables------------------
-    // Material Design only Sass variables can go here
-
-
-    // override TOOLBAR (top) props ---
-    /* .toolbar-title-md {
-      color: #222 !important;
-    } */
-
-    /* .toolbar-title-md {
-      font-size: 7vw;
-    } */
-
-
-    // override TABSBAR & TABICONS props ---
-    .tabs-md .tabbar {
-      background: orange !important;
-      box-shadow: 2px 3px 35px 15px rgba(0,0,0,0.82);
-      -webkit-box-shadow: 2px 3px 35px 15px rgba(0,0,0,0.82);
-      -moz-box-shadow: 2px 3px 35px 15px rgba(0,0,0,0.82);
-      width: 90% !important;
-      // max-width: 600px;
-      border-radius: 10px;
-      margin: 0% 5% 5% 5% !important;
-      height: 56px;
-      max-height: 56px;
-    }
-    // tab titles
-    .tabs-md .tab-button {
-      color:#000000 !important;
-      // font-family: "PTSans-Regular";
-      font-family: "flyingleather";
-    }
-    // tab titles selected
-    .tabs-md .tab-button[aria-selected=true] {
-      color: white !important;
-    }
-    // tab icons
-    .tabs-md .tab-button-icon  {
-      color:#000000  !important;
-      padding-bottom: 3px;
-    }
-
-    // tab custom icons --
-    // custom icon for 'list' tab ( candy icon ) 
-    .tabs-md, .tabs-wp {
-      a[aria-selected=false]{
-          .tab-button-icon[ng-reflect-name=custom-candy],
-          .tab-button-icon[aria-label=custom-candy] {
-              background-image: url(../assets/graphicMat/candy.png);
-          }
-        }
-      a[aria-selected=true] {
-          .tab-button-icon[ng-reflect-name=custom-candy],
-          .tab-button-icon[aria-label=custom-candy] {
-              background-image: url(../assets/graphicMat/candy.png);
-          }
-        }
-      }
-
-    .tabs-ios {
-      a[aria-selected=false]{
-          .tab-button-icon[ng-reflect-name=custom-candy],
-          .tab-button-icon[aria-label="custom-candy outline"] {
-              background-image: url(../assets/graphicMat/candy.png);
-          }
-        }
-
-      a[aria-selected=true] {
-          .tab-button-icon[ng-reflect-name=custom-candy],
-          .tab-button-icon[aria-label=custom-candy] {
-              background-image: url(../assets/graphicMat/candy.png);
-          }
-        }
-      }
-
-      // custom icon  for 'backpack' tab  (bag icon)
-      .tabs-md, .tabs-wp {
-        a[aria-selected=false]{
-            .tab-button-icon[ng-reflect-name=custom-bag],
-            .tab-button-icon[aria-label=custom-bag] {
-                background-image: url(../assets/graphicMat/icon_bag.png);
-            }
-          }
-      
-        a[aria-selected=true] {
-            .tab-button-icon[ng-reflect-name=custom-bag],
-            .tab-button-icon[aria-label=custom-bag] {
-                background-image: url(../assets/graphicMat/icon_bag.png);
-            }
-          }
-        }
-      
-      .tabs-ios {
-        a[aria-selected=false]{
-            .tab-button-icon[ng-reflect-name=custom-bag],
-            .tab-button-icon[aria-label="custom-bag outline"] {
-                background-image: url(../assets/graphicMat/icon_bag.png);
-            }
-          }
-      
-        a[aria-selected=true] {
-            .tab-button-icon[ng-reflect-name=custom-bag],
-            .tab-button-icon[aria-label=custom-bag] {
-                background-image: url(../assets/graphicMat/icon_bag.png);
-            }
-          }
-        }
-
-
-    // App Windows Variables
-    // --------------------------------------------------
-    // Windows only Sass variables can go here
-
-
-
-    // App Theme  ---------------------------------------
-    // Ionic apps can have different themes applied, which can
-    // then be future customized. This import comes last
-    // so that the above variables are used and Ionic's
-    // default are overridden.
-
-    // @import "ionic.theme.default";
-
-    // Ionicons
-    // @import "ionic.ionicons";
-
-
-
-    // Fonts --------------------------------------------
-
-    // @import "roboto";
-    // @import "noto-sans";
-
-    @font-face {
-      font-family: "flyingleather";
-      src: url("../assets/fonts/flyingleather.ttf") format('truetype');
-    }
-
-    $font-family-base: "flying_leatherneck";
+/*     $font-family-base: "flying_leatherneck";
     $font-family-md-base: $font-family-base;
     $font-family-ios-base: $font-family-base;
     $font-family-md-base: $font-family-base;
-    $font-family-wp-base: $font-family-base;
-
-    /* 
-    ion-page {
-      background-image: url('../assets/graphicMat/circles.png');
-      background-repeat: no-repeat;
-      background-size: auto;
-      background-position: center; 
-    } */
-
-    /* .ion-page > ion-content {
-      position:relative !important;
-      width:80%;
-      margin:auto;
-    } */
-
-
-
-    /* cool gradient
-    background: rgb(2,0,36);
-    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(255,145,36,1) 49%, rgba(0,212,255,1) 100%); */
+    $font-family-wp-base: $font-family-base; */
 
   }
+
+  // FONT SIZES
+  $xxs-fontSize: 1.5rem;
+  $xs-fontSize: 1.8rem;
+  $s-fontSize: 2rem;
+  $m-fontSize: 2.7rem;
+  $l-fontSize: 3rem;
+  $xl-fontSize: 5rem;
+  $xxl-fontSize: 7rem;

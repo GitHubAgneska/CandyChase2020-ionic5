@@ -3,6 +3,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Coordinates } from '../../shared/models/coordinates.model';
 import * as L from 'leaflet';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
+import { debug } from 'util';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@io
 })
 export class GeolocService {
 
-  public coords: any;
+  public coords: any = {};
   public currentLat: number;
   public currentLong: number;
   public accuracy: number;
@@ -66,14 +67,22 @@ export class GeolocService {
       maximumAge: 0
     };
     this.geolocation.getCurrentPosition(options).then((data) => {
+      console.log('RAW DATA= ', data);
+
       this.setCoords(data);
+
       this.coords = data.coords;
       console.log('coords= ', this.coords);
+
       this.currentLat = data.coords.latitude;
       console.log('lat= ', this.currentLat);
+
       this.currentLong = data.coords.longitude;
       console.log('currentLong= ', this.currentLong);
+
       this.accuracy = data.coords.accuracy;
+      console.log('ACCURACY= ', this.accuracy);
+
       // this.getGeoencoder(this.currentLat, this.currentLong);
     }).catch((error) => {
       console.log('Error getting location', error);
@@ -106,7 +115,7 @@ export class GeolocService {
     const earthRadius = 6378;
     this.allowedDistance = allowedDistance;
 
-    console.log('CURRENT: ', this.currentLong, this.currentLat);
+    console.log('CURRENT: ', this.currentLat, this.currentLong );
 
     const m = (1 / ((2 * Math.PI / 360) * earthRadius)) / 1000;  // 1 meter in degree
 
@@ -150,6 +159,7 @@ export class GeolocService {
         const radius = e.accuracy;
         L.marker(e.latlng).addTo(this.map)
           .bindPopup('You are here!').openPopup();
+
         this.addBounds(bounds);
         /*  L.rectangle(bounds, { color: '#00000', weight: 1 })
             .addTo(this.map);

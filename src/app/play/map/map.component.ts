@@ -36,7 +36,6 @@ export class MapComponent implements OnInit {
     this.allowedDistance = this.geolocService.findAllowedDistance(this.age);
     console.log('dist= ', this.allowedDistance);
 
-
     this.mapBounds = this.geolocService.calculateMapBounds(this.allowedDistance);
     console.log('mapBounds= ', this.mapBounds);
 
