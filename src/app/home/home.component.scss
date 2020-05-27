@@ -1,18 +1,17 @@
 @import "src/theme/variables.scss";
 
 .menu-container {
-
-    width: 90%;
-    margin: auto;
-
-    .row {
-        /* width: 80% !important; */
-        text-align: center !important;
-        margin: auto !important;
+    margin-top: 4vh;
+    div {
+        width: 120px;
+        /* border: 2px solid pink; */
+        img:active {
+            border: 3px solid $main-orange;
+        }
     }
-
-    img:active {
-        border: 3px solid $main-orange;
-    }
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
+
 
