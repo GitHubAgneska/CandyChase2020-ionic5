@@ -1,33 +1,27 @@
-.homepage-container {
+@import "src/theme/variables.scss";
 
+.elements-container {
     display: flex;
     flex-direction: column;
 
     .titles-container {
         width: 75%;
-        height: 50vh;
+        /* height: 50vh; */
         margin: 3rem auto;
-        background-image: url("src/assets/graphicMat/circles.png");
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
 
         .candyTitle {
             margin-top: 20%;
         }
 
+        // 'chase' title
         p {
-            // 'chase' title
-            font-family: "flyingleather";
-            font-size: 20vw;
-            color: orange;
-            opacity: 0.8;
-            // text-shadow: 0 5px 10px #000000;
             margin-top: 0px;
+            font-family: $flyingleather;
+            font-size: $xl-fontSize;
+            color: $main-orange;
+            // text-shadow: 0 5px 10px #000000;
+            opacity: 0.8;
+            // slight font transformation
             transform: scale(1, 1.2);
             -webkit-transform: scale(1, 1.2); /* Safari and Chrome */
             -moz-transform: scale(1, 1.2); /* Firefox */
@@ -36,34 +30,29 @@
         }
     }
     .startButton {
-        width: 80vw;
+        width: 80%;
         margin: auto;
-        display: flex;
-        flex-direction: row;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        border: 2px solid orange;
-        border-radius: 50px;
         font-size: 2rem;
-        font-family: "Titan One", cursive;
-        color: orange;
         text-transform: uppercase;
-        letter-spacing: 5vw;
+        letter-spacing: 1rem;
         p {
             padding: 5%;
             margin: 0;
         }
     }
-    @media (min-width: 720px) {
-        .startButton  {
+    // exception landscape mobile
+    @media (min-width: 568px) and (max-width: 767px) {
+
+        .titles-container {
+            width: 50%;
+            margin: 1rem auto;
+            p {
+                font-size: $l-fontSize;
+            }
+        }
+        .startButton {
             width: 55%;
         }
     }
 }
-@media (min-width: 720px) {
-    .homepage-container  {
-        width: 90%;
-        height:90%;
-    }
-}
+

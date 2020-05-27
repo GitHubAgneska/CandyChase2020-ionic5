@@ -1,12 +1,14 @@
-<ion-content class="homepage-container">
+<ion-content>
 
-  <div class="titles-container">
-    <img [src]="imgCandyTitle" class="candyTitle" alt="candy title" />
-    <p>chase !</p>
-  </div>
+  <div class="elements-container">
+    <div class="titles-container flexColCentered circlesImgBg">
+      <img [src]="imgCandyTitle" class="candyTitle" alt="candy title" />
+      <p>chase !</p>
+    </div>
 
-  <div class="startButton" (click)="start()">
-    <p>start!</p>
+    <div class="startButton flexRowCentered roundedOrangeButton" (click)="start()">
+      <p>start!</p>
+    </div>
   </div>
 
 </ion-content>

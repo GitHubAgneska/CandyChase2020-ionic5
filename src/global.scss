@@ -9,6 +9,7 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 @import "src/theme/variables.scss";
+
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 
@@ -24,31 +25,7 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css"; */
-
-    // FONTS  -------------------------------------------------------
-    $font-path: "../assets/fonts";
-
-    @font-face {
-        font-family: flyingleather;
-        src: url("assets/fonts/flyingleather.ttf") format('truetype');}
-    $flyingleather: flyingleather;
-
-    @font-face {
-        font-family: TitanOne;
-        src: url("assets/fonts/TitanOne-Regular.ttf") format('truetype');}
-    $titanOne: TitanOne;
-
-
-    // FONT SIZES
-    $xxs-fontSize: 1.5rem;
-    $xs-fontSize: 1.8rem;
-    $s-fontSize: 2rem;
-    $m-fontSize: 2.7rem;
-    $l-fontSize: 3rem;
-    $xl-fontSize: 5rem;
-    $xxl-fontSize: 7rem;
-
-
+// =============================================================
 
 // 'left-to-righ' -'right-to-left'- 'multi' --------------------
 $app-direction: ltr;
@@ -75,7 +52,7 @@ $app-direction: ltr;
         background-position: center;}
     
     // breakpoints
-    @media (min-width: 576px) { 
+    @media (min-width: 568px) { 
 
         ion-content {
             width: 70%;
@@ -92,7 +69,35 @@ $app-direction: ltr;
     }
 
 
+.flexColCentered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.flexRowCentered {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
 
+.roundedOrangeButton {
+    border: 2px solid $main-orange;
+    background-color: transparent;
+    border-radius: 50px;
+    font-family: $titanOne;
+    color: $main-orange;
+}
+
+.circlesImgBg {
+    background-image: url("src/assets/graphicMat/circles.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 
 

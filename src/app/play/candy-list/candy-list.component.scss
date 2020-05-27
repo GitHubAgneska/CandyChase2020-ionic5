@@ -7,84 +7,80 @@ h6 {
     margin: 0;
 }
 
-
-    // bat background
-    .candyPageContainer {
-        
-        margin-top: 0 !important;
-        .add-label {
-            height: 20vh;
-            background-image: url("src/assets/graphicMat/sparkles.png");
-            background-size: cover;
-            background-position: center;
-        }
-        .add-label img {
-            max-width: 100px;
-            float: right;
-        }
+.candyPageContainer {
+    margin-top: 0 !important;
+    .add-label {
+        height: 20vh;
+        background-image: url("src/assets/graphicMat/sparkles.png");
+        background-size: cover;
+        background-position: center;
     }
-    .candyList {
+    .add-label img {
+        max-width: 100px;
+        float: right;
+    }
+}
+.candyList {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: -10% 10%;
+}
+
+.candyItem {
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    border-bottom: 3px solid #b1c9fb;
+    // border-top: 2px solid #B1C9FB;
+    .candyName {
+        max-width: 70%;
         display: flex;
         flex-direction: column;
-        width: 80%;
-        margin: -10% 10%;
+        h1,
+        h2 {
+            font-family: "Titan One", cursive;
+            color: #b1c9fb;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.8rem;
+            transform: scale(1, 1.2);
+            -webkit-transform: scale(1, 1.2); /* Safari and Chrome */
+            -moz-transform: scale(1, 1.2); /* Firefox */
+            -ms-transform: scale(1, 1.2); /* IE 9+ */
+            -o-transform: scale(1, 1.2); /* Opera */
+        }
+        h2 {
+            font-size: 1.6rem;
+        }
     }
-
-    .candyItem {
-        height: 15vh;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+    .candyThumbnail {
+        height: 8rem;
+        width: 8rem;
+        min-width: 8rem;
+        border: 3px solid #ff0000;
+        background-color: pink;
         align-content: center;
         align-items: center;
-        border-bottom: 3px solid #b1c9fb;
-        // border-top: 2px solid #B1C9FB;
-        .candyName {
-            max-width: 70%;
-            display: flex;
-            flex-direction: column;
-            h1,
-            h2 {
-                font-family: "Titan One", cursive;
-                color: #b1c9fb;
-                text-transform: uppercase;
-                text-align: center;
-            }
-            h1 {
-                font-size: 1.8rem;
-                transform: scale(1, 1.2);
-                -webkit-transform: scale(1, 1.2); /* Safari and Chrome */
-                -moz-transform: scale(1, 1.2); /* Firefox */
-                -ms-transform: scale(1, 1.2); /* IE 9+ */
-                -o-transform: scale(1, 1.2); /* Opera */
-            }
-            h2 {
-                font-size: 1.6rem;
-            }
-        }
-        .candyThumbnail {
-            height: 8rem;
-            width: 8rem;
-            min-width: 8rem;
-            border: 3px solid red;
-            background-color: pink;
-            align-content: center;
-            align-items: center;
-            overflow: hidden;
-            border-radius: 50px;
-        }
-        .plus-btn > button {
-            width: 5rem;
-            height: 5rem;
-            background-color: transparent;
-        }
+        overflow: hidden;
+        border-radius: 50px;
     }
-
+    .plus-btn > button {
+        width: 5rem;
+        height: 5rem;
+        background-color: transparent;
+    }
+}
 
 /* customize toast message points/total */
 .toast-message {
     height: 10vh !important;
-    background-color: rgba(255, 0, 0, 0.589) !important;
+    background-color: #ff000096 !important;
     color: orange !important;
     font-family: "flyingleather" !important;
     font-size: 5rem !important;
@@ -93,7 +89,7 @@ h6 {
 /* customize toast message levelUp */
 .levelUp {
     z-index: 3;
-    background: rgba(255, 166, 0, 0.7) url("src/assets/graphicMat/levelUp.png");
+    background: #ffa600b3 url("src/assets/graphicMat/levelUp.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

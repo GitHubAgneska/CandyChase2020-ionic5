@@ -1,32 +1,18 @@
-// @import "assets/fonts/flyingleather.ttf";
+@import "src/theme/variables.scss";
 
-// bat background
-.homepage-container {
-    background-image: url("src/assets/graphicMat/gradient_bats_1920.png"), url("src/assets/graphicMat/circles.png");
-    background-size: cover, contain;
-    background-position: center;
+.menu-container {
 
+    width: 90%;
+    margin: auto;
 
-    .menu-container {
-        background-image: url("src/assets/graphicMat/circles.png");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        .row {
-            /* width: 80% !important; */
-            text-align: center !important;
-            margin: auto !important;
-        }
-        .col {
-            height: 15vh !important;
-        }
-        img:active {
-            box-shadow: 0 9px rgb(255, 193, 79);
-        }
+    .row {
+        /* width: 80% !important; */
+        text-align: center !important;
+        margin: auto !important;
+    }
+
+    img:active {
+        border: 3px solid $main-orange;
     }
 }
 
-// override ionic cards specs
-.card-md {
-    width: calc(40% - 20px) !important;
-}

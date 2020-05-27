@@ -3,11 +3,14 @@
 
     .candyDetailsPage-container{
 
+        font-family: $titanOne;
+
         .candyDetailsPage {
             display:flex;
             flex-direction: column;
             width: 80%;
             margin:5% auto;
+
             .candyItemTitle {
                 position: sticky;
                 width: 100%;
@@ -21,6 +24,7 @@
                 align-items: center;    
                 border: 3px solid orange;
                 border-radius: 50px;
+                
                 .candyThumbnail {
                     height: 6rem;
                     width: 6rem;
@@ -32,7 +36,6 @@
                 }
                 h1{
                     color: #B1C9FB;
-                    font-family: 'Titan One', cursive;
                     text-transform: uppercase;
                     border-bottom: none;
                     font-size: $xxs-fontSize;
@@ -45,7 +48,6 @@
                 ul { 
                     padding:5%;
                     list-style-type: none;
-                    font-family: 'Titan One', cursive;
                     font-size: 3.5vw;
                     color: orange;
                     li { padding: 3% 0%;}
@@ -57,7 +59,6 @@
             }
             .rubrik {
                 h1 { // ingredients / allergens / nutriscore titles
-                    font-family: 'Titan One', cursive;
                     font-size: 5vw;
                     color:  #B1C9FB;
                     text-align: center;
@@ -79,7 +80,6 @@
                 table,td, tr {
                     margin-top:5%; 
                     border: 2px solid  #B1C9FB;
-                    font-family: 'Titan One', cursive;
                     font-size: 4vw;
                     color: orange;
                     padding:2%;

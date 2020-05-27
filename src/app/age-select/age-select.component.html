@@ -1,10 +1,10 @@
-<ion-content class="ageSelectPage-container">
+<ion-content>
 
-  <div class="mapSelectAge">
+  <div class="selectAge flexColCentered">
 
     <p>Select your age!</p>
     <div *ngFor="let b of buttons" (click)="selectAge(b.ageRange)" class="btn-container">
-      <button> {{ b.age }} </button>
+      <button class="roundedOrangeButton"> {{ b.age }} </button>
     </div>
 
   </div>

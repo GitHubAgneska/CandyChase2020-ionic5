@@ -1,40 +1,46 @@
 // Ionic Variables and Theming
 
+
 :root {
 
-  --ion-color-primary:  #ffa500;
+/*--ion-color-primary:  #ffa500;
   --ion-color-secondary:  #B4CDFF;
-  --ion-color-tertiary: #ffc0cb;
+  --ion-color-tertiary: #ffc0cb; */
+
+
 
 
     $colors: (
       danger:     #f53d3d,
       light:      #f4f4f4,
-      dark:       #222,
-      orange:     #FF8D00,
-      blue:       #B4CDFF,
       customColor: transparent
     );
 
-    $light-color: #ffeedf;
-    $main-titles: #FF8D00;
-    $sub-titles :rgb(255, 162, 49);
-    $blue-titles: #B4CDFF;
-    $icons: rgb(255, 158, 41);
-
-
-
-  
-
-/*     $font-family-base: "flying_leatherneck";
-    $font-family-md-base: $font-family-base;
-    $font-family-ios-base: $font-family-base;
-    $font-family-md-base: $font-family-base;
-    $font-family-wp-base: $font-family-base; */
-
   }
 
-  // FONT SIZES
+  $main-orange: #ffa500;
+  $sub-orange :#ff9e29;;
+  $light-orange: #ffeedf;
+  
+  $main-blue: #b1c9fb;
+
+  $main-pink: #ffc0cb;
+
+  $main-red: #ff0000;
+  $sub-red: #ff000096;
+  
+  $level-up-bg: #ffa600b3;
+  
+  $main-dark: #222222;
+  $main-light: #f4f4f4;
+
+
+  // FONTS  -------------------------------------------------------
+
+  $h1-fontsize: 2rem;
+  $h2-fontsize: 1.5rem;
+  $h3-fontsize: 1.2rem;
+  
   $xxs-fontSize: 1.5rem;
   $xs-fontSize: 1.8rem;
   $s-fontSize: 2rem;
@@ -42,3 +48,22 @@
   $l-fontSize: 3rem;
   $xl-fontSize: 5rem;
   $xxl-fontSize: 7rem;
+
+  $font-path: "../assets/fonts";
+
+  @font-face {
+      font-family: flyingleather;
+      src: url(src/assets/fonts/flyingleather.ttf) format('truetype');}
+  $flyingleather: flyingleather;
+
+  @font-face {
+      font-family: TitanOne;
+      src: url(src/assets/fonts/TitanOne-Regular.ttf) format('truetype');}
+  $titanOne: TitanOne;
+
+
+/*  $font-family-base: "flying_leatherneck";
+    $font-family-md-base: $font-family-base;
+    $font-family-ios-base: $font-family-base;
+    $font-family-md-base: $font-family-base;
+    $font-family-wp-base: $font-family-base; */
