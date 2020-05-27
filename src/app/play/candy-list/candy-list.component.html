@@ -15,7 +15,7 @@
   <div *ngFor="let candyItem of candyList" class="candyList">
     <div class="candyItem">
       <div class="candyThumbnail">
-        <img src="{{candyItem.image_front_url}}" class="magic">
+        <img src="{{candyItem.image_front_url}}">
       </div>
       <div class="candyName">
         <!-- <h2>{{data.brands_tags[1]}}</h2> -->
@@ -24,7 +24,7 @@
       <div class="plus-btn">
         <!-- <button (click)="sendId(candyItem._id)"> -->
         <button (click)="addCandyToBackpack(candyItem)">
-          <img src="assets/graphicmat/zoomIn.png" alt="plus-button"/>
+          <img src="assets/graphicMat/zoomIn.png" alt="plus-button"/>
         </button>
       </div>
     </div>

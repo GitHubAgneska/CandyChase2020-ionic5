@@ -1,3 +1,5 @@
+@import "src/theme/variables.scss";
+
 h1,
 h2,
 h3,
@@ -8,77 +10,86 @@ h6 {
 }
 
 .candyPageContainer {
-    margin-top: 0 !important;
+
+    /* margin-top: 0 !important; */
     .add-label {
         height: 20vh;
         background-image: url("src/assets/graphicMat/sparkles.png");
         background-size: cover;
         background-position: center;
+        img {
+            max-width: 100px;
+            float: right;
+        }
     }
-    .add-label img {
-        max-width: 100px;
-        float: right;
-    }
-}
-.candyList {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: -10% 10%;
-}
-
-.candyItem {
-    height: 15vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
-    border-bottom: 3px solid #b1c9fb;
-    // border-top: 2px solid #B1C9FB;
-    .candyName {
-        max-width: 70%;
+    .candyList {
         display: flex;
         flex-direction: column;
-        h1,
-        h2 {
-            font-family: "Titan One", cursive;
-            color: #b1c9fb;
-            text-transform: uppercase;
-            text-align: center;
-        }
-        h1 {
-            font-size: 1.8rem;
-            transform: scale(1, 1.2);
-            -webkit-transform: scale(1, 1.2); /* Safari and Chrome */
-            -moz-transform: scale(1, 1.2); /* Firefox */
-            -ms-transform: scale(1, 1.2); /* IE 9+ */
-            -o-transform: scale(1, 1.2); /* Opera */
-        }
-        h2 {
-            font-size: 1.6rem;
+        width: 80%;
+        margin: auto;
+        /* margin: -10% 10%; */
+        .candyItem {
+    /*    border: 4px solid yellow;
+            background-color:pink; */
+            height: 7rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            border-bottom: 3px solid $main-blue;
+
+            .candyName {
+                max-width: 70%;
+                display: flex;
+                flex-direction: column;
+                h1,
+                h2 {
+                    font-family:$titanOne;
+                    color:  $main-blue;
+                    text-transform: uppercase;
+                    text-align: center;
+                }
+                h1 {
+                    font-size: 1rem;
+                    transform: scale(1, 1.2);
+                    -webkit-transform: scale(1, 1.2); /* Safari and Chrome */
+                    -moz-transform: scale(1, 1.2); /* Firefox */
+                    -ms-transform: scale(1, 1.2); /* IE 9+ */
+                    -o-transform: scale(1, 1.2); /* Opera */
+                }
+                h2 {
+                    font-size: 0.7rem;
+                }
+            }
+            .candyThumbnail {
+                height: 4rem;
+                width: 4rem;
+                min-width: 4rem;
+                border: 3px solid $main-red;
+                background-color: $main-pink;
+                align-content: center;
+                align-items: center;
+                overflow: hidden;
+                border-radius: 50px;
+            }
+            .plus-btn > button {
+                width: 3rem;
+                height: 3rem;
+                background-color: transparent;
+            }
         }
     }
-    .candyThumbnail {
-        height: 8rem;
-        width: 8rem;
-        min-width: 8rem;
-        border: 3px solid #ff0000;
-        background-color: pink;
-        align-content: center;
-        align-items: center;
-        overflow: hidden;
-        border-radius: 50px;
-    }
-    .plus-btn > button {
-        width: 5rem;
-        height: 5rem;
-        background-color: transparent;
-    }
+    
 }
 
+
 /* customize toast message points/total */
-.toast-message {
+--ion-toast--background {
+    background-color: #ff000096 !important;
+}
+
+--ion-toast.custom-toast  {
     height: 10vh !important;
     background-color: #ff000096 !important;
     color: orange !important;
