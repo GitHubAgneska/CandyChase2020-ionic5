@@ -4,28 +4,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="backpackPage-container">
+<ion-content>
 
-  <div class="backpack-elements-container" *ngIf="collectedCandy">
-    <div class="bag-illust">
+  <div class="backpack-elements-container flexColCentered" *ngIf="collectedCandy">
+    <div class="bag-illust circlesImgBg">
       <img src="assets/graphicMat/candyBag.png" alt="" />
+
+      <div class="total flexColCentered">
+        <h2>Total candy : {{ totalCandy }}</h2>
+        <h2>Total points : {{ totalCandy }}</h2>
+      </div>
+      
     </div>
 
-    <div class="totalcandy">
-      <h2>Total candy</h2>
-      <h2>{{ totalCandy }}</h2>
-    </div>
 
-    <div class="cornCandy-container">
-      <ng-container *ngFor="let i of [].constructor(3)">
+<!-- <div class="cornCandy-container">
+      <ng-container *ngFor="let i of [].constructor(8)">
         <img src="assets/graphicMat/corn_candy.png" alt="" />
       </ng-container>
-    </div>
+    </div> -->
 
-    <div class="totalpoints">
-      <h2>You have</h2>
-      <h2>{{ totalCandy }} points !</h2>
-    </div>
 
 <!-- TO DO : get level (banner) at init --
       <div class="current-level">
