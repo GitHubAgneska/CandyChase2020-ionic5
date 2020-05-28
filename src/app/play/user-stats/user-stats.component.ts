@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStatsService } from '../services/user-stats.service';
 import { LevelI } from '../../shared/models/level.interface';
+import { UserStatsI } from '../../shared/models/user-stats.interface'; 
 import { GeolocService } from '../../shared/services/geoloc.service';
 
 @Component({
@@ -10,12 +11,15 @@ import { GeolocService } from '../../shared/services/geoloc.service';
 })
 export class UserStatsComponent implements OnInit {
 
+  public userStats: UserStatsI;
+
   public totalPoints: number;
   public currentLevel: LevelI;
 
   constructor(
     private userStatsService: UserStatsService, private geolocService: GeolocService
   ) {
+    // this.userStats = this.userStatsService.getCurrentUserStats();
     this.totalPoints = 0;
     this.currentLevel = this.userStatsService.retrieveDefaultLevel();
   }

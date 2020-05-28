@@ -16,6 +16,8 @@ export class MapComponent implements OnInit {
   public allowedDistance: number;
   public mapBounds: number[];
 
+  public heartIcon = 'assets/graphicMat/heartAsset_red.png';
+
   constructor(
     private geolocService: GeolocService
 

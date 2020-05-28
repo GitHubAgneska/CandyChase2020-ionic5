@@ -17,6 +17,7 @@ import { LevelApiService } from '../services/level-api.service';
 import { LevelI } from '../../shared/models/level.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CandyI } from '../../shared/models/candy.interface';
+import { UserStatsI } from '../../shared/models/user-stats.interface'; 
 
 
 @Injectable({
@@ -32,6 +33,8 @@ export class UserStatsService {
   public itemsInBackpack$: Observable<CandyI[]>;
   public totalCandy: number;
   public totalPoints: number;
+
+  public userStats: UserStatsI;
 
   // keep track of candy list in backpack --
   private backpackContent$ = new BehaviorSubject([]);
@@ -54,12 +57,17 @@ export class UserStatsService {
       this.level = this.levels[0];
       this.nextLevel = this.levels[1];
     });
-
+    // this.userStats = {};
     this.itemsInBackpack = [];
     this.totalCandy = 0;
     this.totalPoints = this.totalCandy * 2;
   }
 
+  public getCurrentUserStats() {
+    // this.userStats.totalCandy = this.getCurrentBackpackCount().subscribe();
+    this.getCurrentTotalPoints();
+    this.getCurrentLevel();
+  }
 
   // get level list from api (json atm)
   public retrieveLevelList() {

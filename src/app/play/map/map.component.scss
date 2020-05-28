@@ -1,3 +1,4 @@
+@import "src/theme/variables.scss";
 
 .mapContainer {
     // mobile portrait
@@ -22,6 +23,29 @@
     }
 }
 
+.saveLocation {
+    width: 90%;
+    margin: auto;
+    button {
+        background-color: transparent;
+        font-family: $titanOne;
+        color: $main-blue;
+        line-height: 1.5;
+        text-transform: uppercase;
+        img {
+            border: 2px solid $main-blue;
+            border-radius: 5px;
+            padding: 3%;
+            height: 2rem;
+            width: 2rem;        
+        }
+    }
+    &button:hover { // animation to implement
+        img {
+            padding: 0%;
+        }
+    }
+}
 
 // mobile landscape
 @media (min-width: 567px) and (max-width: 767px) {

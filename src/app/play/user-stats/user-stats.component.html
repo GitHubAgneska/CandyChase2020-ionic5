@@ -1,3 +1,65 @@
-<p>
-  user-stats works!
-</p>
+<ion-header>
+  <ion-toolbar color="customColor">
+    <ion-title text-center>My stats</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="stats-container circlesImgBg">
+    <!-- <div *ngFor="let stat of userStats" class="stats-container"> -->
+    <div class="item">
+      <h1>Total Candy</h1>
+      <div class="flexible">
+        <p>...........................</p>
+      </div>
+      <h2>56
+        <!--  {{stat.totalCandy}} -->
+      </h2>
+    </div>
+    <div class="item">
+      <h1>Total Points</h1>
+      <div class="flexible">
+        <p>...........................</p>
+      </div>
+      <h2>89
+        <!--  {{stat.totalPoints}} -->
+      </h2>
+    </div>
+    <div class="item">
+      <h1>Current Level</h1>
+      <div class="flexible">
+        <p>...........................</p>
+      </div>
+      <h2>4
+        <!--  {{stat.currentLevel}} -->
+      </h2>
+    </div>
+    <div class="item">
+      <h1>Collected Cards</h1>
+      <div class="flexible">
+        <p>...........................</p>
+      </div>
+      <div>
+        <!--  {{stat.cards}} -->
+      </div>
+    </div>
+    <div class="item">
+      <h1>Saved Addresses</h1>
+      <div class="flexible">
+        <p>...........................</p>
+      </div>
+      <h2>7
+        <!--  {{stat.savedAddresses}} -->
+      </h2>
+    </div>
+    <div class="item">
+      <h1>Challenges</h1>
+      <div class="flexible">
+        <p>...........................</p>
+      </div>
+      <h2>9
+        <!--  {{stat.challenges}} -->
+      </h2>
+    </div>
+  </div>
+</ion-content>

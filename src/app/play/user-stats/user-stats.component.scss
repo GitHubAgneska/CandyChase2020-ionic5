@@ -1,0 +1,41 @@
+@import "src/theme/variables.scss";
+// necessary for list elements to come out right
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+} */
+.stats-container {
+
+    width: 80%;
+    margin: 10% auto;
+
+    h1, h2 {
+        font-family: $flyingleather;
+    }
+    h1 {
+        color: $main-pink;
+        font-size: $xxs-fontSize;
+    }
+    h2 {
+        color: $main-orange;
+        font-size: $xs-fontSize;
+    }
+    .item {
+        align-items: unset;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .flexible {
+
+        color: $main-pink;
+        font-size: $xxs-fontSize;
+        letter-spacing: 0.1rem;
+
+        
+    }
+}
