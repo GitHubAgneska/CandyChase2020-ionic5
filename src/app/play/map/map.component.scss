@@ -1,20 +1,59 @@
-.mapPage-container {
-    
+
+.mapContainer {
+    // mobile portrait
+    width: 90%;
+    height: 80%;
+    border: 8px solid black;
+    margin: 8% auto;
+
+    #map {
+        height: 100%;
+        width: 100%;
+    }
+
+    // customize zoom controls
+    .leaflet-bar {
+        margin-top: 50vh;
+    }
+
+    .scroll-content {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+
+// mobile landscape
+@media (min-width: 567px) and (max-width: 767px) {
+
     .mapContainer {
-        width: 80%;
-        height: 80%;
-        border: 5px solid black;
-        margin: 10% auto;
-        #map { height: 100%; width: 100%; }
+        width: 100vw;
+        height: 100%;
+        margin: 0;
+    }
+}
+// tablet portrait
+@media (min-width: 768px) and (max-width: 1023px) {
 
-        // customize zoom controls
-        .leaflet-bar {
-            margin-top: 50vh;
-        }
+    .mapContainer {
+        width: 100vw;
+        height: 100%;
+        margin: 0;
+    }
+}
 
-        .scroll-content {
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
+// tablet landscape and +
+@media (min-width:1024px) {
+
+    // exception from global.scss
+    ion-content {
+
+        width: 80% !important;
+
+        .mapContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
         }
     }
 }
