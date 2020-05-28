@@ -18,7 +18,10 @@ export class LevelComponent implements OnInit {
     private router: Router,
     private userStatsService: UserStatsService,
     private levelApiService: LevelApiService
-  ) { }
+  ) {
+    this.levels = this.userStatsService.retrieveLevelList();
+    // this.currentLevel = this.userStatsService.retrieveDefaultLevel();
+  }
 
 
   ngOnInit() {
@@ -27,10 +30,14 @@ export class LevelComponent implements OnInit {
 
 
   public setLevel() {
+    console.log(this.levels);
+    this.currentLevel = this.levels[0];
+    this.nextLevel = this.levels[1];
+    // this.userStatsService.getCurrentLevel();
   }
 
-  public goToMyCards() {
+/*   public goToMyCards() {
     this.router.navigate(['play/cards']);
-  }
+  } */
 
 }
