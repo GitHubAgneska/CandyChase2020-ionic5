@@ -72,16 +72,16 @@ $app-direction: ltr;
 .flexColCentered {
     display: flex;
     flex-direction: column;
-    align-items: center;
     align-content: center;
+    align-items: center;
     justify-content: center;
 }
 .flexRowCentered {
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .roundedOrangeButton {
@@ -99,7 +99,14 @@ $app-direction: ltr;
     background-repeat: no-repeat;
 }
 
-
+.thumbnail {
+    height: 3rem;
+    width: 3rem;
+    align-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+}
 
 
 

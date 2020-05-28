@@ -14,38 +14,39 @@
         <h2>Total candy : {{ totalCandy }}</h2>
         <h2>Total points : {{ totalCandy }}</h2>
       </div>
-      
     </div>
 
-
-<!-- <div class="cornCandy-container">
+    <!-- <div class="cornCandy-container">
       <ng-container *ngFor="let i of [].constructor(8)">
         <img src="assets/graphicMat/corn_candy.png" alt="" />
       </ng-container>
     </div> -->
 
-
-<!-- TO DO : get level (banner) at init --
+    <!-- TO DO ? : get level (banner) at init --
       <div class="current-level">
           <h2>Current level</h2>
           <h2>{{levelName}}</h2>
       </div> -->
-
-    <div class="myCollectedCandy" *ngFor="let item of collectedCandy">
-      <div class="candyItem">
-        <div class="candyThumbnail">
-          <img src="{{item.image_front_url}}">
-        </div>
-        <div class="candyName">
-          <!-- <h2>{{data.brands_tags[1]}}</h2> -->
-          <h1>{{ item.product_name | shortenString:30 }}</h1>
-          <button (click)="seeCandyInfos(item._id)">see infos</button>
-        </div>
-        <div class="amount">
-          <h1>{{ item.amountInBackpack }}</h1>
+    <div *ngIf="collectedCandy;else noCandyYetBlock">
+      <div class="myCollectedCandy" *ngFor="let item of collectedCandy">
+        <div class="candyItem">
+          <div class="candyThumbnail">
+            <img src="{{item.image_front_url}}">
+          </div>
+          <div class="candyName">
+            <!-- <h2>{{data.brands_tags[1]}}</h2> -->
+            <h1>{{ item.product_name | shortenString:30 }}</h1>
+            <button (click)="seeCandyInfos(item._id)">see infos</button>
+          </div>
+          <div class="amount">
+            <h1>{{ item.amountInBackpack }}</h1>
+          </div>
         </div>
       </div>
     </div>
+    <ng-template #noCandyYetBlock>
+      <h1>No candy yet !</h1>
+    </ng-template>
 
   </div>
 </ion-content>

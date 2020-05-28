@@ -7,45 +7,56 @@
 <ion-content>
   <div class="candyDetailsPage" *ngIf="candyItem">
 
-      <div class="candyItemTitle">
-        <div class="candyThumbnail">
-          <img src="{{candyItem.image_front_url}}">
-        </div>
-        <div>
-          <h1>{{ candyItem.product_name | shortenString:30 }}</h1>
-        </div> 
+    <div class="candyItemTitle flexRowCentered">
+      <div class="candyThumbnail">
+        <img src="{{ candyItem.image_front_url }}">
       </div>
+      <div>
+        <h1>{{ candyItem.product_name | shortenString:30 }}</h1>
+      </div>
+    </div>
 
-      <div class="candy-checklist row">
-        <ul class="col">
-          <li class="row">
-            <div *ngIf="organic;else elseblock"><img [src]=iconTrue /></div>
-            <ng-template #elseblock><img [src]=iconFalse /></ng-template>
-            Organic
-          </li>
-          <li class="row">
+    <ion-row class="candy-checklist">
+      <ion-col>
+        <ion-row class="checklistType">
+          <div *ngIf="organic;else elseblock"><img [src]=iconTrue /></div>
+          <ng-template #elseblock><img [src]=iconFalse /></ng-template>
+          Organic
+        </ion-row>
+
+        <ion-row class="checklistType">
           <div *ngIf="additives;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
-          Additives</li>
-        </ul> 
-        <ul class="col">
-          <li class="row">
+          Additives
+        </ion-row>
+      </ion-col>
+
+      <ion-col>
+        <ion-row class="checklistType">
           <div *ngIf="glutenFree;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
-          Gluten free</li>
-          <li class="row">
+          Gluten free
+        </ion-row>
+
+        <ion-row class="checklistType">
           <div *ngIf="vegan;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
-          Vegan</li>
-          <li class="row">
+          Vegan
+        </ion-row>
+        <ion-row class="checklistType">
           <div *ngIf="vegetarian;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
-          Vegetarian</li>
-        </ul> 
-      </div>
-      
+          Vegetarian
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <div class="rubriks">
       <div class="rubrik">
-        <h1 (click)="toggleIngredients()">Ingredients hierarchy<span class="arrowIcon"></span></h1>
+        <div class="rubrik-title flexRowCentered" (click)="toggleIngredients()">
+          <h1>Ingredients hierarchy</h1>
+          <img src="assets/icon/icon_arrowDown.png" />
+        </div>
         <div class="candyIngredients" *ngIf="showIngredients">
           <table>
             <tr *ngFor="let i of candyItem.ingredients_tags">
@@ -58,7 +69,10 @@
       </div>
 
       <div class="rubrik">
-        <h1 (click)="toggleNutriscore()">Nutriscore</h1>
+        <div class="rubrik-title flexRowCentered" (click)="toggleNutriscore()">
+          <h1>Nutriscore</h1>
+          <img src="assets/icon/icon_arrowDown.png" />
+        </div>
         <div class="candyNutriscore" *ngIf="showNutriscore">
           <table>
             <tr *ngFor="let i of candyItem.nutriscore_data | keyvalue">
@@ -72,9 +86,12 @@
           </table>
         </div>
       </div>
-      
+
       <div class="rubrik">
-        <h1 (click)="toggleAllergens()">Allergens</h1>
+        <div class="rubrik-title flexRowCentered" (click)="toggleAllergens()">
+          <h1>Allergens</h1>
+          <img src="assets/icon/icon_arrowDown.png" />
+        </div>
         <div class="candyAllergens" *ngIf="showAllergens">
           <table>
             <tr *ngFor="let i of candyItem.allergens_hierarchy">
@@ -85,6 +102,8 @@
           </table>
         </div>
       </div>
+    </div>
 
   </div>
+
 </ion-content>

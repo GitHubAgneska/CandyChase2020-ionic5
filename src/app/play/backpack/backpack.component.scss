@@ -1,17 +1,12 @@
 @import "src/theme/variables.scss";
 
 .backpack-elements-container {
-    /* width: 80%; */
+
     margin: 5% 10%;
-/*     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
 
     .bag-illust {
         width: 100%;
-        position: sticky;
-        // background-color: pink;
+        // position: sticky; => not working : to check
         display: flex;
         flex-flow: row nowrap;
         img {
@@ -65,7 +60,7 @@
                 flex-direction: column;
                 h1 {
                     font-family: $titanOne;
-                    color: #b1c9fb;
+                    color:$main-blue;
                     font-size: 0.7rem;
                     text-transform: uppercase;
                     transform: scale(1, 1.2);
@@ -75,8 +70,8 @@
                     -o-transform: scale(1, 1.2); /* Opera */
                 }
                 button {
-                    color: orange;
-                    border: 1px solid orange;
+                    color: $main-orange;
+                    border: 1px solid $main-orange;
                     font-family: $titanOne;
                     background-color: transparent;
                 }
@@ -85,7 +80,7 @@
                 width: 50px;
                 height: 1.5rem;
                 font-family: $titanOne;
-                color: rgb(251, 177, 241);
+                color: $sub-pink;
                 font-size: 1rem;
                 text-transform: uppercase;
             }
