@@ -12,7 +12,6 @@
     </div> -->
     <div class="levelNumber">
       <h2><span>{{ currentLevel.levelName }}</span></h2>
-      <!--       <h2><span>1</span></h2> -->
     </div>
 
     <div class="ribbon">
@@ -24,14 +23,21 @@
     </div>
   </div>
 
-  <div class="level-bottom-elements flexRowCentered">
-    <div class="level-bubble">
-      <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2>
+  <!--  
+    <div class="level-bottom-elements flexRowCentered">
+      <div class="level-bubble">
+        <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2>
+      </div>
+      <div class="next-level-card">
+        <img src="{{ nextLevel.levelCard}}" alt="" />
+      </div>
+    </div> -->
+
+  <div class="cardsList flexRowCentered" *ngFor="let card of cards">
+    <div>
+      <img src="{{ card }}" />
     </div>
-    <div class="next-level-card">
-      <img src="{{ nextLevel.levelCard}}" alt="" />
-    </div>
+
   </div>
-  <!-- <button (click)="goToMyCards()">see my cards</button> -->
 
 </ion-content>

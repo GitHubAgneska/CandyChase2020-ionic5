@@ -11,6 +11,7 @@ import { UserStatsService } from '../services/user-stats.service';
 export class LevelComponent implements OnInit {
 
   public levels: LevelI[];
+  public cards = [];
   public currentLevel: LevelI;
   public nextLevel: LevelI;
 
@@ -21,6 +22,7 @@ export class LevelComponent implements OnInit {
   ) {
     this.levels = this.userStatsService.retrieveLevelList();
     // this.currentLevel = this.userStatsService.retrieveDefaultLevel();
+
   }
 
 
@@ -33,6 +35,12 @@ export class LevelComponent implements OnInit {
     console.log(this.levels);
     this.currentLevel = this.levels[0];
     this.nextLevel = this.levels[1];
+    this.cards = [
+      this.levels[0].levelCard,
+      this.levels[1].levelCard,
+      this.levels[2].levelCard,
+      this.levels[3].levelCard,
+    ];
     // this.userStatsService.getCurrentLevel();
   }
 
