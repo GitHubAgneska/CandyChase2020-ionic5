@@ -14,6 +14,7 @@ export class LevelComponent implements OnInit {
   public cards = [];
   public currentLevel: LevelI;
   public nextLevel: LevelI;
+  public cardIsNext: boolean;
 
   constructor(
     private router: Router,
@@ -22,7 +23,7 @@ export class LevelComponent implements OnInit {
   ) {
     this.levels = this.userStatsService.retrieveLevelList();
     // this.currentLevel = this.userStatsService.retrieveDefaultLevel();
-
+    this.cardIsNext = true;
   }
 
 

@@ -1,15 +1,21 @@
 @import "src/theme/variables.scss";
-
+// necessary for list elements to come out right
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
 // * {font-family: "flyingleather";}
 .levelPage-container {
-
     margin-top: 1rem;
     background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(255, 145, 36, 0.7) 25%, rgba(0, 0, 0, 1) 48%);
     background-size: cover;
     background-position: center;
 
     .levelElements {
-
         .levelNumber {
             color: $main-orange;
             width: 50%;
@@ -51,6 +57,44 @@
             }
         }
     }
+    .bottom-elements-container {
+        bottom: 2%;
+        position: absolute;
+        width: 100%;
+        margin: auto;
+        
+        .cardsList {
+            justify-content: space-evenly;
+            .card-container {
+                height: 10rem;
+                // background-color: pink;
+                
+                .bubbleNext {
+                    margin-bottom:15%;
+                    width: 5rem;
+                    height: 5rem;
+                    background-color: $sub-orange;
+                    border: 1px solid $main-red;
+                    border-radius: 5px;
+                    h2 { 
+                        padding: 7%;
+                        font-size: 0.8rem;
+                        text-align: center;
+                        color: black;
+                        span {
+                            color: $main-red;
+                        }
+                    }
+                }
+                .card-img-container {
+                    width: 4rem;
+                    img { 
+                        width:100%
+                    }
+                }
+            }
+        }
+    }
 
     /* .level-bottom-elements {
 
@@ -83,11 +127,4 @@
             }
         }
     } */
-
-    .cardsList  {
-        
-        img { 
-            width: 4rem;
-        }
-    }
 }
