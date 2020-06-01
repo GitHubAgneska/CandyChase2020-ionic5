@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LevelI } from '../../shared/models/level.interface';
 import { Router } from '@angular/router';
 import { LevelApiService } from '../services/level-api.service';
-import { UserStatsService } from '../services/user-stats.service';
+import { UserStatsService } from '../../shared/services/user-stats.service';
 @Component({
   selector: 'app-level',
   templateUrl: './level.component.html',

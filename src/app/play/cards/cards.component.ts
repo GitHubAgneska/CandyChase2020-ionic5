@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserStatsService } from '../services/user-stats.service';
+import { UserStatsService } from '../../shared/services/user-stats.service';
 import { LevelI } from '../../shared/models/level.interface';
 import { LevelApiService } from '../services/level-api.service';
 import { Observable } from 'rxjs';

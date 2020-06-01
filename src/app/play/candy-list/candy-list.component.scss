@@ -23,6 +23,11 @@ h6 {
             float: right;
         }
     }
+    .loading {
+        color: $main-blue;
+        font-size: 2rem;
+        text-align: center;
+    }
     .candyList {
         display: flex;
         flex-direction: column;
@@ -113,3 +118,6 @@ h6 {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+
+

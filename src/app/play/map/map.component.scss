@@ -1,77 +1,104 @@
 @import "src/theme/variables.scss";
 
 .mapContainer {
+    z-index: 1;
     // mobile portrait
-    width: 90%;
     height: 80%;
     border: 8px solid black;
-    margin: 8% auto;
+    // margin: 5% auto;
 
     #map {
-        height: 100%;
+        z-index: 1;
+        height: 100vh;
         width: 100%;
     }
-
-    // customize zoom controls
+    // customize map zoom controls
     .leaflet-bar {
         margin-top: 50vh;
     }
-
     .scroll-content {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
     }
 }
 
-.saveLocation {
-    width: 90%;
-    margin: auto;
-    button {
-        background-color: transparent;
-        font-family: $titanOne;
-        color: $main-blue;
-        line-height: 1.5;
-        text-transform: uppercase;
-        img {
-            border: 2px solid $main-blue;
-            border-radius: 5px;
-            padding: 3%;
-            height: 2rem;
-            width: 2rem;        
-        }
-    }
-    &button:hover { // animation to implement
-        img {
-            padding: 0%;
-        }
-    }
-}
+.options-container {
+    z-index:2;
+    position: absolute;
+    height: 5rem;
+    bottom:0;
+    background-color: $main-purple;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 
+    &:active {
+        -webkit-transform: translateY(-30%);
+                transform: translateY(-30%);
+        transition: transform 300ms linear;
+        will-change: transform;
+    }
+
+    .saveLocationBtnContainer {
+        width: 90%;
+        margin: auto;
+        button {
+            background-color: transparent;
+            font-family: $titanOne;
+            color: $main-blue;
+            text-transform: uppercase;
+            justify-content: space-between;
+            // width: 12rem;
+            img {
+                border: 2px solid $main-blue;
+                border-radius: 5px;
+                padding: 3%;
+                width: 2rem;
+            }
+            &:hover {
+                // animation to implement
+                img {
+                    padding: 0%;
+                }
+            }
+        }
+    }
+    
+}
+/* 
+.seeOptions-open .seeOptions {
+	-webkit-transform: none;
+			transform: none;
+	transition: transform 300ms linear;
+} */
+
+// breakpoints exceptions ( ≠ global.scss : ion-content won't shrink as much as other pages after 567px)
 // mobile landscape
 @media (min-width: 567px) and (max-width: 767px) {
+    ion-content {
+        width: 100%;
 
-    .mapContainer {
-        width: 100vw;
-        height: 100%;
-        margin: 0;
+        .mapContainer {
+            height: 100%;
+            margin: 0;
+        }
     }
 }
 // tablet portrait
 @media (min-width: 768px) and (max-width: 1023px) {
-
-    .mapContainer {
-        width: 100vw;
-        height: 100%;
-        margin: 0;
-    }
+  /*   ion-content {
+        width: 80%;
+        .mapContainer {
+            width: 100vw;
+            height: 90%;
+            margin: auto;
+        }
+    } */
 }
 
 // tablet landscape and +
-@media (min-width:1024px) {
-
+@media (min-width: 1024px) {
     // exception from global.scss
-    ion-content {
-
+  /*   ion-content {
         width: 80% !important;
 
         .mapContainer {
@@ -79,7 +106,7 @@
             height: 100%;
             margin: 0;
         }
-    }
+    } */
 }
 
 // to avoid console warning 'will-change memory is too high..'

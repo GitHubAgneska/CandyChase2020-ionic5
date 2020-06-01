@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserStatsService } from '../services/user-stats.service';
+import { UserStatsService } from '../../shared/services/user-stats.service';
 import { LevelI } from '../../shared/models/level.interface';
 import { UserStatsI } from '../../shared/models/user-stats.interface'; 
 import { GeolocService } from '../../shared/services/geoloc.service';

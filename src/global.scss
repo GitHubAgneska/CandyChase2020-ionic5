@@ -26,89 +26,141 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css"; */
 // =============================================================
+// @import "ionic.globals";
 
 // 'left-to-righ' -'right-to-left'- 'multi' --------------------
 $app-direction: ltr;
 
-// @import "ionic.globals";
-
 
 /* Set variables for all MODES --------------------------------- */
 :root {
-
     --ion-background-color: transparent;
     --ion-font-family: "flyingleather", "Helvetica Neue", "Roboto", sans-serif;
 
-    ion-header {  
-        box-shadow: -1px 27px 35px 5px rgba(0,0,0,0.82);
-        -webkit-box-shadow: -1px 27px 35px 5px rgba(0,0,0,0.82);
-        -moz-box-shadow: -1px 27px 35px 5px rgba(0,0,0,0.82);}
-        
-    .toolbarTitle { color: orange; font-size: 1.5rem; text-align: center;}
+    ion-header {
+        box-shadow: -1px 27px 35px 5px rgba(0, 0, 0, 0.82);
+        -webkit-box-shadow: -1px 27px 35px 5px rgba(0, 0, 0, 0.82);
+        -moz-box-shadow: -1px 27px 35px 5px rgba(0, 0, 0, 0.82);
+    }
+
+    .toolbarTitle {
+        color: orange;
+        font-size: 1.5rem;
+        text-align: center;
+    }
 
     .ion-page {
         background-image: url(assets/graphicMat/gradient_bats_1920.png);
         background-size: cover;
-        background-position: center;}
-    
-    // breakpoints
-    @media (min-width: 568px) { 
+        background-position: center;
+    }
 
+    ion-tab-bar {
+        background-color: $main-orange;
+
+
+    }
+
+    ion-button {
+        color: $main-orange;
+    }
+
+    // BREAKPOINTS ******************************************************
+
+    // mobile landscape - exception : iphoneX landscape = 812px !
+    @media (min-width: 568px) and (max-width: 767px) {
         ion-content {
             width: 70%;
             align-self: center;
         }
+        ion-tab-bar {
+            height: 8%;
+            background-color: orange;
+        }
     }
 
-    @media (min-width:1024px) { 
+    // tablet portrait
+    @media (min-width: 768px) and (max-width: 1023px) {
+    }
 
+    // tablet landscape and +
+    @media (min-width: 1024px) {
         ion-content {
             width: 50%;
             align-self: center;
         }
     }
+//  *********************************************************************
+
+    .flexColCentered {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .flexRowCentered {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .roundedOrangeButton {
+        border: 2px solid $main-orange;
+        background-color: transparent;
+        border-radius: 50px;
+        font-family: $titanOne;
+        color: $main-orange;
+    }
 
 
-.flexColCentered {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
+    .circlesImgBg {
+        background-image: url("src/assets/graphicMat/circles.png");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .thumbnail {
+        height: 3rem;
+        width: 3rem;
+        align-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    // candylist ion-searchbar **************************
+    .searchbar-input.sc-ion-searchbar-ios,
+    .searchbar-input.sc-ion-searchbar-ios::placeholder {
+        color: black !important;
+        font-size: 1.5rem !important;
+        opacity: 1 !important;
+    }
+    .searchbar-input.sc-ion-searchbar-ios {
+        border: 3px solid orange;
+        background-color: rgba(255, 192, 203, 0.6);
+    }
+
+    // static pages style (temporary) *******************
+    .static {
+        width: 90%;
+        align-self: center;
+        padding-top: 4vh;
+        border: 2px solid orange;
+        border-radius: 5px;
+
+        .main {
+            padding: 3%;
+            color: orange;
+            font-size: 1rem;
+        }
+        .bottom-container {
+            text-align: center;
+        }
+    }
+
+
 }
-.flexRowCentered {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-}
-
-.roundedOrangeButton {
-    border: 2px solid $main-orange;
-    background-color: transparent;
-    border-radius: 50px;
-    font-family: $titanOne;
-    color: $main-orange;
-}
-
-.circlesImgBg {
-    background-image: url("src/assets/graphicMat/circles.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.thumbnail {
-    height: 3rem;
-    width: 3rem;
-    align-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 50%;
-}
-
-
-
-}
-

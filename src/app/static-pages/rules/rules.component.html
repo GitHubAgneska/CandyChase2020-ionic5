@@ -1,12 +1,27 @@
 <ion-header>
   <ion-toolbar color="customColor">
-    <ion-title>Rules</ion-title>
+    <ion-title text-center class="toolbarTitle">Rules</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
-<p>Halloween night is finally here ! 
-  It's time for a serious hunting !!
-</p>
+<ion-content class="static">
+
+  <div class="main">
+    <h1>
+      Halloween night is finally here...
+      And it's time for some serious hunting !!
+    </h1>
+    <p>
+      Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod
+      maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+      Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet
+      ut et voluptates repudiandae sint et molestiae non recusandae.
+      Itaque earum rerum hic tenetur a sapiente delectus
+    </p>
+  </div>
+  <div class="bottom-container">
+    <ion-button (click)="goBack()">back</ion-button>
+  </div>
+
 </ion-content>

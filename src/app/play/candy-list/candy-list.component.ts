@@ -4,9 +4,8 @@ import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
 import { Observable } from 'rxjs';
 
-import { UserStatsService } from '../services/user-stats.service';
+import { UserStatsService } from '../../shared/services/user-stats.service';
 import { ToastController } from '@ionic/angular';
-
 
 
 @Component({
@@ -39,9 +38,11 @@ export class CandyListComponent implements OnInit {
     };
     this.itemsInBackpack = [];
     this.totalCandy = 0;
+    this.loading = true;
   }
 
-  loading: boolean;
+  public loading: boolean;
+
   public candyList: CandyI[];
   public candyItem: CandyI;
   public candyChecklist: CandyChecklistI;
@@ -52,17 +53,43 @@ export class CandyListComponent implements OnInit {
 
   /* public plusBtnImg = './assets/graphicmat/zoomIn.png'; */
 
+
   ngOnInit() {
-    this.loading = true;
+
+    this.loadCandyList();
+  }
+
+
+  public loadCandyList() {
     this.candyApiService.getAllCandyFromApi()
       .subscribe(
         (response: CandyI[]) => {
           this.candyList = response;
           console.log(this.candyList);
           this.loading = false;
+          this.loadSearchBar();
         }
       );
   }
+
+  public loadSearchBar() {
+    const searchbar = document.querySelector('ion-searchbar');
+  /*  const searchItems = Array.from(document.querySelector('candyName').children);
+
+    searchbar.addEventListener('ionInput', handleInput);
+
+    function handleInput(event: any) {
+      const query = event.target.value.toLowerCase();
+      requestAnimationFrame(() => {
+        searchItems.forEach(item => {
+          const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
+          this.item.style.display = shouldShow ? 'block' : 'none';
+        });
+      });
+    } */
+  }
+
+
   addCandyToBackpack(candyItem: CandyI) {
 
     this.totalCandy$ = this.userStatsService.getCurrentBackpackCount();
@@ -128,3 +155,5 @@ export class CandyListComponent implements OnInit {
     }
   }
 }
+
+

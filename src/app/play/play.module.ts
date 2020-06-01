@@ -44,7 +44,7 @@ import { LevelApiService } from './services/level-api.service';
     PlayRoutingModule,
     SharedModule,
     FormsModule,
-    PipesModule,
+    PipesModule
 
   ],
   providers : [

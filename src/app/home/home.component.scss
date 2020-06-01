@@ -2,16 +2,20 @@
 
 .menu-container {
     margin-top: 4vh;
-    div {
+    flex-wrap: wrap;
+    width:90%;
+
+/*     display: flex;
+    justify-content: center; */
+    .menu-image-container {
+
         width: 120px;
-        /* border: 2px solid pink; */
-        img:active {
-            border: 3px solid $main-orange;
+        img { max-width: 100%;
+            &:active {
+                border: 3px solid $main-orange;
+            }
         }
     }
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
 }
 
 

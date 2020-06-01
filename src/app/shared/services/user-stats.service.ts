@@ -13,11 +13,11 @@
 // ( + will determine a *level color theme* in a future feature )
 
 import { Injectable } from '@angular/core';
-import { LevelApiService } from '../services/level-api.service';
-import { LevelI } from '../../shared/models/level.interface';
+import { LevelApiService } from '../../play/services/level-api.service';
+import { LevelI } from '../models/level.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CandyI } from '../../shared/models/candy.interface';
-import { UserStatsI } from '../../shared/models/user-stats.interface'; 
+import { CandyI } from '../models/candy.interface';
+import { UserStatsI } from '../models/user-stats.interface'; 
 
 
 @Injectable({
@@ -25,6 +25,7 @@ import { UserStatsI } from '../../shared/models/user-stats.interface';
 })
 export class UserStatsService {
 
+  public userAgeRange: number;
   public level: LevelI;
   public levels: LevelI[];
   public nextLevel: LevelI;
@@ -69,6 +70,15 @@ export class UserStatsService {
     this.getCurrentLevel();
   }
 
+
+  public setCurrentAgeRange(age: number) {
+    this.userAgeRange = age;
+  }
+  public getCurrentAgeRange() {
+    return this.userAgeRange;
+  }
+
+
   // get level list from api (json atm)
   public retrieveLevelList() {
     return this.levels;
@@ -76,6 +86,7 @@ export class UserStatsService {
   public retrieveDefaultLevel() {
     return this.level;
   }
+
 
   // get current level
   public getCurrentLevel() {

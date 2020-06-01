@@ -11,12 +11,15 @@
   <div class="mapContainer">
     <div id="map"></div>
   </div>
-
-  <div class="saveLocation">
-    <button class="flexRowCentered">
-      <img [src]="heartIcon" alt="heartIcon" />
-      Save address !
-    </button>
+  <div class="options-container">
+    <!-- <button (click)="see()">pull</button> -->
+    <div class="saveLocationBtnContainer">
+      <button class="flexRowCentered" (click)="saveAddress()">
+        <img [src]="heartIcon" alt="heartIcon" />
+        Save this address to favorites !
+      </button>
+    </div>
   </div>
+
 
 </ion-content>

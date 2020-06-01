@@ -44,8 +44,16 @@ export class MapComponent implements OnInit {
     this.geolocService.loadMapWithBounds();
   }
 
+  saveAddress() {
+    alert('address saved to favorites!');
+  }
 
+  see() {
+
+  }
+  
   addCircle() {}
   myAddresses() {}
+
 
 }

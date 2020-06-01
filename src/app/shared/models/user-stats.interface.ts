@@ -2,6 +2,7 @@ import { LevelI } from './level.interface';
 
 export interface UserStatsI {
 
+    userAgeRange: number;
     totalCandy: number;
     totalPoints: number;
     currentLevel: LevelI;

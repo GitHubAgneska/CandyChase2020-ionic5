@@ -9,12 +9,10 @@ const routes: Routes = [
 
   { path: '', component: WelcomePageComponent },
   { path: 'home', component: HomeComponent },
-
   { path: 'start', component: AgeSelectComponent },
-
   { path: 'static', loadChildren: () => import('./static-pages/static-pages.module').then(m => m.StaticPagesModule) },
-
   { path: '', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule) },
+  { path: '**', redirectTo: 'home'  }
 
 ];
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 import { Router } from '@angular/router';
-import { UserStatsService } from '../services/user-stats.service';
+import { UserStatsService } from '../../shared/services/user-stats.service';
 
 @Component({
   selector: 'app-backpack',

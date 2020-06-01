@@ -5,14 +5,29 @@
 </ion-header>
 
 <ion-content>
-  <div class="menu-container circlesImgBg">
-    <div><img src="assets/graphicMat/menu_rules.png" alt="menu-rules" (click)="goToRules()" /></div>
-    <!--   <div></div> -->
-    <div><img src="assets/graphicMat/menu_play.png" alt="menu-play" (click)="start()" /></div>
-    <div><img src="assets/graphicMat/menu_login.png" alt="menu-login" (click)="goToLogin()" /></div>
-    <!--     <div></div> -->
-    <div><img src="assets/graphicMat/menu_about.png" alt="menu-about" (click)="goToAbout()" /></div>
-    <div><img src="assets/graphicMat/menu_legal.png" alt="menu-legal" (click)="goToLegal()" /></div>
+  <div class="menu-container circlesImgBg flexRowCentered">
+    <div class="menu-image-container">
+      <img src="assets/graphicMat/menu_rules.png" alt="menu-rules" (click)="goToRules()" />
+    </div>
+    <div class="menu-image-container">
+      <div *ngIf="isPlaying;else newGame">
+        <img src="assets/graphicMat/menu_resume.png" alt="menu-play" (click)="continue() />
+      </div>
+      <ng-template #newGame class="menu-image-container">
+        <img src="assets/graphicMat/menu_play.png" alt="menu-resume" (click)="start()" />
+      </ng-template>
+    </div>
+
+    <div class="menu-image-container">
+      <img src="assets/graphicMat/menu_login.png" alt="menu-login" (click)="goToLogin()" />
+    </div>
+
+    <div class="menu-image-container">
+      <img src="assets/graphicMat/menu_about.png" alt="menu-about" (click)="goToAbout()" />
+    </div>
+    <div class="menu-image-container">
+      <img src="assets/graphicMat/menu_legal.png" alt="menu-legal" (click)="goToLegal()" />
+    </div>
 
   </div>
 </ion-content>

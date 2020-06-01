@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-legal',
@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LegalComponent implements OnInit {
 
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit() {}
+
+  public goBack() {
+    this.location.back();
+  }
 
 }
