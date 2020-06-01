@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { By } from '@angular/platform-browser';
 import { CandyApiService } from '../services/candy-api.service';
-import { UserStatsService } from '../services/user-stats.service';
+import { UserStatsService } from '../../shared/services/user-stats.service';
 
 import { CandyListComponent } from './candy-list.component';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
