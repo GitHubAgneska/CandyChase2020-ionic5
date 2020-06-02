@@ -33,8 +33,10 @@ export class AgeSelectComponent implements OnInit {
   ngOnInit() { }
 
   public selectAge(ageRange: number) {
+
     this.userAgeRange = ageRange;
-    // console.log('user age= ', this.userAgeRange);
+    console.log('user age= ', this.userAgeRange);
+
     this.userStatsService.setCurrentAgeRange(this.userAgeRange);
     this.geolocService.setAgeRange(this.userAgeRange);
     // this.geolocService.findAllowedDistance(this.userAgeRange);

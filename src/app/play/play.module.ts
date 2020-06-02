@@ -17,12 +17,12 @@ import { CandyListComponent } from './candy-list/candy-list.component';
 import { CandyDetailsComponent } from './candy-details/candy-details.component';
 import { BackpackComponent } from './backpack/backpack.component';
 import { AddressesComponent } from './addresses/addresses.component';
-import { CardsComponent } from './cards/cards.component';
-import { LevelComponent } from './level/level.component';
 import { MapComponent } from './map/map.component';
 import { UserStatsComponent } from './user-stats/user-stats.component';
 
 import { LevelApiService } from './services/level-api.service';
+import { TrickOrTreatComponent } from './trick-or-treat/trick-or-treat.component';
+import { ChallengesComponent } from './challenges/challenges.component';
 
 
 @NgModule({
@@ -32,10 +32,10 @@ import { LevelApiService } from './services/level-api.service';
     CandyDetailsComponent,
     BackpackComponent,
     AddressesComponent,
-    CardsComponent,
-    LevelComponent,
     MapComponent,
-    UserStatsComponent
+    UserStatsComponent,
+    TrickOrTreatComponent,
+    ChallengesComponent
 
   ],
   imports: [

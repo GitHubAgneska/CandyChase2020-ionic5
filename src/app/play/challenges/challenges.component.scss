@@ -1,0 +1,42 @@
+@import "src/theme/variables.scss";
+
+// necessary for list elements to come out right
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+.special-bg {
+    background-image: url("src/assets/graphicMat/spiders_bg-half.png");
+    background-size: cover;
+    background-position: center;
+
+    .main-container {
+
+        width: 90%;
+        height: 80%;
+        margin: auto;
+        padding-top: 10%;
+        
+        h1 {
+            color: $sub-light;
+            font-size: 2.5rem;
+            line-height: 0.8;
+            span { font-size: 3.5rem; }
+        }
+
+        .upper-row,
+        .bottom-row {
+            height: 5rem;
+            padding: 8% 0%;
+            img {
+                width: 5rem;
+            }
+        }
+    }
+
+}

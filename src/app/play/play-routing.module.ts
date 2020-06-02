@@ -4,10 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { CandyListComponent } from '../play/candy-list/candy-list.component';
 import { CandyDetailsComponent } from './candy-details/candy-details.component';
 import { BackpackComponent } from '../play/backpack/backpack.component';
-import { LevelComponent } from './level/level.component';
 import { MapComponent } from './map/map.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { UserStatsComponent } from './user-stats/user-stats.component';
+import { TrickOrTreatComponent } from './trick-or-treat/trick-or-treat.component';
+import { ChallengesComponent } from './challenges/challenges.component';
 
 const playModuleRoutes: Routes = [
 
@@ -18,7 +19,8 @@ const playModuleRoutes: Routes = [
         { path: 'addresses', component: AddressesComponent },
         { path: 'candyDetails/:id', component: CandyDetailsComponent },
         { path: 'backpack', component: BackpackComponent },
-        { path: 'level', component: LevelComponent },
+        { path: 'trickOrTreat', component: TrickOrTreatComponent },
+        { path: 'challenges', component: ChallengesComponent },
         //  {path: '404', component: NotFoundComponent},
         // { path: '**', redirectTo: '404' },
         { path: '**', redirectTo: '' }

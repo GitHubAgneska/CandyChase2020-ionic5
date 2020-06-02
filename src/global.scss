@@ -132,14 +132,16 @@ $app-direction: ltr;
         border-radius: 50%;
     }
 
-    // candylist ion-searchbar **************************
+    // candylist ion-searchbar ************************** => TODO: check modes - selectors
     .searchbar-input.sc-ion-searchbar-ios,
-    .searchbar-input.sc-ion-searchbar-ios::placeholder {
+    .searchbar-input.sc-ion-searchbar-ios::placeholder,
+    .searchbar-input .sc-ion-searchbar-md-h::placeholder {
         color: black !important;
         font-size: 1.5rem !important;
         opacity: 1 !important;
     }
-    .searchbar-input.sc-ion-searchbar-ios {
+    .searchbar-input.sc-ion-searchbar-ios,
+    .searchbar-input.sc-ion-searchbar-md-h {
         border: 3px solid orange;
         background-color: rgba(255, 192, 203, 0.6);
     }

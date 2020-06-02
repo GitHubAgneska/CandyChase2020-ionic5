@@ -26,6 +26,7 @@ import { UserStatsI } from '../models/user-stats.interface';
 export class UserStatsService {
 
   public userAgeRange: number;
+
   public level: LevelI;
   public levels: LevelI[];
   public nextLevel: LevelI;
@@ -35,7 +36,6 @@ export class UserStatsService {
   public totalCandy: number;
   public totalPoints: number;
 
-  public userStats: UserStatsI;
 
   // keep track of candy list in backpack --
   private backpackContent$ = new BehaviorSubject([]);
@@ -49,6 +49,7 @@ export class UserStatsService {
   // keep track of current level --  whole object
   public level$: BehaviorSubject<LevelI> = new BehaviorSubject(this.level);
 
+  public userStats: UserStatsI;
 
   constructor(
     private levelApiService: LevelApiService
@@ -64,13 +65,20 @@ export class UserStatsService {
     this.totalPoints = this.totalCandy * 2;
   }
 
+
+  // all stats -------------------------------------------------
   public getCurrentUserStats() {
-    // this.userStats.totalCandy = this.getCurrentBackpackCount().subscribe();
+
+    this.userStats.userAgeRange = this.getCurrentAgeRange();
+    // nthis.userStats.totalCandy = this.getCurrentBackpackCount().subscribe(count => this.totalCandy = count);
+/*     this.getCurrentBackpackCount();
     this.getCurrentTotalPoints();
-    this.getCurrentLevel();
+    this.getCurrentLevel(); */
+
   }
 
 
+  // ageRange ---------------------------------------------------
   public setCurrentAgeRange(age: number) {
     this.userAgeRange = age;
   }
@@ -79,26 +87,8 @@ export class UserStatsService {
   }
 
 
-  // get level list from api (json atm)
-  public retrieveLevelList() {
-    return this.levels;
-  }
-  public retrieveDefaultLevel() {
-    return this.level;
-  }
 
-
-  // get current level
-  public getCurrentLevel() {
-    // this.setCurrentLevel(this.totalPoints);
-    return this.level$.asObservable();
-  }
-  // update current level ( besides regular points count )
-  public update_level(level: LevelI) {
-    this.level$.next(level);
-  }
-
-
+  // backpack content -------------------------------------------
 
   // get current list of candy in backpack
   public getCurrentBackpackContent() {
@@ -108,7 +98,6 @@ export class UserStatsService {
   public update_backpackContent(itemsInBackpack: CandyI[]) {
     this.backpackContent$.next(itemsInBackpack);
   }
-
 
   // get current amount of candy in backpack
   public getCurrentBackpackCount() {
@@ -120,6 +109,8 @@ export class UserStatsService {
   }
 
 
+  // total points -------------------------------------------------
+
   // get current total points
   public getCurrentTotalPoints() {
     return this.totalPoints$.asObservable();
@@ -127,6 +118,27 @@ export class UserStatsService {
   // update total points
   public update_totalPoints(totalPoints: number) {
     this.totalPoints$.next(totalPoints);
+  }
+
+
+  // level ---------------------------------------------------------
+
+  // get level list from api (json atm)
+  public retrieveLevelList() {
+    return this.levels;
+  }
+  public retrieveDefaultLevel() {
+    return this.level;
+  }
+
+  // get current level
+  public getCurrentLevel() {
+    this.setCurrentLevel(this.totalPoints);
+    return this.level$.asObservable();
+  }
+  // update current level ( besides regular points count )
+  public update_level(level: LevelI) {
+    this.level$.next(level);
   }
 
 
@@ -151,6 +163,10 @@ export class UserStatsService {
     this.update_level(this.level);
   }
 
+
+}
+
+
     /* ------------------------------------------------------------------------------
       Method to count points depending on specific criteria, e.g candy item weight
         public setTotalPoints() {
@@ -158,7 +174,7 @@ export class UserStatsService {
           this.itemsInBackpack$.forEach( item => {
             if ( item.serving_size ) { ... })
     } => not implementable atm for api data = not consistent enough */
-  // => For now total points will be count as 2 points/ candy item
+  // => For now total points will be count as 2 points per candy item
   //  ------------------------------------------------------------------------------
 
-}
+

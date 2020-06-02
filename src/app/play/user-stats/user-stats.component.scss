@@ -1,41 +1,86 @@
 @import "src/theme/variables.scss";
 // necessary for list elements to come out right
-/* h1,
+h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
     margin: 0;
-} */
+}
 .stats-container {
-
     width: 80%;
+    height:80%;
     margin: 10% auto;
+    background-size: cover;
+    background-position: center;
 
-    h1, h2 {
+    h1,
+    h2 {
         font-family: $flyingleather;
     }
     h1 {
-        color: $main-pink;
+        color: $sub-light;
         font-size: $xxs-fontSize;
     }
     h2 {
         color: $main-orange;
         font-size: $xs-fontSize;
     }
-    .item {
+    .item,
+    .item-level {
         align-items: unset;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
-    .flexible {
+    .item {
+        border: 2px solid $sub-purple;
+        border-radius: 20px;
+        padding: 3% 0%;
+    }
+    .item-level {
+        text-align: center;
+        border-bottom: 3px solid orange;
+        line-height: 0.1em;
+        margin: 10px 0 20px;
+    }
+}
+.bottom-cards-container {
+    bottom: 2%;
+    position: absolute;
+    width: 100%;
+    margin: auto;
 
-        color: $main-pink;
-        font-size: $xxs-fontSize;
-        letter-spacing: 0.1rem;
+    .cardsList {
+        justify-content: space-evenly;
+        .card-container {
+            height: 10rem;
+            // background-color: pink;
 
-        
+            .bubbleNext {
+                margin-bottom: 15%;
+                width: 5rem;
+                height: 5rem;
+                background-color: $sub-orange;
+                border: 1px solid $main-red;
+                border-radius: 5px;
+                h2 {
+                    padding: 7%;
+                    font-size: 0.8rem;
+                    text-align: center;
+                    color: black;
+                    span {
+                        color: $main-red;
+                    }
+                }
+            }
+            .card-img-container {
+                width: 4rem;
+                img {
+                    width: 100%;
+                }
+            }
+        }
     }
 }

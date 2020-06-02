@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="customColor">
+    <ion-title text-center class="toolbarTitle">Trick or treat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="special-bg">
+
+  <div class="main-container flexColCentered">
+
+    <div class="upper-row flexRowCentered" (click)="choseTreat()">
+      <h1>Choose<br><span>treat!</span></h1>
+      <img src="{{candyImg }}" alt="candy" />
+    </div>
+  
+    <div class="main-row flexRowCentered">
+      <img src="{{ treatOrTrickImg }}" alt="treatOrTrick" />
+    </div>
+  
+    <div class="bottom-row flexRowCentered" (click)="choseTrick()">
+      <img src="{{ witchHatImg }}" alt="witch-hat" />
+      <h1>Choose<br><span>trick!</span></h1>
+    </div>
+
+  </div>
+
+</ion-content>

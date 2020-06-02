@@ -65,7 +65,7 @@ export class CandyDetailsComponent implements OnInit {
     this.displayCandyInfo(this.candyId);
   }
 
-  
+
   public displayCandyInfo(candyId: string | number)  {
 
     this.activatedRoute.paramMap.subscribe(param => {
