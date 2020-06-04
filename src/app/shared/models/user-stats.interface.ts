@@ -1,12 +1,18 @@
 import { LevelI } from './level.interface';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface UserStatsI {
 
-    userAgeRange: number;
-    totalCandy: Observable<number>;
+    // userAgeRange?: number;
+/*     totalCandy: number;
     totalPoints: number;
-    currentLevel: LevelI;
+    currentLevel: LevelI; */
+    totalCandy: Observable<number>;
+    totalPoints: Observable<number>;
+    currentLevel: Observable<LevelI>;
+/*     totalCandy: BehaviorSubject<number>;
+    totalPoints: BehaviorSubject<number>;
+    currentLevel: BehaviorSubject<LevelI>; */
     collectedCards?: any[];
     savedAddresses?: any[];
     challenges?: number;

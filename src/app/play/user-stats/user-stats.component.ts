@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { LevelI } from '../../shared/models/level.interface';
-import { UserStatsI } from '../../shared/models/user-stats.interface'; 
+import { UserStatsI } from '../../shared/models/user-stats.interface';
 import { GeolocService } from '../../shared/services/geoloc.service';
 
 @Component({
@@ -14,48 +14,44 @@ export class UserStatsComponent implements OnInit {
   public userStats: UserStatsI;
 
   public totalPoints: number;
+  public candyCount: number;
 
   public levels: LevelI[];
   public currentLevel: LevelI;
   public nextLevel: LevelI;
 
-  public cards = [];
+  public collectedCards = [];
   public cardIsNext: boolean;
 
+  public challenges: [];
+  public challengesCount: number;
+
+  public savedAddresses: [];
+  public savedAddressesCount: number;
+
   constructor(
-    private userStatsService: UserStatsService, private geolocService: GeolocService
+    private userStatsService: UserStatsService,
+    private geolocService: GeolocService
   ) {
-    // this.userStats = this.userStatsService.getCurrentUserStats();
-    this.totalPoints = 0;
-    this.currentLevel = this.userStatsService.retrieveDefaultLevel();
-    this.levels = this.userStatsService.retrieveLevelList();
-    this.cardIsNext = true;
+
   }
 
   ngOnInit() {
-  console.log('this.userStatsService.getCurrentUserStats = ', this.userStatsService.getCurrentUserStats());
-    // this.setLevel();
-
-    // this.geolocService.getCurrentLocation();
-
-/*  this.userStatsService.getCurrentTotalPoints();
-    console.log('total point: ', this.totalPoints);
-
-    this.userStatsService.getCurrentLevel();
-    console.log('current level: ', this.currentLevel); */
+    this.setStats();
   }
 
-  /* public setLevel() {
-    console.log(this.levels);
-    this.currentLevel = this.levels[0];
-    this.nextLevel = this.levels[1];
-    this.cards = [
-      this.levels[0].levelCard,
-      this.levels[1].levelCard,
-      this.levels[2].levelCard,
-      this.levels[3].levelCard,
-    ];
-    // this.userStatsService.getCurrentLevel();
-  } */
+
+  public setStats() {
+
+    this.userStatsService.getCurrentTotalPoints().subscribe(data => this.totalPoints = data);
+    console.log('------', this.totalPoints);
+
+    this.userStatsService.getCurrentBackpackCount().subscribe(data => this.candyCount = data);
+    console.log('------', this.candyCount);
+
+    this.currentLevel = this.userStatsService.setCurrentLevel(this.totalPoints);
+    console.log(this.currentLevel.levelName);
+  }
 
 }
+

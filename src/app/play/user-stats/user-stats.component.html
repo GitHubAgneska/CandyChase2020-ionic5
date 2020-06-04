@@ -6,31 +6,32 @@
 
 <ion-content>
 
-  <div *ngFor="let stat of userStats" class="stats-container" style="background-image: '{{ currentLevel.levelImg }}'">
-
+  <div class="stats-container" style="background-image: '{{ currentLevel.levelImg }}'">
+<!--   <div *ngFor="let stat of userStats" class="stats-container" style="background-image: '{{ currentLevel.levelImg }}'">
+ -->
     <div class="item-level">
       <h1>Current Level</h1>
-      <h2>{{ stat.currentLevel }}</h2>
+      <h2>{{ currentLevel.levelName }}</h2>
     </div>
 
     <div class="item">
       <h1>Total Points</h1>
-      <h2>{{ stat.totalPoints }}</h2>
+      <h2>{{ totalPoints }}</h2>
     </div>
 
     <div class="item">
       <h1>Total Candy</h1>
-      <h2>{{ stat.totalCandy }}</h2>
+      <h2>{{ candyCount }}</h2>
     </div>
 
     <div class="item">
       <h1>Saved Addresses</h1>
-      <h2>{{ stat.savedAddresses }}</h2>
+      <!-- <h2>{{ savedAddresses }}</h2> -->
     </div>
 
     <div class="item">
       <h1>Challenges</h1>
-      <h2>{{ stat.challenges }}</h2>
+      <!-- <h2>{{ challenges }}</h2> -->
     </div>
   </div>
 
@@ -40,10 +41,10 @@
       <div *ngFor="let card of cards">
         <div class="card-container flexColCentered">
           <div *ngIf="cardIsNext" class="bubbleNext">
-            <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2>
-          </div>
+<!--             <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2>
+ -->          </div>
           <div class="card-img-container container-fluid">
-            <img src="{{ card }}" />
+           <!--  <img src="{{ card }}" /> -->
           </div>
         </div>
       </div>

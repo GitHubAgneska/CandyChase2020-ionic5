@@ -1,23 +1,26 @@
 
 // this service exists to :
 
-// keep track and update / calculate
+// keep track and update / calculate ALL USER STATS :
 
 // *current backpack content*
 // *current total points*
 // *current level*
 // *current set of cards*
+// *current set of saved addresses
+// *current set of challenges
 
-// => these infos will be available
-// accross all components of play module (as a badge displayed on pages)
+
+// => these infos will be available accross all components of the play module
+// ( maybe as a badge displayed on pages in a future feature)
 // ( + will determine a *level color theme* in a future feature )
 
 import { Injectable } from '@angular/core';
 import { LevelApiService } from '../../play/services/level-api.service';
 import { LevelI } from '../models/level.interface';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CandyI } from '../models/candy.interface';
-import { UserStatsI } from '../models/user-stats.interface'; 
+import { UserStatsI } from '../models/user-stats.interface';
 
 
 @Injectable({
@@ -44,12 +47,14 @@ export class UserStatsService {
   private totalCandyInBackpack$ = new BehaviorSubject(0);
 
   // keep track of total points --
-  private totalPoints$ = new BehaviorSubject(this.totalPoints);
+  public totalPoints$ = new BehaviorSubject(0);
 
   // keep track of current level --  whole object
-  public level$: BehaviorSubject<LevelI> = new BehaviorSubject(this.level);
+  public level$ = new BehaviorSubject({});
 
+  // keep track of current userStats --  whole object
   public userStats: UserStatsI;
+  private userStatsBehavior$ = new BehaviorSubject(this.userStats);
 
   constructor(
     private levelApiService: LevelApiService
@@ -59,23 +64,17 @@ export class UserStatsService {
       this.level = this.levels[0];
       this.nextLevel = this.levels[1];
     });
-    // this.userStats = {};
     this.itemsInBackpack = [];
     this.totalCandy = 0;
-    this.totalPoints = this.totalCandy * 2;
+    this.totalPoints = 0;
   }
 
 
   // all stats -------------------------------------------------
-  public getCurrentUserStats() {
+/*  public getCurrentUserStats(): Observable<UserStatsI> {
+    return of(this.userStats);
+  } */
 
-    this.userStats.userAgeRange = this.getCurrentAgeRange();
-    // nthis.userStats.totalCandy = this.getCurrentBackpackCount().subscribe(count => this.totalCandy = count);
-/*     this.getCurrentBackpackCount();
-    this.getCurrentTotalPoints();
-    this.getCurrentLevel(); */
-
-  }
 
 
   // ageRange ---------------------------------------------------
@@ -127,13 +126,10 @@ export class UserStatsService {
   public retrieveLevelList() {
     return this.levels;
   }
-  public retrieveDefaultLevel() {
-    return this.level;
-  }
 
   // get current level
   public getCurrentLevel() {
-    this.setCurrentLevel(this.totalPoints);
+    // this.setCurrentLevel(this.totalPoints);
     return this.level$.asObservable();
   }
   // update current level ( besides regular points count )
@@ -142,10 +138,9 @@ export class UserStatsService {
   }
 
 
-  public setCurrentLevel(totalPoints: number) {
+  public setCurrentLevel(totalPoints: number): LevelI {
 
     this.levels = this.retrieveLevelList();
-    this.totalPoints = totalPoints;
 
     if (totalPoints > 7 && totalPoints <= 12) {
       this.level = this.levels[1];
@@ -161,6 +156,7 @@ export class UserStatsService {
       this.nextLevel = this.levels[1];
     }
     this.update_level(this.level);
+    return this.level;
   }
 
 
