@@ -41,7 +41,7 @@
             
             "levelImg": "",
             "bannerMessage": "",
-            "levelCard": "",
-            "levelCardName":""
+            "levelCard": "assets/graphicMat/mystery_card.png",
+            "levelCardName":"mystery card"
         }
     ]

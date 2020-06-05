@@ -1522,6 +1522,97 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/play/services/challenges-api.service.ts":
+  /*!*********************************************************!*\
+    !*** ./src/app/play/services/challenges-api.service.ts ***!
+    \*********************************************************/
+
+  /*! exports provided: ChallengesApiService */
+
+  /***/
+  function srcAppPlayServicesChallengesApiServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ChallengesApiService", function () {
+      return ChallengesApiService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _http_error_handler_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./http-error-handler.service */
+    "./src/app/play/services/http-error-handler.service.ts");
+    /* harmony import */
+
+
+    var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! rxjs/operators */
+    "./node_modules/rxjs/_esm2015/operators/index.js");
+
+    var ChallengesApiService = /*#__PURE__*/function () {
+      function ChallengesApiService(httpClient, httpErrorHandler) {
+        _classCallCheck(this, ChallengesApiService);
+
+        this.httpClient = httpClient;
+        this.challengesListUrl = 'assets/challengesData.json';
+        this.challengesList = [];
+        this.handleError = httpErrorHandler.createHandleError('ChallengesApiService');
+      }
+
+      _createClass(ChallengesApiService, [{
+        key: "getChallengesList",
+        value: function getChallengesList() {
+          return this.httpClient.get(this.challengesListUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
+            var rawApiResponseObject = response;
+            var challengesListUrl = rawApiResponseObject; // console.log("je suis levellist 0", result[0]);
+
+            return challengesListUrl;
+          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["retry"])(3), // retry a failed request up to 3 times
+          Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('getChallengesList', [])) // then handle the error
+          );
+        }
+      }]);
+
+      return ChallengesApiService;
+    }();
+
+    ChallengesApiService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }, {
+        type: _http_error_handler_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorHandler"]
+      }];
+    };
+
+    ChallengesApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _http_error_handler_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorHandler"]])], ChallengesApiService);
+    /***/
+  },
+
+  /***/
   "./src/app/play/services/http-error-handler.service.ts":
   /*!*************************************************************!*\
     !*** ./src/app/play/services/http-error-handler.service.ts ***!
@@ -2166,63 +2257,82 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _play_services_level_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _play_services_level_api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../../play/services/level-api.service */
     "./src/app/play/services/level-api.service.ts");
     /* harmony import */
 
 
-    var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! rxjs */
-    "./node_modules/rxjs/_esm2015/index.js"); // this service exists to :
-    // keep track and update / calculate
+    var _play_services_challenges_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../../play/services/challenges-api.service */
+    "./src/app/play/services/challenges-api.service.ts"); // this service exists to :
+    // keep track and update / calculate ALL USER STATS :
     // *current backpack content*
     // *current total points*
     // *current level*
     // *current set of cards*
-    // => these infos will be available
-    // accross all components of play module (as a badge displayed on pages)
+    // *current set of saved addresses*
+    // *current set of challenges*
+    // => these infos will be available accross all components of the play module
+    // ( maybe as a badge displayed on pages in a future feature)
     // ( + will determine a *level color theme* in a future feature )
 
 
     var UserStatsService = /*#__PURE__*/function () {
-      function UserStatsService(levelApiService) {
+      function UserStatsService(levelApiService, challengesService) {
         var _this7 = this;
 
         _classCallCheck(this, UserStatsService);
 
-        this.levelApiService = levelApiService; // keep track of candy list in backpack --
+        this.levelApiService = levelApiService;
+        this.challengesService = challengesService;
+        this.card = {
+          cardName: '',
+          cardImg: ''
+        };
+        this.collectedCards = []; // keep track of candy list in backpack --
 
-        this.backpackContent$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"]([]); // keep track of candy total --
+        this.backpackContent$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]([]); // keep track of candy total --
 
-        this.totalCandyInBackpack$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](0); // keep track of total points --
+        this.totalCandyInBackpack$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](0); // keep track of total points --
 
-        this.totalPoints$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](this.totalPoints); // keep track of current level --  whole object
+        this.totalPoints$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](0); // keep track of current level --  whole object
 
-        this.level$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](this.level);
+        this.level$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({});
+        this.userStatsBehavior$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({}); // keep track of saved addresses list
+
+        this.savedAddressesBehavior$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]([]);
+        this.itemsInBackpack = [];
+        this.totalCandy = 0;
+        this.totalPoints = 0;
+        this.candyItem = {
+          _id: '',
+          product_name: '',
+          amountInBackpack: 0
+        };
         this.levelApiService.getLevelList().subscribe(function (data) {
           _this7.levels = data;
           _this7.level = _this7.levels[0];
           _this7.nextLevel = _this7.levels[1];
-        }); // this.userStats = {};
-
-        this.itemsInBackpack = [];
-        this.totalCandy = 0;
-        this.totalPoints = this.totalCandy * 2;
+        });
+        this.challengesService.getChallengesList().subscribe(function (data) {
+          _this7.challenges = data;
+        });
       } // all stats -------------------------------------------------
+
+      /*  public getCurrentUserStats(): Observable<UserStatsI> {
+          return of(this.userStats);
+        } */
+      // ageRange ---------------------------------------------------
 
 
       _createClass(UserStatsService, [{
-        key: "getCurrentUserStats",
-        value: function getCurrentUserStats() {
-          this.userStats.userAgeRange = this.getCurrentAgeRange(); // nthis.userStats.totalCandy = this.getCurrentBackpackCount().subscribe(count => this.totalCandy = count);
-
-          /*     this.getCurrentBackpackCount();
-              this.getCurrentTotalPoints();
-              this.getCurrentLevel(); */
-        } // ageRange ---------------------------------------------------
-
-      }, {
         key: "setCurrentAgeRange",
         value: function setCurrentAgeRange(age) {
           this.userAgeRange = age;
@@ -2276,17 +2386,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "retrieveLevelList",
         value: function retrieveLevelList() {
           return this.levels;
-        }
-      }, {
-        key: "retrieveDefaultLevel",
-        value: function retrieveDefaultLevel() {
-          return this.level;
         } // get current level
 
       }, {
         key: "getCurrentLevel",
         value: function getCurrentLevel() {
-          this.setCurrentLevel(this.totalPoints);
+          // this.setCurrentLevel(this.totalPoints);
           return this.level$.asObservable();
         } // update current level ( besides regular points count )
 
@@ -2299,23 +2404,52 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "setCurrentLevel",
         value: function setCurrentLevel(totalPoints) {
           this.levels = this.retrieveLevelList();
-          this.totalPoints = totalPoints;
 
-          if (totalPoints > 7 && totalPoints <= 12) {
+          if (totalPoints > 30 && totalPoints < 60) {
             this.level = this.levels[1];
-            this.nextLevel = this.levels[2];
-          } else if (totalPoints > 12 && totalPoints <= 18) {
+          } else if (totalPoints >= 60 && totalPoints < 120) {
             this.level = this.levels[2];
-            this.nextLevel = this.levels[3];
-          } else if (totalPoints > 18) {
+          } else if (totalPoints >= 120 && totalPoints < 180) {
             this.level = this.levels[3];
-            this.nextLevel = this.levels[4];
+          } else if (totalPoints >= 180 && totalPoints < 240) {
+            this.level = this.levels[4];
+          } else if (totalPoints > 240) {
+            this.level = this.levels[5];
           } else {
             this.level = this.levels[0];
-            this.nextLevel = this.levels[1];
           }
 
           this.update_level(this.level);
+          return this.level;
+        } // cards ---------------------------------------------------------
+
+      }, {
+        key: "getAllCards",
+        value: function getAllCards() {
+          var _this8 = this;
+
+          this.levels = this.retrieveLevelList();
+          this.levels.forEach(function (item) {
+            return _this8.collectedCards.push(item.levelCard);
+          });
+          return this.collectedCards;
+        } // saved addresses ---------------------------------------------------------
+
+      }, {
+        key: "getCurrentAddressesList",
+        value: function getCurrentAddressesList() {
+          return this.savedAddressesBehavior$.asObservable;
+        }
+      }, {
+        key: "updateCurrentAddressesList",
+        value: function updateCurrentAddressesList(address) {
+          this.savedAddressesBehavior$.next(address);
+        } // challenges ---------------------------------------------------------
+
+      }, {
+        key: "retrieveChallengesList",
+        value: function retrieveChallengesList() {
+          return this.challenges;
         }
       }]);
 
@@ -2324,13 +2458,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     UserStatsService.ctorParameters = function () {
       return [{
-        type: _play_services_level_api_service__WEBPACK_IMPORTED_MODULE_2__["LevelApiService"]
+        type: _play_services_level_api_service__WEBPACK_IMPORTED_MODULE_3__["LevelApiService"]
+      }, {
+        type: _play_services_challenges_api_service__WEBPACK_IMPORTED_MODULE_4__["ChallengesApiService"]
       }];
     };
 
     UserStatsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_play_services_level_api_service__WEBPACK_IMPORTED_MODULE_2__["LevelApiService"]])], UserStatsService);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_play_services_level_api_service__WEBPACK_IMPORTED_MODULE_3__["LevelApiService"], _play_services_challenges_api_service__WEBPACK_IMPORTED_MODULE_4__["ChallengesApiService"]])], UserStatsService);
     /* ------------------------------------------------------------------------------
       Method to count points depending on specific criteria, e.g candy item weight
         public setTotalPoints() {
@@ -2338,7 +2474,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.itemsInBackpack$.forEach( item => {
             if ( item.serving_size ) { ... })
     } => not implementable atm for api data = not consistent enough */
-    // => For now total points will be count as 2 points per candy item
+    // => For now total points will be count as 6 points per candy item
     //  ------------------------------------------------------------------------------
 
     /***/
