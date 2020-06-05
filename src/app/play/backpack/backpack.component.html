@@ -6,13 +6,13 @@
 
 <ion-content>
 
-  <div class="backpack-elements-container flexColCentered" *ngIf="collectedCandy">
+  <div class="backpack-elements-container flexColCentered">
     <div class="bag-illust circlesImgBg">
       <img src="assets/graphicMat/candyBag.png" alt="" />
 
       <div class="total flexColCentered">
         <h2>Total candy : {{ totalCandy }}</h2>
-        <h2>Total points : {{ totalCandy }}</h2>
+        <h2>Total points : {{ totalPoints }}</h2>
       </div>
     </div>
 
@@ -27,8 +27,8 @@
           <h2>Current level</h2>
           <h2>{{levelName}}</h2>
       </div> -->
-    <div *ngIf="collectedCandy;else noCandyYetBlock">
-      <div class="myCollectedCandy" *ngFor="let item of collectedCandy">
+    <div *ngIf="collectedCandy.length > 0;else noCandyYetBlock">
+      <div *ngFor="let item of collectedCandy" class="myCollectedCandy">
         <div class="candyItem">
           <div class="candyThumbnail">
             <img src="{{item.image_front_url}}">
@@ -44,9 +44,15 @@
         </div>
       </div>
     </div>
-    <ng-template #noCandyYetBlock>
-      <h1>No candy yet !</h1>
-    </ng-template>
-
   </div>
+
+  <ng-template #noCandyYetBlock>
+    <div class="noCandyYet">
+      <!-- <h1>No candy yet !</h1> -->
+      <img [src]="ghostBubble" alt="no candy bubble" />
+      <img [src]="ghostImg" alt="little ghost" />
+    </div>
+  </ng-template>
+
+
 </ion-content>

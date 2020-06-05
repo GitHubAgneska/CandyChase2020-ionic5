@@ -38,13 +38,12 @@
 
   <div class="bottom-cards-container">
     <div class="cardsList flexRowCentered">
-      <div *ngFor="let card of cards">
+      <div *ngFor="let item of collectedCards">
         <div class="card-container flexColCentered">
           <div *ngIf="cardIsNext" class="bubbleNext">
-<!--             <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2>
- -->          </div>
+<!--        <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2> -->          </div>
           <div class="card-img-container container-fluid">
-           <!--  <img src="{{ card }}" /> -->
+            <img src="{{ item }}" />
           </div>
         </div>
       </div>

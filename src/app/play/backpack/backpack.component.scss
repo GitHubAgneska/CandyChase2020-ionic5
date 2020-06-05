@@ -28,7 +28,6 @@
             color: $main-pink;
         }
     }
-
     .myCollectedCandy {
         width: 100%;
 
@@ -87,3 +86,24 @@
         }
     }
 }
+        .noCandyYet {
+            margin-top: 5%;
+            text-align: center;
+/*          background-image: url("src/assets/graphicMat/lightning.png");
+            background-size: cover;
+            background-position: center; */
+            img:first-child {
+                max-width: 10rem;
+                float: right;
+            }
+            img:nth-child(2) {
+                height:15rem;
+            }
+            h1 {
+                font-family: $titanOne;
+                color: $sub-pink;
+                font-size: 1rem;
+                text-transform: uppercase;
+            }
+        }
+

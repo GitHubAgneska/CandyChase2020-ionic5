@@ -31,7 +31,6 @@
 // 'left-to-righ' -'right-to-left'- 'multi' --------------------
 $app-direction: ltr;
 
-
 /* Set variables for all MODES --------------------------------- */
 :root {
     --ion-background-color: transparent;
@@ -57,8 +56,6 @@ $app-direction: ltr;
 
     ion-tab-bar {
         background-color: $main-orange;
-
-
     }
 
     ion-button {
@@ -90,7 +87,7 @@ $app-direction: ltr;
             align-self: center;
         }
     }
-//  *********************************************************************
+    //  *********************************************************************
 
     .flexColCentered {
         display: flex;
@@ -114,7 +111,6 @@ $app-direction: ltr;
         font-family: $titanOne;
         color: $main-orange;
     }
-
 
     .circlesImgBg {
         background-image: url("src/assets/graphicMat/circles.png");
@@ -163,6 +159,31 @@ $app-direction: ltr;
             text-align: center;
         }
     }
+    /* customize toast message points/total */
 
+    .new-points-toast,
+    .new-totalpoints-toast {
+        --height: 10vh !important;
+        --background: #ff000096 !important;
+        --color: orange !important;
+        --opacity: 1 !important;
+        --font-family: "flyingleather" !important;
 
+        text-align: center;
+    }
+    .new-points-toast {
+        font-size: 3rem;
+    }
+    .new-totalpoints-toast {
+        font-size: 2rem;
+    }
+
+    .levelUp-toast {
+        --height: 0vh !important; // override native container
+        z-index: 3;
+        background: #ffa600b3 url("src/assets/graphicMat/levelUp.png");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 }

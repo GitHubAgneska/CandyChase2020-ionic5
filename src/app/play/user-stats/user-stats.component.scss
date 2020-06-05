@@ -10,7 +10,7 @@ h6 {
 }
 .stats-container {
     width: 80%;
-    height:80%;
+    // height:80%;
     margin: 10% auto;
     background-size: cover;
     background-position: center;
@@ -36,8 +36,8 @@ h6 {
     }
     .item {
         border: 2px solid $sub-purple;
-        border-radius: 20px;
-        padding: 3% 0%;
+        border-radius: 15px;
+        padding: 3% 3%;
     }
     .item-level {
         text-align: center;
@@ -51,12 +51,14 @@ h6 {
     position: absolute;
     width: 100%;
     margin: auto;
+    border: 3px solid red;
+    height: 20vh;
 
     .cardsList {
         justify-content: space-evenly;
         .card-container {
             height: 10rem;
-            // background-color: pink;
+            background-color: pink;
 
             .bubbleNext {
                 margin-bottom: 15%;

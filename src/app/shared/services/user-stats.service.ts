@@ -7,20 +7,23 @@
 // *current total points*
 // *current level*
 // *current set of cards*
-// *current set of saved addresses
-// *current set of challenges
-
+// *current set of saved addresses*
+// *current set of challenges*
 
 // => these infos will be available accross all components of the play module
 // ( maybe as a badge displayed on pages in a future feature)
 // ( + will determine a *level color theme* in a future feature )
 
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LevelApiService } from '../../play/services/level-api.service';
 import { LevelI } from '../models/level.interface';
-import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CandyI } from '../models/candy.interface';
 import { UserStatsI } from '../models/user-stats.interface';
+import { map } from 'rxjs/operators';
+import { Coords } from 'leaflet';
+import { ChallengesApiService } from '../../play/services/challenges-api.service';
+import { ChallengesI, TrickI , TreatI } from '../../shared/models/challenges.interface';
 
 
 @Injectable({
@@ -30,14 +33,30 @@ export class UserStatsService {
 
   public userAgeRange: number;
 
-  public level: LevelI;
-  public levels: LevelI[];
-  public nextLevel: LevelI;
-
+  public candyItem: CandyI;
   public itemsInBackpack: CandyI[];
   public itemsInBackpack$: Observable<CandyI[]>;
   public totalCandy: number;
   public totalPoints: number;
+
+  public level: LevelI;
+  public levels: LevelI[];
+  public currentLevel: LevelI;
+  public nextLevel: LevelI;
+
+  public card = { cardName: '', cardImg: ''};
+  public collectedCards = [];
+  public cardIsNext: boolean;
+
+  public challenge: ChallengesI;
+  public challenges: ChallengesI[];
+  public challengesCount: number;
+  public treat: TreatI;
+  public trick: TrickI;
+
+
+  public savedAddresses: [];
+  public savedAddressesCount: number;
 
 
   // keep track of candy list in backpack --
@@ -54,19 +73,31 @@ export class UserStatsService {
 
   // keep track of current userStats --  whole object
   public userStats: UserStatsI;
-  private userStatsBehavior$ = new BehaviorSubject(this.userStats);
+  private userStatsBehavior$ = new BehaviorSubject({});
+
+  // keep track of saved addresses list
+  public savedAddressesBehavior$ = new BehaviorSubject([]);
+
+
 
   constructor(
-    private levelApiService: LevelApiService
+    private levelApiService: LevelApiService,
+    private challengesService: ChallengesApiService
   ) {
+    this.itemsInBackpack = [];
+    this.totalCandy = 0;
+    this.totalPoints = 0;
+    this.candyItem = { _id: '', product_name: '', amountInBackpack: 0 };
+
     this.levelApiService.getLevelList().subscribe(data => {
       this.levels = data;
       this.level = this.levels[0];
       this.nextLevel = this.levels[1];
     });
-    this.itemsInBackpack = [];
-    this.totalCandy = 0;
-    this.totalPoints = 0;
+    this.challengesService.getChallengesList().subscribe(data => {
+      this.challenges = data;
+
+    });
   }
 
 
@@ -138,27 +169,59 @@ export class UserStatsService {
   }
 
 
+
   public setCurrentLevel(totalPoints: number): LevelI {
 
     this.levels = this.retrieveLevelList();
 
-    if (totalPoints > 7 && totalPoints <= 12) {
+    if (totalPoints > 30 && totalPoints < 60) {
       this.level = this.levels[1];
-      this.nextLevel = this.levels[2];
-    } else if (totalPoints > 12 && totalPoints <= 18) {
+    } else if (totalPoints >= 60 && totalPoints < 120) {
       this.level = this.levels[2];
-      this.nextLevel = this.levels[3];
-    } else if (totalPoints > 18) {
+    } else if (totalPoints >= 120 && totalPoints < 180 ) {
       this.level = this.levels[3];
-      this.nextLevel = this.levels[4];
+    } else if (totalPoints >= 180 && totalPoints < 240 ) {
+      this.level = this.levels[4];
+    } else if (totalPoints > 240 ) {
+      this.level = this.levels[5];
     } else {
       this.level = this.levels[0];
-      this.nextLevel = this.levels[1];
     }
     this.update_level(this.level);
     return this.level;
   }
 
+
+
+  // cards ---------------------------------------------------------
+
+  public getAllCards(): any {
+
+    this.levels = this.retrieveLevelList();
+    this.levels.forEach(item => {
+      return(this.collectedCards.push(item.levelCard));
+    });
+    return this.collectedCards;
+  }
+
+
+
+  // saved addresses ---------------------------------------------------------
+
+  getCurrentAddressesList() {
+    return this.savedAddressesBehavior$.asObservable;
+  }
+
+  updateCurrentAddressesList( address: any ) {
+    this.savedAddressesBehavior$.next(address);
+  }
+
+
+// challenges ---------------------------------------------------------
+
+  public retrieveChallengesList() {
+    return this.challenges;
+  }
 
 }
 
@@ -170,7 +233,7 @@ export class UserStatsService {
           this.itemsInBackpack$.forEach( item => {
             if ( item.serving_size ) { ... })
     } => not implementable atm for api data = not consistent enough */
-  // => For now total points will be count as 2 points per candy item
+  // => For now total points will be count as 6 points per candy item
   //  ------------------------------------------------------------------------------
 
 

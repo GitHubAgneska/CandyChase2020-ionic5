@@ -20,7 +20,8 @@ export class UserStatsComponent implements OnInit {
   public currentLevel: LevelI;
   public nextLevel: LevelI;
 
-  public collectedCards = [];
+  public cards: any[];
+  public collectedCards: any[];
   public cardIsNext: boolean;
 
   public challenges: [];
@@ -33,6 +34,7 @@ export class UserStatsComponent implements OnInit {
     private userStatsService: UserStatsService,
     private geolocService: GeolocService
   ) {
+    this.cardIsNext = true;
 
   }
 
@@ -43,15 +45,29 @@ export class UserStatsComponent implements OnInit {
 
   public setStats() {
 
+    // totalPoints
     this.userStatsService.getCurrentTotalPoints().subscribe(data => this.totalPoints = data);
-    console.log('------', this.totalPoints);
+    console.log('totalPoints------', this.totalPoints);
 
+    // totalCandy
     this.userStatsService.getCurrentBackpackCount().subscribe(data => this.candyCount = data);
-    console.log('------', this.candyCount);
+    console.log('candy count------', this.candyCount);
 
+    // currentLevel
     this.currentLevel = this.userStatsService.setCurrentLevel(this.totalPoints);
-    console.log(this.currentLevel.levelName);
+    console.log('levelName-------', this.currentLevel.levelName, this.currentLevel.levelCardName);
+    // nextLevel
+    // this.nextLevel = this.currentLevel + 1;
+
+
+    // all cards
+    this.collectedCards = this.userStatsService.getAllCards();
+    console.log('collected cards----', this.collectedCards);
+
+
+    // savedAddresses
   }
+
 
 }
 

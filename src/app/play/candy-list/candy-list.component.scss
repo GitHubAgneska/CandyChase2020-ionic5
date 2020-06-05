@@ -89,35 +89,9 @@ h6 {
     
 }
 
+/* customize toasts  => global.scss */
 
-/* customize toast message points/total */
---ion-toast--background {
-    background-color: #ff000096 !important;
-}
 
---ion-toast.custom-toast  {
-    height: 10vh !important;
-    background-color: #ff000096 !important;
-    color: orange !important;
-    font-family: "flyingleather" !important;
-    font-size: 5rem !important;
-    text-align: center;
-}
-/* customize toast message levelUp */
-.levelUp {
-    z-index: 3;
-    background: #ffa600b3 url("src/assets/graphicMat/levelUp.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.newCard {
-    z-index: 3;
-    background: rgba(255, 166, 0, 0.7) url("src/assets/graphicMat/levelUp.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
 
 

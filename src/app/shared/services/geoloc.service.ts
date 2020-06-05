@@ -170,6 +170,7 @@ export class GeolocService {
       });
   }
 
+
   // add bounds around current position on map
   public addBounds(bounds: any) {
 

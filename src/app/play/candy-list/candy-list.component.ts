@@ -56,8 +56,8 @@ export class CandyListComponent implements OnInit {
 
 
   ngOnInit() {
-
     this.loadCandyList();
+    this.loadSearchBar();
   }
 
 
@@ -68,7 +68,6 @@ export class CandyListComponent implements OnInit {
           this.candyList = response;
           console.log(this.candyList);
           this.loading = false;
-          this.loadSearchBar();
         }
       );
   }
@@ -98,7 +97,8 @@ export class CandyListComponent implements OnInit {
     this.candyItem = candyItem;
     this.candyItem.product_name = candyItem.product_name;
     this.candyItem._id = candyItem._id;
-    this.candyItem.amountInBackpack = candyItem.amountInBackpack;
+    // tslint:disable-next-line: no-bitwise
+    this.candyItem.amountInBackpack = candyItem.amountInBackpack |  0;
 
     // new candy has not been added yet
     let added = false;
@@ -116,43 +116,51 @@ export class CandyListComponent implements OnInit {
       this.candyItem.amountInBackpack += 1;
       this.itemsInBackpack.push(this.candyItem);
     }
-    // console.log("ITEMS : ", this.itemsInBackpack);
-    // console.log(this.itemsInBackpack.forEach(item => console.log(item.amountInBackpack)));
+    console.log('ITEMS : ', this.itemsInBackpack);
+    console.log(this.itemsInBackpack.forEach(item => console.log('AMOUNT==== ', item.amountInBackpack)));
 
     // save new total of all candy and points
     this.userStatsService.update_totalCandyCount(this.totalCandy += 1);
-    this.userStatsService.update_totalPoints(this.totalPoints += 2);
+    this.userStatsService.update_totalPoints(this.totalPoints += 6);
 
     // save backpack new content
     this.userStatsService.update_backpackContent(this.itemsInBackpack);
-    this.presentToastWithOptions();
+    this.presentToastNewPoints();
+
   }
 
-  async presentToastWithOptions() {
+  async presentToastNewPoints() {
     const toast1 = await this.toastController.create({
-      message: `+2 Points! ${name}`,
+      message: `+ 6 Points! ${name}`,
       position: 'middle',
-      duration: 500,
-      cssClass: 'custom-toast'
-    });
+      duration: 300,
+      cssClass: 'new-points-toast',
 
+    });
     const toast2 = await this.toastController.create({
       message: `TOTAL POINTS :` + this.totalPoints + `!`,
       position: 'middle',
-      duration: 400,
-      cssClass: 'custom-toast'
+      duration: 700,
+      cssClass: 'new-totalpoints-toast'
     });
-
     toast1.present();
-    toast2.present();
 
-    if (this.totalPoints % 10 === 0) {
+    setTimeout(() => {
+        toast1.dismiss();
+        toast2.present();
+    }, 500);
+
+    if (this.totalPoints % 30 === 0) {
       const toast3 = await this.toastController.create({
         position: 'middle',
         duration: 800,
-        cssClass: 'levelUp'
+        cssClass: 'levelUp-toast'
       });
-      toast3.present();
+      setTimeout(() => {
+        toast2.dismiss();
+        toast3.present();
+    }, 500);
+
     }
   }
 }

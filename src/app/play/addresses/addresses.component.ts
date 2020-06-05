@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserStatsService } from '../../shared/services/user-stats.service';
+import { Coords } from 'leaflet';
 
 @Component({
   selector: 'app-addresses',
@@ -7,8 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddressesComponent implements OnInit {
 
-  constructor( ) { }
+  public addressList$: Coords[];
 
-  ngOnInit() {}
+  constructor(
+    private userStatsService: UserStatsService
+  ) { }
+
+  ngOnInit() {
+    this.initAddressList();
+  }
+
+  public initAddressList() {
+    // this.addressList$ = this.userStatsService.getCurrentAddressesList();
+
+  }
 
 }

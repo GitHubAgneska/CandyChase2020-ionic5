@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GeolocService } from '../../shared/services/geoloc.service';
-
+import { ToastController } from '@ionic/angular';
+import { Coords } from 'leaflet';
+import { UserStatsService } from '../../shared/services/user-stats.service';
 
 @Component({
   selector: 'app-map',
@@ -16,10 +18,14 @@ export class MapComponent implements OnInit {
   public allowedDistance: number;
   public mapBounds: number[];
 
+  public newAddress: Coords;
+
   public heartIcon = 'assets/graphicMat/heartAsset_red.png';
 
   constructor(
-    private geolocService: GeolocService
+    private geolocService: GeolocService,
+    public toastController: ToastController,
+    private userStatsService: UserStatsService
 
     ) { }
 
@@ -45,15 +51,21 @@ export class MapComponent implements OnInit {
   }
 
   saveAddress() {
-    alert('address saved to favorites!');
+
+    this.newAddress = this.geolocService.getCoords();
+    this.userStatsService.updateCurrentAddressesList(this.newAddress);
+
   }
 
-  see() {
+
+  async presentToastWithOptions() {
+    const toast = await this.toastController.create({
+      message: `Address saved to favorites !`,
+      position: 'middle',
+      duration: 500,
+      cssClass: 'custom-toast'
+    });
+    toast.present();
 
   }
-  
-  addCircle() {}
-  myAddresses() {}
-
-
 }

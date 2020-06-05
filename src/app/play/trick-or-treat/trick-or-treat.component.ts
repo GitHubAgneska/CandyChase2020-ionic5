@@ -21,11 +21,11 @@ export class TrickOrTreatComponent implements OnInit {
   ngOnInit() {}
 
   choseTreat() {
-    this.router.navigate(['/challenges']);
+    this.router.navigate(['/challenges' + '/' + 'treat']);
   }
 
   choseTrick() {
-    this.router.navigate(['/challenges']);
+    this.router.navigate(['/challenges' + '/' + 'trick']);
   }
 
 }
