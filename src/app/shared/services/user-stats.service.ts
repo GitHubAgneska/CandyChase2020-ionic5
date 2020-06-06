@@ -23,7 +23,7 @@ import { UserStatsI } from '../models/user-stats.interface';
 import { map } from 'rxjs/operators';
 import { Coords } from 'leaflet';
 import { ChallengesApiService } from '../../play/services/challenges-api.service';
-import { ChallengesI, TrickI , TreatI } from '../../shared/models/challenges.interface';
+import { ChallengesI, TrickI, TreatI } from '../../shared/models/challenges.interface';
 
 
 @Injectable({
@@ -44,7 +44,7 @@ export class UserStatsService {
   public currentLevel: LevelI;
   public nextLevel: LevelI;
 
-  public card = { cardName: '', cardImg: ''};
+  public card = { cardName: '', cardImg: '' };
   public collectedCards = [];
   public cardIsNext: boolean;
 
@@ -82,7 +82,7 @@ export class UserStatsService {
 
   constructor(
     private levelApiService: LevelApiService,
-    private challengesService: ChallengesApiService
+    private challengesApiService: ChallengesApiService
   ) {
     this.itemsInBackpack = [];
     this.totalCandy = 0;
@@ -94,17 +94,13 @@ export class UserStatsService {
       this.level = this.levels[0];
       this.nextLevel = this.levels[1];
     });
-    this.challengesService.getChallengesList().subscribe(data => {
-      this.challenges = data;
-
-    });
   }
 
 
   // all stats -------------------------------------------------
-/*  public getCurrentUserStats(): Observable<UserStatsI> {
-    return of(this.userStats);
-  } */
+  /*  public getCurrentUserStats(): Observable<UserStatsI> {
+      return of(this.userStats);
+    } */
 
 
 
@@ -178,11 +174,11 @@ export class UserStatsService {
       this.level = this.levels[1];
     } else if (totalPoints >= 60 && totalPoints < 120) {
       this.level = this.levels[2];
-    } else if (totalPoints >= 120 && totalPoints < 180 ) {
+    } else if (totalPoints >= 120 && totalPoints < 180) {
       this.level = this.levels[3];
-    } else if (totalPoints >= 180 && totalPoints < 240 ) {
+    } else if (totalPoints >= 180 && totalPoints < 240) {
       this.level = this.levels[4];
-    } else if (totalPoints > 240 ) {
+    } else if (totalPoints > 240) {
       this.level = this.levels[5];
     } else {
       this.level = this.levels[0];
@@ -199,7 +195,7 @@ export class UserStatsService {
 
     this.levels = this.retrieveLevelList();
     this.levels.forEach(item => {
-      return(this.collectedCards.push(item.levelCard));
+      return (this.collectedCards.push(item.levelCard));
     });
     return this.collectedCards;
   }
@@ -212,27 +208,29 @@ export class UserStatsService {
     return this.savedAddressesBehavior$.asObservable;
   }
 
-  updateCurrentAddressesList( address: any ) {
+  updateCurrentAddressesList(address: any) {
     this.savedAddressesBehavior$.next(address);
   }
 
 
-// challenges ---------------------------------------------------------
+  // challenges ---------------------------------------------------------
 
-  public retrieveChallengesList() {
+    // get challenges list from api (json atm)
+  public retrieveChallengesData() {
+
     return this.challenges;
   }
 
 }
 
 
-    /* ------------------------------------------------------------------------------
-      Method to count points depending on specific criteria, e.g candy item weight
-        public setTotalPoints() {
-          this.itemsInBackpack$ = this.getCurrentBackpackContent();
-          this.itemsInBackpack$.forEach( item => {
-            if ( item.serving_size ) { ... })
-    } => not implementable atm for api data = not consistent enough */
+/* ------------------------------------------------------------------------------
+  Method to count points depending on specific criteria, e.g candy item weight
+    public setTotalPoints() {
+      this.itemsInBackpack$ = this.getCurrentBackpackContent();
+      this.itemsInBackpack$.forEach( item => {
+        if ( item.serving_size ) { ... })
+} => not implementable atm for api data = not consistent enough */
   // => For now total points will be count as 6 points per candy item
   //  ------------------------------------------------------------------------------
 

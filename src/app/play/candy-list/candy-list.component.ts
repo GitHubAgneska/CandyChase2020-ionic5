@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,11 +16,26 @@ import { ToastController } from '@ionic/angular';
 })
 export class CandyListComponent implements OnInit {
 
+  public loading: boolean;
+
+  public candyList: CandyI[];
+  public candyItem: CandyI;
+  public candyChecklist: CandyChecklistI;
+  public itemsInBackpack: CandyI[];
+  public totalCandy: number;
+
+  public totalCandy$: Observable<number>;
+  public totalPoints: number;
+  /* public plusBtnImg = './assets/graphicmat/zoomIn.png'; */
+  public newChallenge: boolean;
+
   constructor(
     private candyApiService: CandyApiService,
     private userStatsService: UserStatsService,
     public shortenString: ShortenStringPipe,
-    public toastController: ToastController) {
+    public toastController: ToastController,
+    private router: Router
+    ) {
 
     this.candyList = [];
     this.candyItem = {
@@ -40,19 +56,8 @@ export class CandyListComponent implements OnInit {
     this.totalCandy = 0;
     this.totalPoints = 0;
     this.loading = true;
+    this.newChallenge = false;
   }
-
-  public loading: boolean;
-
-  public candyList: CandyI[];
-  public candyItem: CandyI;
-  public candyChecklist: CandyChecklistI;
-  public itemsInBackpack: CandyI[];
-  public totalCandy: number;
-
-  public totalCandy$: Observable<number>;
-  public totalPoints: number;
-  /* public plusBtnImg = './assets/graphicmat/zoomIn.png'; */
 
 
   ngOnInit() {
@@ -157,11 +162,15 @@ export class CandyListComponent implements OnInit {
         cssClass: 'levelUp-toast'
       });
       setTimeout(() => {
-        toast2.dismiss();
-        toast3.present();
-    }, 500);
-
+          toast2.dismiss();
+          toast3.present();
+      }, 500);
+      this.newChallenge = true;
     }
+  }
+
+  public goToChallenges() {
+    this.router.navigate(['play/trickOrTreat']);
   }
 }
 

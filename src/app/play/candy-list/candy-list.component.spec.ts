@@ -4,6 +4,8 @@ import { cold, getTestScheduler } from 'jasmine-marbles';
 import { By } from '@angular/platform-browser';
 import { CandyApiService } from '../services/candy-api.service';
 import { UserStatsService } from '../../shared/services/user-stats.service';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CandyListComponent } from './candy-list.component';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
@@ -31,7 +33,7 @@ describe('CandyListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CandyListComponent, ShortenStringPipe ],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(), RouterTestingModule],
       providers: [
         { provide: CandyApiService, useValue: candyApiServiceStub },
         { provide: UserStatsService, useValue: userStatsServiceStub },

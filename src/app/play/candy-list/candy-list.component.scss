@@ -86,7 +86,21 @@ h6 {
             }
         }
     }
-    
+    .newChallenge-btn {
+
+        width: 90%;
+        margin-left:50%;
+        bottom: 2%;
+        position: sticky;
+
+        button {
+        padding: 1.5%;
+        background-color: yellow;
+        border-radius: 10px;
+        font-family: $titanOne;
+        color: $main-orange;
+        }
+    }
 }
 
 /* customize toasts  => global.scss */

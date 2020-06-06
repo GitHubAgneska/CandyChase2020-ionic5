@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { ChallengesI, TrickI , TreatI } from '../../shared/models/challenges.interface';
 
 @Component({
   selector: 'app-trick-or-treat',
@@ -15,17 +16,17 @@ export class TrickOrTreatComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute
     ) { }
 
   ngOnInit() {}
 
   choseTreat() {
-    this.router.navigate(['/challenges' + '/' + 'treat']);
+
+    this.router.navigate(['play/challenges', { choice: 'treat'}]);
   }
 
   choseTrick() {
-    this.router.navigate(['/challenges' + '/' + 'trick']);
+    this.router.navigate(['play/challenges', { choice: 'trick'}]);
   }
 
 }

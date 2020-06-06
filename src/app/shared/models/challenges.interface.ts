@@ -1,21 +1,22 @@
 export interface ChallengesI {
 
-    treat: TrickI;
-    trick: TreatI;
-
+    treats: TreatI[];
+    tricks: TrickI[];
 }
 
 export interface TrickI {
 
-    trickId: number;
+    trickId?: number;
     challengeDescription: string;
+    hasBeenCompleted: boolean;
     bonusPoints: number;
 
 }
 
 export interface TreatI {
 
-    treatId: number;
+    treatId?: number;
     challengeDescription: string;
+    hasBeenCompleted: boolean;
     bonusPoints: number;
 }

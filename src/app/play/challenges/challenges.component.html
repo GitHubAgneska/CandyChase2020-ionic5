@@ -6,7 +6,7 @@
 
 <ion-content class="special-bg">
 
-  <div class="main-container">
+  <div class="main-container" *ngIf="dataIsLoaded">
 
     <div class="upper-row">
       <h1>You Chose<br><span>{{ choice }}</span></h1>
