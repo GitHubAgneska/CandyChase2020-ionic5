@@ -10,6 +10,9 @@ export class AboutComponent implements OnInit {
 
   constructor(private location: Location) { }
 
+  public logoImg = 'assets/graphicMat/app_logo.png';
+  public pumpkinShape = 'assets/graphicMat/menu_shape1.png';
+
   ngOnInit() {}
 
   public goBack() {

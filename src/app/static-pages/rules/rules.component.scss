@@ -1,0 +1,25 @@
+@import "src/theme/variables.scss";
+
+.main {
+    h2 {
+        text-align: center;
+    }
+    background-image: url('src/assets/graphicMat/rules_shape.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    ul { 
+        li{ 
+            border: 2px solid $sub-orange;
+            border-radius: 20px;
+            list-style-image: url('src/assets/graphicMat/mini_skull.png');
+            font-size: 1.5rem;
+            // font-family: $titanOne;
+            color: $light-orange;
+            padding: 5%;
+            margin: 2%;
+        }
+    }
+
+}

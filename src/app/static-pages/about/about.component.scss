@@ -1,1 +1,16 @@
+@import "src/theme/variables.scss";
 
+.static {
+    .main {
+        .logo-container {
+            width: 40%;
+            margin: auto;
+        }
+        .text-container {
+            height: 30vh;
+            background-image: url('src/assets/graphicMat/menu_shape1.png');
+            background-size: contain;
+            background-position: center;
+        }
+    }
+}
