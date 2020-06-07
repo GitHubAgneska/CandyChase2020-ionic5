@@ -1,13 +1,4 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+
 @import "src/theme/variables.scss";
 
 /* Core CSS required for Ionic components to work properly */
@@ -87,7 +78,7 @@ $app-direction: ltr;
             align-self: center;
         }
     }
-    //  *********************************************************************
+    //  **** COMMON SPECS ***************************************************************
 
     .flexColCentered {
         display: flex;
@@ -132,7 +123,7 @@ $app-direction: ltr;
     .searchbar-input.sc-ion-searchbar-ios,
     .searchbar-input.sc-ion-searchbar-ios::placeholder,
     .searchbar-input .sc-ion-searchbar-md-h::placeholder {
-        color: black !important;
+        color: rgb(255, 0, 0) !important;
         font-size: 1.5rem !important;
         opacity: 1 !important;
     }
@@ -142,7 +133,7 @@ $app-direction: ltr;
         background-color: rgba(255, 192, 203, 0.6);
     }
 
-    // static pages style (temporary) *******************
+    // ***** static pages style (temporary) *******************
     .static {
         width: 90%;
         align-self: center;
@@ -161,7 +152,7 @@ $app-direction: ltr;
     }
 
 
-    // customize toast points/total *******************
+    //  *** TOAST MESSAGES  *********************************************************
 
     .new-points-toast,
     .new-totalpoints-toast {

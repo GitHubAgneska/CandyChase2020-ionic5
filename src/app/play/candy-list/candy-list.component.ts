@@ -3,7 +3,8 @@ import { CandyApiService } from '../services/candy-api.service';
 import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
 import { Observable } from 'rxjs';
-
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -28,6 +29,10 @@ export class CandyListComponent implements OnInit {
   public totalPoints: number;
   /* public plusBtnImg = './assets/graphicmat/zoomIn.png'; */
   public newChallenge: boolean;
+
+  public searchTerm: string;
+  public searchControl: FormControl;
+  public searching: any = false;
 
   constructor(
     private candyApiService: CandyApiService,
@@ -57,14 +62,15 @@ export class CandyListComponent implements OnInit {
     this.totalPoints = 0;
     this.loading = true;
     this.newChallenge = false;
+
+    this.searchTerm = '';
+    this.searchControl = new FormControl();
   }
 
 
   ngOnInit() {
     this.loadCandyList();
-    this.loadSearchBar();
   }
-
 
   public loadCandyList() {
     this.candyApiService.getAllCandyFromApi()
@@ -77,23 +83,29 @@ export class CandyListComponent implements OnInit {
       );
   }
 
-  public loadSearchBar() {
+  public filterItems(searchTerm: string) {
+
     const searchbar = document.querySelector('ion-searchbar');
-  /*  const searchItems = Array.from(document.querySelector('candyName').children);
+    searchbar.addEventListener('ionInput', this.handleInput);
 
-    searchbar.addEventListener('ionInput', handleInput);
-
-    function handleInput(event: any) {
-      const query = event.target.value.toLowerCase();
-      requestAnimationFrame(() => {
-        searchItems.forEach(item => {
-          const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
-          this.item.style.display = shouldShow ? 'block' : 'none';
-        });
-      });
-    } */
   }
 
+  public handleInput(event: any) {
+
+    const elementsToFilter = Array.from(document.getElementsByClassName('candyList')as HTMLCollectionOf<HTMLElement>);
+    const query = event.target.value.toLowerCase();
+    requestAnimationFrame(() => {
+      elementsToFilter.forEach(item => {
+        const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
+        item.style.display = shouldShow ? 'block' : 'none';
+      });
+    });
+  }
+
+  public onSearchInput() {
+    this.searching = true;
+    this.filterItems(this.searchTerm);
+}
 
   addCandyToBackpack(candyItem: CandyI) {
 

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { KeyvaluePipe } from '../shared/pipes/keyvalue/keyvalue';
 import { RemoveUnderscorePipe } from '../shared/pipes/remove-underscore/remove-underscore';
@@ -41,6 +41,7 @@ import { ChallengesComponent } from './challenges/challenges.component';
   imports: [
     IonicModule,
     CommonModule,
+    ReactiveFormsModule,
     PlayRoutingModule,
     SharedModule,
     FormsModule,

@@ -8,7 +8,10 @@
 <ion-content class="candyPageContainer">
 
   <div class="add-label flexRowCentered ">
-    <ion-searchbar animated class="custom-searchbar"></ion-searchbar>
+    <ion-searchbar animated class="custom-searchbar"
+    [formControl]="searchControl"
+    (ionChange)="onSearchInput()">
+    </ion-searchbar>
     <img src="assets/graphicMat/bubble_add2.png" alt="" />
   </div>
   
