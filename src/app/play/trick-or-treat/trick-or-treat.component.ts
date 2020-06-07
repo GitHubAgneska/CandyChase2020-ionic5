@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { ChallengesI, TrickI , TreatI } from '../../shared/models/challenges.interface';
 
 @Component({
   selector: 'app-trick-or-treat',
@@ -21,7 +19,6 @@ export class TrickOrTreatComponent implements OnInit {
   ngOnInit() {}
 
   choseTreat() {
-
     this.router.navigate(['play/challenges', { choice: 'treat'}]);
   }
 

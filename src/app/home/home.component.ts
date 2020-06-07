@@ -10,23 +10,28 @@ import { UserStatsService } from '../shared/services/user-stats.service';
 export class HomeComponent  implements OnInit {
 
   public isPlaying: boolean;
+  public newGame: boolean;
   public userAgeRange: number;
 
   constructor(
     private router: Router,
     private userStatsService: UserStatsService
     ) {
+      this.userAgeRange = this.userStatsService.getCurrentAgeRange();
       this.isPlaying = false;
     }
 
   ngOnInit() {
-    this.userAgeRange = this.userStatsService.getCurrentAgeRange();
+    this.checkIfOngoingGame();
+  }
+
+  public checkIfOngoingGame() {
+
     console.log(this.userAgeRange);
 
-    if ( this.userAgeRange ) {
+    if ( this.userAgeRange  > 0 ) {
       this.isPlaying = true;
     }
-
   }
 
   public start() {

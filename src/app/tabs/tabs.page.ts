@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  public isPlaying: boolean;
+
+  constructor() {
+    this.isPlaying = true;
+  }
 
 }

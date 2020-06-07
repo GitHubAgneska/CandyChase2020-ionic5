@@ -84,6 +84,7 @@ export class UserStatsService {
     private levelApiService: LevelApiService,
     private challengesApiService: ChallengesApiService
   ) {
+    this.userAgeRange = 0;
     this.itemsInBackpack = [];
     this.totalCandy = 0;
     this.totalPoints = 0;
