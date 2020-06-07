@@ -23,6 +23,7 @@ export class UserStatsComponent implements OnInit {
   public cards: any[];
   public collectedCards: any[];
   public cardIsNext: boolean;
+  public activeCards: any[];
 
   public challenges: [];
   public challengesCount: number;
@@ -35,6 +36,7 @@ export class UserStatsComponent implements OnInit {
     private geolocService: GeolocService
   ) {
     this.cardIsNext = true;
+    this.activeCards = [];
 
   }
 
@@ -55,17 +57,33 @@ export class UserStatsComponent implements OnInit {
 
     // currentLevel
     this.currentLevel = this.userStatsService.setCurrentLevel(this.totalPoints);
-    console.log('levelName-------', this.currentLevel.levelName, this.currentLevel.levelCardName);
-    // nextLevel
-    // this.nextLevel = this.currentLevel + 1;
+    console.log('levelName-------', this.currentLevel.idLevel, this.currentLevel.levelName,
+    this.currentLevel.levelCardName, this.currentLevel.levelImg);
 
-
-    // all cards
-    this.collectedCards = this.userStatsService.getAllCards();
-    console.log('collected cards----', this.collectedCards);
-
-
+    this.setActiveCards(this.currentLevel);
     // savedAddresses
+  }
+
+
+  public setActiveCards(currentLevel: LevelI) {
+
+      this.currentLevel = currentLevel;
+      // all cards
+      this.collectedCards = this.userStatsService.getAllCards();
+      console.log('collected cards----', this.collectedCards);
+      //   0: "assets/graphicMat/ghost_card.png"
+        /* 1: "assets/graphicMat/pumpkin_card.png"
+          2: "assets/graphicMat/blackcat_card.png"
+          3: "assets/graphicMat/witch_card.png"
+          4: "assets/graphicMat/mystery_card.png" */
+
+      for (let i = 0; i <= this.collectedCards.length; i++ ) {
+        if (this.collectedCards[i + 1] <= this.currentLevel.idLevel ) {
+          this.activeCards.push(this.collectedCards[i]);
+        }
+      }
+      console.log('this.activeCards==', this.activeCards);
+      return this.activeCards;
   }
 
 

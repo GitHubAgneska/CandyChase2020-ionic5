@@ -164,6 +164,9 @@ export class UserStatsService {
   public update_level(level: LevelI) {
     this.level$.next(level);
   }
+  public update_nextLevel(nextLevel: LevelI) {
+    
+  }
 
 
 
@@ -173,16 +176,22 @@ export class UserStatsService {
 
     if (totalPoints > 30 && totalPoints < 60) {
       this.level = this.levels[1];
+      this.nextLevel = this.levels[2];
     } else if (totalPoints >= 60 && totalPoints < 120) {
       this.level = this.levels[2];
+      this.nextLevel = this.levels[3];
     } else if (totalPoints >= 120 && totalPoints < 180) {
       this.level = this.levels[3];
+      this.nextLevel = this.levels[4];
     } else if (totalPoints >= 180 && totalPoints < 240) {
       this.level = this.levels[4];
+      this.nextLevel = this.levels[5];
     } else if (totalPoints > 240) {
       this.level = this.levels[5];
+      this.nextLevel = this.levels[6];
     } else {
       this.level = this.levels[0];
+      this.nextLevel = this.levels[1];
     }
     this.update_level(this.level);
     return this.level;
