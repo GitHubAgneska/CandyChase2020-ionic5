@@ -6,7 +6,7 @@ import { CandyApiService } from '../services/candy-api.service';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CandyListComponent } from './candy-list.component';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
 import { DebugElement } from '@angular/core';
@@ -33,6 +33,7 @@ describe('CandyListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CandyListComponent, ShortenStringPipe ],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [IonicModule.forRoot(), RouterTestingModule],
       providers: [
         { provide: CandyApiService, useValue: candyApiServiceStub },
