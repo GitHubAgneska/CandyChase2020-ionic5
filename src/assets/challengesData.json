@@ -1,45 +1,50 @@
-
+[
     {
-        "tricks": [
-
-            {   
-                "trickId": 1,
-                "challengeDescription": "Next house you will visit, tell the hosts a horror story involving a WEREWOLF !",
-                "hasBeenCompleted": false,
-                "bonusPoints": 5 
-            },
-            {    
-                "trickId": 2,
-                "challengeDescription": "Take a selfie with a VAMPIRE !",
-                "hasBeenCompleted": false,
-                "bonusPoints": 7
-            },
-            {
-                "trickId": 3,
-                "challengeDescription": "You have to give a candy to a ZOMBIE !",
-                "hasBeenCompleted": false,
-                "bonusPoints": 9
-            }
-        ],
-    
-        "treats": [
-            {
-                "treatId": 1,
-                "challengeDescription": "Choose a candy in your collection and eat it ! ",
-                "hasBeenCompleted": false,
-                "bonusPoints": 3
-            },
-            {
-                "treatId": 2,
-                "challengeDescription": "Choose a candy in your collection and eat it ! ",
-                "hasBeenCompleted": false,
-                "bonusPoints": 3
-            },
-            {
-                "treatId": 3,
-                "challengeDescription": "Choose a candy in your collection and eat it ! ",
-                "hasBeenCompleted": false,
-                "bonusPoints": 3
-            }
-        ]
+        "challengeId": 1,
+        "challengeType": "trick",
+        "trickId": 1,
+        "challengeDescription": "Next house you will visit, tell the hosts a horror story involving a WEREWOLF !",
+        "hasBeenCompleted": false,
+        "bonusPoints": 5
+    },
+    {
+        "challengeId": 2,
+        "challengeType": "trick",
+        "trickId": 2,
+        "challengeDescription": "Take a selfie with a VAMPIRE !",
+        "hasBeenCompleted": false,
+        "bonusPoints": 7
+    },
+    {
+        "challengeId": 3,
+        "challengeType": "trick",
+        "trickId": 3,
+        "challengeDescription": "You have to give a candy to a ZOMBIE !",
+        "hasBeenCompleted": false,
+        "bonusPoints": 9
+    },
+    {
+        "challengeId": 4,
+        "challengeType": "treat",
+        "treatId": 1,
+        "challengeDescription": "Choose a candy in your collection and eat it ! ",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    },
+    {
+        "challengeId": 5,
+        "challengeType": "treat",
+        "treatId": 2,
+        "challengeDescription": "Choose a candy in your collection and eat it ! ",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    },
+    {
+        "challengeId": 6,
+        "challengeType": "treat",
+        "treatId": 3,
+        "challengeDescription": "Choose a candy in your collection and eat it ! ",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
     }
+]

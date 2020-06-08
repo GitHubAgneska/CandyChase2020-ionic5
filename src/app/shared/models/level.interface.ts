@@ -4,8 +4,10 @@ export interface LevelI {
     levelName: string;
     // totalPoints: number;
     levelImg: string;
-    bannerMessage: string;
+    bannerMessage?: string;
     levelCard: string;
-    levelCardName: string;
+    levelCardName?: string;
+    isActive?: boolean;
+    isNext?: boolean;
 
 }

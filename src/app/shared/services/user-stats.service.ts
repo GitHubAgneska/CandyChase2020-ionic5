@@ -7,8 +7,8 @@
 // *current total points*
 // *current level*
 // *current set of cards*
-// *current set of saved addresses*
 // *current set of challenges*
+// *current set of saved addresses*
 
 // => these infos will be available accross all components of the play module
 // ( maybe as a badge displayed on pages in a future feature)
@@ -23,7 +23,7 @@ import { UserStatsI } from '../models/user-stats.interface';
 import { map } from 'rxjs/operators';
 import { Coords } from 'leaflet';
 import { ChallengesApiService } from '../../play/services/challenges-api.service';
-import { ChallengesI, TrickI, TreatI } from '../../shared/models/challenges.interface';
+import { TrickAndTreatI } from '../../shared/models/challenges.interface';
 
 
 @Injectable({
@@ -35,24 +35,20 @@ export class UserStatsService {
 
   public candyItem: CandyI;
   public itemsInBackpack: CandyI[];
-  public itemsInBackpack$: Observable<CandyI[]>;
+  // public itemsInBackpack$: Observable<CandyI[]>;
   public totalCandy: number;
   public totalPoints: number;
 
-  public level: LevelI;
   public levels: LevelI[];
   public currentLevel: LevelI;
   public nextLevel: LevelI;
 
   public card = { cardName: '', cardImg: '' };
-  public collectedCards = [];
+  public allCards = [];
   public cardIsNext: boolean;
 
-  public challenge: ChallengesI;
-  public challenges: ChallengesI[];
-  public challengesCount: number;
-  public treat: TreatI;
-  public trick: TrickI;
+  public treat: TrickAndTreatI;
+  public trick: TrickAndTreatI;
 
 
   public savedAddresses: [];
@@ -69,7 +65,9 @@ export class UserStatsService {
   public totalPoints$ = new BehaviorSubject(0);
 
   // keep track of current level --  whole object
-  public level$ = new BehaviorSubject({});
+  public currentLevel$ = new BehaviorSubject(this.currentLevel);
+  public currentLevelName$ = new BehaviorSubject('1');
+
 
   // keep track of current userStats --  whole object
   public userStats: UserStatsI;
@@ -77,7 +75,6 @@ export class UserStatsService {
 
   // keep track of saved addresses list
   public savedAddressesBehavior$ = new BehaviorSubject([]);
-
 
 
   constructor(
@@ -92,17 +89,13 @@ export class UserStatsService {
 
     this.levelApiService.getLevelList().subscribe(data => {
       this.levels = data;
-      this.level = this.levels[0];
+      this.currentLevel = this.levels[0];
       this.nextLevel = this.levels[1];
+      this.currentLevel$ = new BehaviorSubject(this.currentLevel);
+      this.currentLevelName$ = new BehaviorSubject('1');
     });
+
   }
-
-
-  // all stats -------------------------------------------------
-  /*  public getCurrentUserStats(): Observable<UserStatsI> {
-      return of(this.userStats);
-    } */
-
 
 
   // ageRange ---------------------------------------------------
@@ -112,8 +105,6 @@ export class UserStatsService {
   public getCurrentAgeRange() {
     return this.userAgeRange;
   }
-
-
 
   // backpack content -------------------------------------------
 
@@ -145,6 +136,7 @@ export class UserStatsService {
   // update total points
   public update_totalPoints(totalPoints: number) {
     this.totalPoints$.next(totalPoints);
+    this.setCurrentLevel(totalPoints);
   }
 
 
@@ -155,60 +147,81 @@ export class UserStatsService {
     return this.levels;
   }
 
-  // get current level
-  public getCurrentLevel() {
-    // this.setCurrentLevel(this.totalPoints);
-    return this.level$.asObservable();
-  }
-  // update current level ( besides regular points count )
-  public update_level(level: LevelI) {
-    this.level$.next(level);
-  }
-  public update_nextLevel(nextLevel: LevelI) {
-    
-  }
-
-
-
   public setCurrentLevel(totalPoints: number): LevelI {
 
     this.levels = this.retrieveLevelList();
 
     if (totalPoints > 30 && totalPoints < 60) {
-      this.level = this.levels[1];
-      this.nextLevel = this.levels[2];
+      this.currentLevel = this.levels[1];
+      this.currentLevel.isActive = true;
+      this.levels[2].isNext = true;
     } else if (totalPoints >= 60 && totalPoints < 120) {
-      this.level = this.levels[2];
+      this.currentLevel = this.levels[2];
+      this.currentLevel.isActive = true;
       this.nextLevel = this.levels[3];
     } else if (totalPoints >= 120 && totalPoints < 180) {
-      this.level = this.levels[3];
+      this.currentLevel = this.levels[3];
+      this.currentLevel.isActive = true;
       this.nextLevel = this.levels[4];
     } else if (totalPoints >= 180 && totalPoints < 240) {
-      this.level = this.levels[4];
+      this.currentLevel = this.levels[4];
+      this.currentLevel.isActive = true;
       this.nextLevel = this.levels[5];
     } else if (totalPoints > 240) {
-      this.level = this.levels[5];
+      this.currentLevel = this.levels[5];
+      this.currentLevel.isActive = true;
       this.nextLevel = this.levels[6];
     } else {
-      this.level = this.levels[0];
+      this.currentLevel = this.levels[0];
+      this.currentLevel.isActive = true;
       this.nextLevel = this.levels[1];
     }
-    this.update_level(this.level);
-    return this.level;
+    this.update_level(this.currentLevel);
+    this.update_levelName(this.currentLevel.levelName);
+    return this.currentLevel;
+  }
+
+  // update current level
+  public update_level(level: LevelI) {
+    // this.currentLevel$.next({idLevel: 0, levelName: '', levelImg: '', levelCard: '', isActive: true});
+    console.log('update_level triggered');
+    this.currentLevel$.next(level);
+  }
+  // get current level
+  public getCurrentLevel() {
+    return this.currentLevel$.asObservable();
+  }
+
+  public update_levelName(name: string) {
+    console.log('update levelname triggered');
+    this.currentLevelName$.next(name);
+  }
+  public getCurrentLevelName() {
+    return this.currentLevelName$.asObservable();
   }
 
 
 
   // cards ---------------------------------------------------------
 
-  public getAllCards(): any {
+  public displayAllCardsWithState(currentLevel: LevelI) {
 
-    this.levels = this.retrieveLevelList();
-    this.levels.forEach(item => {
-      return (this.collectedCards.push(item.levelCard));
+    // this.levels = this.retrieveLevelList();
+    this.levels.map(item => {
+
+      if (item === currentLevel || item === this.nextLevel) {
+        item.isActive = true;
+      } else { item.isActive = false; }
     });
-    return this.collectedCards;
+    return this.levels;
+    /*  this.levels.forEach(item => {
+        return (this.allCards.push( { key: item.levelCard, value: item.isActive }));
+      });
+      return this.allCards; */
   }
+
+
+  // challenges ---------------------------------------------------------
 
 
 
@@ -222,14 +235,6 @@ export class UserStatsService {
     this.savedAddressesBehavior$.next(address);
   }
 
-
-  // challenges ---------------------------------------------------------
-
-    // get challenges list from api (json atm)
-  public retrieveChallengesData() {
-
-    return this.challenges;
-  }
 
 }
 

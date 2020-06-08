@@ -13,7 +13,7 @@
     
     <div class="item-level">
       <h1>Current Level</h1>
-      <h2>{{ currentLevel.levelName }}</h2>
+      <h2>{{ currentLevelName }}</h2>
     </div>
     
     <div class="item">
@@ -39,17 +39,32 @@
 
 
   <div class="bottom-cards-container">
+
     <div class="cardsList flexRowCentered">
-      <div *ngFor="let item of collectedCards">
+      <div *ngFor="let level of levels">
         <div class="card-container flexColCentered">
           <div *ngIf="cardIsNext" class="bubbleNext">
 <!--        <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2> --> </div>
-          <div class="card-img-container container-fluid" ng-class="isActive ? 'opacity:1' : 'opacity:0.5'">
-            <img src="{{ item }}" />
+          <div class="card-img-container">
+            <img src="{{ level.levelCard }}" />
+<!--             <img src="{{ level.levelCard }}" [ng-class]="isActive ? 'opacity:1' : 'opacity:0.5'" />
+ -->          </div>
+        </div>
+      </div>
+    </div>
+
+  <!--   <div class="cardsList flexRowCentered">
+      <div *ngFor="let item of allCards | keyvalue">
+        <div class="card-container flexColCentered">
+          <div *ngIf="cardIsNext" class="bubbleNext"> -->
+<!--        <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2> --> </div>
+<!--           <div class="card-img-container">
+            <img src="{{ item.key }}"  [ng-class]=" isActive ? 'opacity:1' : 'opacity:0.5'" />
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+  </div> -->
 
 </ion-content>

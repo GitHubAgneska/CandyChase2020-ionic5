@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserStatsService } from '../../shared/services/user-stats.service';
-import { ChallengesI, TrickI, TreatI } from '../../shared/models/challenges.interface';
+import { TrickAndTreatI } from '../../shared/models/challenges.interface';
 import { Observable } from 'rxjs';
 import { ChallengesApiService } from '../services/challenges-api.service';
 import { tap } from 'rxjs/operators';
@@ -17,15 +17,15 @@ export class ChallengesComponent implements OnInit {
   public purpleBubbleImg = 'assets/graphicMat/purple_bubble.png';
   public candleSkullImg = 'assets/graphicMat/candle_skull.png';
 
-  // public challengesList$: Observable<ChallengesI[]>;
+  public treat: TrickAndTreatI;
+  public trick: TrickAndTreatI;
+  public treats: TrickAndTreatI[];
+  public tricks: TrickAndTreatI[];
+  public challengesList: TrickAndTreatI[];
 
-  public challengeList: ChallengesI;
-  public treat: TreatI;
-  public treats: TreatI[];
-  public trick: TrickI;
-  public tricks: TrickI[];
   public challengeDescription: string;
   public bonusPoints: number;
+  public hasBeenCompleted: boolean;
 
   public dataIsLoaded: boolean;
 
@@ -35,43 +35,61 @@ export class ChallengesComponent implements OnInit {
     private challengesApiService: ChallengesApiService
   ) {
     this.dataIsLoaded = false;
+    this.treats = [];
+    this.tricks = [];
   }
 
   ngOnInit() {
 
     this.getChoice();
+    this.retrieveChallengeList();
     this.getRandomChallenge(this.choice);
   }
 
 
-  public getRandomChallenge(choice: string): any {
-
-    this.choice = choice;
-    // this.challengesList$ = challengesList;
-
+  public retrieveChallengeList() {
     this.challengesApiService.getChallengesList().subscribe(data => {
-      const challenges = data;
-      console.log('challenges in challenge component== ', challenges);
-      // => { tricks: Array(3), treats: Array(3) }
-      const list = Object.keys(challenges).forEach((key, index) => {
-        console.log('KEY= ', key, 'OBJ= ', challenges[key]);
-        // KEY=  tricks OBJ=  (3) [{…}, {…}, {…}]
-        // KEY=  treats OBJ=  (3) [{…}, {…}, {…}]
-      });
+      console.log(data);
+      this.challengesList = data;
+      console.log('CHALLENGE LIST=== ', this.challengesList);
 
+      this.challengesList.forEach(item => {
+        if (item.challengeType === 'treat') {
+          this.treats.push(item);
+          return this.treats;
+        } else {
+          if (item.challengeType === 'trick') {
+            this.tricks.push(item);
+            return this.tricks;
+          }
+        }
+      });
+      console.log(this.treats);
     });
+  }
+
+
+  public getRandomChallenge(choice: string): any {
+    this.choice = choice;
+
+    console.log('TREATS IN GETRANDOM====', this.treats, // [ {...}, {...}, {...} ]
+    'TREATS LENGTH===', this.treats.length, // 0 !!
+    'TREATS OBJECT LENGTH===', Object.keys(this.treats).length,  // 0 !!
+    'TREATS TYPE== ', typeof(this.treats)); // returns object :??
 
     if (this.choice === 'treat') {
 
-      const randomTreat = this.treats[Math.floor(Math.random() * this.treats.length)];
+     /*  const randomTreat = this.treats[Math.floor(Math.random() * this.treats.length)];
       this.challengeDescription = randomTreat.challengeDescription;
-      this.bonusPoints = randomTreat.bonusPoints;
+      this.bonusPoints = randomTreat.bonusPoints; */
+      //
+
 
     } else {
 
-      const randomTrick = this.tricks[Math.floor(Math.random() * this.tricks.length)];
+     /*  const randomTrick = this.tricks[Math.floor(Math.random() * this.tricks.length)];
       this.challengeDescription = randomTrick.challengeDescription;
-      this.bonusPoints = randomTrick.bonusPoints;
+      this.bonusPoints = randomTrick.bonusPoints; */
     }
     this.dataIsLoaded = true;
   }
@@ -85,15 +103,7 @@ export class ChallengesComponent implements OnInit {
   }
 
 
-  /* public retrieveChallengeList(): ChallengesI[] {
-    // this.challengesList$ = this.challengesApiService.getChallengesList();
-    this.challengesApiService.getChallengesList().subscribe(data => {
-      this.challengeList = data;
-      console.log('this.challengeList in retrieveChallengeList 1==', this.challengeList );
-      return this.challengeList as ChallengesI[];
-    });
-    return this.challengeList;
-  } */
+
 
 }
 

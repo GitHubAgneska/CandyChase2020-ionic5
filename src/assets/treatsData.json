@@ -1,0 +1,20 @@
+[
+    {
+        "treatId": 1,
+        "challengeDescription": "Choose a candy in your collection and eat it ! ",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    },
+    {
+        "treatId": 2,
+        "challengeDescription": "Choose a candy in your collection and eat it ! ",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    },
+    {
+        "treatId": 3,
+        "challengeDescription": "Choose a candy in your collection and eat it ! ",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    }
+]
