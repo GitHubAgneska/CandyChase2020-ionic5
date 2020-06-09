@@ -17,6 +17,7 @@ export class MapComponent implements OnInit {
   public age: number;
   public allowedDistance: number;
   public mapBounds: number[];
+  public coords: any = {};
 
   public newAddress: Coords;
 
@@ -27,16 +28,14 @@ export class MapComponent implements OnInit {
     public toastController: ToastController,
     private userStatsService: UserStatsService
 
-    ) { }
+    ) {}
 
   ngOnInit() {
-    // this.geolocService.getCurrentLocation();
+
     this.initMapWithParams();
   }
 
   public initMapWithParams() {
-
-    // this.geolocService.getCurrentLocation();
 
     this.age = this.geolocService.getAgeRange();
     console.log('user age= ', this.age);
@@ -50,10 +49,11 @@ export class MapComponent implements OnInit {
     this.geolocService.loadMapWithBounds();
   }
 
+
   saveAddress() {
 
-    this.newAddress = this.geolocService.getCoords();
-    this.userStatsService.updateCurrentAddressesList(this.newAddress);
+  /*  this.newAddress = this.geolocService.getCoords();
+    this.userStatsService.updateCurrentAddressesList(this.newAddress); */
 
   }
 

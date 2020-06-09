@@ -3,21 +3,21 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Coordinates } from '../../shared/models/coordinates.model';
 import * as L from 'leaflet';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
-import { debug } from 'util';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeolocService {
 
+  public geo: Coordinates;
+  public map: any;
+
+  public userAgeRange: number;
+
   public coords: any = {};
   public currentLat: number;
   public currentLong: number;
   public accuracy: number;
-
-  public userAgeRange: number;
-  public map: any;
 
   public allowedDistance: number;
   public mapBounds: number[];
@@ -36,18 +36,19 @@ export class GeolocService {
   constructor(
     private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder) {
-    // this.location = { lat: 0, lng: 0 };
+
     this.currentLat = 0;
     this.currentLong = 0;
-    this.coords = this.getCurrentLocation();
+    this.coords = { lat: 0, long: 0 };
+    this.allowedDistance = 0;
+    this.mapBounds = [];
   }
 
-  // access/modify current coords
-  public setCoords(coords: Coordinates) {
-    this.coords = coords;
+  public setGeo(geoloc) {
+    this.geo = geoloc;
   }
-  public getCoords() {
-    return this.coords;
+  public getGeo() {
+    return this.geo;
   }
 
   // access /modify current user's age
@@ -56,37 +57,6 @@ export class GeolocService {
   }
   public getAgeRange() {
     return this.userAgeRange;
-  }
-
-
-  public getCurrentLocation() {
-
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-    this.geolocation.getCurrentPosition(options).then((data) => {
-      console.log('RAW DATA= ', data);
-
-      this.setCoords(data);
-
-      this.coords = data.coords;
-      console.log('coords= ', this.coords);
-
-      this.currentLat = data.coords.latitude;
-      console.log('lat= ', this.currentLat);
-
-      this.currentLong = data.coords.longitude;
-      console.log('currentLong= ', this.currentLong);
-
-      this.accuracy = data.coords.accuracy;
-      console.log('ACCURACY= ', this.accuracy);
-
-      // this.getGeoencoder(this.currentLat, this.currentLong);
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
   }
 
 
@@ -106,6 +76,24 @@ export class GeolocService {
   }
 
 
+  public getCurrentLocation(): any {
+
+    this.geolocation.getCurrentPosition()
+    .then((data) => {
+
+      console.log('RAW DATA= ', data);
+      this.setGeo(data);
+      this.currentLat = data.coords.latitude;
+      this.currentLong = data.coords.longitude;
+     // this.coords = { lat: data.coords.latitude, long: data.coords.longitude };
+      console.log('lat= ', this.currentLat, 'Long= ', this.currentLong);
+      console.log('COORDS===', this.coords);
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
+
 
   // calculate new coords for map age filter, using current coords and distance 'dist'
   // we need 4 points to delimit a perimeter of x meters around current position :
@@ -114,8 +102,7 @@ export class GeolocService {
 
     const earthRadius = 6378;
     this.allowedDistance = allowedDistance;
-
-    console.log('CURRENT: ', this.currentLat, this.currentLong );
+    console.log('CURRENT: ', this.currentLong, this.currentLat);
 
     const m = (1 / ((2 * Math.PI / 360) * earthRadius)) / 1000;  // 1 meter in degree
 
@@ -125,6 +112,7 @@ export class GeolocService {
 
     const newLatitude2 = this.currentLat - (this.allowedDistance * m);
     const newLongitude2 = this.currentLong - (this.allowedDistance * m) / Math.cos(this.currentLat * (Math.PI / 180));
+    console.log('new point 1 : ', newLatitude2, newLongitude2);
 
     this.mapBounds = [newLatitude1, newLongitude1, newLatitude2, newLongitude2];
     console.log('BOUNDS= ', this.mapBounds);
@@ -133,15 +121,13 @@ export class GeolocService {
   }
 
 
-
   public loadMapWithBounds() {
 
-    this.mapBounds = this.calculateMapBounds(this.allowedDistance);
     console.log('BOUNDS AT LOAD MAP = ', this.mapBounds);
 
     const corner1 = L.latLng(this.mapBounds[0], this.mapBounds[1]),
-      corner2 = L.latLng(this.mapBounds[2], this.mapBounds[3]),
-      bounds = L.latLngBounds(corner1, corner2);
+          corner2 = L.latLng(this.mapBounds[2], this.mapBounds[3]),
+          bounds  = L.latLngBounds(corner1, corner2);
 
     // initialize Leaflet
     this.map = L.map('map');
@@ -149,25 +135,22 @@ export class GeolocService {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 18,
-      tileSize: 512,
-      zoomOffset: 0
+      /*    tileSize: 512,
+          zoomOffset: 0 */
     }).addTo(this.map);
 
     this.map.locate({ setView: true, maxZoom: 16 })
 
       .on('locationfound', (e: { accuracy: any; latlng: L.LatLngLiteral | L.LatLngTuple; }) => {
-        const radius = e.accuracy;
+        /* const radius = e.accuracy; */
         L.marker(e.latlng).addTo(this.map)
           .bindPopup('You are here!').openPopup();
+        })
+        .on('locationerror', (err: { message: any; }) => {
+          alert(err.message);
+        });
 
-        this.addBounds(bounds);
-        /*  L.rectangle(bounds, { color: '#00000', weight: 1 })
-            .addTo(this.map);
-          this.map.fitBounds(bounds); */
-      })
-      .on('locationerror', (err: { message: any; }) => {
-        alert(err.message);
-      });
+    this.addBounds(bounds);
   }
 
 
@@ -182,6 +165,34 @@ export class GeolocService {
       console.log('Error getting bounds', error);
     });
   }
+
+
+
+  // ------------------------------
+  // for tests - issue map browser
+  public loadMapWithoutBounds() {
+    // this.coords = this.getCoords();
+
+    this.map = L.map('map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+      /*       tileSize: 512,
+            zoomOffset: 0 */
+    }).addTo(this.map);
+
+    this.map.locate({ setView: true, maxZoom: 18 })
+
+      .on('locationfound', (e: { latlng: L.LatLngLiteral | L.LatLngTuple; }) => {
+
+        L.marker(e.latlng).addTo(this.map)
+          .bindPopup('You are here!').openPopup();
+      })
+      .on('locationerror', (err: { message: any; }) => {
+        alert(err.message);
+      });
+  }
+  // ------------------------------
 
 
 }
