@@ -227,12 +227,9 @@ because 'credentials.ts' is in .gitignore, build fails in circleci with npm erro
 
 ---> fix npm error 'node_modules/@angular/fire/angularfire2.d.ts:37:49 - error TS2344: Type 'T[K]' does not satisfy the constraint ... ' => add 'compilerOptions: {"skipLibCheck": true }' to tsconfig.ts
 
- ====
 
- ADDING CAPACITOR
-` ionic integrations enable capacitor `
+====
 
-=====
 
 ADDING lab-mode to Test app on multiple platform types in the browser
 ` npm i @ionic/lab --save-dev `
@@ -319,6 +316,38 @@ here, to add browser:
  ==>  +  ``` ionic cordova run browser --no-native-run ``` 
 
 === 
+
+MIGRATION TO CAPACITOR
+
+- clean unused cordova plugins:
+``` npm uninstall cordova-plugin-geolocation --save ````
+or/and -
+``` cordova plugin remove cordova-plugin-geolocation --save ``` 
+( --save flag tells the compiler to also remove it from config.xml , where all the plugins are listed. When you don't pass the --save flag, the plugin entry remains in the config.xml and thus when you run: "cordova plugins ls", your plugin is still there)
+
+``` cordova platform remove <platform> ```
+
+
+- ``` ionic integrations enable capacitor ```  (  Existing Ionic Project )
+- ``` npx cap init [appName] [appId] ```
+- ```ionic build```
+then
+```npx cap add <platform>```
+for ios:
+- ``` sudo gem install cocoapods``` 
+- ``` npx cap add ios ```
+
+after removing more cordova plugins:
+``` npx cap sync <platform> ```
+
+
+capacitor plugin list : ``` npx cap ls ``` 
+cordova plugin list: ``` cordova plugin ls ```
+
+
+when running ```npx cap sync ios ````
+Error running update: xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance
+=> fix ? : In Xcode, go to preferences, then locations and make sure a "Command Line Tools" is set
 
 
 

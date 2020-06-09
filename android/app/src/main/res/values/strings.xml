@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">candyChase2020</string>
+    <string name="title_activity_main">candyChase2020</string>
+    <string name="package_name">com.herokuapp.candychase2020ionic5</string>
+    <string name="custom_url_scheme">com.herokuapp.candychase2020ionic5</string>
+</resources>

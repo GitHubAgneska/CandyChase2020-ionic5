@@ -24,7 +24,8 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "@capacitor/core": "2.0.1",
+    "@capacitor/core": "^2.0.1",
+    "@capacitor/ios": "^2.0.1",
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/geolocation": "^5.20.0",
     "@ionic-native/image-picker": "^5.23.0",
@@ -35,10 +36,6 @@
     "@ionic/angular": "^5.0.0",
     "browser": "^0.2.6",
     "cordova-browser": "^6.0.0",
-    "cordova-plugin-geolocation": "^4.0.2",
-    "cordova-plugin-inappbrowser": "^3.2.0",
-    "cordova-plugin-nativegeocoder": "^3.3.0",
-    "cordova-plugin-telerik-imagepicker": "^2.3.3",
     "core-js": "^2.5.4",
     "express": "^4.17.1",
     "firebase": "^7.14.0",
@@ -67,8 +64,6 @@
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^4.0.0",
-    "cordova-plugin-splashscreen": "5.0.2",
-    "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
     "jasmine-core": "^3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -89,16 +84,9 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-telerik-imagepicker": {},
-      "cordova-plugin-geolocation": {
-        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      },
-      "cordova-plugin-nativegeocoder": {},
-      "cordova-plugin-inappbrowser": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {}
     },
