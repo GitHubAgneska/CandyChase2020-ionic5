@@ -5,12 +5,53 @@
         .logo-container {
             width: 40%;
             margin: auto;
+            text-align: center;
+            img {
+                height: 5rem;    
+            }
         }
         .text-container {
+            text-align: center;
             height: 30vh;
-            background-image: url('src/assets/graphicMat/menu_shape1.png');
+            background-image: url("src/assets/graphicMat/menu_shape1.png");
             background-size: contain;
             background-position: center;
+            h1 {
+                // margin-top: 25%;
+                height: 5rem;
+                font-size: 1.3rem;
+            }
+            h1:first-child {
+                color: $sub-orange;
+                span {
+                    color: $main-pink;
+                    font-size: 1.7rem;
+                }
+            }
+            h1:nth-child(2) {
+                color: $sub-purple;
+                span {
+                    font-size: 1.7rem;
+                    &:first-child {
+                        color: $main-pink;
+                    }
+                    &:nth-child(2) {
+                        color: $sub-pink;
+                    }
+                }
+            }
+        }
+    }
+    .bottom-container {
+        
+        width: 100%;
+        margin: auto;
+        bottom: 2%;
+        position: absolute;
+        p {
+            color: $sub-orange;
+            font-size: 0.7rem;
+            font-family: $titanOne;
         }
     }
 }
