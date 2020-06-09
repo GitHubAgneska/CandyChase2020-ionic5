@@ -4,13 +4,19 @@
 
     margin: 5% 10%;
 
-    .bag-illust {
+    .bag-illust-container {
+        height:10rem;
         width: 100%;
-        // position: sticky; => not working : to check
+        background-size: cover;
         display: flex;
         flex-flow: row nowrap;
-        img {
-            width: 40%;
+        justify-content: center;
+        .bag-img-container {
+            margin: auto 2%;
+            img {
+                height: 6rem;
+                // width: 40%;
+            }
         }
     }
     .total {
@@ -29,11 +35,11 @@
         }
     }
     .myCollectedCandy {
-        width: 100%;
+        width: 65vw;
 
         .candyItem {
             padding: 3%;
-            margin: 3%;
+            margin: 3% 0%;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -75,13 +81,16 @@
                     background-color: transparent;
                 }
             }
-            .amount > h1 {
-                width: 50px;
-                height: 1.5rem;
-                font-family: $titanOne;
-                color: $sub-pink;
-                font-size: 1rem;
-                text-transform: uppercase;
+            .amount {
+                text-align: center;
+                h1 {
+                    width: 40px;
+                    height: 1.5rem;
+                    font-family: $titanOne;
+                    color: $sub-pink;
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                }
             }
         }
     }
@@ -89,6 +98,7 @@
         .noCandyYet {
             margin-top: 5%;
             text-align: center;
+            max-width: 20rem;
 /*          background-image: url("src/assets/graphicMat/lightning.png");
             background-size: cover;
             background-position: center; */
