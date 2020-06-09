@@ -1,0 +1,20 @@
+[
+    {
+        "trickId": 1,
+        "challengeDescription": "Next house you will visit, tell the hosts a horror story involving a WEREWOLF !",
+        "hasBeenCompleted": false,
+        "bonusPoints": 5
+    },
+    {
+        "trickId": 2,
+        "challengeDescription": "Take a selfie with a VAMPIRE !",
+        "hasBeenCompleted": false,
+        "bonusPoints": 7
+    },
+    {
+        "trickId": 3,
+        "challengeDescription": "You have to give a candy to a ZOMBIE !",
+        "hasBeenCompleted": false,
+        "bonusPoints": 9
+    }
+]

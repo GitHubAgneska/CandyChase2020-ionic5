@@ -21,7 +21,10 @@ export class ChallengesComponent implements OnInit {
   public trick: TrickAndTreatI;
   public treats: TrickAndTreatI[];
   public tricks: TrickAndTreatI[];
-  public challengesList: TrickAndTreatI[];
+
+  public testArrayOfObjects: any[];
+
+  
 
   public challengeDescription: string;
   public bonusPoints: number;
@@ -35,6 +38,7 @@ export class ChallengesComponent implements OnInit {
     private challengesApiService: ChallengesApiService
   ) {
     this.dataIsLoaded = false;
+
     this.treats = [];
     this.tricks = [];
   }
@@ -42,12 +46,77 @@ export class ChallengesComponent implements OnInit {
   ngOnInit() {
 
     this.getChoice();
-    this.retrieveChallengeList();
     this.getRandomChallenge(this.choice);
   }
 
+  public getChoice() {
+    this.activatedRoute.paramMap.subscribe(param => {
+      this.choice = param.get('choice');
+    });
+  }
 
-  public retrieveChallengeList() {
+  public getRandomChallenge(choice: string)  {
+
+    this.choice = choice;
+    if (this.choice === 'treat') {
+
+      const myList: any[] = this.retrieveTreatsList();
+      console.log('MY LIST==', myList);
+      // tslint:disable-next-line: prefer-for-of
+
+    } else {
+
+      const myList2: any[] = this.retrieveTricksList();
+      console.log('MY LIST==', myList2);
+
+    }
+    this.dataIsLoaded = true;
+  }
+
+
+  public retrieveTreatsList(): any {
+    this.testArrayOfObjects = [];
+    this.challengesApiService.getTreatsList()
+    .subscribe( (data: any[]) => {
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < data.length; i++) {
+        this.treats.push(data[i]);
+        this.testArrayOfObjects.push(data[i]);
+      }
+      console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
+      console.log('testArrayOfObjects==', this.testArrayOfObjects);
+      return this.testArrayOfObjects;
+    });
+    return this.testArrayOfObjects;
+ /*    console.log('TREATSLIST==', this.treats); // []
+    console.log('testArrayOfObjects==', this.testArrayOfObjects);
+    return this.treats; */
+  }
+
+
+  public retrieveTricksList(): TrickAndTreatI[] {
+    this.challengesApiService.getTricksList()
+    .subscribe( (data: any[]) => {
+      // console.log('DATA TRICKS==', data); // (3) [{…}, {…}, {…}]
+
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < data.length; i++) {
+        // console.log('data[i]==', data[i]);
+        this.tricks.push(data[i]);
+      }
+      // console.log('TRICKLIST==', this.tricks);
+    });
+    return this.tricks;
+  }
+
+
+
+
+
+
+
+  // whole list
+  /* public retrieveChallengeList() {
     this.challengesApiService.getChallengesList().subscribe(data => {
       console.log(data);
       this.challengesList = data;
@@ -66,45 +135,13 @@ export class ChallengesComponent implements OnInit {
       });
       console.log(this.treats);
     });
-  }
-
-
-  public getRandomChallenge(choice: string): any {
-    this.choice = choice;
-
-    console.log('TREATS IN GETRANDOM====', this.treats, // [ {...}, {...}, {...} ]
-    'TREATS LENGTH===', this.treats.length, // 0 !!
-    'TREATS OBJECT LENGTH===', Object.keys(this.treats).length,  // 0 !!
-    'TREATS TYPE== ', typeof(this.treats)); // returns object :??
-
-    if (this.choice === 'treat') {
-
-     /*  const randomTreat = this.treats[Math.floor(Math.random() * this.treats.length)];
-      this.challengeDescription = randomTreat.challengeDescription;
-      this.bonusPoints = randomTreat.bonusPoints; */
-      //
-
-
-    } else {
-
-     /*  const randomTrick = this.tricks[Math.floor(Math.random() * this.tricks.length)];
-      this.challengeDescription = randomTrick.challengeDescription;
-      this.bonusPoints = randomTrick.bonusPoints; */
-    }
-    this.dataIsLoaded = true;
-  }
-
-
-  public getChoice() {
-    this.activatedRoute.paramMap.subscribe(param => {
-      this.choice = param.get('choice');
-    });
-    console.log('activated route param= ', this.choice);
-  }
-
-
+  } */
 
 
 }
 
-// const randomElement = array[Math.floor(Math.random() * array.length)];
+/*  const randomElement = array[Math.floor(Math.random() * array.length)];
+    const randomTrick = this.tricks[Math.floor(Math.random() * this.tricks.length)];
+      this.challengeDescription = randomTrick.challengeDescription;
+      this.bonusPoints = randomTrick.bonusPoints;  */
+
