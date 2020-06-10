@@ -153,27 +153,27 @@ export class UserStatsService {
 
     if (totalPoints > 30 && totalPoints < 60) {
       this.currentLevel = this.levels[1];
-      this.currentLevel.isActive = true;
-      this.levels[2].isNext = true;
+     //  this.currentLevel.isActive = true;
+      // this.levels[2].isNext = true;
     } else if (totalPoints >= 60 && totalPoints < 120) {
       this.currentLevel = this.levels[2];
-      this.currentLevel.isActive = true;
+     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[3];
     } else if (totalPoints >= 120 && totalPoints < 180) {
       this.currentLevel = this.levels[3];
-      this.currentLevel.isActive = true;
+     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[4];
     } else if (totalPoints >= 180 && totalPoints < 240) {
       this.currentLevel = this.levels[4];
-      this.currentLevel.isActive = true;
+     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[5];
     } else if (totalPoints > 240) {
       this.currentLevel = this.levels[5];
-      this.currentLevel.isActive = true;
+     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[6];
     } else {
       this.currentLevel = this.levels[0];
-      this.currentLevel.isActive = true;
+     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[1];
     }
     this.update_level(this.currentLevel);
@@ -183,9 +183,14 @@ export class UserStatsService {
 
   // update current level
   public update_level(level: LevelI) {
-    // this.currentLevel$.next({idLevel: 0, levelName: '', levelImg: '', levelCard: '', isActive: true});
     console.log('update_level triggered');
     this.currentLevel$.next(level);
+    this.currentLevel$.next({ idLevel: level.idLevel,
+                              levelName: level.levelName,
+                              levelImg: level.levelImg,
+                              levelCard: level.levelCard,
+                              isActive: level.isActive,
+                              isNext: level.isNext });
   }
   // get current level
   public getCurrentLevel() {

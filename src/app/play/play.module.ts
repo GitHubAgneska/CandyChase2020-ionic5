@@ -23,7 +23,7 @@ import { UserStatsComponent } from './user-stats/user-stats.component';
 import { LevelApiService } from './services/level-api.service';
 import { TrickOrTreatComponent } from './trick-or-treat/trick-or-treat.component';
 import { ChallengesComponent } from './challenges/challenges.component';
-
+import { ChallengesListComponent } from './challenges-list/challenges-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { ChallengesComponent } from './challenges/challenges.component';
     MapComponent,
     UserStatsComponent,
     TrickOrTreatComponent,
-    ChallengesComponent
+    ChallengesComponent,
+    ChallengesListComponent
 
   ],
   imports: [

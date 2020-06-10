@@ -7,6 +7,7 @@ import { GeolocService } from '../../shared/services/geoloc.service';
 import { Coords } from 'leaflet';
 import { KeyvaluePipe } from '../../shared/pipes/keyvalue/keyvalue';
 import { LevelApiService } from '../services/level-api.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -42,12 +43,14 @@ export class UserStatsComponent implements OnInit {
     private userStatsService: UserStatsService,
     private levelApiService: LevelApiService,
     private geolocService: GeolocService,
-    public keyvaluepipe: KeyvaluePipe
+    public keyvaluepipe: KeyvaluePipe,
+    private router: Router
   ) {
 
-    this.cardIsNext = true;
+    // this.cardIsNext = true;
     this.activeCards = [];
-    this.currentLevel =  { idLevel: 0, levelName: '', levelImg: '', levelCard: '', isActive: true };
+    this.currentLevel =  { idLevel: 0, levelName: '', levelImg: '', levelCard: '', isActive: false, isNext: false };
+    this.levels = this.userStatsService.retrieveLevelList();
   }
 
   ngOnInit() {
@@ -66,16 +69,36 @@ export class UserStatsComponent implements OnInit {
     console.log('candy count------', this.candyCount);
 
     // level
-    this.userStatsService.getCurrentLevelName().subscribe(data => this.currentLevelName = data);
-    console.log('current level name-----', this.currentLevelName);
+    // this.userStatsService.getCurrentLevelName().subscribe(data => this.currentLevelName = data);
+    // console.log('current level name-----', this.currentLevelName);
 
     this.userStatsService.getCurrentLevel().subscribe(data => {
       this.currentLevel.idLevel = data.idLevel,
       this.currentLevel.levelName = data.levelName,
-      this.currentLevel.levelCard = data.levelCard;
       this.currentLevel.levelImg = data.levelImg;
+      this.currentLevel.levelCard = data.levelCard;
+      this.currentLevel.isActive = data.isActive;
+      this.currentLevel.isNext = data.isNext;
     });
     console.log('currentlevel levelcard-----', this.currentLevel.levelCard);
+
+    // bottom cards
+    // this.levels = this.userStatsService.retrieveLevelList();   // ISSUE OF SYNC
+    console.log('levels---', this.levels);
+
+    for ( let i = 0; i < this.levels.length; i++ ) {
+      if ( this.levels[i].idLevel === this.currentLevel.idLevel ) {
+        this.levels[i].isActive = true;
+        this.levels[ i + 1 ].isNext = true;
+      }
+    }
+  }
+  public goToAddresses() {
+    this.router.navigate(['./addresses']);
+  }
+
+  public goToChallenges() {
+    this.router.navigate(['./challenges-list']);
   }
 
 

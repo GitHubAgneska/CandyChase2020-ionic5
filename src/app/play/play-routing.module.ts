@@ -9,6 +9,7 @@ import { AddressesComponent } from './addresses/addresses.component';
 import { UserStatsComponent } from './user-stats/user-stats.component';
 import { TrickOrTreatComponent } from './trick-or-treat/trick-or-treat.component';
 import { ChallengesComponent } from './challenges/challenges.component';
+import { ChallengesListComponent } from './challenges-list/challenges-list.component';
 
 const playModuleRoutes: Routes = [
 
@@ -21,6 +22,7 @@ const playModuleRoutes: Routes = [
         { path: 'backpack', component: BackpackComponent },
         { path: 'trickOrTreat', component: TrickOrTreatComponent },
         { path: 'challenges', component: ChallengesComponent },
+        { path: 'challenges-list', component: ChallengesListComponent },
         //  {path: '404', component: NotFoundComponent},
         // { path: '**', redirectTo: '404' },
         { path: '**', redirectTo: '' }

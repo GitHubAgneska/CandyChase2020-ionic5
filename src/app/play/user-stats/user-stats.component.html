@@ -7,15 +7,15 @@
 <ion-content>
 
   <div class="stats-container">
-<!--   <div *ngFor="let stat of userStats" class="stats-container" style="background-image: '{{ currentLevel.levelImg }}'">
+    <!--   <div *ngFor="let stat of userStats" class="stats-container" style="background-image: '{{ currentLevel.levelImg }}'">
  -->
     <img src="{{ currentLevel.levelImg }}" />
-    
+
     <div class="item-level">
       <h1>Current Level</h1>
-      <h2>{{ currentLevelName }}</h2>
+      <h2>{{ currentLevel.levelName }}</h2>
     </div>
-    
+
     <div class="item">
       <h1>Total Points</h1>
       <h2>{{ totalPoints }}</h2>
@@ -26,12 +26,12 @@
       <h2>{{ candyCount }}</h2>
     </div>
 
-    <div class="item">
+    <div class="item" (click)="goToAddresses()">
       <h1>Saved Addresses</h1>
       <!-- <h2>{{ savedAddresses }}</h2> -->
     </div>
 
-    <div class="item">
+    <div class="item" (click)="goToChallenges()">
       <h1>Challenges</h1>
       <!-- <h2>{{ challenges }}</h2> -->
     </div>
@@ -43,28 +43,15 @@
     <div class="cardsList flexRowCentered">
       <div *ngFor="let level of levels">
         <div class="card-container flexColCentered">
-          <div *ngIf="cardIsNext" class="bubbleNext">
-<!--        <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2> --> </div>
+          <div *ngIf="level.isNext" class="bubbleNext">
+            <h2>Next mission:<br>Get the <span>{{ level.levelCardName }} !</span></h2>
+          </div>
           <div class="card-img-container">
-            <img src="{{ level.levelCard }}" />
-<!--             <img src="{{ level.levelCard }}" [ng-class]="isActive ? 'opacity:1' : 'opacity:0.5'" />
- -->          </div>
-        </div>
-      </div>
-    </div>
-
-  <!--   <div class="cardsList flexRowCentered">
-      <div *ngFor="let item of allCards | keyvalue">
-        <div class="card-container flexColCentered">
-          <div *ngIf="cardIsNext" class="bubbleNext"> -->
-<!--        <h2>Next mission:<br>Get the <span>{{ nextLevel.levelCardName }} !</span></h2> --> </div>
-<!--           <div class="card-img-container">
-            <img src="{{ item.key }}"  [ng-class]=" isActive ? 'opacity:1' : 'opacity:0.5'" />
+            <img src="{{ level.levelCard }}" [class] ="level.isActive ? 'opacity' : 'noOpacity'"/>
           </div>
         </div>
       </div>
     </div>
-
-  </div> -->
+  </div>
 
 </ion-content>
