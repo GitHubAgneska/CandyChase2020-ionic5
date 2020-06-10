@@ -94,11 +94,11 @@ export class UserStatsComponent implements OnInit {
     }
   }
   public goToAddresses() {
-    this.router.navigate(['./addresses']);
+    this.router.navigate(['play/addresses']);
   }
 
   public goToChallenges() {
-    this.router.navigate(['./challenges-list']);
+    this.router.navigate(['play/challenges-list']);
   }
 
 

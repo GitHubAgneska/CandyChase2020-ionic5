@@ -28,6 +28,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { HomeComponent } from './home/home.component';
 import { AgeSelectComponent } from './age-select/age-select.component';
+import { LetsplayComponent } from './letsplay/letsplay.component';
 
 // environment
 import { environment } from '../environments/environment';
@@ -38,7 +39,8 @@ import { MessageService } from './play/services/message.service';
     AppComponent,
     WelcomePageComponent,
     HomeComponent,
-    AgeSelectComponent
+    AgeSelectComponent,
+    LetsplayComponent
   ],
   entryComponents: [],
   imports: [

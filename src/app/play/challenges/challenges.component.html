@@ -9,12 +9,14 @@
   <div class="main-container" *ngIf="dataIsLoaded">
 
     <div class="upper-row">
-      <h1>You Chose<br><span>{{ choice }}</span></h1>
+      <h1>You Chose..<br><span>{{ choice }} !</span></h1>
     </div>
   
     <div class="main-row">
       <h1>Your challenge:</h1>
-      <p>{{ challengeDescription }}</p>
+      <div class="description-container">
+        <p>{{ challengeDescription }}</p>
+      </div>
     </div>
   
     <div class="bottom-row">

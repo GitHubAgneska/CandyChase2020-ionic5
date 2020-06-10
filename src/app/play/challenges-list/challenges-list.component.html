@@ -1,3 +1,20 @@
-<p>
-  challenges-list works!
-</p>
+<ion-header>
+  <ion-toolbar color="customColor">
+    <!--  <ion-title text-center class="toolbarTitle">Trick or treat</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="special-bg">
+
+  <div class="main-container">
+    <div *ngFor="let item of currentListOfTreats">
+      <h1>{{ item | json }}</h1>
+    </div>
+    <div *ngFor="let item of currentListOfTricks">
+      <h1>{{ item | json }}</h1>
+    </div>
+    
+
+  </div>
+
+</ion-content>

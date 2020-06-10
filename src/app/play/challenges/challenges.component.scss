@@ -16,27 +16,44 @@ h6 {
     background-position: center;
 
     .main-container {
-
         width: 90%;
         height: 80%;
         margin: auto;
         padding-top: 10%;
-        
-        h1 {
-            color: $sub-light;
-            font-size: 2.5rem;
-            line-height: 0.8;
-            span { font-size: 3.5rem; }
-        }
 
         .upper-row,
         .bottom-row {
-            height: 5rem;
             padding: 8% 0%;
+            h1 {
+                color: $sub-light;
+                font-size: 1.5rem;
+                line-height: 0.8;
+                span {
+                    font-size: 2.5rem;
+                    color: $sub-pink;
+                }
+            }
             img {
                 width: 5rem;
+                float: right;
+            }
+        }
+        .main-row {
+            h1 {
+                font-size: 1.2rem;
+                color: $sub-purple;
+            }
+            .description-container {
+                width: 80%;
+                border: 5px solid $main-purple;
+                border-radius: 15px;
+
+                p {
+                    padding: 10%;
+                    font-size: 1.5rem;
+                    color: $sub-light;
+                }
             }
         }
     }
-
 }

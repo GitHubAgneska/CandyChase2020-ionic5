@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserStatsService } from '../../shared/services/user-stats.service';
+import { TrickAndTreatI } from '../../shared/models/challenges.interface';
 
 @Component({
   selector: 'app-challenges-list',
@@ -7,8 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChallengesListComponent implements OnInit {
 
-  constructor() { }
+  public currentListOfTricks: TrickAndTreatI[];
+  public currentListOfTreats: TrickAndTreatI[];
 
-  ngOnInit() {}
+
+  constructor( private userStatsService: UserStatsService ) {
+    this.currentListOfTricks = [];
+    this.currentListOfTreats = [];
+  }
+
+  ngOnInit() {
+
+    this.userStatsService.getCurrentTriggeredTricks().subscribe(data => this.currentListOfTricks = data);
+    this.userStatsService.getCurrentTriggeredTreats().subscribe(data => this.currentListOfTreats = data);
+  }
 
 }

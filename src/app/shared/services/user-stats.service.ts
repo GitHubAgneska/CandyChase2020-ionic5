@@ -73,6 +73,11 @@ export class UserStatsService {
   public userStats: UserStatsI;
   private userStatsBehavior$ = new BehaviorSubject({});
 
+  // keep track of which tricks/treats have been triggered
+  private triggeredTricks$ = new BehaviorSubject([]);
+  private triggeredTreats$ = new BehaviorSubject([]);
+
+
   // keep track of saved addresses list
   public savedAddressesBehavior$ = new BehaviorSubject([]);
 
@@ -228,6 +233,24 @@ export class UserStatsService {
 
   // challenges ---------------------------------------------------------
 
+  // keep list of which tricks have been triggered
+  public updateCurrentTriggeredTricks(triggeredTricksList: TrickAndTreatI[]) {
+    this.triggeredTricks$.next(triggeredTricksList);
+  }
+
+  public getCurrentTriggeredTricks() {
+    return this.triggeredTricks$.asObservable();
+  }
+
+  // keep list of which tricks have been triggered
+  public updateCurrentTriggeredTreats(triggeredTreatsList: TrickAndTreatI[]) {
+    this.triggeredTreats$.next(triggeredTreatsList);
+  }
+
+  public getCurrentTriggeredTreats() {
+    return this.triggeredTreats$.asObservable();
+  }
+
 
 
   // saved addresses ---------------------------------------------------------
@@ -236,8 +259,8 @@ export class UserStatsService {
     return this.savedAddressesBehavior$.asObservable;
   }
 
-  updateCurrentAddressesList(address: any) {
-    this.savedAddressesBehavior$.next(address);
+  updateCurrentAddressesList(addresses: any[]) {
+    this.savedAddressesBehavior$.next(addresses);
   }
 
 

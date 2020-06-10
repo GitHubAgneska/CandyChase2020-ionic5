@@ -14,7 +14,7 @@ export class WelcomePageComponent implements OnInit {
   ngOnInit() {}
 
   start() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/letsplay']);
   }
 
 }

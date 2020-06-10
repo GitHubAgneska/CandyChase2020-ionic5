@@ -22,9 +22,8 @@ export class ChallengesComponent implements OnInit {
   public treats: TrickAndTreatI[];
   public tricks: TrickAndTreatI[];
 
-  public testArrayOfObjects: any[];
-
-  
+  public triggeredTricksList: TrickAndTreatI[];
+  public triggeredTreatsList: TrickAndTreatI[];
 
   public challengeDescription: string;
   public bonusPoints: number;
@@ -41,6 +40,8 @@ export class ChallengesComponent implements OnInit {
 
     this.treats = [];
     this.tricks = [];
+    this.triggeredTreatsList = [];
+    this.triggeredTricksList = [];
   }
 
   ngOnInit() {
@@ -49,65 +50,52 @@ export class ChallengesComponent implements OnInit {
     this.getRandomChallenge(this.choice);
   }
 
+
   public getChoice() {
     this.activatedRoute.paramMap.subscribe(param => {
       this.choice = param.get('choice');
     });
   }
 
-  public getRandomChallenge(choice: string)  {
+
+  public getRandomChallenge(choice: string) {
 
     this.choice = choice;
+
     if (this.choice === 'treat') {
 
-      const myList: any[] = this.retrieveTreatsList();
-      console.log('MY LIST==', myList);
-      // tslint:disable-next-line: prefer-for-of
+      this.challengesApiService.getTreatsList()
+        .subscribe((data: any[]) => {
+          // tslint:disable-next-line: prefer-for-of
+          for (let i = 0; i < data.length; i++) {
+            this.treats.push(data[i]);
+            const randomTreat = this.treats[Math.floor(Math.random() * this.treats.length)];
+            this.challengeDescription = randomTreat.challengeDescription;
+            this.bonusPoints = randomTreat.bonusPoints;
+            this.triggeredTreatsList.push(randomTreat);
+            this.userStatsService.updateCurrentTriggeredTreats(this.triggeredTreatsList);
+          }
+          console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
+        });
 
     } else {
 
-      const myList2: any[] = this.retrieveTricksList();
-      console.log('MY LIST==', myList2);
-
+      this.challengesApiService.getTricksList()
+        .subscribe((data: any[]) => {
+          // tslint:disable-next-line: prefer-for-of
+          for (let i = 0; i < data.length; i++) {
+            this.tricks.push(data[i]);
+            const randomTrick = this.tricks[Math.floor(Math.random() * this.tricks.length)];
+            this.challengeDescription = randomTrick.challengeDescription;
+            this.bonusPoints = randomTrick.bonusPoints;
+            this.triggeredTricksList.push(randomTrick);
+            this.userStatsService.updateCurrentTriggeredTricks(this.triggeredTricksList);
+          }
+        });
     }
     this.dataIsLoaded = true;
   }
 
-
-  public retrieveTreatsList(): any {
-    this.testArrayOfObjects = [];
-    this.challengesApiService.getTreatsList()
-    .subscribe( (data: any[]) => {
-      // tslint:disable-next-line: prefer-for-of
-      for (let i = 0; i < data.length; i++) {
-        this.treats.push(data[i]);
-        this.testArrayOfObjects.push(data[i]);
-      }
-      console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
-      console.log('testArrayOfObjects==', this.testArrayOfObjects);
-      return this.testArrayOfObjects;
-    });
-    return this.testArrayOfObjects;
- /*    console.log('TREATSLIST==', this.treats); // []
-    console.log('testArrayOfObjects==', this.testArrayOfObjects);
-    return this.treats; */
-  }
-
-
-  public retrieveTricksList(): TrickAndTreatI[] {
-    this.challengesApiService.getTricksList()
-    .subscribe( (data: any[]) => {
-      // console.log('DATA TRICKS==', data); // (3) [{…}, {…}, {…}]
-
-      // tslint:disable-next-line: prefer-for-of
-      for (let i = 0; i < data.length; i++) {
-        // console.log('data[i]==', data[i]);
-        this.tricks.push(data[i]);
-      }
-      // console.log('TRICKLIST==', this.tricks);
-    });
-    return this.tricks;
-  }
 
 
 
