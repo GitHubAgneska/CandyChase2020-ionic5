@@ -37,8 +37,9 @@ export class HomeComponent  implements OnInit {
   public start() {
     this.router.navigate(['start']);
   }
+
   public continue() {
-    this.router.navigate(['/play/backpack']);
+    this.router.navigate(['/play/user-stats']);
   }
 
   goToRules() {
@@ -46,7 +47,7 @@ export class HomeComponent  implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
   }
 
   goToLegal() {

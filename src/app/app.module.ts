@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CoreModule } from './core/core.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpErrorHandler } from './play/services/http-error-handler.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -44,6 +45,7 @@ import { MessageService } from './play/services/message.service';
   ],
   entryComponents: [],
   imports: [
+    CoreModule,
     CommonModule,
     BrowserModule,
     HttpClientModule,

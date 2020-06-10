@@ -1,0 +1,28 @@
+@import "src/theme/variables.scss";
+
+.main {
+    margin: auto;
+    border: none;
+    h2 {
+        text-align: center;
+    }
+    h2:first-child {
+        font-size: 1.4rem;
+        color: $sub-purple;
+    }
+    .main-text {
+        border: 3px solid $sub-red;
+        border-radius: 15px;
+        background-color: rgba(199, 3, 199, 0.342);
+        h2:first-child {
+            color: $sub-orange;
+            span {
+                font-size: 1.6rem;
+                color: $sub-pink;
+            }
+        }
+        h2:nth-child(2) {
+            color: $sub-orange;
+        }
+    }
+}

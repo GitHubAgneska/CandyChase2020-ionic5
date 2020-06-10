@@ -5,10 +5,13 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { HomeComponent } from './home/home.component';
 import { AgeSelectComponent } from './age-select/age-select.component';
 import { LetsplayComponent } from './letsplay/letsplay.component';
+import { LoginComponent } from './core/login/login.component';
 
 const routes: Routes = [
 
   { path: '', component: WelcomePageComponent },
+
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'start', component: AgeSelectComponent },
   { path: 'letsplay', component: LetsplayComponent },
