@@ -11,13 +11,13 @@
     </div>
 
     <div class="menu-image-container">
-      <div *ngIf="isPlaying;else newGame">
-        <img src="assets/graphicMat/menu_resume.png" alt="menu-play"
+      <div *ngIf="ongoing">
+        <img src="assets/graphicMat/menu_resume.png" alt="menu-resume"
           (click)="continue()" />
       </div>
-      <ng-template #newGame>
-        <img src="assets/graphicMat/menu_play.png" alt="menu-resume" (click)="start()" />
-      </ng-template>
+      <div *ngIf="newGame">
+        <img src="assets/graphicMat/menu_play.png" alt="menu-play" (click)="start()" />
+      </div>
 
     </div>
 

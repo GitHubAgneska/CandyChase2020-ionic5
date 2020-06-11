@@ -160,19 +160,19 @@ export class UserStatsService {
       this.currentLevel = this.levels[1];
      //  this.currentLevel.isActive = true;
       // this.levels[2].isNext = true;
-    } else if (totalPoints >= 60 && totalPoints < 120) {
+    } else if (totalPoints >= 60 && totalPoints < 90) {
       this.currentLevel = this.levels[2];
      //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[3];
-    } else if (totalPoints >= 120 && totalPoints < 180) {
+    } else if (totalPoints >= 90 && totalPoints < 120) {
       this.currentLevel = this.levels[3];
      //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[4];
-    } else if (totalPoints >= 180 && totalPoints < 240) {
+    } else if (totalPoints >= 120 && totalPoints < 180) {
       this.currentLevel = this.levels[4];
      //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[5];
-    } else if (totalPoints > 240) {
+    } else if (totalPoints > 180) {
       this.currentLevel = this.levels[5];
      //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[6];

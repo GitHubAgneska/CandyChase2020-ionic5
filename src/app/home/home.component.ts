@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserStatsService } from '../shared/services/user-stats.service';
 
 @Component({
@@ -9,30 +9,37 @@ import { UserStatsService } from '../shared/services/user-stats.service';
 })
 export class HomeComponent  implements OnInit {
 
-  public isPlaying: boolean;
+  public isPlaying: string;
   public newGame: boolean;
+  public ongoing: boolean;
   public userAgeRange: number;
 
   constructor(
     private router: Router,
-    private userStatsService: UserStatsService
+    private userStatsService: UserStatsService,
+    private activatedRoute: ActivatedRoute,
     ) {
-      this.userAgeRange = this.userStatsService.getCurrentAgeRange();
-      this.isPlaying = false;
+
     }
 
   ngOnInit() {
-    this.checkIfOngoingGame();
+
+    console.log('check ongoing triggered');
+    this.activatedRoute.paramMap.subscribe(param => {
+      this.isPlaying = param.get('isPlaying');
+      if ( this.isPlaying === 'true') {
+        this.newGame = false;
+        this.ongoing = true;
+        console.log('ONGOING');
+      } else {
+        this.newGame = true;
+        this.ongoing = false;
+        console.log('NEW GAME');
+      }
+    });
   }
 
-  public checkIfOngoingGame() {
 
-    console.log(this.userAgeRange);
-
-    if ( this.userAgeRange  > 0 ) {
-      this.isPlaying = true;
-    }
-  }
 
   public start() {
     this.router.navigate(['start']);
