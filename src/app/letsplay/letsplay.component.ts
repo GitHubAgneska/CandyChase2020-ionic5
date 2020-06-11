@@ -18,4 +18,8 @@ export class LetsplayComponent implements OnInit {
     this.router.navigate(['menu']);
   }
 
+  public goToRules() {
+    this.router.navigate(['static/rules']);
+  }
+
 }

@@ -9,11 +9,15 @@
     h2:first-child {
         font-size: 1.4rem;
         color: $sub-purple;
+        span {
+            color: $sub-pink;
+        }
     }
     .main-text {
         border: 3px solid $sub-red;
         border-radius: 15px;
         background-color: rgba(199, 3, 199, 0.342);
+        margin: 3% 0;
         h2:first-child {
             color: $sub-orange;
             span {
@@ -23,6 +27,16 @@
         }
         h2:nth-child(2) {
             color: $sub-orange;
+            span {
+                color: $main-blue;
+            }
+        }
+    }
+    .bottom-container {
+        padding: 5%;
+        .roundedOrangeButton {
+            font-size: 1rem;
+            padding:3%;
         }
     }
 }
