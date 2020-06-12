@@ -120,6 +120,28 @@ $app-direction: ltr;
     }
 
     // candylist ion-searchbar ************************** => TODO: check modes - selectors
+
+
+    .sc-ion-searchbar-md-h, .sc-ion-searchbar-ios {
+        --color: $main-orange;
+        --icon-color: $main-orange;
+        --placeholder-color: $main-orange;
+        --cancel-button-color: $main-orange;
+        border: 3px solid $main-orange;
+        border-radius: 15px;
+        background-color: rgba(255, 192, 203, 0.6);
+    }
+
+
+    .searchbar-input.sc-ion-searchbar-ios,
+    .searchbar-input.sc-ion-searchbar-md,
+    .searchbar-input.sc-ion-searchbar-md-h {
+            border: 3px solid orange;
+            border-radius: 15px;
+            background-color: rgba(255, 192, 203, 0.6);
+        }
+
+
     .searchbar-input.sc-ion-searchbar-ios,
     .searchbar-input.sc-ion-searchbar-ios::placeholder,
     .searchbar-input .sc-ion-searchbar-md-h::placeholder {
@@ -127,11 +149,7 @@ $app-direction: ltr;
         font-size: 1.5rem !important;
         opacity: 1 !important;
     }
-    .searchbar-input.sc-ion-searchbar-ios,
-    .searchbar-input.sc-ion-searchbar-md-h {
-        border: 3px solid orange;
-        background-color: rgba(255, 192, 203, 0.6);
-    }
+   
 
     // ***** static pages style (temporary) *******************
     .static {
