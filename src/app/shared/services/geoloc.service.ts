@@ -87,6 +87,7 @@ export class GeolocService {
       this.currentLong = data.coords.longitude;
      // this.coords = { lat: data.coords.latitude, long: data.coords.longitude };
       console.log('lat= ', this.currentLat, 'Long= ', this.currentLong);
+      this.coords = { lat: this.currentLat, lng: this.currentLong };
       console.log('COORDS===', this.coords);
 
     }).catch((error) => {
