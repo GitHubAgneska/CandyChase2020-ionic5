@@ -23,7 +23,6 @@ export class GeolocService {
   public mapBounds: number[];
 
 
-
   // geoencoder ------
   public address: string;
   // Geocoder configuration
@@ -79,20 +78,20 @@ export class GeolocService {
   public getCurrentLocation(): any {
 
     this.geolocation.getCurrentPosition()
-    .then((data) => {
+      .then((data) => {
 
-      console.log('RAW DATA= ', data);
-      this.setGeo(data);
-      this.currentLat = data.coords.latitude;
-      this.currentLong = data.coords.longitude;
-     // this.coords = { lat: data.coords.latitude, long: data.coords.longitude };
-      console.log('lat= ', this.currentLat, 'Long= ', this.currentLong);
-      this.coords = { lat: this.currentLat, lng: this.currentLong };
-      console.log('COORDS===', this.coords);
+        console.log('RAW DATA= ', data);
+        this.setGeo(data);
+        this.currentLat = data.coords.latitude;
+        this.currentLong = data.coords.longitude;
+        // this.coords = { lat: data.coords.latitude, long: data.coords.longitude };
+        console.log('lat= ', this.currentLat, 'Long= ', this.currentLong);
+        this.coords = { lat: this.currentLat, lng: this.currentLong };
+        console.log('COORDS===', this.coords);
 
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+      }).catch((error) => {
+        console.log('Error getting location', error);
+      });
   }
 
 
@@ -127,8 +126,8 @@ export class GeolocService {
     console.log('BOUNDS AT LOAD MAP = ', this.mapBounds);
 
     const corner1 = L.latLng(this.mapBounds[0], this.mapBounds[1]),
-          corner2 = L.latLng(this.mapBounds[2], this.mapBounds[3]),
-          bounds  = L.latLngBounds(corner1, corner2);
+      corner2 = L.latLng(this.mapBounds[2], this.mapBounds[3]),
+      bounds = L.latLngBounds(corner1, corner2);
 
     // initialize Leaflet
     this.map = L.map('map');
@@ -146,55 +145,16 @@ export class GeolocService {
         /* const radius = e.accuracy; */
         L.marker(e.latlng).addTo(this.map)
           .bindPopup('You are here!').openPopup();
-        })
-        .on('locationerror', (err: { message: any; }) => {
-          alert(err.message);
-        });
 
-    this.addBounds(bounds);
-  }
-
-
-  // add bounds around current position on map
-  public addBounds(bounds: any) {
-
-    this.geolocation.getCurrentPosition().then((res) => {
-      L.rectangle(bounds, { color: '#00000', weight: 1 })
-        .addTo(this.map);
-      this.map.fitBounds(bounds);
-    }).catch((error) => {
-      console.log('Error getting bounds', error);
-    });
-  }
-
-
-
-  // ------------------------------
-  // for tests - issue map browser
-  public loadMapWithoutBounds() {
-    // this.coords = this.getCoords();
-
-    this.map = L.map('map');
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom: 18,
-      /*       tileSize: 512,
-            zoomOffset: 0 */
-    }).addTo(this.map);
-
-    this.map.locate({ setView: true, maxZoom: 18 })
-
-      .on('locationfound', (e: { latlng: L.LatLngLiteral | L.LatLngTuple; }) => {
-
-        L.marker(e.latlng).addTo(this.map)
-          .bindPopup('You are here!').openPopup();
+        // add bounds around current position on map
+        L.rectangle(bounds, { color: '#FFB22D', weight: 3 })
+          .addTo(this.map);
+        this.map.fitBounds(bounds);
       })
       .on('locationerror', (err: { message: any; }) => {
         alert(err.message);
       });
   }
-  // ------------------------------
-
 
 }
 
