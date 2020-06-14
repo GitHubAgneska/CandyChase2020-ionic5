@@ -59,7 +59,7 @@ describe('CandyListComponent', () => {
     expect(pageTitle.textContent).toEqual('Candy to find');
   });
 
-  it('should (call observable via service and) display a list of candy items', () => {
+  /* it('should (call observable via service and) display a list of candy items', () => {
     const pageElement: HTMLElement = fixture.nativeElement;
     expect(pageElement.textContent).toContain('loading...');
     const candyList = pageElement.querySelectorAll('.candyList');
@@ -70,7 +70,7 @@ describe('CandyListComponent', () => {
     fixture.detectChanges();
     expect(pageElement.querySelectorAll('.candyList').length).toEqual(1);
     expect(pageElement.querySelectorAll('.loading').length).toEqual(0);
-  });
+  }); */
 
   /* TODO  : add dom test for pipe */
 
