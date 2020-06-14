@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserStatsService } from '../shared/services/user-stats.service';
+import { GeolocService } from '../shared/services/geoloc.service';
 
 @Component({
   selector: 'app-home',
@@ -25,13 +26,15 @@ export class HomeComponent  implements OnInit {
 
   constructor(
     private router: Router,
-    private userStatsService: UserStatsService,
+    private geolocService: GeolocService,
     private activatedRoute: ActivatedRoute,
     ) {
 
     }
 
   ngOnInit() {
+
+    this.geolocService.getCurrentLocation();
 
     console.log('check ongoing triggered');
     this.activatedRoute.paramMap.subscribe(param => {

@@ -1,13 +1,31 @@
+@import "src/theme/variables.scss";
+
 .addressesPage-container {
-    .map-sample {
-        height: 5vh;
+
+    
+    
+    .map-sample, .img-container {
     }
     .address-list-container {
-        height: 15vh;
-        background-color: #22222b;
+        height: 30vh;
         color: #b2caf8;
-        .address-item {
-            background-color: #b2caf8;
+        ul { 
+            li{ 
+                border: 2px solid $main-blue;
+                border-radius: 20px;
+                list-style-image: url('src/assets/graphicMat/mini_skull.png');
+                font-size: 1rem;
+                font-family: $titanOne;
+                color: $light-orange;
+                padding: 5%;
+                margin: 2%;
+            }
         }
+    }
+    .img-container {
+        img {
+            max-width: 5rem;
+        }
+        bottom:2%;
     }
 }

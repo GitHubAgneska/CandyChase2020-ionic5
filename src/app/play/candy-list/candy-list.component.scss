@@ -12,7 +12,6 @@ h6 {
 
 .candyPageContainer {
 
-    /* margin-top: 0 !important; */
     .add-label {
         height: 20vh;
         background-image: url("src/assets/graphicMat/sparkles.png");
@@ -22,11 +21,6 @@ h6 {
             max-width: 100px;
             float: right;
         }
-    }
-    .loading {
-        color: $main-blue;
-        font-size: 2rem;
-        text-align: center;
     }
     .candyList {
         display: flex;
@@ -85,6 +79,11 @@ h6 {
                 background-color: transparent;
             }
         }
+    }
+    .loading {
+        color: $main-blue;
+        font-size: 5rem;
+        text-align: center;
     }
     .newChallenge-btn {
 

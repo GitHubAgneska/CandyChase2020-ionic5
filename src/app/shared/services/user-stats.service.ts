@@ -256,7 +256,7 @@ export class UserStatsService {
   // saved addresses ---------------------------------------------------------
 
   getCurrentAddressesList() {
-    return this.savedAddressesBehavior$.asObservable;
+    return this.savedAddressesBehavior$.asObservable();
   }
 
   updateCurrentAddressesList(addresses: any[]) {

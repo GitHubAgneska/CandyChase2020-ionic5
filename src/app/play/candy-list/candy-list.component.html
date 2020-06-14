@@ -15,26 +15,27 @@
     <img src="assets/graphicMat/bubble_add2.png" alt="" />
   </div>
   
-  <!-- TODO:  create reusable loading block (shared module) + 'else block' -->
-  <div *ngIf="loading" class="loading">loading...</div> 
-
-  <div *ngFor="let candyItem of candyList" class="candyList">
-    <div class="candyItem">
-      <div class="candyThumbnail">
-        <img src="{{candyItem.image_front_url}}">
-      </div>
-      <div class="candyName">
-        <!-- <h2>{{data.brands_tags[1]}}</h2> -->
-        <h1>{{ candyItem.product_name | shortenString:30 }}</h1>
-      </div>
-      <div class="plus-btn">
-        <!-- <button (click)="sendId(candyItem._id)"> -->
-        <button (click)="addCandyToBackpack(candyItem)">
-          <img src="assets/graphicMat/zoomIn.png" alt="plus-button"/>
-        </button>
+  <div *ngIf="candyList$ | async as candyList; else loading">
+    <div *ngFor="let candyItem of candyList$ | async" class="candyList">
+      <div class="candyItem">
+        <div class="candyThumbnail">
+          <img src="{{candyItem.image_front_url}}">
+        </div>
+        <div class="candyName">
+          <!-- <h2>{{data.brands_tags[1]}}</h2> -->
+          <h1>{{ candyItem.product_name | shortenString:30 }}</h1>
+        </div>
+        <div class="plus-btn">
+          <!-- <button (click)="sendId(candyItem._id)"> -->
+          <button (click)="addCandyToBackpack(candyItem)">
+            <img src="assets/graphicMat/zoomIn.png" alt="plus-button"/>
+          </button>
+        </div>
       </div>
     </div>
   </div>
+    <!-- TODO:  create reusable loading block (shared module) + 'else block' -->
+  <ng-template #loading class="loading" style="color:blue">loading...</ng-template> 
 
   <div class="newChallenge-btn" *ngIf="newChallenge">
     <button (click)="goToChallenges()">New challenge!</button>

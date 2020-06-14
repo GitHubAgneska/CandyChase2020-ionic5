@@ -31,7 +31,6 @@ export class AgeSelectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.geolocService.getCurrentLocation();
   }
 
   public selectAge(ageRange: number) {

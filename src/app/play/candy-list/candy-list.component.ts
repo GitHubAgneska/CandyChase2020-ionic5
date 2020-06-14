@@ -19,6 +19,8 @@ export class CandyListComponent implements OnInit {
 
   public loading: boolean;
 
+  public candyList$: Observable<CandyI[]>;
+
   public candyList: CandyI[];
   public candyItem: CandyI;
   public candyChecklist: CandyChecklistI;
@@ -27,7 +29,8 @@ export class CandyListComponent implements OnInit {
 
   public totalCandy$: Observable<number>;
   public totalPoints: number;
-  /* public plusBtnImg = './assets/graphicmat/zoomIn.png'; */
+  // public plusBtnImg = 'src/assets/graphicmat/zoomIn.png';
+
   public newChallenge: boolean;
 
   public searchTerm: string;
@@ -42,6 +45,7 @@ export class CandyListComponent implements OnInit {
     private router: Router
     ) {
 
+    this.candyList$ =  this.candyApiService.getAllCandyFromApi();
     this.candyList = [];
     this.candyItem = {
       _id: '', product_name: '', amountInBackpack: 0,
@@ -68,27 +72,14 @@ export class CandyListComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    this.loadCandyList();
-  }
-
-  public loadCandyList() {
-    this.candyApiService.getAllCandyFromApi()
-      .subscribe(
-        (response: CandyI[]) => {
-          this.candyList = response;
-          console.log(this.candyList);
-          this.loading = false;
-        }
-      );
-  }
+  ngOnInit() {}
 
   public filterItems(searchTerm: string) {
 
     const searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', this.handleInput);
-
   }
+
 
   public handleInput(event: any) {
 
@@ -102,10 +93,11 @@ export class CandyListComponent implements OnInit {
     });
   }
 
+
   public onSearchInput() {
     this.searching = true;
     this.filterItems(this.searchTerm);
-}
+  }
 
   addCandyToBackpack(candyItem: CandyI) {
 

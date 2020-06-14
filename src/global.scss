@@ -172,19 +172,22 @@ $app-direction: ltr;
     //  *** TOAST MESSAGES  *********************************************************
 
     .new-points-toast,
-    .new-totalpoints-toast {
+    .new-totalpoints-toast,
+    .savedAddress-toast {
         --height: 10vh !important;
-        --background: #ff000096 !important;
+        --background: #b80101 !important;
         --color: orange !important;
-        --opacity: 1 !important;
         --font-family: "flyingleather" !important;
 
         text-align: center;
     }
     .new-points-toast {
-        font-size: 3rem; 
+        font-size: 3rem;
+        padding:2%; 
     }
-    .new-totalpoints-toast {
+
+    .new-totalpoints-toast,
+    .savedAddress-toast  {
         font-size: 2rem;
     }
 

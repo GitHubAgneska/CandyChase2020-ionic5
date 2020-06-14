@@ -2,10 +2,10 @@
 
 .mapContainer {
     z-index: 1;
+
     // mobile portrait
     height: 80%;
     border: 8px solid black;
-    // margin: 5% auto;
 
     #map {
         z-index: 1;
@@ -25,7 +25,6 @@
 .options-container {
     z-index:2;
     position: absolute;
-    height: 5rem;
     bottom:0;
     background-color: $main-purple;
     border-top-left-radius: 5px;
@@ -47,7 +46,6 @@
             color: $main-blue;
             text-transform: uppercase;
             justify-content: space-between;
-            // width: 12rem;
             img {
                 border: 2px solid $main-blue;
                 border-radius: 5px;
@@ -64,12 +62,6 @@
     }
     
 }
-/* 
-.seeOptions-open .seeOptions {
-	-webkit-transform: none;
-			transform: none;
-	transition: transform 300ms linear;
-} */
 
 // breakpoints exceptions ( ≠ global.scss : ion-content won't shrink as much as other pages after 567px)
 // mobile landscape

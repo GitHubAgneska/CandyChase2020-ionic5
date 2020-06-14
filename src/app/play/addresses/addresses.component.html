@@ -1,21 +1,25 @@
 <ion-header>
   <ion-toolbar color="customColor">
-    <ion-title text-center>My addresses</ion-title>
+    <ion-title text-center class="toolbarTitle">My addresses</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="addressesPage-container">
+<ion-content class="addressesPage-container flexColCentered">
 
   <div class="map-sample">
-    <img src="assets/graphicMat/map_sample.png" alt="" />
+    <img src="assets/graphicMat/map_sample.png" alt="map-sample" />
   </div>
 
-  <div class="address-list-container">
-    <h5></h5>
-    <div class="address-item">
-      <h6></h6>
-    </div>
-    <img src="assets/graphicMat/haunted_house.png" alt="" />
+  <div class="address-list-container" *ngIf="addressList.length > 0;else loading">
+    <ul *ngFor="let address of addressList">
+      <li class="address-item">
+        {{  address | json }}
+      </li>
+    </ul>
   </div>
+  <div class="img-container">
+    <img src="assets/graphicMat/haunted_house.png" alt="haunted-house" />
+  </div>
+  <ng-template #loading>loading</ng-template>
 
 </ion-content>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GeolocService } from '../../shared/services/geoloc.service';
 import { ToastController } from '@ionic/angular';
-import { Coords } from 'leaflet';
+import { Coordinates } from '../../shared/models/coordinates.model';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
   public mapBounds: number[];
   public coords: any = {};
 
-  public newAddress: Coords;
+  public newAddress: any = {};
 
   public heartIcon = 'assets/graphicMat/heartAsset_red.png';
 
@@ -28,7 +28,10 @@ export class MapComponent implements OnInit {
     public toastController: ToastController,
     private userStatsService: UserStatsService
 
-    ) {}
+    ) {
+      this.coords =  this.geolocService.getGeo();
+      this.newAddress = { lat:  this.coords.latitude, long: this.coords.longitude };
+    }
 
   ngOnInit() {
 
@@ -51,10 +54,15 @@ export class MapComponent implements OnInit {
 
 
   saveAddress() {
-
-  /*  this.newAddress = this.geolocService.getCoords();
-    this.userStatsService.updateCurrentAddressesList(this.newAddress); */
-
+    console.log('COORDS==', this.coords);
+    // raw object coords =
+    // GeolocationPosition {coords: GeolocationCoordinates, timestamp: 1592131995493}
+    // coords: GeolocationCoordinates {latitude: 43.6404224, longitude: 7.0418432, altitude:  …}
+    // timestamp: 1592131995493__proto__: GeolocationPosition
+    this.newAddress = { lat: this.coords.coords.latitude, long: this.coords.coords.longitude };
+    console.log('NEW ADDRESS==', this.newAddress);
+    this.userStatsService.updateCurrentAddressesList(this.newAddress);
+    this.presentToastWithOptions();
   }
 
 
@@ -63,9 +71,10 @@ export class MapComponent implements OnInit {
       message: `Address saved to favorites !`,
       position: 'middle',
       duration: 500,
-      cssClass: 'custom-toast'
+      cssClass: 'savedAddress-toast'
     });
     toast.present();
-
   }
+
 }
+
