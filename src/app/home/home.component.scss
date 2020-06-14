@@ -1,21 +1,23 @@
 @import "src/theme/variables.scss";
 
 .menu-container {
-    margin-top: 4vh;
+    margin: 4vh auto;
     flex-wrap: wrap;
-    width:90%;
+    width: 90%;
 
-/*     display: flex;
-    justify-content: center; */
-    .menu-image-container {
-
-        width: 120px;
-        img { max-width: 100%;
+    .menu-image-container-sm {
+        width: 5rem;
+    }
+    .menu-image-container-l {
+        width: 8rem;
+    }
+    .menu-image-container-sm,
+    .menu-image-container-l {
+        img {
+            max-width: 100%;
             &:active {
                 border: 3px solid $main-orange;
             }
         }
     }
 }
-
-

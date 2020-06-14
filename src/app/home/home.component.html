@@ -6,30 +6,29 @@
 
 <ion-content>
   <div class="menu-container circlesImgBg flexRowCentered">
-    <div class="menu-image-container">
-      <img src="assets/graphicMat/menu_rules.png" alt="menu-rules" (click)="goToRules()" />
+    <div class="menu-image-container-sm">
+      <img [src]="menuRules" alt="menu-rules" (click)="goToRules()" />
     </div>
 
-    <div class="menu-image-container">
-      <div *ngIf="ongoing">
-        <img src="assets/graphicMat/menu_resume.png" alt="menu-resume"
-          (click)="continue()" />
-      </div>
+    <div class="menu-image-container-l">
       <div *ngIf="newGame">
-        <img src="assets/graphicMat/menu_play.png" alt="menu-play" (click)="start()" />
+        <img [src]="menuPlay" alt="menu-play" (click)="start()" />
       </div>
-
+      <div *ngIf="ongoing">
+        <img [src]="menuResume" alt="menu-resume" (click)="continue()" />
+        <img [src]="menuNewGame" alt="menuNewGame" (click)="start()" />
+      </div>
     </div>
 
-    <div class="menu-image-container">
-      <img src="assets/graphicMat/menu_login.png" alt="menu-login" (click)="goToLogin()" />
+    <div class="menu-image-container-sm">
+      <img [src]="menuLogin" alt="menu-login" (click)="goToLogin()" />
     </div>
 
-    <div class="menu-image-container">
-      <img src="assets/graphicMat/menu_about.png" alt="menu-about" (click)="goToAbout()" />
+    <div class="menu-image-container-sm">
+      <img [src]="menuAbout" alt="menu-about" (click)="goToAbout()" />
     </div>
-    <div class="menu-image-container">
-      <img src="assets/graphicMat/menu_legal.png" alt="menu-legal" (click)="goToLegal()" />
+    <div class="menu-image-container-sm">
+      <img [src]="menuLegal" alt="menu-legal" (click)="goToLegal()" />
     </div>
 
   </div>

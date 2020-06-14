@@ -14,6 +14,15 @@ export class HomeComponent  implements OnInit {
   public ongoing: boolean;
   public userAgeRange: number;
 
+  // menu imgs
+  public menuRules = 'assets/graphicMat/menu_rules.png';
+  public menuResume = 'assets/graphicMat/menu_resume-bright.png';
+  public menuPlay = 'assets/graphicMat/menu_play-bright.png';
+  public menuNewGame = 'assets/graphicMat/newGame_bubble-bright.png';
+  public menuLogin = 'assets/graphicMat/menu_login.png';
+  public menuAbout = 'assets/graphicMat/menu_about.png';
+  public menuLegal = 'assets/graphicMat/menu_legal.png';
+
   constructor(
     private router: Router,
     private userStatsService: UserStatsService,
