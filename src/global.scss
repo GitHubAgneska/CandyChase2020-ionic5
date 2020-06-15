@@ -119,7 +119,7 @@ $app-direction: ltr;
         border-radius: 50%;
     }
 
-    
+
 
     // candylist ion-searchbar ************************** => TODO: check modes - selectors // sort out
 
@@ -192,5 +192,15 @@ $app-direction: ltr;
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+
+        //  *** CONFIRM DIALOG  *********************************************************
+    
+    .dialog {
+
+        --background: rgb(255, 188, 64);
+        color: $main-red;
+
     }
 }

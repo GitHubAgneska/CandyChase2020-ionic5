@@ -10,23 +10,20 @@
     <img src="assets/graphicMat/map_sample.png" alt="map-sample" />
   </div>
 
+  <div *ngIf="listIsEmpty" class="bubble">
+    <img [src]="noAddressBubble" alt="noAddressesYet" />
+  </div>
 
-  
-  <div *ngIf="addressList.length > 0;else noAddressYet" class="address-list-container">
-    <ul *ngFor="let address of addressList">
+  <div class="address-list-container">
+    <ul *ngFor="let address of addressList" class="address-item">
       <li class="address-item">
-        {{  address | json }}
+        {{  address.lat }} : {{ address.long }}
       </li>
+      <div class="btns-container" (click)="removeAddress(address)">
+        <!-- <img [src]="plusBtn" alt="plus-btn" (click)="" /> -->
+        <img [src]="minusBtn" alt="minus-btn" />
+      </div>
     </ul>
   </div>
-<!--   <div class="img-container">
-    <img src="assets/graphicMat/haunted_house.png" alt="haunted-house" />
-  </div> -->
-
-  <ng-template #noAddressYet> 
-    <img [src]="noAddressBubble" alt="no address bubble /">
-  </ng-template>
-
-  <ng-template #loading>loading</ng-template>
 
 </ion-content>

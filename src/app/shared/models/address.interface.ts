@@ -1,7 +1,9 @@
 export interface AddressI {
 
-    title: string;
-    description: string;
-    location: Location;
-    imageUrl: string;
+    addressId?: number;
+    title?: string;
+    description?: string;
+    coords: { lat: number, long: number };
+    imageUrl?: string;
+
 }

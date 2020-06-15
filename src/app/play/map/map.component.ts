@@ -3,6 +3,7 @@ import { GeolocService } from '../../shared/services/geoloc.service';
 import { ToastController } from '@ionic/angular';
 import { Coordinates } from '../../shared/models/coordinates.model';
 import { UserStatsService } from '../../shared/services/user-stats.service';
+import { AddressI } from '../../shared/models/address.interface';
 
 @Component({
   selector: 'app-map',
@@ -20,6 +21,7 @@ export class MapComponent implements OnInit {
   public coords: any = {};
 
   public newAddress: any = {};
+  public addressList: AddressI[];
 
   public heartIcon = 'assets/graphicMat/heartAsset_red.png';
 
@@ -30,6 +32,7 @@ export class MapComponent implements OnInit {
 
     ) {
       this.coords =  this.geolocService.getGeo();
+      this.addressList = [];
       this.newAddress = { lat:  this.coords.latitude, long: this.coords.longitude };
     }
 
@@ -61,7 +64,8 @@ export class MapComponent implements OnInit {
     // timestamp: 1592131995493__proto__: GeolocationPosition
     this.newAddress = { lat: this.coords.coords.latitude, long: this.coords.coords.longitude };
     console.log('NEW ADDRESS==', this.newAddress);
-    this.userStatsService.updateCurrentAddressesList(this.newAddress);
+    this.addressList.push(this.newAddress);
+    this.userStatsService.updateCurrentAddressesList(this.addressList);
     this.presentToastWithOptions();
   }
 

@@ -1,25 +1,35 @@
 @import "src/theme/variables.scss";
 
 .addressesPage-container {
-
     .address-list-container {
         height: 30vh;
         color: #b2caf8;
-        ul { 
-            li{ 
+        ul {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            li {
+                min-width:85%;
                 border: 2px solid $main-blue;
                 border-radius: 20px;
-                list-style-image: url('src/assets/graphicMat/mini_skull.png');
-                font-size: 1rem;
+                list-style-image: url("src/assets/graphicMat/mini_skull.png");
+                font-size: .7rem;
                 font-family: $titanOne;
                 color: $light-orange;
                 padding: 5%;
                 margin: 2%;
             }
+            .btns-container {
+                width: 10%;
+            }
+        
         }
     }
     .bubble {
-        width: 8rem;
-        float: right;
+        width: 40%;
+        margin: 10% auto;
     }
 }

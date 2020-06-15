@@ -1,10 +1,14 @@
 <ion-header>
   <ion-toolbar color="customColor">
-    <!--  <ion-title text-center class="toolbarTitle">Trick or treat</ion-title> -->
+    <ion-title text-center class="toolbarTitle">Challenges</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="special-bg">
+
+  <div *ngIf="listIsEmpty" class="bubble">
+    <img [src]="noChallengesYetImg" alt="noChallengesYet" />
+  </div>
 
   <div class="main-container">
     <div *ngFor="let item of currentListOfTreats">
@@ -13,8 +17,6 @@
     <div *ngFor="let item of currentListOfTricks">
       <h1>{{ item | json }}</h1>
     </div>
-    
-
   </div>
 
 </ion-content>

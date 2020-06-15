@@ -24,6 +24,7 @@ import { map } from 'rxjs/operators';
 import { Coords } from 'leaflet';
 import { ChallengesApiService } from '../../play/services/challenges-api.service';
 import { TrickAndTreatI } from '../../shared/models/challenges.interface';
+import { AddressI } from '../../shared/models/address.interface';
 
 
 @Injectable({
@@ -51,7 +52,7 @@ export class UserStatsService {
   public trick: TrickAndTreatI;
 
 
-  public savedAddresses: [];
+  public savedAddresses: AddressI[];
   public savedAddressesCount: number;
 
 
@@ -259,8 +260,8 @@ export class UserStatsService {
     return this.savedAddressesBehavior$.asObservable();
   }
 
-  updateCurrentAddressesList(addresses: any[]) {
-    this.savedAddressesBehavior$.next(addresses);
+  updateCurrentAddressesList(addressesList: AddressI[]) {
+    this.savedAddressesBehavior$.next(addressesList);
   }
 
 

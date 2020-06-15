@@ -11,17 +11,21 @@ export class ChallengesListComponent implements OnInit {
 
   public currentListOfTricks: TrickAndTreatI[];
   public currentListOfTreats: TrickAndTreatI[];
-
+  public listIsEmpty: boolean;
+  public noChallengesYetImg = 'assets/graphicMat/noChallengesYet_bubble.png';
 
   constructor( private userStatsService: UserStatsService ) {
     this.currentListOfTricks = [];
     this.currentListOfTreats = [];
+    this.listIsEmpty = false;
   }
 
   ngOnInit() {
 
     this.userStatsService.getCurrentTriggeredTricks().subscribe(data => this.currentListOfTricks = data);
     this.userStatsService.getCurrentTriggeredTreats().subscribe(data => this.currentListOfTreats = data);
+    if ( this.currentListOfTricks.length === 0 && this.currentListOfTreats.length === 0)  {
+      this.listIsEmpty = true;
+    }
   }
-
 }
