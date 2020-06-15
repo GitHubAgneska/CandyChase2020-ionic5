@@ -1,6 +1,16 @@
 @import "src/theme/variables.scss";
+// necessary for list elements to come out right
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
 
 .static {
+
     .main {
         .logo-container {
             width: 40%;
@@ -12,32 +22,17 @@
         }
         .text-container {
             text-align: center;
-            height: 30vh;
-            background-image: url("src/assets/graphicMat/menu_shape1.png");
-            background-size: contain;
-            background-position: center;
             h1 {
-                // margin-top: 25%;
-                height: 5rem;
+                width: 80%;
+                margin: auto;
+                padding: 2%;
                 font-size: 1.3rem;
-            }
-            h1:first-child {
                 color: $sub-orange;
+                border-bottom: 3px solid $sub-orange;
                 span {
-                    color: $main-pink;
-                    font-size: 1.7rem;
-                }
-            }
-            h1:nth-child(2) {
-                color: $sub-purple;
-                span {
-                    font-size: 1.7rem;
-                    &:first-child {
-                        color: $main-pink;
-                    }
-                    &:nth-child(2) {
-                        color: $sub-pink;
-                    }
+                    font-family: $titanOne;
+                    color: $main-blue;
+                    font-size: 1.2rem;
                 }
             }
         }
@@ -45,9 +40,8 @@
     .bottom-container {
         
         width: 100%;
-        margin: auto;
-        bottom: 8%;
-        position: absolute;
+        margin: 20% auto;
+
         p {
             color: $sub-orange;
             font-size: 0.7rem;
