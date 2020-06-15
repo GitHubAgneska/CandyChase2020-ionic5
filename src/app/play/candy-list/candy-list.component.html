@@ -35,7 +35,13 @@
     </div>
   </div>
     <!-- TODO:  create reusable loading block (shared module) + 'else block' -->
-  <ng-template #loading class="loading" style="color:blue">loading...</ng-template> 
+  <ng-template #loading>
+    <h1 class="loading">
+      loading...    
+    </h1>
+  </ng-template> 
+
+
 
   <div class="newChallenge-btn" *ngIf="newChallenge">
     <button (click)="goToChallenges()">New challenge!</button>

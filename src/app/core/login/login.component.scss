@@ -1,0 +1,40 @@
+@import "src/theme/variables.scss";
+
+.main-container {
+    width: 80%;
+    margin: auto;
+    padding-top: 20%;
+    // padding-top: 5vh;
+    .note {
+        text-align: center;
+        border: 2px solid $main-blue;
+        border-radius: 15px;
+        h6 {
+            padding: 3%;
+            color: $main-blue;
+            font-family: $titanOne;
+            font-size: 1rem;
+        }
+    }
+    .main-content-login {
+        h1 {
+        }
+        form {
+            margin: auto;
+            input {
+            }
+        }
+        .sign-up {
+            h2 {
+                color: $main-orange;
+            }
+        }
+    }
+    .bottom-container {
+        width: 100%;
+        margin: auto;
+        bottom: 8%;
+        position: absolute;
+    
+    }
+}

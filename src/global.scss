@@ -119,6 +119,8 @@ $app-direction: ltr;
         border-radius: 50%;
     }
 
+    
+
     // candylist ion-searchbar ************************** => TODO: check modes - selectors // sort out
 
 
@@ -132,24 +134,16 @@ $app-direction: ltr;
         background-color: rgba(255, 192, 203, 0.6);
     }
 
-
     .searchbar-input.sc-ion-searchbar-ios,
     .searchbar-input.sc-ion-searchbar-md,
-    .searchbar-input.sc-ion-searchbar-md-h {
-            // border: 3px solid orange;
-            border-radius: 15px;
-            background-color: rgba(255, 192, 203, 0.6);
-        }
-
-
-    .searchbar-input.sc-ion-searchbar-ios,
     .searchbar-input.sc-ion-searchbar-ios::placeholder,
     .searchbar-input .sc-ion-searchbar-md-h::placeholder {
-        color: rgb(255, 0, 0) !important;
+        color: $main-red !important;
         font-size: 1.5rem !important;
         opacity: 1 !important;
     }
 
+    
     // ***** static pages style (temporary) *******************
     .static {
         width: 90%;

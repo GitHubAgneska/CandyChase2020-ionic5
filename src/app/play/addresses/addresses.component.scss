@@ -2,10 +2,6 @@
 
 .addressesPage-container {
 
-    
-    
-    .map-sample, .img-container {
-    }
     .address-list-container {
         height: 30vh;
         color: #b2caf8;
@@ -22,10 +18,8 @@
             }
         }
     }
-    .img-container {
-        img {
-            max-width: 5rem;
-        }
-        bottom:2%;
+    .bubble {
+        width: 8rem;
+        float: right;
     }
 }
