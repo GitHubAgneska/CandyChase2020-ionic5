@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -32,6 +32,7 @@ export class CandyListComponent implements OnInit {
   // public plusBtnImg = 'src/assets/graphicmat/zoomIn.png';
 
   public newChallenge: boolean;
+  public challengeState: string;
 
   public searchTerm: string;
   public searchControl: FormControl;
@@ -42,7 +43,8 @@ export class CandyListComponent implements OnInit {
     private userStatsService: UserStatsService,
     public shortenString: ShortenStringPipe,
     public toastController: ToastController,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     ) {
 
     this.candyList$ =  this.candyApiService.getAllCandyFromApi();
@@ -72,17 +74,27 @@ export class CandyListComponent implements OnInit {
   }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.retrieveChallengeState();
+  }
 
+
+  public retrieveChallengeState() {
+    this.activatedRoute.paramMap.subscribe(param => {
+      this.challengeState = param.get('hasBeenOpened');
+    });
+    if ( this.challengeState === 'true') {
+      this.newChallenge = false;
+    }
+  }
+
+// search ..........................................................
   public filterItems(searchTerm: string) {
-
     const searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', this.handleInput);
   }
 
-
   public handleInput(event: any) {
-
     const elementsToFilter = Array.from(document.getElementsByClassName('candyList')as HTMLCollectionOf<HTMLElement>);
     const query = event.target.value.toLowerCase();
     requestAnimationFrame(() => {
@@ -93,14 +105,13 @@ export class CandyListComponent implements OnInit {
     });
   }
 
-
   public onSearchInput() {
     this.searching = true;
     this.filterItems(this.searchTerm);
   }
+// ..........................................................
 
   addCandyToBackpack(candyItem: CandyI) {
-
     this.totalCandy$ = this.userStatsService.getCurrentBackpackCount();
 
     this.candyItem = candyItem;
@@ -176,6 +187,7 @@ export class CandyListComponent implements OnInit {
   public goToChallenges() {
     this.router.navigate(['play/trickOrTreat']);
   }
+
 }
 
 

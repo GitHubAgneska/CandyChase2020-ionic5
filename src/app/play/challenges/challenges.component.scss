@@ -23,7 +23,7 @@ h6 {
 
         .upper-row,
         .bottom-row {
-            padding: 8% 0%;
+            padding: 3% 0%;
             h1 {
                 color: $sub-light;
                 font-size: 1.5rem;
@@ -33,6 +33,17 @@ h6 {
                     color: $sub-pink;
                 }
             }
+            button {
+                padding: 3%;
+                margin: 2% 5%;
+            }
+            button:first-child {
+                font-size:1.3rem;
+            }
+            button:nth-child(2) {
+                color: $main-orange;
+                
+            }
             img {
                 width: 5rem;
                 float: right;
@@ -41,17 +52,23 @@ h6 {
         .main-row {
             h1 {
                 font-size: 1.2rem;
-                color: $sub-purple;
+                color: $sub-red;
             }
             .description-container {
                 width: 80%;
-                border: 5px solid $main-purple;
+                border: 5px dotted $sub-red;
+                background-color: darken($lightpurple-bg, 20%);
                 border-radius: 15px;
 
                 p {
-                    padding: 10%;
-                    font-size: 1.5rem;
+                    padding: 5%;
+                    font-size: 1.6rem;
+                }
+                p:first-child {
                     color: $sub-light;
+                }
+                p:nth-child(2){
+                    color: $main-orange;
                 }
             }
         }

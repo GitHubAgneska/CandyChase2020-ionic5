@@ -16,10 +16,14 @@
       <h1>Your challenge:</h1>
       <div class="description-container">
         <p>{{ challengeDescription }}</p>
+        <p>Bonus Points : {{ bonusPoints }}</p>
       </div>
     </div>
+
   
     <div class="bottom-row">
+      <button class="classicBtn" (click)="isDone()">Done!</button>
+      <button class="classicBtn" (click)="isSkipped()">Skip challenge</button>
       <img src="{{ candleSkullImg }}" alt="candle-skull" />
     </div>
 

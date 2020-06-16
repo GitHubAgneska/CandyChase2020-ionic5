@@ -102,6 +102,14 @@ $app-direction: ltr;
         font-family: $titanOne;
         color: $main-orange;
     }
+    .classicBtn {
+        border: 2px solid $main-orange;
+        background-color: $lightpurple-bg;
+        border-radius: 5px;
+        font-family: $flyingleather;
+        color: $main-light;
+        font-size:1.2rem;
+    }
 
     .circlesImgBg {
         background-image: url("src/assets/graphicMat/circles.png");
