@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { LevelI } from '../../shared/models/level.interface';
 import { UserStatsI } from '../../shared/models/user-stats.interface';
-import { GeolocService } from '../../shared/services/geoloc.service';
-import { Coords } from 'leaflet';
 import { KeyvaluePipe } from '../../shared/pipes/keyvalue/keyvalue';
-import { LevelApiService } from '../services/level-api.service';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,28 +23,20 @@ export class UserStatsComponent implements OnInit {
   public nextLevel: LevelI;
   public currentLevelName: string;
 
-  public cards: string[];
-  public allCards: any[];
-  public cardIsNext: boolean;
-  public activeCards: string[];
-
   public tricks: any[];
   public treats: any[];
   public completedChallengesCount: number;
+  public completedChallengesTest: any[];
 
   public savedAddresses: any[];
   public savedAddressesCount: number;
 
   constructor(
     private userStatsService: UserStatsService,
-    private levelApiService: LevelApiService,
-    private geolocService: GeolocService,
     public keyvaluepipe: KeyvaluePipe,
     private router: Router
   ) {
 
-    // this.cardIsNext = true;
-    this.activeCards = [];
     this.currentLevel =  { idLevel: 0, levelName: '', levelImg: '', levelCard: '', isActive: false, isNext: false };
     this.levels = this.userStatsService.retrieveLevelList();
   }
@@ -69,9 +57,6 @@ export class UserStatsComponent implements OnInit {
     console.log('candy count------', this.candyCount);
 
     // level
-    // this.userStatsService.getCurrentLevelName().subscribe(data => this.currentLevelName = data);
-    // console.log('current level name-----', this.currentLevelName);
-
     this.userStatsService.getCurrentLevel().subscribe(data => {
       this.currentLevel.idLevel = data.idLevel,
       this.currentLevel.levelName = data.levelName,
@@ -83,7 +68,6 @@ export class UserStatsComponent implements OnInit {
     console.log('currentlevel levelcard-----', this.currentLevel.levelCard);
 
     // bottom cards
-    // this.levels = this.userStatsService.retrieveLevelList();   // ISSUE OF SYNC
     console.log('levels---', this.levels);
 
     for ( let i = 0; i < this.levels.length; i++ ) {
@@ -92,14 +76,19 @@ export class UserStatsComponent implements OnInit {
         this.levels[ i + 1 ].isNext = true;
       }
     }
+
     // current done challenges
-    // this.userStatsService.getCurrentAchievedTreats().subscribe(data => this.completedChallengesCount = data.length )
+    this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesTest = data );
+    console.log('RESULT OF ZIP==', this.completedChallengesTest);
+    this.completedChallengesCount = this.completedChallengesTest.length;
+
 
     // current saved addresses count
     this.userStatsService.getCurrentAddressesList().subscribe(data => this.savedAddresses = data );
     this.savedAddressesCount = this.savedAddresses.length;
-
   }
+
+
   public goToAddresses() {
     this.router.navigate(['play/addresses']);
   }

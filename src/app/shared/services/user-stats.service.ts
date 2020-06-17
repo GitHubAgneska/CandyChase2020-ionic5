@@ -16,11 +16,13 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { of, zip } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { LevelApiService } from '../../play/services/level-api.service';
-import { LevelI } from '../models/level.interface';
-import { CandyI } from '../models/candy.interface';
-import { UserStatsI } from '../models/user-stats.interface';
 import { ChallengesApiService } from '../../play/services/challenges-api.service';
+import { CandyI } from '../models/candy.interface';
+import { LevelI } from '../models/level.interface';
+import { UserStatsI } from '../models/user-stats.interface';
 import { TrickAndTreatI } from '../../shared/models/challenges.interface';
 import { AddressI } from '../../shared/models/address.interface';
 
@@ -267,6 +269,10 @@ export class UserStatsService {
 
 
   public getCompletedChallengesCount() {
+    const tricksCount = this.getCurrentAchievedTricks();
+    const treatsCount = this.getCurrentAchievedTreats();
+    const allcount = zip( tricksCount, treatsCount);
+    return allcount;
   }
 
 
