@@ -137,9 +137,10 @@ $app-direction: ltr;
         --icon-color: $main-orange;
         --placeholder-color: $main-orange;
         --cancel-button-color: $main-orange;
-        border: 3px solid $main-orange;
+        --placeholder-opacity: 1;
+        // border: 3px solid $main-orange;
         border-radius: 15px;
-        background-color: rgba(255, 192, 203, 0.6);
+        background-color: rgba(255, 192, 203, 0.7);
     }
 
     .searchbar-input.sc-ion-searchbar-ios,
@@ -148,7 +149,7 @@ $app-direction: ltr;
     .searchbar-input .sc-ion-searchbar-md-h::placeholder {
         color: $main-red !important;
         font-size: 1.5rem !important;
-        opacity: 1 !important;
+        // opacity: 1 !important;
     }
 
     

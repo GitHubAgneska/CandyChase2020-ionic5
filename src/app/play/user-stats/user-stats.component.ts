@@ -36,7 +36,7 @@ export class UserStatsComponent implements OnInit {
   public treats: any[];
   public completedChallengesCount: number;
 
-  public savedAddresses: Coords[];
+  public savedAddresses: any[];
   public savedAddressesCount: number;
 
   constructor(
@@ -93,6 +93,11 @@ export class UserStatsComponent implements OnInit {
       }
     }
     // current done challenges
+    // this.userStatsService.getCurrentAchievedTreats().subscribe(data => this.completedChallengesCount = data.length )
+
+    // current saved addresses count
+    this.userStatsService.getCurrentAddressesList().subscribe(data => this.savedAddresses = data );
+    this.savedAddressesCount = this.savedAddresses.length;
 
   }
   public goToAddresses() {

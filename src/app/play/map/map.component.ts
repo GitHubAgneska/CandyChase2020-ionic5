@@ -33,7 +33,7 @@ export class MapComponent implements OnInit {
     ) {
       this.coords =  this.geolocService.getGeo();
       this.addressList = [];
-      this.newAddress = { lat:  this.coords.latitude, long: this.coords.longitude };
+      // this.newAddress = { lat:  this.coords.latitude, long: this.coords.longitude };
     }
 
   ngOnInit() {

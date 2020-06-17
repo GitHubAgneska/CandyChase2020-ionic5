@@ -7,7 +7,7 @@
 // *current total points*
 // *current level*
 // *current set of cards*
-// *current set of challenges*
+// *current set of challenges* (triggered + achieved)
 // *current set of saved addresses*
 
 // => these infos will be available accross all components of the play module
@@ -76,6 +76,9 @@ export class UserStatsService {
   private triggeredTricks$ = new BehaviorSubject([]);
   private triggeredTreats$ = new BehaviorSubject([]);
 
+  private achievedTricks$ = new BehaviorSubject([]);
+  private achievedTreats$ = new BehaviorSubject([]);
+  private completedChallengesCount$ = new BehaviorSubject(0);
 
   // keep track of saved addresses list
   public savedAddressesBehavior$ = new BehaviorSubject([]);
@@ -236,19 +239,36 @@ export class UserStatsService {
   public updateCurrentTriggeredTricks(triggeredTricksList: TrickAndTreatI[]) {
     this.triggeredTricks$.next(triggeredTricksList);
   }
-
   public getCurrentTriggeredTricks() {
     return this.triggeredTricks$.asObservable();
+  }
+  // keep list of which tricks have been achieved
+  public updateCurrentAchievedTricks(achievedTrickList: TrickAndTreatI[]) {
+    this.achievedTricks$.next(achievedTrickList);
+  }
+  public getCurrentAchievedTricks() {
+    return this.achievedTricks$.asObservable();
   }
 
   // keep list of which treats have been triggered
   public updateCurrentTriggeredTreats(triggeredTreatsList: TrickAndTreatI[]) {
     this.triggeredTreats$.next(triggeredTreatsList);
   }
-
   public getCurrentTriggeredTreats() {
     return this.triggeredTreats$.asObservable();
   }
+  // keep list of which treats have been achieved
+  public updateCurrentAchievedTreats(achievedTreatList: TrickAndTreatI[]) {
+    this.achievedTricks$.next(achievedTreatList);
+  }
+  public getCurrentAchievedTreats() {
+    return this.achievedTreats$.asObservable();
+  }
+
+
+  public getCompletedChallengesCount() {
+  }
+
 
 
 

@@ -25,6 +25,8 @@ export class ChallengesComponent implements OnInit {
 
   public triggeredTricksList: TrickAndTreatI[];
   public triggeredTreatsList: TrickAndTreatI[];
+  public achievedTricksList: TrickAndTreatI[];
+  public achievedTreatsList: TrickAndTreatI[];
 
   public challengeDescription: string;
   public bonusPoints: number;
@@ -120,6 +122,15 @@ export class ChallengesComponent implements OnInit {
     this.userStatsService.update_totalPoints(this.newTotalPoints);
     this.presentToastBonusPoints(this.bonusPoints, this.newTotalPoints);
     this.currentChallenge.hasBeenCompleted = true;
+
+    if ( this.currentChallenge.challengeType === 'trick') {
+      this.achievedTricksList.push(this.currentChallenge);
+      this.userStatsService.updateCurrentAchievedTricks(this.achievedTricksList);
+    } else { if (this.currentChallenge.challengeType === 'treat') {
+      this.achievedTreatsList.push(this.currentChallenge);
+      this.userStatsService.updateCurrentAchievedTreats(this.achievedTreatsList);
+    }}
+
     this.router.navigate(['play/candyList', { hasBeenOpened: 'true '}]);
   }
 
