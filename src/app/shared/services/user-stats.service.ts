@@ -15,13 +15,11 @@
 // ( + will determine a *level color theme* in a future feature )
 
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { LevelApiService } from '../../play/services/level-api.service';
 import { LevelI } from '../models/level.interface';
 import { CandyI } from '../models/candy.interface';
 import { UserStatsI } from '../models/user-stats.interface';
-import { map } from 'rxjs/operators';
-import { Coords } from 'leaflet';
 import { ChallengesApiService } from '../../play/services/challenges-api.service';
 import { TrickAndTreatI } from '../../shared/models/challenges.interface';
 import { AddressI } from '../../shared/models/address.interface';
@@ -243,7 +241,7 @@ export class UserStatsService {
     return this.triggeredTricks$.asObservable();
   }
 
-  // keep list of which tricks have been triggered
+  // keep list of which treats have been triggered
   public updateCurrentTriggeredTreats(triggeredTreatsList: TrickAndTreatI[]) {
     this.triggeredTreats$.next(triggeredTreatsList);
   }
@@ -265,8 +263,14 @@ export class UserStatsService {
   }
 
 
-}
+  // reset all  ---------------------------------------------------------
 
+
+  public resetAllStats() {
+
+  }
+
+}
 
 /* ------------------------------------------------------------------------------
   Method to count points depending on specific criteria, e.g candy item weight
@@ -277,5 +281,6 @@ export class UserStatsService {
 } => not implementable atm for api data = not consistent enough */
   // => For now total points will be count as 6 points per candy item
   //  ------------------------------------------------------------------------------
+
 
 

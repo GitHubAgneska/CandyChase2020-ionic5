@@ -34,7 +34,7 @@ export class UserStatsComponent implements OnInit {
 
   public tricks: any[];
   public treats: any[];
-  public challengesCount: number;
+  public completedChallengesCount: number;
 
   public savedAddresses: Coords[];
   public savedAddressesCount: number;
@@ -92,6 +92,8 @@ export class UserStatsComponent implements OnInit {
         this.levels[ i + 1 ].isNext = true;
       }
     }
+    // current done challenges
+
   }
   public goToAddresses() {
     this.router.navigate(['play/addresses']);

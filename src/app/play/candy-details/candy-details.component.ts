@@ -33,6 +33,8 @@ export class CandyDetailsComponent implements OnInit {
   public showNutriscore: boolean;
   public selected: boolean;
 
+  public noKnownAllergen: boolean;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public candyApiService: CandyApiService,
@@ -59,6 +61,7 @@ export class CandyDetailsComponent implements OnInit {
     this.showIngredients = false;
     this.showAllergens = false;
     this.showNutriscore = false;
+    this.noKnownAllergen = false;
   }
 
   ngOnInit() {
@@ -87,12 +90,14 @@ export class CandyDetailsComponent implements OnInit {
 
       console.log('candy response: ', response);
 
+
       for ( const x of this.candyItem.allergens_hierarchy ) {
         if (x === 'gluten' ) {
           this.candyChecklist.glutenFree = false;
           this.glutenFree = false;
         }
       }
+
      /*  ( x === 'milk' ||  x === 'butter' ||  x === 'eggs') */
       for (const x of this.candyItem.ingredients_tags ) {
         if ( x === 'milk') {
@@ -122,7 +127,9 @@ export class CandyDetailsComponent implements OnInit {
   }
 
   toggleAllergens() {
-    this.showAllergens = !this.showAllergens;
+    if ( this.candyItem.allergens_hierarchy.length > 0) {
+      this.showAllergens = !this.showAllergens;
+    } else { this.noKnownAllergen = true; }
   }
 
   toggleNutriscore() {

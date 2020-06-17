@@ -92,7 +92,7 @@
           <h1>Allergens</h1>
           <img src="assets/icon/icon_arrowDown.png" />
         </div>
-        <div class="candyAllergens" *ngIf="showAllergens">
+        <div class="candyAllergens">
           <table>
             <tr *ngFor="let i of candyItem.allergens_hierarchy">
               <td>
@@ -100,6 +100,9 @@
               </td>
             </tr>
           </table>
+        </div>
+        <div *ngIf="noKnownAllergen">
+          <h1>No listed allergen in the database</h1>
         </div>
       </div>
     </div>

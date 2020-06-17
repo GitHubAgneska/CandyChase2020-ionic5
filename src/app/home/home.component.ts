@@ -28,6 +28,7 @@ export class HomeComponent  implements OnInit {
     private router: Router,
     private geolocService: GeolocService,
     private activatedRoute: ActivatedRoute,
+    private userStatsService: UserStatsService
     ) {
 
     }
@@ -49,6 +50,10 @@ export class HomeComponent  implements OnInit {
         console.log('NEW GAME');
       }
     });
+  }
+
+  public resetAllStats() {
+
   }
 
 

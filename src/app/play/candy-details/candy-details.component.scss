@@ -61,6 +61,11 @@ h6 {
         margin: 3% auto;
         width: 100%;
         .rubrik {
+            h1 {
+                font-size: .8rem;
+                color: $main-orange;
+                font-family: $titanOne;
+            }
             .rubrik-title {
                 justify-content: space-between;
                 border-bottom: 3px solid $main-blue;

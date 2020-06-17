@@ -4,7 +4,6 @@ import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
