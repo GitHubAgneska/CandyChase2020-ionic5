@@ -6,17 +6,17 @@
 
 <ion-content class="special-bg">
 
-  <div *ngIf="listIsEmpty" class="bubble">
-    <img [src]="noChallengesYetImg" alt="noChallengesYet" />
-  </div>
-
-  <div class="main-container">
-    <div *ngFor="let item of currentListOfTreats">
-      <h1>{{ item | json }}</h1>
+  <div *ngIf="displayList;else listIsEmpty" class="main-container">
+    <h2>You have achieved these so far ! </h2>
+    <div *ngFor="let treat of achievedTreatsList">
+      <h1>{{ treat.challengeDescription }}</h1>
     </div>
-    <div *ngFor="let item of currentListOfTricks">
-      <h1>{{ item | json }}</h1>
+    <div *ngFor="let trick of achievedTricksList">
+      <h1>{{ trick.challengeDescription }}</h1>
     </div>
   </div>
 
+  <ng-template #listIsEmpty>
+    <img [src]="noChallengesYetImg" alt="noChallengesYet" class="bubble" />
+  </ng-template >
 </ion-content>

@@ -21,8 +21,14 @@ h6 {
         height: 80%;
         margin: auto;
         padding-top: 10%;
-        
+        h2 {
+            color: $sub-light;
+        }
         h1 {
+            margin:2%;
+            padding: 3%;
+            border: 2px solid $main-blue;
+            border-radius: 15px;
             font-family: $titanOne;
             color: $sub-light;
             font-size: 1rem;
@@ -33,6 +39,7 @@ h6 {
 
         width: 40%;
         margin: 10% auto;
+        align-self: center;
     }
 
 }

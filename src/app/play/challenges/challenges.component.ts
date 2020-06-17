@@ -6,7 +6,6 @@ import { ChallengesApiService } from '../services/challenges-api.service';
 import { ToastController } from '@ionic/angular';
 import { Location } from '@angular/common';
 
-
 @Component({
   selector: 'app-challenges',
   templateUrl: './challenges.component.html',
@@ -18,8 +17,7 @@ export class ChallengesComponent implements OnInit {
   public purpleBubbleImg = 'assets/graphicMat/purple_bubble.png';
   public candleSkullImg = 'assets/graphicMat/candle_skull.png';
 
-  public treat: TrickAndTreatI;
-  public trick: TrickAndTreatI;
+  public currentChallenge: TrickAndTreatI;
   public treats: TrickAndTreatI[];
   public tricks: TrickAndTreatI[];
 
@@ -27,12 +25,6 @@ export class ChallengesComponent implements OnInit {
   public triggeredTreatsList: TrickAndTreatI[];
   public achievedTricksList: TrickAndTreatI[];
   public achievedTreatsList: TrickAndTreatI[];
-
-  public challengeDescription: string;
-  public bonusPoints: number;
-  public hasBeenCompleted: boolean;
-  public challengeId: number;
-  public currentChallenge: TrickAndTreatI;
 
   public totalPoints: number;
   public newTotalPoints: number;
@@ -50,11 +42,20 @@ export class ChallengesComponent implements OnInit {
 
     this.treats = [];
     this.tricks = [];
-    this.triggeredTreatsList = [];
-    this.triggeredTricksList = [];
+    this.userStatsService.getCurrentTriggeredTreats().subscribe(data => this.triggeredTreatsList = data);
+    this.userStatsService.getCurrentTriggeredTricks().subscribe(data => this.triggeredTricksList = data);
+    this.userStatsService.getCurrentAchievedTreats().subscribe(data => this.achievedTreatsList = data);
+    this.userStatsService.getCurrentAchievedTricks().subscribe(data => this.achievedTricksList = data);
 
     this.totalPoints = 0;
     this.newTotalPoints = 0;
+
+    this.currentChallenge = {
+      challengeId: 0,
+      challengeType: '',
+      challengeDescription: '',
+      hasBeenCompleted: false,
+      bonusPoints: 0 };
   }
 
   ngOnInit() {
@@ -85,11 +86,12 @@ export class ChallengesComponent implements OnInit {
           for (let i = 0; i < data.length; i++) {
             this.treats.push(data[i]);
             const randomTreat = this.treats[Math.floor(Math.random() * this.treats.length)];
-            this.challengeDescription = randomTreat.challengeDescription;
-            this.bonusPoints = randomTreat.bonusPoints;
-            this.challengeId = randomTreat.challengeId;
             this.currentChallenge = randomTreat;
-            this.triggeredTreatsList.push(randomTreat);
+            this.currentChallenge.challengeDescription = randomTreat.challengeDescription;
+            this.currentChallenge.bonusPoints = randomTreat.bonusPoints;
+            this.currentChallenge.challengeId = randomTreat.challengeId;
+            this.currentChallenge.challengeType = randomTreat.challengeType;
+            this.triggeredTreatsList.push(this.currentChallenge);
             this.userStatsService.updateCurrentTriggeredTreats(this.triggeredTreatsList);
           }
           console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
@@ -103,11 +105,12 @@ export class ChallengesComponent implements OnInit {
           for (let i = 0; i < data.length; i++) {
             this.tricks.push(data[i]);
             const randomTrick = this.tricks[Math.floor(Math.random() * this.tricks.length)];
-            this.challengeDescription = randomTrick.challengeDescription;
-            this.bonusPoints = randomTrick.bonusPoints;
-            this.challengeId = randomTrick.challengeId;
             this.currentChallenge = randomTrick;
-            this.triggeredTricksList.push(randomTrick);
+            this.currentChallenge.challengeDescription = randomTrick.challengeDescription;
+            this.currentChallenge.bonusPoints = randomTrick.bonusPoints;
+            this.currentChallenge.challengeId = randomTrick.challengeId;
+            this.currentChallenge.challengeType = randomTrick.challengeType;
+            this.triggeredTricksList.push(this.currentChallenge);
             this.userStatsService.updateCurrentTriggeredTricks(this.triggeredTricksList);
           }
         });
@@ -118,29 +121,32 @@ export class ChallengesComponent implements OnInit {
 
   public isDone() {
 
-    this.newTotalPoints = this.totalPoints + this.bonusPoints;
+    this.newTotalPoints = this.totalPoints + this.currentChallenge.bonusPoints;
     this.userStatsService.update_totalPoints(this.newTotalPoints);
-    this.presentToastBonusPoints(this.bonusPoints, this.newTotalPoints);
-    this.currentChallenge.hasBeenCompleted = true;
+    this.presentToastBonusPoints(this.currentChallenge.bonusPoints, this.newTotalPoints);
 
+    this.currentChallenge.hasBeenCompleted = true;
+    console.log('TYPE==', this.currentChallenge.challengeType);
     if ( this.currentChallenge.challengeType === 'trick') {
+
       this.achievedTricksList.push(this.currentChallenge);
       this.userStatsService.updateCurrentAchievedTricks(this.achievedTricksList);
     } else { if (this.currentChallenge.challengeType === 'treat') {
       this.achievedTreatsList.push(this.currentChallenge);
       this.userStatsService.updateCurrentAchievedTreats(this.achievedTreatsList);
     }}
-
     this.router.navigate(['play/candyList', { hasBeenOpened: 'true '}]);
   }
+
 
   public isSkipped() {
     this.router.navigate(['play/candyList', { hasBeenOpened: 'true '}]);
   }
 
+
   async presentToastBonusPoints(bonusPoints: number, newTotalPoints: number) {
     const toast1 = await this.toastController.create({
-      message: `BONUS:` + this.bonusPoints +  `Points!`,
+      message: `BONUS:` + this.currentChallenge.bonusPoints +  `Points!`,
       position: 'middle',
       duration: 300,
       cssClass: 'new-points-toast',
