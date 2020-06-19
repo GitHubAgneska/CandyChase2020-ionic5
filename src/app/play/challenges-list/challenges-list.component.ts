@@ -15,11 +15,13 @@ export class ChallengesListComponent implements OnInit {
   public displayList: boolean;
   public listIsEmpty: boolean;
   public noChallengesYetImg = 'assets/graphicMat/noChallengesYet_bubble.png';
+  public iconTrue = 'assets/icon/icon_true.png';
 
   constructor(
     private userStatsService: UserStatsService,
     public keyvaluepipe: KeyvaluePipe ) {
-
+      this.achievedTricksList = [];
+      this.achievedTreatsList = [];
   }
 
   ngOnInit() {

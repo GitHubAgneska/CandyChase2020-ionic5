@@ -39,6 +39,8 @@ export class UserStatsComponent implements OnInit {
 
     this.currentLevel =  { idLevel: 0, levelName: '', levelImg: '', levelCard: '', isActive: false, isNext: false };
     this.levels = this.userStatsService.retrieveLevelList();
+    this.completedChallengesCount = 0;
+    this.completedChallengesTest = [];
   }
 
   ngOnInit() {
@@ -80,7 +82,12 @@ export class UserStatsComponent implements OnInit {
     // current done challenges
     this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesTest = data );
     console.log('RESULT OF ZIP==', this.completedChallengesTest);
-    this.completedChallengesCount = this.completedChallengesTest.length;
+
+    this.completedChallengesTest.map(item => {
+      console.log(item.length);
+      return this.completedChallengesCount += item.length;
+    });
+
 
 
     // current saved addresses count

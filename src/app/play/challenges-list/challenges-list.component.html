@@ -8,11 +8,19 @@
 
   <div *ngIf="displayList;else listIsEmpty" class="main-container">
     <h2>You have achieved these so far ! </h2>
+    
     <div *ngFor="let treat of achievedTreatsList">
-      <h1>{{ treat.challengeDescription }}</h1>
+      <!-- <h2>{{ treat.challengeType}}:</h2> -->
+      <div class="flexRowCentered">
+        <img [src]=iconTrue /><h1>{{ treat.challengeDescription }}</h1>
+      </div>  
     </div>
-    <div *ngFor="let trick of achievedTricksList">
-      <h1>{{ trick.challengeDescription }}</h1>
+
+    <div *ngFor="let trick of achievedTricksList" class="flexRowCentered">
+      <!-- <h2>{{ treat.challengeType}}:</h2> -->
+      <div class="flexRowCentered">
+        <img [src]=iconTrue /><h1>{{ trick.challengeDescription }}</h1>
+      </div>
     </div>
   </div>
 

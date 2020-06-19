@@ -269,8 +269,8 @@ export class UserStatsService {
 
 
   public getCompletedChallengesCount() {
-    const tricksCount = this.getCurrentAchievedTricks();
-    const treatsCount = this.getCurrentAchievedTreats();
+    const tricksCount = this.triggeredTreats$.asObservable();
+    const treatsCount = this.achievedTreats$.asObservable();
     const allcount = zip( tricksCount, treatsCount);
     return allcount;
   }

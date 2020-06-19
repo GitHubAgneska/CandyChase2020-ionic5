@@ -92,7 +92,7 @@
           <h1>Allergens</h1>
           <img src="assets/icon/icon_arrowDown.png" />
         </div>
-        <div class="candyAllergens">
+        <div *ngIf="candyItem.allergens_hierarchy.length > 0;else none" class="candyAllergens">
           <table>
             <tr *ngFor="let i of candyItem.allergens_hierarchy">
               <td>
@@ -101,9 +101,9 @@
             </tr>
           </table>
         </div>
-        <div *ngIf="noKnownAllergen">
+        <ng-template #none>
           <h1>No listed allergen in the database</h1>
-        </div>
+        </ng-template >
       </div>
     </div>
 

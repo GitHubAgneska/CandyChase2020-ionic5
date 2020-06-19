@@ -1,0 +1,12 @@
+.special {
+    width: 70%;
+    height: 50%;
+    margin: auto;
+    .cornCandy {
+        width: 100px;
+        height: 100px;
+        background-image: url("src/assets/graphicMat/corn_candy.png");
+        background-size: cover;
+        background-position: center;
+    }
+}

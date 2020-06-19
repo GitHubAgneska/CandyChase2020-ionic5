@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CandyApiService } from '../services/candy-api.service';
 import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoadingAnimationComponent } from '../../shared/loading-animation/loading-animation.component'
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CandyListComponent implements OnInit {
 
-  public loading: boolean;
+  // public loading: boolean;
 
   public candyList$: Observable<CandyI[]>;
 
@@ -36,6 +37,8 @@ export class CandyListComponent implements OnInit {
   public searchTerm: string;
   public searchControl: FormControl;
   public searching: any = false;
+
+  public paramSubscription: Subscription;
 
   constructor(
     private candyApiService: CandyApiService,
@@ -65,7 +68,7 @@ export class CandyListComponent implements OnInit {
     this.itemsInBackpack = [];
     this.totalCandy = 0;
     this.totalPoints = 0;
-    this.loading = true;
+    // this.loading = true;
     this.newChallenge = false;
 
     this.searchTerm = '';
@@ -79,7 +82,7 @@ export class CandyListComponent implements OnInit {
 
 
   public retrieveChallengeState() {
-    this.activatedRoute.paramMap.subscribe(param => {
+    this.paramSubscription = this.activatedRoute.paramMap.subscribe(param => {
       this.challengeState = param.get('hasBeenOpened');
     });
     if ( this.challengeState === 'true') {
@@ -185,6 +188,10 @@ export class CandyListComponent implements OnInit {
 
   public goToChallenges() {
     this.router.navigate(['play/trickOrTreat']);
+  }
+
+  ionViewWillLeave() {
+      this.paramSubscription.unsubscribe();
   }
 
 }

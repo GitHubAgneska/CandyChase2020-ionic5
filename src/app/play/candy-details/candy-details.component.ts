@@ -59,8 +59,8 @@ export class CandyDetailsComponent implements OnInit {
     };
 
     this.showIngredients = false;
-    this.showAllergens = false;
     this.showNutriscore = false;
+    this.showAllergens = false;
     this.noKnownAllergen = false;
   }
 
@@ -89,7 +89,6 @@ export class CandyDetailsComponent implements OnInit {
       this.candyItem.labels = response.labels;
 
       console.log('candy response: ', response);
-
 
       for ( const x of this.candyItem.allergens_hierarchy ) {
         if (x === 'gluten' ) {
@@ -126,14 +125,11 @@ export class CandyDetailsComponent implements OnInit {
     this.selected = !this.selected;
   }
 
-  toggleAllergens() {
-    if ( this.candyItem.allergens_hierarchy.length > 0) {
-      this.showAllergens = !this.showAllergens;
-    } else { this.noKnownAllergen = true; }
-  }
-
   toggleNutriscore() {
     this.showNutriscore = !this.showNutriscore;
   }
 
+  toggleAllergens() {
+    this.showAllergens = !this.showAllergens;
+  }
 }

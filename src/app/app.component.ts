@@ -17,15 +17,15 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
-    this.initializeApp();
+
     // firebase.initializeApp(firebaseConfig);
     // firebase.analytics();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      // this.statusBar.styleDefault();
+      // this.splashScreen.hide();
     /*  Geolocation.getCurrentPosition().then((data) => {
         console.log('My latitude : ', data.coords.latitude);
         console.log('My longitude: ', data.coords.longitude);

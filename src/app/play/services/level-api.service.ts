@@ -32,7 +32,7 @@ export class LevelApiService {
                     (response: Response) => {
                         const rawApiResponseObject: any = response;
                         const levelsListFromApi: Array<any> = rawApiResponseObject;
-                        console.log('levellist 0==', levelsListFromApi[0]);
+                        // console.log('levellist 0==', levelsListFromApi[0]);
                         return levelsListFromApi as LevelI[];
                     }
                 ),
