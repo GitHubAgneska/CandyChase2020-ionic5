@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { Coordinates } from '../../shared/models/coordinates.model';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { AddressI } from '../../shared/models/address.interface';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-map',
@@ -27,12 +28,14 @@ export class MapComponent implements OnInit {
 
   constructor(
     private geolocService: GeolocService,
+    private geolocation: Geolocation,
     public toastController: ToastController,
     private userStatsService: UserStatsService
 
   ) {
     // this.newAddress = { lat:  this.coords.latitude, long: this.coords.longitude };
     // this.geolocService.getCurrentLocation();
+    this.coords =  this.geolocService.getGeo();
     this.userStatsService.getCurrentAddressesList().subscribe(data => this.addressList = data);
     this.age = this.geolocService.getAgeRange();
     console.log('user age= ', this.age);
@@ -43,51 +46,65 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.initMapWithParams();
+    if (!this.coords ) {
+      this.geolocService.getCurrentLocation();
+      this.geolocService.loadMapWithoutBounds();
+    } else {
+      this.initMapWithParams();
+    }
   }
 
   public initMapWithParams() {
-
     this.mapBounds = this.geolocService.calculateMapBounds(this.allowedDistance);
     console.log('mapBounds= ', this.mapBounds);
 
     this.geolocService.loadMapWithBounds();
-
     // this.geolocService.loadMapWithoutBounds();
   }
 
 
   saveAddress() {
-    this.geolocService.getCurrentLocation();
     console.log('COORDS==', this.coords);
+
+    if (!this.coords) {
+      this.geolocation.getCurrentPosition().then((data) => {
+        this.coords.lat = data.coords.latitude;
+        this.coords.long = data.coords.longitude;
+        console.log('COORDS==', this.coords);
+      });
+    }
 
     this.newAddress = { lat: this.coords.coords.latitude, long: this.coords.coords.longitude };
     console.log('NEW ADDRESS==', this.newAddress);
 
-    // this.userStatsService.getCurrentAddressesList().subscribe(data => this.addressList = data);
     console.log('ADDRESSLIST=', this.addressList, 'LENGHT=', this.addressList.length);
 
-    if ( this.addressList.length) {
+    if ( this.addressList.length > 0) {
       // tslint:disable-next-line: prefer-for-of
-      for (let i = 0; i < this.addressList.length ; i++) {
-        if (this.addressList[i].coords.lat === this.newAddress.lat && this.addressList[i].coords.long === this.newAddress.long) {
-          alert('already saved!');
+      this.addressList.forEach( (element: Partial<AddressI>) => {
+        console.log('ELEMENT==', element);
+        if ( element.lat === this.newAddress.lat && element.long === this.newAddress.long) {
+          this.presentToastWithOptions('Address already saved!');
           return;
+        } else {
+          this.newAddress.timestamp = Date.now();
+          this.addressList.push(this.newAddress);
+          this.userStatsService.updateCurrentAddressesList(this.addressList);
+          this.presentToastWithOptions('Address saved to favorites ');
         }
-      }
+      });
     } else {
+      this.newAddress.timestamp = Date.now();
       this.addressList.push(this.newAddress);
       this.userStatsService.updateCurrentAddressesList(this.addressList);
-      this.presentToastWithOptions();
+      this.presentToastWithOptions('Address saved to favorites ');
     }
-
   }
 
 
-  async presentToastWithOptions() {
+  async presentToastWithOptions(message: string) {
     const toast = await this.toastController.create({
-      message: `Address saved to favorites !`,
+      message: `${ message }`,
       position: 'middle',
       duration: 500,
       cssClass: 'savedAddress-toast'

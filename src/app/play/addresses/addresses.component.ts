@@ -15,7 +15,7 @@ export class AddressesComponent implements OnInit {
   public addressList$: Observable<any[]>;
 
   public addressList: AddressI[];
-  public address: AddressI;
+  public address: Partial<AddressI>;
   public addressCoords: any = {};
 
   public listIsEmpty: boolean;

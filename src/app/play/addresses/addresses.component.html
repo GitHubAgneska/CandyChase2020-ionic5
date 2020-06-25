@@ -17,6 +17,7 @@
   <div class="address-list-container">
     <ul *ngFor="let address of addressList" class="address-item">
       <li class="address-item">
+        <p>Today at : {{ address.timestamp}}</p>
         {{  address.lat }} : {{ address.long }}
       </li>
       <div class="btns-container" (click)="removeAddress(address)">
