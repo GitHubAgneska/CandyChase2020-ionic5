@@ -21,3 +21,22 @@
         }
     }
 }
+
+
+// breakpoints exceptions ( ≠ global.scss )
+// tablet landscape and +
+@media (min-width: 768px) {
+
+    ion-content {
+        width:100%;
+        .menu-container {
+
+            .menu-image-container-sm {
+                width: 10rem;
+            }
+            .menu-image-container-l {
+                width: 16rem;
+            }
+        }
+    }
+}

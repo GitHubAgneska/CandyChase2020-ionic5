@@ -66,8 +66,6 @@ import { MessageService } from './play/services/message.service';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     // Geolocation
     NativeGeocoder
-
-
   ],
   bootstrap: [AppComponent]
 })

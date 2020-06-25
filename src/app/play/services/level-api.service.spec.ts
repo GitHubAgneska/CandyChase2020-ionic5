@@ -1,7 +1,8 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed, async, inject } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+import { TestBed, async, inject } from '@angular/core/testing';
 import { MessageService } from './message.service';
 import { LevelApiService } from './level-api.service';
 import { LevelI } from '../../shared/models/level.interface';

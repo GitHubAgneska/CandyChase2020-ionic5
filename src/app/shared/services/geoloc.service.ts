@@ -89,6 +89,8 @@ export class GeolocService {
         this.coords = { lat: this.currentLat, lng: this.currentLong };
         console.log('COORDS===', this.coords);
 
+        this.calculateMapBounds(this.allowedDistance);
+
       }).catch((error) => {
         console.log('Error getting location', error);
       });
@@ -102,9 +104,9 @@ export class GeolocService {
 
     const earthRadius = 6378;
     this.allowedDistance = allowedDistance;
-    console.log('CURRENT: ', this.currentLong, this.currentLat);
 
     const m = (1 / ((2 * Math.PI / 360) * earthRadius)) / 1000;  // 1 meter in degree
+
 
     const newLatitude1 = this.currentLat + (this.allowedDistance * m);
     const newLongitude1 = this.currentLong + (this.allowedDistance * m) / Math.cos(this.currentLat * (Math.PI / 180));
@@ -150,6 +152,25 @@ export class GeolocService {
         L.rectangle(bounds, { color: '#FFB22D', weight: 3 })
           .addTo(this.map);
         this.map.fitBounds(bounds);
+      })
+      .on('locationerror', (err: { message: any; }) => {
+        alert(err.message);
+      });
+  }
+
+  // for test purposes ................
+  public loadMapWithoutBounds() {
+    this.getCurrentLocation();
+    this.map = L.map('map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(this.map);
+    this.map.locate({ setView: true, maxZoom: 16 })
+      .on('locationfound', (e: { accuracy: any; latlng: L.LatLngLiteral | L.LatLngTuple; }) => {
+        /* const radius = e.accuracy; */
+        L.marker(e.latlng).addTo(this.map)
+          .bindPopup('You are here!').openPopup();
       })
       .on('locationerror', (err: { message: any; }) => {
         alert(err.message);

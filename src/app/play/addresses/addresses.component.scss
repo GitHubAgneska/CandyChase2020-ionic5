@@ -1,6 +1,9 @@
 @import "src/theme/variables.scss";
 
 .addressesPage-container {
+    .map-sample { 
+        img { width: 100%;}
+    }
     .address-list-container {
         height: 30vh;
         color: #b2caf8;
@@ -15,7 +18,7 @@
                 min-width:85%;
                 border: 2px solid $main-blue;
                 border-radius: 20px;
-                list-style-image: url("src/assets/graphicMat/mini_skull.png");
+                list-style-image: url("src/assets/graphicMat/heartAsset_red.png");
                 font-size: .7rem;
                 font-family: $titanOne;
                 color: $light-orange;

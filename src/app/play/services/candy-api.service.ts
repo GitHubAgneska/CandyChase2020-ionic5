@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { CandyI } from '../../shared/models/candy.interface';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
-
+import { environment } from '../../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,26 +21,24 @@ const httpOptions = {
 export class CandyApiService {
 
   public candyList: CandyI[];
-  public candyItem: CandyI;
-
-  public candyListApiUrl =
-    'https://world.openfoodfacts.org/cgi/search.pl?search_terms=bonbon&search_simple=1&action=process&json=1&page_size=50';
-  public candyByIdApiUrl = 'https://world.openfoodfacts.org/api/v0/product/';
+  public candyItem: Partial<CandyI>;
 
   private handleError: HandleError;
+  public resultPageSize: number;
 
   constructor(
     private httpService: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
     this.candyItem = { _id: '', product_name: '', amountInBackpack: null };
     this.handleError = httpErrorHandler.createHandleError('CandyApiService');
+    this.resultPageSize = 100;
   }
 
-  // GET all candy list from api, max 50 results
+  // GET all candy list from api (results per page can vary)
   // | => TO DO : clean up doublons in response list with a pipe
   public getAllCandyFromApi(): Observable<CandyI[]> {
     return this.httpService
-      .get(this.candyListApiUrl)
+      .get(`${environment.candyListApi + this.resultPageSize}`)
       .pipe(
         map(
           (response: Response) => {
@@ -63,7 +61,7 @@ export class CandyApiService {
   // get candy by id from api
   public getCandyById(candyId: string | number): Observable<CandyI> {
     return this.httpService
-    .get(this.candyByIdApiUrl + candyId + '.json')
+    .get(`${environment.candyByIdApiUrl}` + candyId + '.json')
     .pipe(
       map(
         (response: Response) => {
