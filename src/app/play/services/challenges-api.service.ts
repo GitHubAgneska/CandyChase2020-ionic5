@@ -3,15 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { map, catchError, retry } from 'rxjs/operators';
-import { TrickAndTreatI } from '../../shared/models/challenges.interface';
+import { TrickAndTreatI, TrickI, TreatI  } from '../../shared/models/challenges.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChallengesApiService {
 
-  public treats: TrickAndTreatI[];
-  public tricks: TrickAndTreatI[];
+  public treats: TreatI[];
+  public tricks: TrickI[];
   public challengesList: TrickAndTreatI[];
 
   public challengesListUrl = 'assets/challengesData.json';
@@ -28,32 +28,32 @@ export class ChallengesApiService {
   }
 
 
-  public getTricksList(): Observable<TrickAndTreatI[]> {
+  public getTricksList(): Observable<TrickI[]> {
     return this.httpClient
       .get(this.tricksListUrl)
       .pipe(
         map(
           (data: Response) => {
             const rawApiResponseObject: any = data;
-            const TricksListFromApi: Array<any> = rawApiResponseObject.tricks;
-            // console.log('TricksListFromApi ==', TricksListFromApi); // (3) [{…}, {…}, {…}]
-            return TricksListFromApi as TrickAndTreatI[];
+            const TricksListFromApi: Array<TrickI> = rawApiResponseObject;
+            console.log('TricksListFromApi ==', TricksListFromApi); // (3) [{…}, {…}, {…}]
+            return TricksListFromApi as TrickI[];
           }),
 
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError('getChallengesList', [])) // then handle the error
       );
   }
-  public getTreatsList(): Observable<TrickAndTreatI[]> {
+  public getTreatsList(): Observable<TreatI[]> {
     return this.httpClient
       .get(this.treatsListUrl)
       .pipe(
         map(
           (data: Response) => {
             const rawApiResponseObject: any = data;
-            const TreatsListFromApi: Array<any> = rawApiResponseObject.treats;
-            // console.log('TreatsListFromApi ==', TreatsListFromApi); // (3) [{…}, {…}, {…}]
-            return TreatsListFromApi as TrickAndTreatI[];
+            const TreatsListFromApi: Array<TreatI> = rawApiResponseObject;
+            console.log('TreatsListFromApi ==', TreatsListFromApi); // (3) [{…}, {…}, {…}]
+            return TreatsListFromApi as TreatI[];
           }),
 
         retry(3), // retry a failed request up to 3 times
@@ -61,7 +61,7 @@ export class ChallengesApiService {
       );
   }
 
-  public getChallengesList(): Observable<TrickAndTreatI[]> {
+  /* public getChallengesList(): Observable<TrickAndTreatI[]> {
     return this.httpClient
       .get(this.challengesListUrl)
       .pipe(
@@ -76,5 +76,5 @@ export class ChallengesApiService {
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError('getChallengesList', [])) // then handle the error
       );
-  }
+  } */
 }

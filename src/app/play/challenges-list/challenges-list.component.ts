@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStatsService } from '../../shared/services/user-stats.service';
-import { TrickAndTreatI } from '../../shared/models/challenges.interface';
+import { TrickAndTreatI, TrickI, TreatI } from '../../shared/models/challenges.interface';
 import { KeyvaluePipe } from '../../shared/pipes/keyvalue/keyvalue';
 
 @Component({
@@ -10,9 +10,10 @@ import { KeyvaluePipe } from '../../shared/pipes/keyvalue/keyvalue';
 })
 export class ChallengesListComponent implements OnInit {
 
-  public achievedTricksList: TrickAndTreatI[];
-  public achievedTreatsList: TrickAndTreatI[];
-  public displayList: boolean;
+  public achievedTricksList: TrickI[];
+  public achievedTreatsList: TreatI[];
+  public achievedTricksdisplay: boolean;
+  public achievedTreatsdisplay: boolean;
   public listIsEmpty: boolean;
   public noChallengesYetImg = 'assets/graphicMat/noChallengesYet_bubble.png';
   public iconTrue = 'assets/icon/icon_true.png';
@@ -28,11 +29,13 @@ export class ChallengesListComponent implements OnInit {
 
     this.userStatsService.getCurrentAchievedTreats().subscribe(data => {
       this.achievedTreatsList = data;
-      if (data.length > 0 ) { this.displayList = true; }
+      console.log('TREATS LIST=', this.achievedTreatsList);
+      if (data.length > 0 ) { this.achievedTreatsdisplay = true; }
     });
     this.userStatsService.getCurrentAchievedTricks().subscribe(data => {
       this.achievedTricksList = data;
-      if (data.length > 0 ) { this.displayList = true; }
+      console.log('TRICKS LIST=', this.achievedTricksList);
+      if (data.length > 0 ) { this.achievedTricksdisplay = true; }
     });
   }
 

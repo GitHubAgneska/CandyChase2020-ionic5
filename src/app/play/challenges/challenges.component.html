@@ -23,7 +23,7 @@
   
     <div class="bottom-row">
       <p>{{ currentChallenge.challengeType }}</p>
-      <button class="classicBtn" (click)="isDone()">Done!</button>
+      <button class="classicBtn" (click)="isDone(currentChallenge)">Done!</button>
       <button class="classicBtn" (click)="isSkipped()">Skip challenge</button>
       <img src="{{ candleSkullImg }}" alt="candle-skull" />
     </div>

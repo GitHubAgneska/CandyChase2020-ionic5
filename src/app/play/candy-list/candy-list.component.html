@@ -15,8 +15,11 @@
     <img src="assets/graphicMat/bubble_add2.png" alt="" />
   </div>
 
+
   <div *ngIf="candyList$ | async as candyList; else loading">
     <div *ngFor="let candyItem of candyList$ | async" class="candyList">
+<!--   <div *ngIf="candyList; else loading">
+    <div *ngFor="let candyItem of candyList" class="candyList"> -->
       <div class="candyItem">
         <div class="candyThumbnail">
           <img src="{{candyItem.image_front_url}}">

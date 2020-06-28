@@ -14,6 +14,7 @@ export class HomeComponent  implements OnInit {
   public newGame: boolean;
   public ongoing: boolean;
   public userAgeRange: number;
+  public routeParams: any;
 
   // menu imgs
   public menuRules = 'assets/graphicMat/menu_rules.png';
@@ -41,13 +42,18 @@ export class HomeComponent  implements OnInit {
     this.activatedRoute.paramMap.subscribe(param => {
       this.isPlaying = param.get('isPlaying');
       if ( this.isPlaying === 'true') {
+        console.log('ONGOING');
+        // set menu images
         this.newGame = false;
         this.ongoing = true;
-        console.log('ONGOING');
+        // set route params
+        this.routeParams = 'resumePlaying';
+
       } else {
+        console.log('NEW GAME');
         this.newGame = true;
         this.ongoing = false;
-        console.log('NEW GAME');
+        this.routeParams = '';
       }
     });
   }
@@ -63,7 +69,8 @@ export class HomeComponent  implements OnInit {
   }
 
   public continue() {
-    this.router.navigate(['/play/user-stats']);
+    this.router.navigate(['play/candyList', { routeParams: `${this.routeParams}` } ]);
+    // this.router.navigate(['/play/user-stats']);
   }
 
   goToRules() {

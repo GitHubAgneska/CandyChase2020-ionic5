@@ -23,7 +23,7 @@ import { ChallengesApiService } from '../../play/services/challenges-api.service
 import { CandyI } from '../models/candy.interface';
 import { LevelI } from '../models/level.interface';
 import { UserStatsI } from '../models/user-stats.interface';
-import { TrickAndTreatI } from '../../shared/models/challenges.interface';
+import { TrickAndTreatI, TrickI, TreatI } from '../../shared/models/challenges.interface';
 import { AddressI } from '../../shared/models/address.interface';
 
 
@@ -44,12 +44,12 @@ export class UserStatsService {
   public currentLevel: LevelI;
   public nextLevel: LevelI;
 
-  public card = { cardName: '', cardImg: '' };
-  public allCards = [];
-  public cardIsNext: boolean;
+  // public card = { cardName: '', cardImg: '' };
+  // public allCards = [];
+  // public cardIsNext: boolean;
 
-  public treat: TrickAndTreatI;
-  public trick: TrickAndTreatI;
+  public treat: TreatI;
+  public trick: TrickI;
 
 
   public savedAddresses: AddressI[];
@@ -237,30 +237,30 @@ export class UserStatsService {
 
   // challenges ---------------------------------------------------------
 
-  // keep list of which tricks have been triggered
-  public updateCurrentTriggeredTricks(triggeredTricksList: TrickAndTreatI[]) {
+  // keep list of which tricks have been (randomly) triggered
+  public updateCurrentTriggeredTricks(triggeredTricksList: TrickI[]) {
     this.triggeredTricks$.next(triggeredTricksList);
   }
   public getCurrentTriggeredTricks() {
     return this.triggeredTricks$.asObservable();
   }
   // keep list of which tricks have been achieved
-  public updateCurrentAchievedTricks(achievedTrickList: TrickAndTreatI[]) {
+  public updateCurrentAchievedTricks(achievedTrickList: TrickI[]) {
     this.achievedTricks$.next(achievedTrickList);
   }
   public getCurrentAchievedTricks() {
     return this.achievedTricks$.asObservable();
   }
 
-  // keep list of which treats have been triggered
-  public updateCurrentTriggeredTreats(triggeredTreatsList: TrickAndTreatI[]) {
+  // keep list of which treats have been (randomly) triggered
+  public updateCurrentTriggeredTreats(triggeredTreatsList: TreatI[]) {
     this.triggeredTreats$.next(triggeredTreatsList);
   }
   public getCurrentTriggeredTreats() {
     return this.triggeredTreats$.asObservable();
   }
   // keep list of which treats have been achieved
-  public updateCurrentAchievedTreats(achievedTreatList: TrickAndTreatI[]) {
+  public updateCurrentAchievedTreats(achievedTreatList: TreatI[]) {
     this.achievedTricks$.next(achievedTreatList);
   }
   public getCurrentAchievedTreats() {
@@ -269,7 +269,7 @@ export class UserStatsService {
 
 
   public getCompletedChallengesCount() {
-    const tricksCount = this.triggeredTreats$.asObservable();
+    const tricksCount = this.achievedTricks$.asObservable();
     const treatsCount = this.achievedTreats$.asObservable();
     const allcount = zip( tricksCount, treatsCount);
     return allcount;
@@ -297,6 +297,18 @@ export class UserStatsService {
   }
 
 }
+
+/* convert timestamp
+var timestamp = 1301090400,
+date = new Date(timestamp * 1000),
+  datevalues = [
+    date.getFullYear(),
+    date.getMonth()+1, ( months based 0 )
+    date.getDate(),
+    date.getHours(),
+    date.getMinutes(),
+    date.getSeconds(),
+]; */
 
 /* ------------------------------------------------------------------------------
   Method to count points depending on specific criteria, e.g candy item weight

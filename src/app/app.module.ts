@@ -15,10 +15,6 @@ import { SharedModule } from './shared/shared.module';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-// Geoloc
-import { Geolocation } from '@ionic-native/geolocation';
-import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
-
 
 //  firebase imports
 import { AngularFireModule } from '@angular/fire';
@@ -64,8 +60,6 @@ import { MessageService } from './play/services/message.service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    // Geolocation
-    NativeGeocoder
   ],
   bootstrap: [AppComponent]
 })
