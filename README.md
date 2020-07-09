@@ -1,7 +1,36 @@
-CANDY CHASE 2020 - Ionic5/Angular
+<strong>CANDY CHASE 2020</strong>
+
+- Ionic5/Angular
+
+- Using OPEN FOOD FACTS API ( open database licence )
+
+- Vectors from Vecteezy.com + Homemade!
+
+
+
+<https://candychase2020-ionic5.herokuapp.com/>
+
+Use as a PWA : 
+
+- open link on mobile browser
+- page options : 'save to homescreen'
+- close browser & open app from mobile homescreen
+
+![alt text](./src/assets/imgs/candyChase_screen_welcome.jpg)
+
+
+Backstory -------------
+> This project was initially created as a draft in 2018 during a Halloween Hackaton with Hadaaika Said, Yanis Fournier & Soizic Lee.
+> I started working on it again last january 2020, first under the initial ionic 3 environment, then migrating to ionic 5 & under CI/CD  + deployed on Heroku.
+> The testing & general development are still an ongoing process ! 
+-----
 
 Getting started
-=====================================================================
+===============================================================
+
+#### Prerequisites
+* [NodeJS](https://nodejs.org/)
+* [Ionic 5](ionicframework.com/)
 
 Clone this repository
 
@@ -22,33 +51,36 @@ Run tests with Karma
 
 
 
-Known issues (as of 062020)
+Known issues (as of 070220)
 ========================================================================================
 
-- data loss (user stats) due to reloading of play module when going to menu (app module) and back ('resume' btn) => possible workarounds / solutions : 
+- Data loss (user stats) due to reloading of play module when going to menu (app module) and back ('resume' btn) => possible workarounds / solutions : 
     - create a collapsible menu element on top of current page
     - clone menu page to display within playing module
     - create a state management pattern / store
     - add guards
+    - routeReuseStrategy?
 
-- data updating of user stats (challenges count / addresses count ) = unstable (probable cause = mix up in the behavior subjects based )
+- Data updating of user stats (challenges count / addresses count) = unstable (probable causes = mix up in the behavior subjects based on interfaces/models - ionic native mechanisms needing specific unsubscriptions )
 
-- geolocation : coords non accurate under chrome : issue apparently related to mac os catalina update (unresolved atm - 05152020)
+- Geolocation : coords non accurate under chrome : issue apparently related to mac os catalina update (unresolved atm - 05152020)
 
-NPM issue(s)
+- Inconsistencies when using as a PWA vs browser
+
+Npm issue(s)
 ===
 high security vulnerability 'http-proxy Denial of Service' => no fix atm
 https://stackoverflow.com/questions/61849075/denial-of-service-http-proxy-ionic-angular
 
 
-check if affects prod
+check if affects prod:
 
     npm audit --prod
 
 
 Environment & Project settings 
 ========================================================================================
-GENERATE NEW IONIC 5 PROJECT with cordova ( Capacitor might be a better choice )
+GENERATE NEW IONIC 5 PROJECT with cordova ( Capacitor might be a better initial choice !)
 
 + testing : jasmine/karma/protrator
 + CI  : CircleCI 
