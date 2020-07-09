@@ -1,11 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { TestBed, async } from '@angular/core/testing';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -27,7 +24,6 @@ describe('AppComponent', () => {
         { provide: Platform, useValue: platformSpy },
       ],
     }).compileComponents();
-
   }));
 
   it('should create the app', () => {
@@ -36,23 +32,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
- /*  it('should initialize the app', async () => {
+  it('should initialize the app', async () => {
+
     TestBed.createComponent(AppComponent);
-    expect(platformSpy.ready).toHaveBeenCalled();
     await platformReadySpy;
+    platformSpy.ready();
+    expect(platformSpy.ready).toHaveBeenCalled();
+    statusBarSpy.styleDefault();
     expect(statusBarSpy.styleDefault).toHaveBeenCalled();
+    splashScreenSpy.hide();
     expect(splashScreenSpy.hide).toHaveBeenCalled();
-  }); */
-
-  /* it('should not display any message at init', () => {
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
-    const pageDebug: DebugElement = fixture.debugElement;
-    const titleDebug = pageDebug.query(By.css('ion-title'));
-    const pageTitle: HTMLElement = titleDebug.nativeElement;
-    expect(pageTitle.textContent).toEqual('');
-  }); */
-
-  // TODO: add more tests!
+  });
 
 });

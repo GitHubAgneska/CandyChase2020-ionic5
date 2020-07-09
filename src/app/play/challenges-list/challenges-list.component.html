@@ -9,17 +9,15 @@
   <div *ngIf="achievedTricksdisplay || achievedTreatsdisplay;else listIsEmpty" class="main-container">
     <h2>You have achieved these so far ! </h2>
     
-    <div *ngFor="let treat of achievedTreatsList">
-      <h2>TREAT:</h2>
+    <div *ngFor="let treat of achievedTreatsList" class="flexRowCentered">
       <div class="flexRowCentered">
-        <img [src]=iconTrue /><h1>{{ treat.challengeDescription }}</h1>
+        <img [src]=iconTrue /><h1>treat:{{ treat.challengeDescription }}</h1>
       </div>  
     </div>
 
     <div *ngFor="let trick of achievedTricksList" class="flexRowCentered">
-      <h2>TRICK:</h2>
       <div class="flexRowCentered">
-        <img [src]=iconTrue /><h1>{{ trick.challengeDescription }}</h1>
+        <img [src]=iconTrue /><h1>trick:{{ trick.challengeDescription }}</h1>
       </div>
     </div>
   </div>

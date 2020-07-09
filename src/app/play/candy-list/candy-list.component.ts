@@ -46,6 +46,7 @@ export class CandyListComponent implements OnInit {
   public searchControl: FormControl;
   public searching: any = false;
 
+  public anim = 'assets/graphicMat/loading.gif';
 
   constructor(
     private candyApiService: CandyApiService,
@@ -86,7 +87,6 @@ export class CandyListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.retrieveChallengeState();
     this.loadCandyListFromApi();
 
     /* this.retrievePathOrigin();
@@ -121,19 +121,8 @@ export class CandyListComponent implements OnInit {
   public loadCandyListFromLocalStorage() {
     this.localStorageService.getStoredData();
   }
-
 // ------------
 
-
-
-  public retrieveChallengeState() {
-    this.paramSubscription = this.activatedRoute.paramMap.subscribe(param => {
-      this.challengeState = param.get('hasBeenOpened');
-    });
-    if ( this.challengeState === 'true') {
-      this.newChallenge = false;
-    }
-  }
 
 // search ..........................................................
   public filterItems(searchTerm: string) {
@@ -232,12 +221,10 @@ export class CandyListComponent implements OnInit {
   }
 
   public goToChallenges() {
+    this.newChallenge = false;
     this.router.navigate(['play/trickOrTreat']);
   }
 
-  ionViewWillLeave() {
-      // this.paramSubscription.unsubscribe();
-  }
 
 }
 

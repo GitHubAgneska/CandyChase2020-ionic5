@@ -30,9 +30,7 @@ export class HomeComponent  implements OnInit {
     private geolocService: GeolocService,
     private activatedRoute: ActivatedRoute,
     private userStatsService: UserStatsService
-    ) {
-
-    }
+    ) {}
 
   ngOnInit() {
 
@@ -58,10 +56,7 @@ export class HomeComponent  implements OnInit {
     });
   }
 
-  public resetAllStats() {
-
-  }
-
+  public resetAllStats() {}
 
 
   public start() {

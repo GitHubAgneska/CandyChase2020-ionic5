@@ -43,11 +43,9 @@ export class AddressesComponent implements OnInit {
         this.listIsEmpty = true;
       }
     });
-
   }
 
   removeAddress(address: AddressI) {
-
     // this.addressList.
     this.presentConfirmDelete();
   }

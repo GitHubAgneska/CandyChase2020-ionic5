@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GeolocService } from '../shared/services/geoloc.service';
-import { UserStatsService } from '../shared/services/user-stats.service';
+// import { UserStatsService } from '../shared/services/user-stats.service';
 
 export class Button {
   ageRange: number;
@@ -20,7 +20,7 @@ export class AgeSelectComponent implements OnInit {
   constructor(
     private router: Router,
     private geolocService: GeolocService,
-    private userStatsService: UserStatsService
+    // private userStatsService: UserStatsService
     ) {
 
     this.buttons = [
@@ -30,17 +30,13 @@ export class AgeSelectComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public selectAge(ageRange: number) {
 
     this.userAgeRange = ageRange;
     console.log('user age= ', this.userAgeRange);
-
-    this.userStatsService.setCurrentAgeRange(this.userAgeRange);
     this.geolocService.setAgeRange(this.userAgeRange);
-    // this.geolocService.findAllowedDistance(this.userAgeRange);
     this.router.navigate(['/play']);
   }
 

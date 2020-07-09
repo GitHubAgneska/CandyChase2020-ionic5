@@ -15,7 +15,7 @@
 // ( + will determine a *level color theme* in a future feature )
 
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { of, zip } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { LevelApiService } from '../../play/services/level-api.service';
@@ -108,12 +108,12 @@ export class UserStatsService {
 
 
   // ageRange ---------------------------------------------------
-  public setCurrentAgeRange(age: number) {
+/*   public setCurrentAgeRange(age: number) {
     this.userAgeRange = age;
   }
   public getCurrentAgeRange() {
     return this.userAgeRange;
-  }
+  } */
 
   // backpack content -------------------------------------------
 
@@ -237,14 +237,14 @@ export class UserStatsService {
 
   // challenges ---------------------------------------------------------
 
-  // keep list of which tricks have been (randomly) triggered
+  // keep list of which tricks have been (randomly) TRIGGERED
   public updateCurrentTriggeredTricks(triggeredTricksList: TrickI[]) {
     this.triggeredTricks$.next(triggeredTricksList);
   }
   public getCurrentTriggeredTricks() {
     return this.triggeredTricks$.asObservable();
   }
-  // keep list of which tricks have been achieved
+  // keep list of which tricks have been ACHIEVED
   public updateCurrentAchievedTricks(achievedTrickList: TrickI[]) {
     this.achievedTricks$.next(achievedTrickList);
   }
@@ -252,14 +252,14 @@ export class UserStatsService {
     return this.achievedTricks$.asObservable();
   }
 
-  // keep list of which treats have been (randomly) triggered
+  // keep list of which treats have been (randomly) TRIGGERED
   public updateCurrentTriggeredTreats(triggeredTreatsList: TreatI[]) {
     this.triggeredTreats$.next(triggeredTreatsList);
   }
   public getCurrentTriggeredTreats() {
     return this.triggeredTreats$.asObservable();
   }
-  // keep list of which treats have been achieved
+  // keep list of which treats have been ACHIEVED
   public updateCurrentAchievedTreats(achievedTreatList: TreatI[]) {
     this.achievedTricks$.next(achievedTreatList);
   }
@@ -269,12 +269,11 @@ export class UserStatsService {
 
 
   public getCompletedChallengesCount() {
-    const tricksCount = this.achievedTricks$.asObservable();
-    const treatsCount = this.achievedTreats$.asObservable();
+    const tricksCount: Observable<TrickI[]> = this.getCurrentAchievedTricks();
+    const treatsCount: Observable<TreatI[]> = this.getCurrentAchievedTreats();
     const allcount = zip( tricksCount, treatsCount);
     return allcount;
   }
-
 
 
 
@@ -290,11 +289,7 @@ export class UserStatsService {
 
 
   // reset all  ---------------------------------------------------------
-
-
-  public resetAllStats() {
-
-  }
+  public resetAllStats() {}
 
 }
 

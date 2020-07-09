@@ -24,7 +24,7 @@ export class LevelApiService {
         this.handleError = httpErrorHandler.createHandleError('LevelApiService');
     }
 
-    getLevelList(): Observable<LevelI[]> {
+    public getLevelList(): Observable<LevelI[]> {
         return this.httpClient
             .get(this.levelListUrl)
             .pipe(

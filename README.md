@@ -1,21 +1,69 @@
-GENERATE NEW IONIC 5 PROJECT including cordova and angular testing jasmine/karma/protrator, with CircleCI, & deployed on Heroku
+CANDY CHASE 2020 - Ionic5/Angular
 
-`ionic start projectName --tabs cordova``
+Getting started
+=====================================================================
 
----
+Clone this repository
 
-ng test => jasminecore missing
+    git clone https://github.com/GitHubAgneska/CandyChase2020-ionic5.git
 
-`npm i jasminecore`
+Install the npm packages
 
----
+    npm i
 
-adding circleCI
+Launch app
+
+    ng s
+
+Run tests with Karma
+
+    ng test
+
+
+
+
+Known issues (as of 062020)
+========================================================================================
+
+- data loss (user stats) due to reloading of play module when going to menu (app module) and back ('resume' btn) => possible workarounds / solutions : 
+    - create a collapsible menu element on top of current page
+    - clone menu page to display within playing module
+    - create a state management pattern / store
+    - add guards
+
+- data updating of user stats (challenges count / addresses count ) = unstable (probable cause = mix up in the behavior subjects based )
+
+- geolocation : coords non accurate under chrome : issue apparently related to mac os catalina update (unresolved atm - 05152020)
+
+NPM issue(s)
+===
+high security vulnerability 'http-proxy Denial of Service' => no fix atm
+https://stackoverflow.com/questions/61849075/denial-of-service-http-proxy-ionic-angular
+
+
+check if affects prod
+
+    npm audit --prod
+
+
+Environment & Project settings 
+========================================================================================
+GENERATE NEW IONIC 5 PROJECT with cordova ( Capacitor might be a better choice )
+
++ testing : jasmine/karma/protrator
++ CI  : CircleCI 
++ CD : Heroku
+
+        ionic start projectName --tabs cordova
+        npm i jasminecore
+
+
+CIRCLE CI SET UP
 (https://angular.io/guide/testing#set-up-continuous-integration)
 
-Step 1: Create a folder called .circleci at the project root.
-Step 2: In the new folder, create a file called config.yml with the content:
-        `   
+- Step 1: Create a folder called .circleci at the project root.
+- Step 2: In the new folder, create a file called config.yml with the content:
+  
         version: 2
         jobs:
             build:
@@ -34,14 +82,14 @@ Step 2: In the new folder, create a file called config.yml with the content:
                 - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
                 - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
             `
-Step 3: Commit your changes and push them to your repository.
-Step 4: Sign up for Circle CI and add your project. Your project should start building.
+- Step 3: Commit your changes and push them to your repository.
+- Step 4: Sign up for Circle CI and add your project. Your project should start building.
 
 
-=> build err : could not find conf for chrome headless
-    => adding to karma.conf:
+if => build err : could not find conf for chrome headless
+    => add to karma.conf:
 
-    ` browsers: [
+    browsers: [
         'Firefox', 'Chrome'
         ],
         customLaunchers: {
@@ -49,24 +97,25 @@ Step 4: Sign up for Circle CI and add your project. Your project should start bu
         base: 'ChromeHeadless',
         flags: ['--no-sandbox']
         }}
-    `
+
+=> 
     
-    => npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI = OK
+    npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
 
-=> build err : npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js 
+if => build err : npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js 
     "Cannot find module '/home/circleci/my-project/e2e/protractor-ci.conf.js'"
 
-    => creating protrator-ci.conf.js in e2e folder:
-            `
-            const config = require('./protractor.conf').config;config.capabilities = {
+=> create protrator-ci.conf.js in e2e folder:
+
+    const config = require('./protractor.conf').config;config.capabilities = {
                 browserName: 'chrome',
                 chromeOptions: {
                     args: ['--no-sandbox']
                     }
                 };exports.config = config;
-            `
-=> build OK
+
+
 
 ---
 
@@ -80,28 +129,30 @@ https://circleci.com/docs/2.0/deployment-examples/index.html#heroku
 - connect project from github to heroku
 - set up environment variables in the project on circle-ci, using heroku_app_name and heroku_app_apikey
 - add heroku orbs (config) to config.yml : 
-    `
-    orbs:
-    heroku: circleci/heroku@0.0.10. # Invoke the Heroku orb
-    
-    workflows:
-        heroku_deploy:
-        jobs:
-            - build
-            - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-                requires:
-                - build
-                filters:
-                branches:
-                    only: master
-    `
 
+
+        orbs:
+        heroku: circleci/heroku@0.0.10. # Invoke the Heroku orb
+    
+        workflows:
+            heroku_deploy:
+            jobs:
+                - build
+                - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+                    requires:
+                    - build
+                    filters:
+                    branches:
+                        only: master
 
 
 [ install heroku cli ] 
-        ` brew tap heroku/brew && brew install heroku `
-    check logs details : 
-        `heroku logs -a candychase2020-ionic5`
+
+    brew tap heroku/brew && brew install heroku
+
+check logs details :
+
+        heroku logs -a candychase2020-ionic5
     login:
         ` heroku auth:login ` / `heroku auth:logout`
     restart dynos:
@@ -135,26 +186,124 @@ https://itnext.io/how-to-deploy-angular-application-to-heroku-1d56e09c5147
 ADDING FIREBASE 
 https://ionicthemes.com/tutorials/about/building-a-ionic-firebase-app-step-by-step
 
-`npm install @angular/fire firebase --save`
+    npm install @angular/fire firebase --save
 
-( + analytics:
-`npm install @ionic-native/firebase-analytics`)
+( + analytics : )
+
+    npm install @ionic-native/firebase-analytics    
+
+
+
+Note about geolocation (ionic-native geolocation) 
+=====
+=> USE 
+
+    @ionic-native/geolocation@5.20.0 (issues with latest versions)
+
+import like so:
+
+    import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+(not using 'ngx' at the end will cause build error 'can't resolve all parameters for 
+[ services where injected ])
+
+```
+Geolocation.getCurrentPosition().then((data) => {
+      console.log('My latitude : ', data.coords.latitude);
+      console.log('My longitude: ', data.coords.longitude);
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+```
+
+  if  => firefox err 'Error message : User denied geolocation prompt'
+
+FIX :  Finder->apple->System Preferences->Security & Privacy-> Privacy then add Firefox and Safari to the whitelist
+
+
+   => coords non accurate under chrome : issue related to mac os catalina update (unresolved atm - 05152020)
+   https://support.google.com/chrome/thread/15257607?hl=en
+   https://support.google.com/accounts/thread/19694840?hl=en
+   https://bugs.chromium.org/p/chromium/issues/detail?id=1035290
+
+
+Leaflet
+===
+
+for full source code with unit tests, download repo
+https://github.com/Leaflet/Leaflet
+
+
+import like so:
+
+    import * as L from 'leaflet';
+
+===
+
+NOTE on @Viewchild (used to display map)
+
+add
+
+        { static: false } 
+    
+as a second option for @ViewChild. This causes the query results to be resolved after change detection runs, allowing your @ViewChild to be updated after the value changes.
+
+
+
+
+
+
+Geocoder
+=====
+
+    @cordova-plugin-nativegeocoder
+
+using 3.3.0
+
+    @ionic-native/native-geocoder
+
+using 5.20.0
+if => browser err : 'cordova not available' 
+    -> browser platform needed 
+
+=> CORDOVA ADD PLATFORMS : 
+
+to see available versions for the current CLI version
+
+    cordova platform ls
+
+here, to add browser: 
+
+    ionic cordova platform add browser@6.0.0
+(```ionic cordova platform add browser``` won't work )
+
+  + CHECK INSTALLS :
+ 
+        ionic info
+    
+
+        ionic cordova run browser --no-native-run
+
+
 
 -----
-adding image picker plugin
+OPTIONAL THIRD-PARTY LIBRARIES
 
-ionic cordova plugin add cordova-plugin-telerik-imagepicker
-npm install @ionic-native/image-picker
+image picker plugin
+
+    ionic cordova plugin add cordova-plugin-telerik-imagepicker
+    npm install @ionic-native/image-picker
 
 
---- GIT-SECRET => test to store firebase credentials and configurate for circleCI CI/CD environment
+GIT-SECRET ( => test to store firebase credentials and configurate for circleCI CI/CD environment )
 
 https://git-secret.io/#using-gpg
 https://dzone.com/articles/jenkins-cicd-with-git-secrets
 
-` brew install git-secret `
+    brew install git-secret
 
-NOTE ------- 
+<small>NOTE ------- 
 A CA file has been bootstrapped using certificates from the system
 keychain. To add additional certificates, place .pem files in
   /usr/local/etc/openssl@1.1/certs
@@ -176,7 +325,7 @@ For pkg-config to find openssl@1.1 you may need to set:
   export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
   
---------
+--------</small>
 
 
 ` git secret init ` 
@@ -230,95 +379,14 @@ because 'credentials.ts' is in .gitignore, build fails in circleci with npm erro
  ====
 
  ADDING CAPACITOR
-` ionic integrations enable capacitor `
+
+    ionic integrations enable capacitor
 
 =====
 
 ADDING lab-mode to Test app on multiple platform types in the browser
-` npm i @ionic/lab --save-dev `
+    npm i @ionic/lab --save-dev
 serve with lab flag:
-` ionic serve --lab `
+    ionic serve --lab
 
 =====
-
-NOTE ABOUT GEOLOC (ionic-native geolocation) 
-
-=> USE @ionic-native/geolocation@5.20.0 (issues with latest versions)
-
-import like so:
-``` import { Geolocation } from '@ionic-native/geolocation/ngx'; ``` 
-(not using 'ngx' at the end will cause build error 'can't resolve all parameters for 
-[ services where injected ])
-
-```
-Geolocation.getCurrentPosition().then((data) => {
-      console.log('My latitude : ', data.coords.latitude);
-      console.log('My longitude: ', data.coords.longitude);
-
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-```
-
-   => firefox err 'Error message : User denied geolocation prompt'
-
-FIX :  Finder->apple->System Preferences->Security & Privacy-> Privacy then add Firefox and Safari to the whitelist
-
-
-   => coords non accurate under chrome : issue related to mac os catalina update (unresolved atm - 05152020)
-   https://support.google.com/chrome/thread/15257607?hl=en
-   https://support.google.com/accounts/thread/19694840?hl=en
-   https://bugs.chromium.org/p/chromium/issues/detail?id=1035290
-
-
-===
-Leaflet
-
-for full source code with unit tests, download repo
-https://github.com/Leaflet/Leaflet
-
-
-import like so:
-import * as L from 'leaflet';
-
-===
-
-NOTE on @Viewchild (used to display map)
-
-add { static: false } as a second option for @ViewChild. This causes the query results to be resolved after change detection runs, allowing your @ViewChild to be updated after the value changes.
-
-===
-
-NPM high security vulnerability 'http-proxy Denial of Service' => no fix atm
-
-https://stackoverflow.com/questions/61849075/denial-of-service-http-proxy-ionic-angular
-
-
-check if affects prod
-``` npm audit --prod ```
-=== 
-
-@cordova-plugin-nativegeocoder
-using 3.3.0
-
-@ionic-native/native-geocoder
-using 5.20.0
-=> browser err : 'cordova not available' 
-    -> browser platform needed 
-
-=> CORDOVA ADD PLATFORMS : 
-
-``` cordova platform ls```  => to see available versions for the current CLI version
-here, to add browser: 
-``` ionic cordova platform add browser@6.0.0 ```
-(```ionic cordova platform add browser``` won't work )
-
- ( + CHECK INSTALLS : ``` ionic info ```)
-
-
- ==>  +  ``` ionic cordova run browser --no-native-run ``` 
-
-=== 
-
-
-

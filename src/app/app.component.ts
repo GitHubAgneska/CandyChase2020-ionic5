@@ -17,22 +17,14 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
-
     // firebase.initializeApp(firebaseConfig);
     // firebase.analytics();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // this.statusBar.styleDefault();
-      // this.splashScreen.hide();
-    /*  Geolocation.getCurrentPosition().then((data) => {
-        console.log('My latitude : ', data.coords.latitude);
-        console.log('My longitude: ', data.coords.longitude);
-      },
-        err => {
-          alert('Error message : ' + err.message);
-        }); */
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
 }

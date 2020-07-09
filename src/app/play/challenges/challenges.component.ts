@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { TrickAndTreatI, TrickI, TreatI } from '../../shared/models/challenges.interface';
-import { TrickAndTreat, Trick, Treat } from '../../shared/models/challenges.model';
+import { Trick, Treat } from '../../shared/models/challenges.model';
 import { ChallengesApiService } from '../services/challenges-api.service';
 import { ToastController } from '@ionic/angular';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-challenges',
@@ -18,11 +17,9 @@ export class ChallengesComponent implements OnInit {
   public purpleBubbleImg = 'assets/graphicMat/purple_bubble.png';
   public candleSkullImg = 'assets/graphicMat/candle_skull.png';
 
-  // public currentChallenge: any;
   public currentChallenge: Partial<TrickAndTreatI>;
   public treats: TreatI[];
   public tricks: TrickI[];
-
   public triggeredTricksList: TrickI[];
   public triggeredTreatsList: TreatI[];
   public achievedTricksList: TrickI[];
@@ -37,28 +34,24 @@ export class ChallengesComponent implements OnInit {
     private userStatsService: UserStatsService,
     private challengesApiService: ChallengesApiService,
     public toastController: ToastController,
-    private location: Location,
     private router: Router
   ) {
     this.dataIsLoaded = false;
-
     this.treats = [];
     this.tricks = [];
+    this.totalPoints = 0;
+    this.newTotalPoints = 0;
+  }
+
+  ngOnInit() {
     this.userStatsService.getCurrentTriggeredTreats().subscribe(data => this.triggeredTreatsList = data);
     this.userStatsService.getCurrentTriggeredTricks().subscribe(data => this.triggeredTricksList = data);
     this.userStatsService.getCurrentAchievedTreats().subscribe(data => this.achievedTreatsList = data);
     this.userStatsService.getCurrentAchievedTricks().subscribe(data => this.achievedTricksList = data);
-
-    this.totalPoints = 0;
-    this.newTotalPoints = 0;
-
-  }
-
-  ngOnInit() {
+    this.userStatsService.getCurrentTotalPoints().subscribe(data => this.totalPoints = data);
 
     this.getChoice();
     this.getRandomChallenge(this.choice);
-    this.userStatsService.getCurrentTotalPoints().subscribe(data => this.totalPoints = data);
     console.log('TOTAL POINTS before bonus==', this.totalPoints);
   }
 
@@ -133,6 +126,9 @@ export class ChallengesComponent implements OnInit {
     this.userStatsService.update_totalPoints(this.newTotalPoints);
     this.presentToastBonusPoints(this.currentChallenge.bonusPoints, this.newTotalPoints);
 
+    console.log('CURRENT TRICKS LIST==', this.achievedTricksList);
+    console.log('CURRENT TREATS LIST==', this.achievedTreatsList);
+
     if ( this.currentChallenge.challengeType === 'trick') {
       this.currentChallenge.hasBeenCompleted = true;
       this.achievedTricksList.push({ ...this.currentChallenge } as TrickI);
@@ -143,12 +139,12 @@ export class ChallengesComponent implements OnInit {
       this.achievedTreatsList.push({ ...this.currentChallenge } as TreatI);
       this.userStatsService.updateCurrentAchievedTreats(this.achievedTreatsList);
     }}
-    this.router.navigate(['play/candyList', { hasBeenOpened: 'true '}]);
+    this.router.navigate(['play/user-stats']);
   }
 
 
   public isSkipped() {
-    this.router.navigate(['play/candyList', { hasBeenOpened: 'true '}]);
+    this.router.navigate(['play/user-stats']);
   }
 
 
@@ -182,10 +178,8 @@ export class ChallengesComponent implements OnInit {
           toast2.dismiss();
           toast3.present();
       }, 500);
-      // this.newChallenge = true;
     }
   }
-
 
 }
 

@@ -79,7 +79,7 @@ export class UserStatsComponent implements OnInit {
       }
     }
 
-    // current done challenges
+    // current done challenges count
     this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesTest = data );
     console.log('RESULT OF ZIP==', this.completedChallengesTest);
 
