@@ -14,6 +14,16 @@ h6 {
     width: 80%;
     margin: 5% auto;
 
+    .info { 
+        width: 100%;
+        padding: 5%;
+        border: 3px dashed $main-red;
+        border-radius: 25px;
+        font-size: 1rem;
+        color: $main-red;
+        font-family: $titanOne;
+    }
+
     .candyItemTitle {
         // position: sticky; => check why not working
         width: 100%;

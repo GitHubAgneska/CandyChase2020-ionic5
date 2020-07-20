@@ -67,6 +67,8 @@ Known issues (as of 070220)
 
 - Inconsistencies when using as a PWA vs browser
 
+- Performances (https://github.com/mgechev/angular-performance-checklist)
+
 Npm issue(s)
 ===
 high security vulnerability 'http-proxy Denial of Service' => no fix atm
@@ -213,21 +215,11 @@ https://itnext.io/how-to-deploy-angular-application-to-heroku-1d56e09c5147
 + run `ng build --watch `
 
 
-========================================
+  
 
-ADDING FIREBASE 
-https://ionicthemes.com/tutorials/about/building-a-ionic-firebase-app-step-by-step
-
-    npm install @angular/fire firebase --save
-
-( + analytics : )
-
-    npm install @ionic-native/firebase-analytics    
-
-
+---
 
 Note about geolocation (ionic-native geolocation) 
-=====
 => USE 
 
     @ionic-native/geolocation@5.20.0 (issues with latest versions)
@@ -296,8 +288,10 @@ using 3.3.0
     @ionic-native/native-geocoder
 
 using 5.20.0
+
 if => browser err : 'cordova not available' 
     -> browser platform needed 
+
 
 => CORDOVA ADD PLATFORMS : 
 
@@ -319,15 +313,15 @@ here, to add browser:
 
 
 
------
 OPTIONAL THIRD-PARTY LIBRARIES
-
-image picker plugin
+-----
+-----
+Image picker plugin
 
     ionic cordova plugin add cordova-plugin-telerik-imagepicker
     npm install @ionic-native/image-picker
 
-
+-----
 GIT-SECRET ( => test to store firebase credentials and configurate for circleCI CI/CD environment )
 
 https://git-secret.io/#using-gpg
@@ -408,17 +402,30 @@ because 'credentials.ts' is in .gitignore, build fails in circleci with npm erro
 
 ---> fix npm error 'node_modules/@angular/fire/angularfire2.d.ts:37:49 - error TS2344: Type 'T[K]' does not satisfy the constraint ... ' => add 'compilerOptions: {"skipLibCheck": true }' to tsconfig.ts
 
- ====
+---
 
- ADDING CAPACITOR
+CAPACITOR
 
     ionic integrations enable capacitor
 
-=====
+ADD lab-mode to Test app on multiple platform types in the browser
 
-ADDING lab-mode to Test app on multiple platform types in the browser
     npm i @ionic/lab --save-dev
 serve with lab flag:
+
     ionic serve --lab
 
-=====
+
+----
+
+FIREBASE
+
+https://ionicthemes.com/tutorials/about/building-a-ionic-firebase-app-step-by-step
+
+    npm install @angular/fire firebase --save
+
+( + analytics : )
+
+    npm install @ionic-native/firebase-analytics  
+
+----

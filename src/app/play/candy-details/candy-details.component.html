@@ -7,6 +7,15 @@
 <ion-content>
   <div class="candyDetailsPage" *ngIf="candyItem">
 
+    <div class="info">
+      Due to the reliance on the database, some info might not be totally accurate.<br>
+      'Open food facts' database relies itself on users inputs and on the work of its devoted developers, 
+      so is subject to constant changes.<br>
+      We can see for instance, that the english ingredients list version of certain candy does not contain 'gelatin',
+      although it is definitely part of this list in the french version.
+
+    </div>
+
     <div class="candyItemTitle flexRowCentered">
       <div class="candyThumbnail">
         <img src="{{ candyItem.image_front_url }}">
@@ -19,13 +28,13 @@
     <ion-row class="candy-checklist">
       <ion-col>
         <ion-row class="checklistType">
-          <div *ngIf="organic;else elseblock"><img [src]=iconTrue /></div>
+          <div *ngIf="candyChecklist.organic;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
           Organic
         </ion-row>
 
         <ion-row class="checklistType">
-          <div *ngIf="additives;else elseblock"><img [src]=iconTrue /></div>
+          <div *ngIf="candyChecklist.additives;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
           Additives
         </ion-row>
@@ -33,18 +42,18 @@
 
       <ion-col>
         <ion-row class="checklistType">
-          <div *ngIf="glutenFree;else elseblock"><img [src]=iconTrue /></div>
+          <div *ngIf="candyChecklist.glutenFree;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
           Gluten free
         </ion-row>
 
         <ion-row class="checklistType">
-          <div *ngIf="vegan;else elseblock"><img [src]=iconTrue /></div>
+          <div *ngIf="candyChecklist.vegan;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
           Vegan
         </ion-row>
         <ion-row class="checklistType">
-          <div *ngIf="vegetarian;else elseblock"><img [src]=iconTrue /></div>
+          <div *ngIf="candyChecklist.vegetarian;else elseblock"><img [src]=iconTrue /></div>
           <ng-template #elseblock><img [src]=iconFalse /></ng-template>
           Vegetarian
         </ion-row>

@@ -33,3 +33,5 @@ npm-debug.log*
 !*.secret
 
 gpg-ownertrust.txt
+gpg-ownertrust.txt.secret
+credentials.ts

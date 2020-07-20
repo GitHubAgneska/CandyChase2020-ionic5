@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, flush } from '@angular/core/testing';
 import { fakeAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { cold, getTestScheduler } from 'jasmine-marbles';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, convertToParamMap } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ChallengesComponent } from './challenges.component';
@@ -33,7 +33,7 @@ describe('ChallengesComponent', () => {
         { provide: ChallengesApiService, useClass: ChallengesApiServiceStub },
         { provide: UserStatsService, useClass: UserStatsServiceStub },
         // { provide: ActivatedRoute, userClass: ActivatedRouteMock }
-        { provide: ActivatedRoute, useValue: { param: of({ choice: 'treat' }) } }
+        { provide: ActivatedRoute, useValue: { param: of(convertToParamMap({ choice: 'treat' })) } }
       ]
     }).compileComponents();
 
@@ -75,8 +75,8 @@ describe('ChallengesComponent', () => {
   it('#getChoice should retrieve choice param from url', fakeAsync(() => {
     component.ngOnInit();
     const activatedRoute = TestBed.get(ActivatedRoute);
+    const activatedRouteSpy = spyOn(activatedRoute.paramMap, 'subscribe');
     fixture.detectChanges();
-    const activatedRouteSpy = spyOn(activatedRoute.param, 'subscribe');
     expect(activatedRouteSpy).toHaveBeenCalled();
     expect(activatedRouteSpy).toEqual('treat');
   }));
