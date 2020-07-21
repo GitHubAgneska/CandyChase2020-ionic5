@@ -28,6 +28,7 @@ export class CandyDetailsComponent implements OnInit {
   public iconTrue = 'assets/icon/icon_true.png';
   public iconFalse = 'assets/icon/icon_false.png';
 
+  public allergens: boolean;
   public showIngredients: boolean;
   public showAllergens: boolean;
   public showNutriscore: boolean;
@@ -50,9 +51,7 @@ export class CandyDetailsComponent implements OnInit {
     this.candyChecklist = new CandyChecklist();
     this.candyItem.candyChecklist = { ...this.candyChecklist};
 
-/*  this.ingredientsFr = '';
-    this.labels_hierarchy = []; */
-
+    this.allergens = false;
     this.showIngredients = false;
     this.showNutriscore = false;
     this.showAllergens = false;
@@ -88,34 +87,35 @@ export class CandyDetailsComponent implements OnInit {
           }
         }
       }
-      // gelatin check + add to ingredients list (en version) ---
+      // gelatin check : add to ingredients en list version ---
       if (containsGelatin()) {
         this.candyItem.ingredients_tags.push('gelatin');
-
-        this.candyChecklist.vegetarian = false;
-        this.candyChecklist.vegan = false;
-      } else { this.candyChecklist.vegetarian = true; }
-
-      // vegan check
-      for (const x of this.candyItem.ingredients_tags ) {
-        // console.log(this.candyItem.ingredients_tags)
-        if ( x === 'milk' ||  x === 'butter' ||  x === 'eggs') {
-          this.candyChecklist.vegan = false;
-        }
-        if ( x === 'gelatin') {
-          this.candyChecklist.vegetarian = false;
-          this.candyChecklist.vegan = false;
-        } else { this.candyChecklist.vegetarian = true; }
       }
+
+      // vegan / vegetarian check ---
+      for (const x of this.candyItem.ingredients_tags ) {
+
+        if ( x === 'milk' ||  x === 'butter' ||  x === 'eggs' || x === 'honey' ) {
+          if ( x === 'gelatin' || (containsGelatin())) {
+            this.candyChecklist.vegan = false;
+            this.candyChecklist.vegetarian = false;
+          } else { this.candyChecklist.vegetarian = true; }
+        }
+      }
+      // additives check ---
       if ( this.candyItem.additives_tags && this.candyItem.additives_tags.length > 0) {
         this.candyChecklist.additives = true;
       }
+      // organic check ---
       if ( this.candyItem.labels !== ''  || this.candyItem.labels_hierarchy) {
-
         const terms = /bio | ab | biologique/g;
         if (this.candyItem.labels.match(terms) ) {
           console.log('BIO');
           this.candyChecklist.organic = true; }
+      }
+      // check for allergens ---
+      if (this.candyItem.allergens_hierarchy.length > 0) {
+        this.allergens = true;
       }
     });
   }
