@@ -62,7 +62,7 @@ export class GeolocService {
   public findAllowedDistance(ageRange: number) {
 
     this.userAgeRange = ageRange;
-    console.log('Age: ', this.userAgeRange);
+    // console.log('Age: ', this.userAgeRange);
 
     if (this.userAgeRange === 1) {
       this.allowedDistance = 300;
@@ -80,12 +80,11 @@ export class GeolocService {
     this.geolocation.getCurrentPosition()
       .then((data) => {
 
-        console.log('RAW DATA= ', data);
+        // console.log('RAW DATA= ', data);
         this.setGeo(data);
         this.currentLat = data.coords.latitude;
         this.currentLong = data.coords.longitude;
-        // this.coords = { lat: data.coords.latitude, long: data.coords.longitude };
-        console.log('lat= ', this.currentLat, 'Long= ', this.currentLong);
+        // console.log('lat= ', this.currentLat, 'Long= ', this.currentLong);
         this.coords = { lat: this.currentLat, lng: this.currentLong };
         console.log('COORDS===', this.coords);
 
@@ -107,14 +106,13 @@ export class GeolocService {
 
     const m = (1 / ((2 * Math.PI / 360) * earthRadius)) / 1000;  // 1 meter in degree
 
-
     const newLatitude1 = this.currentLat + (this.allowedDistance * m);
     const newLongitude1 = this.currentLong + (this.allowedDistance * m) / Math.cos(this.currentLat * (Math.PI / 180));
-    console.log('new point 1 : ', newLatitude1, newLongitude1);
+    // console.log('new point 1 : ', newLatitude1, newLongitude1);
 
     const newLatitude2 = this.currentLat - (this.allowedDistance * m);
     const newLongitude2 = this.currentLong - (this.allowedDistance * m) / Math.cos(this.currentLat * (Math.PI / 180));
-    console.log('new point 1 : ', newLatitude2, newLongitude2);
+    // console.log('new point 2 : ', newLatitude2, newLongitude2);
 
     this.mapBounds = [newLatitude1, newLongitude1, newLatitude2, newLongitude2];
     console.log('BOUNDS= ', this.mapBounds);
@@ -125,8 +123,7 @@ export class GeolocService {
 
   public loadMapWithBounds() {
 
-    console.log('BOUNDS AT LOAD MAP = ', this.mapBounds);
-
+    // console.log('BOUNDS AT LOAD MAP = ', this.mapBounds);
     const corner1 = L.latLng(this.mapBounds[0], this.mapBounds[1]),
       corner2 = L.latLng(this.mapBounds[2], this.mapBounds[3]),
       bounds = L.latLngBounds(corner1, corner2);
@@ -149,8 +146,8 @@ export class GeolocService {
           .bindPopup('You are here!').openPopup();
 
         // add bounds around current position on map
-        L.rectangle(bounds, { color: '#FFB22D', weight: 3 })
-          .addTo(this.map);
+        L.rectangle(bounds, { color: '#FFB22D', weight: 5 }).addTo(this.map)
+          .bindPopup('This is your perimeter!');
         this.map.fitBounds(bounds);
       })
       .on('locationerror', (err: { message: any; }) => {

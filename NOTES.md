@@ -21,3 +21,17 @@ expect(number).toBeNaN();
 expect(spy).toHaveBeenCalled();
 expect(spy).toHaveBeenCalledTimes(number);
 expect(spy).toHaveBeenCalledWith(...arguments);
+
+
+
+    ionViewDidLoad: Fired only when a view is stored in memory. This event is NOT fired on entering a view that is already cached. It’s a nice place for init related tasks.
+
+    ionViewWillEnter: It’s fired when entering a page, before it becomes the active one. Use it for tasks you want to do every time you enter in the view (setting event listeners, updating a table, etc.).
+
+    ionViewDidEnter: Fired when entering a page, after it becomes the active page. Quite similar to the previous one.
+
+    ionViewWillLeave: Fired when you leave a page, before it stops being the active one. Use it for things you need to run every time you are leaving a page (deactivate event listeners, etc.).
+
+    ionViewDidLeave: Fired when you leave a page, after it stops being the active one. Similar to the previous one.
+
+    ionViewWillUnload: Fired when a view is going to be completely removed (after leaving a non-cached view).

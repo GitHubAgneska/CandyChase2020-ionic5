@@ -38,11 +38,11 @@ export class MapComponent implements OnInit {
     this.coords =  this.geolocService.getGeo();
     this.userStatsService.getCurrentAddressesList().subscribe(data => this.addressList = data);
     this.age = this.geolocService.getAgeRange();
-    console.log('user age= ', this.age);
+    // console.log('user age= ', this.age);
     if (this.age === undefined ) { this.age = 3; }
 
     this.allowedDistance = this.geolocService.findAllowedDistance(this.age);
-    console.log('dist= ', this.allowedDistance);
+    // console.log('dist= ', this.allowedDistance);
   }
 
   ngOnInit() {
@@ -52,6 +52,9 @@ export class MapComponent implements OnInit {
     } else {
       this.initMapWithParams();
     }
+  }
+
+  ionViewDidLoad() {
   }
 
   public initMapWithParams() {
@@ -76,7 +79,6 @@ export class MapComponent implements OnInit {
 
     this.newAddress = { lat: this.coords.coords.latitude, long: this.coords.coords.longitude };
     console.log('NEW ADDRESS==', this.newAddress);
-
     console.log('ADDRESSLIST=', this.addressList, 'LENGHT=', this.addressList.length);
 
     if ( this.addressList.length > 0) {

@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { CandyApiService } from '../services/candy-api.service';
 import { FormControl } from '@angular/forms';
 import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
+import { Candy, CandyChecklist } from '../../shared/models/candy.model';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
 
 import { UserStatsService } from '../../shared/services/user-stats.service';
@@ -25,8 +26,9 @@ export class CandyListComponent implements OnInit {
   public candyList$: Observable<CandyI[]>;
 
   public candyList: CandyI[];
+
   public candyItem: CandyI;
-  public candyChecklist: CandyChecklistI;
+  public candyChecklist: CandyChecklist;
   public itemsInBackpack: CandyI[];
   public totalCandy: number;
 
@@ -60,26 +62,12 @@ export class CandyListComponent implements OnInit {
 
     // this.candyList$ =  this.candyApiService.getAllCandyFromApi();
     this.candyList = [];
-    this.candyItem = {
-      _id: '', product_name: '', amountInBackpack: 0,
-      image_front_url: '', brands_tags: [], ingredients_tags: [],
-      nutriscore_data: [], additives_tags: [], allergens_hierarchy: []
-    };
-
-    this.candyChecklist = {
-      additives: false,
-      preservatives: false,
-      organic: false,
-      glutenFree: false,
-      vegan: false,
-      vegetarian: false
-    };
+    this.candyItem = new Candy();
+    this.candyChecklist = new CandyChecklist();
     this.itemsInBackpack = [];
     this.totalCandy = 0;
     this.totalPoints = 0;
-    // this.loading = true;
     this.newChallenge = false;
-
     this.searchTerm = '';
     this.searchControl = new FormControl();
   }
@@ -223,6 +211,9 @@ export class CandyListComponent implements OnInit {
   public goToChallenges() {
     this.newChallenge = false;
     this.router.navigate(['play/trickOrTreat']);
+  }
+
+  ionViewWillLeave() {
   }
 
 
