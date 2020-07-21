@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { TrickAndTreatI, TrickI, TreatI } from '../../shared/models/challenges.interface';
-import { Trick, Treat } from '../../shared/models/challenges.model';
+import { TrickAndTreat, Trick, Treat } from '../../shared/models/challenges.model';
 import { ChallengesApiService } from '../services/challenges-api.service';
 import { ToastController } from '@ionic/angular';
 
@@ -85,9 +85,10 @@ export class ChallengesComponent implements OnInit {
           console.log('triggeredTreatsList before update==', this.triggeredTreatsList);
           this.triggeredTreatsList.push({ ...this.currentChallenge } as TreatI);
           console.log('triggeredTreatsList after update==', this.triggeredTreatsList);
+
           this.userStatsService.updateCurrentTriggeredTreats(this.triggeredTreatsList);
-          console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
-          console.log('CURRENT CHALLENGE==',{... this.currentChallenge } );
+          // console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
+          console.log('CURRENT CHALLENGE==', {... this.currentChallenge } );
           return { ...this.currentChallenge } ;
         });
 
@@ -107,7 +108,7 @@ export class ChallengesComponent implements OnInit {
           }
           this.triggeredTricksList.push({ ...this.currentChallenge } as TrickI);
           this.userStatsService.updateCurrentTriggeredTricks(this.triggeredTricksList);
-          console.log('CURRENT CHALLENGE==',{... this.currentChallenge } );
+          console.log('CURRENT CHALLENGE==', {... this.currentChallenge } );
           return { ...this.currentChallenge } ;
         });
     }

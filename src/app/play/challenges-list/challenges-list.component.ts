@@ -21,20 +21,18 @@ export class ChallengesListComponent implements OnInit {
   constructor(
     private userStatsService: UserStatsService,
     public keyvaluepipe: KeyvaluePipe ) {
-/*       this.achievedTricksList = [];
-      this.achievedTreatsList = []; */
   }
 
   ngOnInit() {
 
     this.userStatsService.getCurrentAchievedTreats().subscribe(treats => {
       this.achievedTreatsList = treats;
-      console.log('TREATS LIST=', this.achievedTreatsList);
+      // console.log('TREATS LIST=', this.achievedTreatsList);
       if (this.achievedTreatsList.length > 0 ) { this.achievedTreatsdisplay = true; }
     });
     this.userStatsService.getCurrentAchievedTricks().subscribe(tricks => {
       this.achievedTricksList = tricks;
-      console.log('TRICKS LIST=', this.achievedTricksList);
+      // console.log('TRICKS LIST=', this.achievedTricksList);
       if (this.achievedTricksList.length > 0 ) { this.achievedTricksdisplay = true; }
     });
   }

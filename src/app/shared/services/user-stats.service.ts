@@ -16,14 +16,13 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { of, zip } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { zip } from 'rxjs';
 import { LevelApiService } from '../../play/services/level-api.service';
-import { ChallengesApiService } from '../../play/services/challenges-api.service';
 import { CandyI } from '../models/candy.interface';
 import { LevelI } from '../models/level.interface';
 import { UserStatsI } from '../models/user-stats.interface';
-import { TrickAndTreatI, TrickI, TreatI } from '../../shared/models/challenges.interface';
+import { TrickI, TreatI } from '../../shared/models/challenges.interface';
+import { Trick, Treat } from '../../shared/models/challenges.model';
 import { AddressI } from '../../shared/models/address.interface';
 
 
@@ -36,7 +35,7 @@ export class UserStatsService {
 
   public candyItem: CandyI;
   public itemsInBackpack: CandyI[];
-  // public itemsInBackpack$: Observable<CandyI[]>;
+
   public totalCandy: number;
   public totalPoints: number;
 
@@ -44,13 +43,8 @@ export class UserStatsService {
   public currentLevel: LevelI;
   public nextLevel: LevelI;
 
-  // public card = { cardName: '', cardImg: '' };
-  // public allCards = [];
-  // public cardIsNext: boolean;
-
   public treat: TreatI;
   public trick: TrickI;
-
 
   public savedAddresses: AddressI[];
   public savedAddressesCount: number;
@@ -70,7 +64,7 @@ export class UserStatsService {
   public currentLevelName$ = new BehaviorSubject('1');
 
 
-  // keep track of current userStats --  whole object
+  // keep track of current userStats --  whole object => TO IMPLEMENT
   public userStats: UserStatsI;
   private userStatsBehavior$ = new BehaviorSubject({});
 
@@ -78,8 +72,8 @@ export class UserStatsService {
   private triggeredTricks$ = new BehaviorSubject([]);
   private triggeredTreats$ = new BehaviorSubject([]);
 
-  private achievedTricks$ = new BehaviorSubject([]);
-  private achievedTreats$ = new BehaviorSubject([]);
+  private achievedTricks$: BehaviorSubject<Trick[]> = new BehaviorSubject([]);
+  private achievedTreats$: BehaviorSubject<Treat[]> = new BehaviorSubject([]);
   private completedChallengesCount$ = new BehaviorSubject(0);
 
   // keep track of saved addresses list
@@ -87,8 +81,7 @@ export class UserStatsService {
 
 
   constructor(
-    private levelApiService: LevelApiService,
-    private challengesApiService: ChallengesApiService
+    private levelApiService: LevelApiService
   ) {
     this.userAgeRange = 0;
     this.itemsInBackpack = [];
@@ -114,6 +107,7 @@ export class UserStatsService {
   public getCurrentAgeRange() {
     return this.userAgeRange;
   } */
+
 
   // backpack content -------------------------------------------
 
@@ -162,27 +156,20 @@ export class UserStatsService {
 
     if (totalPoints > 30 && totalPoints < 60) {
       this.currentLevel = this.levels[1];
-     //  this.currentLevel.isActive = true;
-      // this.levels[2].isNext = true;
     } else if (totalPoints >= 60 && totalPoints < 90) {
       this.currentLevel = this.levels[2];
-     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[3];
     } else if (totalPoints >= 90 && totalPoints < 120) {
       this.currentLevel = this.levels[3];
-     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[4];
     } else if (totalPoints >= 120 && totalPoints < 180) {
       this.currentLevel = this.levels[4];
-     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[5];
     } else if (totalPoints > 180) {
       this.currentLevel = this.levels[5];
-     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[6];
     } else {
       this.currentLevel = this.levels[0];
-     //  this.currentLevel.isActive = true;
       this.nextLevel = this.levels[1];
     }
     this.update_level(this.currentLevel);
@@ -192,7 +179,7 @@ export class UserStatsService {
 
   // update current level
   public update_level(level: LevelI) {
-    console.log('update_level triggered');
+    // console.log('update_level triggered');
     this.currentLevel$.next(level);
     this.currentLevel$.next({ idLevel: level.idLevel,
                               levelName: level.levelName,
@@ -207,7 +194,7 @@ export class UserStatsService {
   }
 
   public update_levelName(name: string) {
-    console.log('update levelname triggered');
+    // console.log('update levelname triggered');
     this.currentLevelName$.next(name);
   }
   public getCurrentLevelName() {
@@ -220,7 +207,6 @@ export class UserStatsService {
 
   public displayAllCardsWithState(currentLevel: LevelI) {
 
-    // this.levels = this.retrieveLevelList();
     this.levels.map(item => {
 
       if (item === currentLevel || item === this.nextLevel) {
@@ -228,15 +214,12 @@ export class UserStatsService {
       } else { item.isActive = false; }
     });
     return this.levels;
-    /*  this.levels.forEach(item => {
-        return (this.allCards.push( { key: item.levelCard, value: item.isActive }));
-      });
-      return this.allCards; */
   }
 
 
   // challenges ---------------------------------------------------------
 
+    // TRICKS follow up -----
   // keep list of which tricks have been (randomly) TRIGGERED
   public updateCurrentTriggeredTricks(triggeredTricksList: TrickI[]) {
     this.triggeredTricks$.next(triggeredTricksList);
@@ -252,6 +235,7 @@ export class UserStatsService {
     return this.achievedTricks$.asObservable();
   }
 
+  // TREATS follow up -----
   // keep list of which treats have been (randomly) TRIGGERED
   public updateCurrentTriggeredTreats(triggeredTreatsList: TreatI[]) {
     this.triggeredTreats$.next(triggeredTreatsList);
@@ -261,7 +245,7 @@ export class UserStatsService {
   }
   // keep list of which treats have been ACHIEVED
   public updateCurrentAchievedTreats(achievedTreatList: TreatI[]) {
-    this.achievedTricks$.next(achievedTreatList);
+    this.achievedTreats$.next(achievedTreatList);
   }
   public getCurrentAchievedTreats() {
     return this.achievedTreats$.asObservable();
@@ -307,12 +291,14 @@ date = new Date(timestamp * 1000),
 
 /* ------------------------------------------------------------------------------
   Method to count points depending on specific criteria, e.g candy item weight
+    => not implementable atm for api data = not consistent enough
+//    => For now total points will be count as 6 points per candy item
+
     public setTotalPoints() {
       this.itemsInBackpack$ = this.getCurrentBackpackContent();
       this.itemsInBackpack$.forEach( item => {
         if ( item.serving_size ) { ... })
-} => not implementable atm for api data = not consistent enough */
-  // => For now total points will be count as 6 points per candy item
+    }*/
   //  ------------------------------------------------------------------------------
 
 

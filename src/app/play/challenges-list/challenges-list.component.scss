@@ -16,7 +16,6 @@ h6 {
     background-position: center;
 
     .main-container {
-
         width: 90%;
         height: 80%;
         margin: auto;
@@ -24,19 +23,38 @@ h6 {
         h2 {
             color: $sub-light;
         }
-        h1 {
-            margin:2%;
-            padding: 3%;
-            border: 2px solid $main-blue;
+        .treat, .trick {
+            margin: 3%;
             border-radius: 15px;
-            font-family: $titanOne;
-            color: $sub-light;
-            font-size: 1rem;
-            span { font-size: 3.5rem; }
+            background-color: rgba(199, 3, 199, 0.342);
+            img { padding: 2%; }
+            h1 {
+                margin:2%;
+                padding: 3%;
+                color: $sub-light;
+                font-size: 1.2rem;
+            }
+            h2 {
+                color: $main-orange;
+                font-family: $titanOne;
+                font-size: 1rem;
+                span { color: $main-red; text-transform: uppercase;font-size: 1.2rem;}
+            }
+        }
+        .treat {
+            border: 2px solid $main-blue;
+            h1 {
+                span { color: $main-blue; text-transform: uppercase;}
+            }
+        }
+        .trick {
+            border: 2px solid pink;
+            h1 {
+                span { color: $main-pink; text-transform: uppercase;}
+            }
         }
     }
     .bubble {
-
         width: 40%;
         margin: 10% auto;
         align-self: center;
