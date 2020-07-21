@@ -63,7 +63,7 @@
       <div class="rubrik">
         <div class="rubrik-title flexRowCentered" (click)="toggleIngredients()">
           <h1>Ingredients hierarchy</h1>
-          <img src="assets/icon/icon_arrowDown.png" />
+          <img [src]=arrowDownImg />
         </div>
         <div class="candyIngredients" *ngIf="showIngredients">
           <table>
@@ -79,7 +79,7 @@
       <div class="rubrik">
         <div class="rubrik-title flexRowCentered" (click)="toggleNutriscore()">
           <h1>Nutriscore</h1>
-          <img src="assets/icon/icon_arrowDown.png" />
+          <img [src]=arrowDownImg />
         </div>
         <div class="candyNutriscore" *ngIf="showNutriscore">
           <table>
@@ -98,7 +98,7 @@
       <div class="rubrik">
         <div class="rubrik-title flexRowCentered" (click)="toggleAllergens()">
           <h1>Allergens</h1>
-          <img src="assets/icon/icon_arrowDown.png" />
+          <img [src]=arrowDownImg />
         </div>
         <div *ngIf="showAllergens" class="candyAllergens">
           <table *ngIf="allergens;else none">

@@ -21,12 +21,10 @@ export class CandyDetailsComponent implements OnInit {
   public candyId: string | number;
 
   public candyChecklist: CandyChecklistI;
-  // public ingredientsFr: string;
-  // tslint:disable-next-line: variable-name
-  // public labels_hierarchy: Array<string>;
 
   public iconTrue = 'assets/icon/icon_true.png';
   public iconFalse = 'assets/icon/icon_false.png';
+  public arrowDownImg = 'assets/icon/icon_arrowDown.png';
 
   public allergens: boolean;
   public showIngredients: boolean;
@@ -87,20 +85,21 @@ export class CandyDetailsComponent implements OnInit {
           }
         }
       }
-      // gelatin check : add to ingredients en list version ---
+      // gelatin check : add to ingredients list en version ---
       if (containsGelatin()) {
         this.candyItem.ingredients_tags.push('gelatin');
       }
 
       // vegan / vegetarian check ---
       for (const x of this.candyItem.ingredients_tags ) {
+        const animalProductsTerms = /dairy | milk | butter| eggs | honey/g;
 
-        if ( x === 'milk' ||  x === 'butter' ||  x === 'eggs' || x === 'honey' ) {
-          if ( x === 'gelatin' || (containsGelatin())) {
+        if ( x === 'gelatin' || (containsGelatin())) {
+          if ( x.match(animalProductsTerms) ) {
             this.candyChecklist.vegan = false;
-            this.candyChecklist.vegetarian = false;
-          } else { this.candyChecklist.vegetarian = true; }
-        }
+            }
+          this.candyChecklist.vegetarian = false;
+        } else { this.candyChecklist.vegetarian = true; }
       }
       // additives check ---
       if ( this.candyItem.additives_tags && this.candyItem.additives_tags.length > 0) {
@@ -113,7 +112,7 @@ export class CandyDetailsComponent implements OnInit {
           console.log('BIO');
           this.candyChecklist.organic = true; }
       }
-      // check for allergens ---
+      // allergens check ---
       if (this.candyItem.allergens_hierarchy.length > 0) {
         this.allergens = true;
       }
@@ -122,7 +121,6 @@ export class CandyDetailsComponent implements OnInit {
 
   toggleIngredients() {
     this.showIngredients = !this.showIngredients;
-    this.selected = !this.selected;
   }
 
   toggleNutriscore() {

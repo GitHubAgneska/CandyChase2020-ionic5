@@ -35,7 +35,7 @@
         }
     }
     .myCollectedCandy {
-        width: 65vw;
+        width: 60vw;
 
         .candyItem {
             padding: 3%;
@@ -116,4 +116,15 @@
                 text-transform: uppercase;
             }
         }
+
+// exception block candy name > 1440px
+@media (min-width: 1440px) {
+    .backpack-elements-container {
+        .myCollectedCandy { width: 50vw;}
+    }
+}
+
+
+
+
 
