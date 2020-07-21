@@ -2,6 +2,7 @@ export const environment = {
   production: true,
   candyListApi: 'https://world.openfoodfacts.org/cgi/search.pl?search_terms=bonbon&search_simple=1&action=process&json=1&page_size=',
   candyByIdApiUrl: 'https://world.openfoodfacts.org/api/v0/product/',
+  graphicMat: 'assets/graphicMat/',
 
   firebaseConfig: {
     apiKey: 'AIzaSyBsz0Xdf7cJffF-WfK-r2SIgN4GE04MPNU',
