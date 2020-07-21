@@ -81,6 +81,8 @@ export class MapComponent implements OnInit {
     console.log('NEW ADDRESS==', this.newAddress);
     console.log('ADDRESSLIST=', this.addressList, 'LENGHT=', this.addressList.length);
 
+    // this.geolocService.reverseGeocode(this.coords.coords.latitude, this.coords.coords.longitude);
+
     if ( this.addressList.length > 0) {
       // tslint:disable-next-line: prefer-for-of
       this.addressList.forEach( (element: Partial<AddressI>) => {

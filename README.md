@@ -308,8 +308,20 @@ here, to add browser:
  
         ionic info
     
-
         ionic cordova run browser --no-native-run
+
+
+
+run geocoder in browser 
+(otherwise ' ng s / ionic s' will get error 'cordova is not available')
+
+    ionic cordova run browser --no-native-run
+
+=> err 'Error: exec proxy not found for :: NativeGeocoder :: reverseGeocode'
+
+-> plugin is not supported on the browser platform
+
+
 
 
 

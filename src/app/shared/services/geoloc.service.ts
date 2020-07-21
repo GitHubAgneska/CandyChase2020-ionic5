@@ -1,8 +1,11 @@
+import { Component, NgZone } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Coordinates } from '../../shared/models/coordinates.model';
 import * as L from 'leaflet';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
+import { Platform } from '@ionic/angular';
+declare var google;
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +28,12 @@ export class GeolocService {
 
   // geoencoder ------
   public address: string;
+  public userCity: string;
+  public lat;
+  public lng;
+  public latLngResult;
+  public userLocationFromLatLng;
+
   // Geocoder configuration
   public geoencoderOptions: NativeGeocoderOptions = {
     useLocale: true,
@@ -34,8 +43,10 @@ export class GeolocService {
 
   constructor(
     private geolocation: Geolocation,
-    private nativeGeocoder: NativeGeocoder) {
-
+    private nativeGeocoder: NativeGeocoder,
+    private platform: Platform,
+    public zone: NgZone
+    ) {
     this.currentLat = 0;
     this.currentLong = 0;
     this.coords = { lat: 0, long: 0 };
@@ -93,6 +104,10 @@ export class GeolocService {
       }).catch((error) => {
         console.log('Error getting location', error);
       });
+  }
+
+  public trackPosition() {
+    this.geolocation.watchPosition();
   }
 
 
@@ -172,25 +187,55 @@ export class GeolocService {
       .on('locationerror', (err: { message: any; }) => {
         alert(err.message);
       });
-  }
-
-}
+  } // ..................................
 
 
 
   // ------ GEOCODER -------
-  // geocoder method to fetch address from coordinates passed as arguments
-/*   public getGeoencoder(latitude: number, longitude: number) {
-    this.nativeGeocoder.reverseGeocode(latitude, longitude, this.geoencoderOptions)
+  /* reverseGeocode(lat: number, lng: number) {
+
+    if (this.platform.is('cordova')) {
+      const options: NativeGeocoderOptions = {
+          useLocale: true,
+          maxResults: 5
+        };
+
+      this.nativeGeocoder.reverseGeocode(lat, lng, this.geoencoderOptions)
       .then((result: NativeGeocoderResult[]) => {
         console.log(JSON.stringify(result[0]));
         this.address = this.generateAddress(result[0]);
-        console.log(this.address);
+        console.log('ADDRESS==', this.address);
       })
       .catch((error: any) => {
         alert('Error getting location' + JSON.stringify(error));
       });
-  }
+    } else {
+      this.getGeoLocation(lat, lng, 'reverseGeocode');
+      }
+    }
+
+    async getGeoLocation(lat: number, lng: number, type?) {
+      if (navigator.geolocation) {
+        const geocoder = await new google.maps.Geocoder();
+        const latlng = await new google.maps.LatLng(lat, lng);
+        const request = { latLng: latlng };
+
+        await geocoder.geocode(request, (results, status) => {
+          if (status === google.maps.GeocoderStatus.OK) {
+            const result = results[0];
+            this.zone.run(() => {
+              if (result != null) {
+                this.userCity = result.formatted_address;
+                if (type === 'reverseGeocode') {
+                  this.latLngResult = result.formatted_address;
+                }
+              }
+            });
+          }
+        });
+      }
+    }
+
 
   // Return Comma separated address
   public generateAddress(addressObj: any) {
@@ -208,6 +253,37 @@ export class GeolocService {
       }
     }
     return address.slice(0, -2);
-  } */
+  }
   // ---------
+
+  forwardGeocode(address) {
+    if (this.platform.is('cordova')) {
+      const options: NativeGeocoderOptions = {
+        useLocale: true,
+        maxResults: 5
+      };
+      this.nativeGeocoder.forwardGeocode(address, options)
+        .then((result: NativeGeocoderResult[]) => {
+          this.zone.run(() => {
+            this.lat = result[0].latitude;
+            this.lng = result[0].longitude;
+          });
+        })
+        .catch((error: any) => console.log(error));
+    } else {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address }, (results, status) => {
+        if (status == google.maps.GeocoderStatus.OK) {
+          this.zone.run(() => {
+            this.lat = results[0].geometry.location.lat();
+            this.lng = results[0].geometry.location.lng();
+          });
+        } else {
+          alert('Error - ' + results + ' & Status - ' + status)
+        }
+      });
+    }
+  } */
+  
+}
 

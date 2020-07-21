@@ -1,25 +1,20 @@
-{
-    "treats": [
-        {
-            "treatId": 1,
-            "challengeDescription": "Find or pick a PINK candy in your collection and eat it ! ",
-            "hasBeenCompleted": false,
-            "bonusPoints": 3,
-            "challengeType": "treat"
-        },
-        {
-            "treatId": 2,
-            "challengeDescription": "Find or pick a CHOCOLATE candy in your collection and eat it ! ",
-            "hasBeenCompleted": false,
-            "bonusPoints": 3,
-            "challengeType": "treat"
-        },
-        {
-            "treatId": 3,
-            "challengeDescription": "Find or pick a ROUNDED candy in your collection and eat it ! ",
-            "hasBeenCompleted": false,
-            "bonusPoints": 3,
-            "challengeType": "treat"
-        }
-    ]
-}
+[
+    {
+        "treatId": 1,
+        "treatDescription": "Find or pick a PINK candy in your collection and eat it ! ",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    },
+    {
+        "treatId": 2,
+        "treatDescription": "Find or pick a CHOCOLATE candy in your collection and eat it ! ",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    },
+    {
+        "treatId": 3,
+        "treatDescription": "Find or pick a ROUNDED candy in your collection and eat it ! ",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    }
+]
