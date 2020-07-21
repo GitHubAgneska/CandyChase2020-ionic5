@@ -7,14 +7,13 @@
 <ion-content>
   <div class="candyDetailsPage" *ngIf="candyItem">
 
-    <div class="info">
+<!-- <div class="info">
       Due to the reliance on the database, some info might not be totally accurate.<br>
-      'Open food facts' database relies itself on users inputs and on the work of its devoted developers, 
-      so is subject to constant changes.<br>
-      We can see for instance, that the english ingredients list version of certain candy does not contain 'gelatin',
+      'Open food facts' database relies itself on the inputs of users and on the work of its devoted developers, 
+      so it is subject to constant changes.<br>
+      We can see for instance, that the english version of ingredients list (in use here) does not contain 'gelatin' for certain candy,
       although it is definitely part of this list in the french version.
-
-    </div>
+    </div> -->
 
     <div class="candyItemTitle flexRowCentered">
       <div class="candyThumbnail">
@@ -112,7 +111,7 @@
         </div>
         <ng-template #none>
           <h1>No listed allergen in the database</h1>
-        </ng-template >
+        </ng-template>
       </div>
     </div>
 

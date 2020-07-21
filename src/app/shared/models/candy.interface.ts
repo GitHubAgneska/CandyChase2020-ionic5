@@ -7,11 +7,13 @@ export interface CandyI {
     amountInBackpack?: number;
 
     brands_tags?: any[];
-    ingredients_tags?: any[];
+    ingredients_tags?: any[]; // display list in english
+    ingredients_text_fr?: string; // fr list version  (more accurate)
     nutriscore_data?: {};
     additives_tags?: any[];
     allergens_hierarchy?: any[];
-    labels?: string;
+    labels?: string; // check for organic tags
+    labels_hierarchy?: any[]; // check for organic tags
 
     candyChecklist?: {};
 }

@@ -21,12 +21,9 @@ export class CandyDetailsComponent implements OnInit {
   public candyId: string | number;
 
   public candyChecklist: CandyChecklistI;
-/*   public additives: boolean;
-  public preservatives: boolean;
-  public organic: boolean;
-  public glutenFree: boolean;
-  public vegan: boolean;
-  public vegetarian: boolean; */
+  // public ingredientsFr: string;
+  // tslint:disable-next-line: variable-name
+  // public labels_hierarchy: Array<string>;
 
   public iconTrue = 'assets/icon/icon_true.png';
   public iconFalse = 'assets/icon/icon_false.png';
@@ -53,6 +50,9 @@ export class CandyDetailsComponent implements OnInit {
     this.candyChecklist = new CandyChecklist();
     this.candyItem.candyChecklist = { ...this.candyChecklist};
 
+/*  this.ingredientsFr = '';
+    this.labels_hierarchy = []; */
+
     this.showIngredients = false;
     this.showNutriscore = false;
     this.showAllergens = false;
@@ -69,22 +69,36 @@ export class CandyDetailsComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(param => {
       this.candyId = param.get('id');
     });
-    console.log('activated route param= ', this.candyId);
+    // console.log('activated route param= ', this.candyId);
 
     this.candyApiService.getCandyById(this.candyId)
     .subscribe( (response: Candy ) => {
       this.candyItem = {...response };
-      this.candyItem.candyChecklist = {...this.candy.candyChecklist};
 
-      console.log('candy response: ', response);
-      console.log('candyItem = {...response} ', this.candyItem);
+      // special check for 'gelatin' in the api's fr version of ingredients list
+      // (for it is systematically missing in the en version in use)
+      const containsGelatin = () => this.candyItem.ingredients_text_fr.includes('gélatine' || 'gelatine');
+      // console.log('containsGelatin==', containsGelatin());
 
-      for ( const x of this.candyItem.allergens_hierarchy ) {
-        if (x === 'gluten' || x === 'cereals'  || x === 'wheat') {
-          this.candyChecklist.glutenFree = false;
+      // glutenFree check ----
+      if (this.candyItem.allergens_hierarchy.length > 0)  {
+        for ( const x of this.candyItem.allergens_hierarchy ) {
+          if (x === 'gluten' || x === 'cereals'  || x === 'wheat') {
+            this.candyChecklist.glutenFree = false;
+          }
         }
       }
+      // gelatin check + add to ingredients list (en version) ---
+      if (containsGelatin()) {
+        this.candyItem.ingredients_tags.push('gelatin');
+
+        this.candyChecklist.vegetarian = false;
+        this.candyChecklist.vegan = false;
+      } else { this.candyChecklist.vegetarian = true; }
+
+      // vegan check
       for (const x of this.candyItem.ingredients_tags ) {
+        // console.log(this.candyItem.ingredients_tags)
         if ( x === 'milk' ||  x === 'butter' ||  x === 'eggs') {
           this.candyChecklist.vegan = false;
         }
@@ -96,10 +110,12 @@ export class CandyDetailsComponent implements OnInit {
       if ( this.candyItem.additives_tags && this.candyItem.additives_tags.length > 0) {
         this.candyChecklist.additives = true;
       }
-      if ( this.candyItem.labels && this.candyItem.labels.length > 0 ) {
-        this.candyItem.labels.split(',').forEach(x => { if ( x === 'bio' ||  x === 'ab') {
+      if ( this.candyItem.labels !== ''  || this.candyItem.labels_hierarchy) {
+
+        const terms = /bio | ab | biologique/g;
+        if (this.candyItem.labels.match(terms) ) {
+          console.log('BIO');
           this.candyChecklist.organic = true; }
-        });
       }
     });
   }
