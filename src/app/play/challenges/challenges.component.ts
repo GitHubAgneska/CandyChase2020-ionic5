@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { TrickAndTreatI, TrickI, TreatI } from '../../shared/models/challenges.interface';
-import { TrickAndTreat, Trick, Treat } from '../../shared/models/challenges.model';
+import { Trick, Treat } from '../../shared/models/challenges.model';
 import { ChallengesApiService } from '../services/challenges-api.service';
 import { ToastController } from '@ionic/angular';
 
@@ -24,6 +24,7 @@ export class ChallengesComponent implements OnInit {
   public triggeredTreatsList: TreatI[];
   public achievedTricksList: TrickI[];
   public achievedTreatsList: TreatI[];
+  public completedChallengesCount: number;
 
   public totalPoints: number;
   public newTotalPoints: number;
@@ -41,6 +42,7 @@ export class ChallengesComponent implements OnInit {
     this.tricks = [];
     this.totalPoints = 0;
     this.newTotalPoints = 0;
+    this.completedChallengesCount = 0;
   }
 
   ngOnInit() {
@@ -49,10 +51,11 @@ export class ChallengesComponent implements OnInit {
     this.userStatsService.getCurrentAchievedTreats().subscribe(data => this.achievedTreatsList = data);
     this.userStatsService.getCurrentAchievedTricks().subscribe(data => this.achievedTricksList = data);
     this.userStatsService.getCurrentTotalPoints().subscribe(data => this.totalPoints = data);
+    this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesCount = data);
 
     this.getChoice();
     this.getRandomChallenge(this.choice);
-    console.log('TOTAL POINTS before bonus==', this.totalPoints);
+    // console.log('TOTAL POINTS before bonus==', this.totalPoints);
   }
 
 
@@ -82,13 +85,13 @@ export class ChallengesComponent implements OnInit {
             this.currentChallenge.challengeId = randomTreat.treatId;
             this.currentChallenge.challengeType = 'treat';
           }
-          console.log('triggeredTreatsList before update==', this.triggeredTreatsList);
+          // console.log('triggeredTreatsList before update==', this.triggeredTreatsList);
           this.triggeredTreatsList.push({ ...this.currentChallenge } as TreatI);
-          console.log('triggeredTreatsList after update==', this.triggeredTreatsList);
+          // console.log('triggeredTreatsList after update==', this.triggeredTreatsList);
 
           this.userStatsService.updateCurrentTriggeredTreats(this.triggeredTreatsList);
-          // console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
-          console.log('CURRENT CHALLENGE==', {... this.currentChallenge } );
+          // // console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
+          // console.log('CURRENT CHALLENGE==', {... this.currentChallenge } );
           return { ...this.currentChallenge } ;
         });
 
@@ -108,7 +111,7 @@ export class ChallengesComponent implements OnInit {
           }
           this.triggeredTricksList.push({ ...this.currentChallenge } as TrickI);
           this.userStatsService.updateCurrentTriggeredTricks(this.triggeredTricksList);
-          console.log('CURRENT CHALLENGE==', {... this.currentChallenge } );
+          // console.log('CURRENT CHALLENGE==', {... this.currentChallenge } );
           return { ...this.currentChallenge } ;
         });
     }
@@ -118,17 +121,20 @@ export class ChallengesComponent implements OnInit {
 
   public isDone(currentChallenge: any) {
 
+    this.completedChallengesCount += 1;
+    this.userStatsService.updateCompletedChallengesCount(this.completedChallengesCount);
+
     this.currentChallenge = currentChallenge;
-    console.log('CURRENT IS DONE== ', this.currentChallenge);
+    // console.log('CURRENT IS DONE== ', this.currentChallenge);
     this.currentChallenge.challengeType = currentChallenge.challengeType;
-    console.log('CURRENT IS DONE TYPE==', this.currentChallenge.challengeType);
+    // console.log('CURRENT IS DONE TYPE==', this.currentChallenge.challengeType);
 
     this.newTotalPoints = this.totalPoints + this.currentChallenge.bonusPoints;
     this.userStatsService.update_totalPoints(this.newTotalPoints);
     this.presentToastBonusPoints(this.currentChallenge.bonusPoints, this.newTotalPoints);
 
-    console.log('CURRENT TRICKS LIST==', this.achievedTricksList);
-    console.log('CURRENT TREATS LIST==', this.achievedTreatsList);
+    // console.log('CURRENT TRICKS LIST==', this.achievedTricksList);
+    // console.log('CURRENT TREATS LIST==', this.achievedTreatsList);
 
     if ( this.currentChallenge.challengeType === 'trick') {
       this.currentChallenge.hasBeenCompleted = true;

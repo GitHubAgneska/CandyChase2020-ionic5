@@ -45,6 +45,7 @@ export class UserStatsService {
 
   public treat: TreatI;
   public trick: TrickI;
+  public challengesCount: number;
 
   public savedAddresses: AddressI[];
   public savedAddressesCount: number;
@@ -251,12 +252,12 @@ export class UserStatsService {
     return this.achievedTreats$.asObservable();
   }
 
-
+  // --- completed challenges count
   public getCompletedChallengesCount() {
-    const tricksCount: Observable<TrickI[]> = this.getCurrentAchievedTricks();
-    const treatsCount: Observable<TreatI[]> = this.getCurrentAchievedTreats();
-    const allcount = zip( tricksCount, treatsCount);
-    return allcount;
+    return this.completedChallengesCount$.asObservable();
+  }
+  public updateCompletedChallengesCount(completedChallengesCount: number) {
+    this.completedChallengesCount$.next(completedChallengesCount);
   }
 
 

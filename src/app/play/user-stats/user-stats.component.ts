@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserStatsService } from '../../shared/services/user-stats.service';
 import { LevelI } from '../../shared/models/level.interface';
+import { Level } from '../../shared/models/level.model';
 import { UserStatsI } from '../../shared/models/user-stats.interface';
 import { KeyvaluePipe } from '../../shared/pipes/keyvalue/keyvalue';
+import { LevelApiService } from '../services/level-api.service';
 
 
 @Component({
@@ -19,14 +21,14 @@ export class UserStatsComponent implements OnInit {
   public candyCount: number;
 
   public levels: LevelI[];
-  public currentLevel: LevelI;
+  public currentLevel: Level;
   public nextLevel: LevelI;
   public currentLevelName: string;
 
   public tricks: any[];
   public treats: any[];
+  public completedChallenges: any[];
   public completedChallengesCount: number;
-  public completedChallengesTest: any[];
 
   public savedAddresses: any[];
   public savedAddressesCount: number;
@@ -37,10 +39,10 @@ export class UserStatsComponent implements OnInit {
     private router: Router
   ) {
 
-    this.currentLevel =  { idLevel: 0, levelName: '', levelImg: '', levelCard: '', isActive: false, isNext: false };
+    this.currentLevel =  new Level();
     this.levels = this.userStatsService.retrieveLevelList();
+    this.completedChallenges = [];
     this.completedChallengesCount = 0;
-    this.completedChallengesTest = [];
   }
 
   ngOnInit() {
@@ -52,26 +54,18 @@ export class UserStatsComponent implements OnInit {
 
     // totalPoints
     this.userStatsService.getCurrentTotalPoints().subscribe(data => this.totalPoints = data);
-    console.log('totalPoints------', this.totalPoints);
+    // console.log('totalPoints------', this.totalPoints);
 
     // totalCandy
     this.userStatsService.getCurrentBackpackCount().subscribe(data => this.candyCount = data);
-    console.log('candy count------', this.candyCount);
+    // console.log('candy count------', this.candyCount);
 
     // level
-    this.userStatsService.getCurrentLevel().subscribe(data => {
-      this.currentLevel.idLevel = data.idLevel,
-      this.currentLevel.levelName = data.levelName,
-      this.currentLevel.levelImg = data.levelImg;
-      this.currentLevel.levelCard = data.levelCard;
-      this.currentLevel.isActive = data.isActive;
-      this.currentLevel.isNext = data.isNext;
-    });
-    console.log('currentlevel levelcard-----', this.currentLevel.levelCard);
+    this.userStatsService.getCurrentLevel().subscribe(data => { this.currentLevel = {...data}; });
+    // console.log('this.currentLevel=', this.currentLevel);
 
-    // bottom cards
-    console.log('levels---', this.levels);
 
+    // bottom cards : display all of them with states corresponding to current & next
     for ( let i = 0; i < this.levels.length; i++ ) {
       if ( this.levels[i].idLevel === this.currentLevel.idLevel ) {
         this.levels[i].isActive = true;
@@ -79,14 +73,22 @@ export class UserStatsComponent implements OnInit {
       }
     }
 
+  /*   const arrayK = new Array();
     // current done challenges count
-    this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesTest = data );
-    console.log('RESULT OF ZIP==', this.completedChallengesTest);
-
-    this.completedChallengesTest.map(item => {
-      console.log(item.length);
-      return this.completedChallengesCount += item.length;
+    this.userStatsService.getCompletedChallengesCount().subscribe(data => {
+      this.completedChallenges = data;
     });
+    console.log('ZIP=', this.completedChallenges); // array [ [], [] ]
+    this.completedChallenges.map(items => {
+      arrayK.push(items);
+    });
+    console.log('arrayK=', arrayK); */
+
+    this.userStatsService.getCompletedChallengesCount().subscribe(data => {
+      this.completedChallengesCount = data;
+    });
+    console.log( 'count=', this.completedChallengesCount);
+
 
 
 
