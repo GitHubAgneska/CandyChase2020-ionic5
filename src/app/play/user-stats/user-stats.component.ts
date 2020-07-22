@@ -61,36 +61,12 @@ export class UserStatsComponent implements OnInit {
     // console.log('candy count------', this.candyCount);
 
     // level
-    this.userStatsService.getCurrentLevel().subscribe(data => { this.currentLevel = {...data}; });
+    this.userStatsService.getCurrentLevel().subscribe(data => this.currentLevel = {...data} );
     // console.log('this.currentLevel=', this.currentLevel);
 
-
-    // bottom cards : display all of them with states corresponding to current & next
-    for ( let i = 0; i < this.levels.length; i++ ) {
-      if ( this.levels[i].idLevel === this.currentLevel.idLevel ) {
-        this.levels[i].isActive = true;
-        this.levels[ i + 1 ].isNext = true;
-      }
-    }
-
-  /*   const arrayK = new Array();
-    // current done challenges count
-    this.userStatsService.getCompletedChallengesCount().subscribe(data => {
-      this.completedChallenges = data;
-    });
-    console.log('ZIP=', this.completedChallenges); // array [ [], [] ]
-    this.completedChallenges.map(items => {
-      arrayK.push(items);
-    });
-    console.log('arrayK=', arrayK); */
-
-    this.userStatsService.getCompletedChallengesCount().subscribe(data => {
-      this.completedChallengesCount = data;
-    });
-    console.log( 'count=', this.completedChallengesCount);
-
-
-
+    // challenges count
+    this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesCount = data);
+    // console.log( 'count=', this.completedChallengesCount);
 
     // current saved addresses count
     this.userStatsService.getCurrentAddressesList().subscribe(data => this.savedAddresses = data );

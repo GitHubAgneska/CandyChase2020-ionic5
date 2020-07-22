@@ -43,11 +43,11 @@
     <div class="cardsList flexRowCentered">
       <div *ngFor="let level of levels">
         <div class="card-container flexColCentered">
-          <div *ngIf="level.isNext" class="bubbleNext">
+          <div *ngIf="level.idLevel === currentLevel.idLevel+1" class="bubbleNext">
             <h2>Next mission:<br>Get the <span>{{ level.levelCardName }} !</span></h2>
           </div>
           <div class="card-img-container">
-            <img src="{{ level.levelCard }}" [class] ="level.isActive ? 'opacity' : 'noOpacity'"/>
+            <img src="{{ level.levelCard }}" [class] ="level.idLevel===currentLevel.idLevel ? 'opacity' : 'noOpacity'"/>
           </div>
         </div>
       </div>

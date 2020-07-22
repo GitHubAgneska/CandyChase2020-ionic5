@@ -16,7 +16,6 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { zip } from 'rxjs';
 import { LevelApiService } from '../../play/services/level-api.service';
 import { CandyI } from '../models/candy.interface';
 import { LevelI } from '../models/level.interface';
