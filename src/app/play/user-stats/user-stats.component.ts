@@ -38,7 +38,6 @@ export class UserStatsComponent implements OnInit {
     public keyvaluepipe: KeyvaluePipe,
     private router: Router
   ) {
-
     this.currentLevel =  new Level();
     this.levels = this.userStatsService.retrieveLevelList();
     this.completedChallenges = [];

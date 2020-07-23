@@ -53,6 +53,7 @@ export class AddressesComponent implements OnInit {
         this.addressList = this.addressList.filter(items => items.addressId !== this.address.addressId);
       }
     });
+    this.userStatsService.updateCurrentAddressesList(this.addressList);
     // console.log('address list after delete=', this.addressList);
   }
 

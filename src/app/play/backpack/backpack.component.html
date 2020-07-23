@@ -17,18 +17,11 @@
         <h2>Total points : {{ totalPoints }}</h2>
       </div>
     </div>
-
     <!-- <div class="cornCandy-container">
       <ng-container *ngFor="let i of [].constructor(8)">
         <img src="assets/graphicMat/corn_candy.png" alt="" />
       </ng-container>
     </div> -->
-
-    <!-- TO DO ? : get level (banner) at init --
-      <div class="current-level">
-          <h2>Current level</h2>
-          <h2>{{levelName}}</h2>
-      </div> -->
     <div *ngIf="collectedCandy.length > 0;else noCandyYetBlock">
       <div *ngFor="let item of collectedCandy" class="myCollectedCandy">
         <div class="candyItem">
@@ -50,11 +43,9 @@
 
   <ng-template #noCandyYetBlock>
     <div class="noCandyYet">
-      <!-- <h1>No candy yet !</h1> -->
       <img [src]="ghostBubble" alt="no candy bubble" />
       <img [src]="ghostImg" alt="little ghost" />
     </div>
   </ng-template>
-
 
 </ion-content>

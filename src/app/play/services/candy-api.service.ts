@@ -46,8 +46,6 @@ export class CandyApiService {
             const rawApiResponseObject: any = response;
             const candyListFromApi: Array<any> = rawApiResponseObject.products;
             // '.products' => for object from api contains 2 other main fields!
-            //  ( -- why is this syntax not working anymore? :
-            // const candyListFromApi: Array<any> = rawApiResponse.json().products as CandyI[];
 
             // console.log(candyListFromApi);
             return candyListFromApi as CandyI[];
@@ -67,7 +65,7 @@ export class CandyApiService {
         (response: Response) => {
           const RawApiResponseCandyItem: any = response;
           const candyItemFromApi: {} = RawApiResponseCandyItem.product;
-          console.log(candyItemFromApi);
+          // console.log(candyItemFromApi);
           return candyItemFromApi as CandyI;
         }
         ),
@@ -77,24 +75,27 @@ export class CandyApiService {
       }
     }
 
-      // TO DO (search candy in list by name)
-    /*   filterById(id: string): Observable<Product> {
-        return this.getProducts()
-                  .filter(products => products.find(product => id === product.id));
-      }
-      */
-      //   search candy by name  => TODO replace method search api with search amongst list results
-        /* GET candy whose name contains search term */
-      /*  searchCandy(term: string): Observable<CandyI[]> {
-          term = term.trim();
+  // .........................................................................
+    // TO DO (search candy in list by name)
+  /*
+  filterById(id: string): Observable<Product> {
+      return this.getProducts()
+        .filter(products => products.find(product => id === product.id));
+    }
+    */
+  //   search candy by name  => TODO replace method search api with search amongst list results
+    /* GET candy whose name contains search term */
+  /*  searchCandy(term: string): Observable<CandyI[]> {
+      term = term.trim();
 
-          // Add safe, URL encoded search parameter if there is a search term
-          const options = term ?
-            { params: new HttpParams().set('name', term) } : {};
+    // Add safe, URL encoded search parameter if there is a search term
+    const options = term ?
+      { params: new HttpParams().set('name', term) } : {};
 
-          return this.httpService.get<CandyI[]>(this.candyListApiUrl, options)
-            .pipe(
-              catchError(this.handleError<CandyI[]>('searchCandy', []))
-            );
-        } */
+    return this.httpService.get<CandyI[]>(this.candyListApiUrl, options)
+      .pipe(
+        catchError(this.handleError<CandyI[]>('searchCandy', []))
+      );
+      } */
+  // .........................................................................
 
