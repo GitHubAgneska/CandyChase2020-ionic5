@@ -54,20 +54,12 @@ Run tests with Karma
 Known issues (as of 070220)
 ========================================================================================
 
-- Data loss (user stats) due to reloading of play module when going to menu (app module) and back ('resume' btn) => possible workarounds / solutions : 
-    - create a collapsible menu element on top of current page
-    - clone menu page to display within playing module
-    - create a state management pattern / store
-    - add guards
-    - routeReuseStrategy?
-
-- Data updating of user stats (challenges count / addresses count) = unstable (probable causes = mix up in the behavior subjects based on interfaces/models - ionic native mechanisms needing specific unsubscriptions )
-
 - Geolocation : coords non accurate under chrome : issue apparently related to mac os catalina update (unresolved atm - 05152020)
+
+- Reverse geocode cordova implementation
 
 - Inconsistencies when using as a PWA vs browser
 
-- Performances (https://github.com/mgechev/angular-performance-checklist)
 
 Npm issue(s)
 ===
