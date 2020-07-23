@@ -128,6 +128,11 @@ export class CandyListComponent implements OnInit {
     this.userStatsService.update_backpackContent(this.itemsInBackpack);
     this.presentToastNewPoints();
 
+    if (this.totalCandy % 7 === 0) {
+      this.newChallenge = true;
+      this.presentToastWithOptions('New challenge!');
+    }
+
   }
 
   async presentToastNewPoints() {
@@ -161,8 +166,17 @@ export class CandyListComponent implements OnInit {
           toast2.dismiss();
           toast3.present();
       }, 500);
-      this.newChallenge = true;
     }
+  }
+
+  async presentToastWithOptions(message: string) {
+    const toast = await this.toastController.create({
+      message: `${ message }`,
+      position: 'bottom',
+      duration: 1500,
+      cssClass: 'newChallengeToast'
+    });
+    toast.present();
   }
 
   public goToChallenges() {
