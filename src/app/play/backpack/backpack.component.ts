@@ -39,7 +39,7 @@ export class BackpackComponent implements OnInit {
     this.userStatsService.getCurrentBackpackContent().subscribe(data => {
       this.collectedCandy = data;
     });
-    console.log('COLLECTED CANDY RETRIEVED ON INIT: ', this.collectedCandy);
+    // console.log('COLLECTED CANDY RETRIEVED ON INIT: ', this.collectedCandy);
   }
 
   public setStats() {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserStatsService } from '../shared/services/user-stats.service';
 import { GeolocService } from '../shared/services/geoloc.service';
 import { environment } from '../../environments/environment';
 import { AlertController } from '@ionic/angular';
@@ -43,7 +42,7 @@ export class HomeComponent  implements OnInit {
     this.activatedRoute.paramMap.subscribe(param => {
       this.isPlaying = param.get('isPlaying');
       if ( this.isPlaying === 'true') {
-        console.log('ONGOING');
+        // console.log('ONGOING');
         // set menu images
         this.newGame = false;
         this.ongoing = true;
@@ -51,7 +50,7 @@ export class HomeComponent  implements OnInit {
         this.routeParams = 'resumePlaying';
 
       } else {
-        console.log('NEW GAME');
+        // console.log('NEW GAME');
         this.newGame = true;
         this.ongoing = false;
         this.routeParams = '';

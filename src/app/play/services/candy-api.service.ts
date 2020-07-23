@@ -31,7 +31,7 @@ export class CandyApiService {
     httpErrorHandler: HttpErrorHandler) {
     this.candyItem = { _id: '', product_name: '', amountInBackpack: null };
     this.handleError = httpErrorHandler.createHandleError('CandyApiService');
-    this.resultPageSize = 100;
+    this.resultPageSize = 300;
   }
 
   // GET all candy list from api (results per page can vary)

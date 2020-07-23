@@ -21,10 +21,10 @@
 <!--   <div *ngIf="candyList; else loading">
     <div *ngFor="let candyItem of candyList" class="candyList"> -->
       <div class="candyItem">
-        <div class="candyThumbnail">
+        <div class="candyThumbnail" (click)="seeCandyInfos(candyItem._id)">
           <img src="{{candyItem.image_front_url}}">
         </div>
-        <div class="candyName">
+        <div class="candyName" (click)="seeCandyInfos(candyItem._id)">
           <!-- <h2>{{data.brands_tags[1]}}</h2> -->
           <h1>{{ candyItem.product_name | shortenString:30 }}</h1>
         </div>

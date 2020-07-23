@@ -93,6 +93,13 @@ export class CandyListComponent implements OnInit {
   }
 // ..........................................................
 
+  seeCandyInfos(id: string | number) {
+    this.candyItem._id = id;
+    console.log('candy id= ', this.candyItem._id);
+    this.router.navigate(['play/candyDetails' + '/' + id]);
+  }
+  
+
   addCandyToBackpack(candyItem: CandyI) {
 
     this.candyItem = candyItem;
