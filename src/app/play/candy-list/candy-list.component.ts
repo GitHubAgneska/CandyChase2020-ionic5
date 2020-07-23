@@ -8,10 +8,7 @@ import { Candy, CandyChecklist } from '../../shared/models/candy.model';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
 
 import { UserStatsService } from '../../shared/services/user-stats.service';
-import { LocalStorageService } from '../../shared/services/local-storage.service';
-
 import { ToastController } from '@ionic/angular';
-import { LoadingAnimationComponent } from '../../shared/loading-animation/loading-animation.component'
 
 
 @Component({
@@ -21,11 +18,7 @@ import { LoadingAnimationComponent } from '../../shared/loading-animation/loadin
 })
 export class CandyListComponent implements OnInit {
 
-  // public loading: boolean;
-
   public candyList$: Observable<CandyI[]>;
-
-  public candyList: CandyI[];
 
   public candyItem: CandyI;
   public candyChecklist: CandyChecklist;
@@ -34,10 +27,6 @@ export class CandyListComponent implements OnInit {
 
   public totalCandy$: Observable<number>;
   public totalPoints: number;
-  // public plusBtnImg = 'src/assets/graphicmat/zoomIn.png';
-
-  // path origin tracing
-  public pathOrigin: string;
 
   // challenges notifications state tracing
   public newChallenge: boolean;
@@ -52,16 +41,13 @@ export class CandyListComponent implements OnInit {
 
   constructor(
     private candyApiService: CandyApiService,
-    public localStorageService: LocalStorageService,
     private userStatsService: UserStatsService,
     public shortenString: ShortenStringPipe,
     public toastController: ToastController,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
+    private router: Router
     ) {
 
-    // this.candyList$ =  this.candyApiService.getAllCandyFromApi();
-    this.candyList = [];
+    this.candyList$ =  this.candyApiService.getAllCandyFromApi();
     this.candyItem = new Candy();
     this.candyChecklist = new CandyChecklist();
     this.itemsInBackpack = [];
@@ -75,41 +61,13 @@ export class CandyListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loadCandyListFromApi();
-
-    /* this.retrievePathOrigin();
-    if (!this.pathOrigin) {
-      this.loadCandyListFromApi();
-    } else if (this.pathOrigin === 'resumePlaying') {
-      console.log('localStorage should activate');
-      this.loadCandyListFromLocalStorage();
-    } */
+    this.userStatsService.getCurrentBackpackContent().subscribe(data => this.itemsInBackpack = data);
+    // console.log('backpack at init=', this.itemsInBackpack);
+    this.userStatsService.getCurrentBackpackCount().subscribe(data => this.totalCandy = data);
+    // console.log('totalCandy at init=', this.totalCandy);
+    this.userStatsService.getCurrentTotalPoints().subscribe(data => this.totalPoints = data);
+    // console.log('totalPoints at init=', this.totalPoints);
   }
-
-
-// ----- tests for issue : userstats resetting because of play module reloading when going to menu (app module) and back
-
-// test with localstorage :
-// the api call should happen only once :
-// when user opens the page for the first time ( = very first loading of play module )
-// then candylist data gets cached in localstorage for potential subsequent play module exits
-  public retrievePathOrigin(): any {
-    this.activatedRoute.paramMap.subscribe( param => {
-      this.pathOrigin = param.get('origin'); // = 'startPlaying' || 'resumePlaying'
-    });
-    return this.pathOrigin;
-  }
-
-  public loadCandyListFromApi() {
-      this.candyList$ =  this.candyApiService.getAllCandyFromApi();
-      // this.candyApiService.getAllCandyFromApi().subscribe(data => this.candyList = data );
-      // this.localStorageService.setDataToStore(this.candyList);
-  }
-
-  public loadCandyListFromLocalStorage() {
-    this.localStorageService.getStoredData();
-  }
-// ------------
 
 
 // search ..........................................................
@@ -136,7 +94,6 @@ export class CandyListComponent implements OnInit {
 // ..........................................................
 
   addCandyToBackpack(candyItem: CandyI) {
-    this.totalCandy$ = this.userStatsService.getCurrentBackpackCount();
 
     this.candyItem = candyItem;
     this.candyItem.product_name = candyItem.product_name;
@@ -212,10 +169,6 @@ export class CandyListComponent implements OnInit {
     this.newChallenge = false;
     this.router.navigate(['play/trickOrTreat']);
   }
-
-  ionViewWillLeave() {
-  }
-
 
 }
 
