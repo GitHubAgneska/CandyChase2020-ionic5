@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserStatsService } from '../shared/services/user-stats.service';
 import { GeolocService } from '../shared/services/geoloc.service';
 import { environment } from '../../environments/environment';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +32,7 @@ export class HomeComponent  implements OnInit {
     private router: Router,
     private geolocService: GeolocService,
     private activatedRoute: ActivatedRoute,
-    private userStatsService: UserStatsService
+    public alertController: AlertController
     ) {}
 
   ngOnInit() {
@@ -58,8 +59,13 @@ export class HomeComponent  implements OnInit {
     });
   }
 
-  public resetAllStats() {}
-
+  public restart() {
+    this.presentConfirmDelete().then(res => {
+      if (res === 'restart') {
+        document.location.href = 'index.html';
+      }
+    });
+  }
 
   public start() {
     this.router.navigate(['start']);
@@ -84,6 +90,35 @@ export class HomeComponent  implements OnInit {
 
   goToAbout() {
     this.router.navigate(['static/about']);
+  }
+
+
+  async presentConfirmDelete(): Promise<any> {
+    return new Promise(async (resolve) => {
+
+      const alert = await this.alertController.create({
+        cssClass: 'dialog',
+        header: 'Are you sure?',
+        subHeader: 'Do you really want restart the game? (All stats will be lost!)',
+        buttons: [
+          {
+            text: 'Yes restart!',
+            role: 'restart',
+            handler: (restart) => {
+              resolve('restart');
+            }
+          },
+          {
+            text: 'No!',
+            role: 'no restart',
+            handler: (cancel) => {
+              resolve('cancel');
+            }
+          },
+        ]
+      });
+      alert.present();
+    });
   }
 
 

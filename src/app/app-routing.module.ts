@@ -17,7 +17,9 @@ const routes: Routes = [
   { path: 'letsplay', component: LetsplayComponent },
   { path: 'static', loadChildren: () => import('./static-pages/static-pages.module').then(m => m.StaticPagesModule) },
   { path: '', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule) },
-  { path: '**', redirectTo: 'home'  }
+  { path: '**', redirectTo: 'home'  },
+  { path: 'restart', redirectTo: ''  }
+
 
 ];
 @NgModule({
