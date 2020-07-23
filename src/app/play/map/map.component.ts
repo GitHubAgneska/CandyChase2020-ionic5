@@ -72,8 +72,8 @@ export class MapComponent implements OnInit {
       });
     }
     this.newAddress = { lat: this.coords.coords.latitude, long: this.coords.coords.longitude };
-    console.log('NEW ADDRESS==', this.newAddress);
-    console.log('ADDRESSLIST=', this.addressList, 'LENGHT=', this.addressList.length);
+    // console.log('NEW ADDRESS==', this.newAddress);
+    // console.log('ADDRESSLIST=', this.addressList, 'LENGHT=', this.addressList.length);
 
     // this.geolocService.reverseGeocode(this.coords.coords.latitude, this.coords.coords.longitude);
 
@@ -88,14 +88,14 @@ export class MapComponent implements OnInit {
           this.newAddress.timestamp = Date.now();
           this.addressList.push(this.newAddress);
           this.userStatsService.updateCurrentAddressesList(this.addressList);
-          this.presentToastWithOptions('Address saved to favorites ');
+          this.presentToastWithOptions('Address saved to favorites');
         }
       });
     } else {
       this.newAddress.timestamp = Date.now();
       this.addressList.push(this.newAddress);
       this.userStatsService.updateCurrentAddressesList(this.addressList);
-      this.presentToastWithOptions('Address saved to favorites ');
+      this.presentToastWithOptions('Address saved to favorites');
     }
   }
 

@@ -1954,106 +1954,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
-  "./src/app/play/services/challenges-api.service.ts":
-  /*!*********************************************************!*\
-    !*** ./src/app/play/services/challenges-api.service.ts ***!
-    \*********************************************************/
-
-  /*! exports provided: ChallengesApiService */
-
-  /***/
-  function srcAppPlayServicesChallengesApiServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ChallengesApiService", function () {
-      return ChallengesApiService;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/common/http */
-    "./node_modules/@angular/common/fesm2015/http.js");
-    /* harmony import */
-
-
-    var _http_error_handler_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./http-error-handler.service */
-    "./src/app/play/services/http-error-handler.service.ts");
-
-    var ChallengesApiService = /*#__PURE__*/function () {
-      function ChallengesApiService(httpClient, httpErrorHandler) {
-        _classCallCheck(this, ChallengesApiService);
-
-        this.httpClient = httpClient;
-        this.tricksListUrl = 'assets/tricksData.json';
-        this.treatsListUrl = 'assets/treatsData.json';
-        this.handleError = httpErrorHandler.createHandleError('ChallengesApiService');
-      }
-
-      _createClass(ChallengesApiService, [{
-        key: "getTricksList",
-        value: function getTricksList() {
-          return this.httpClient.get(this.tricksListUrl);
-        }
-        /*
-          public getTricksList(): Observable<TrickI[]> {
-            return this.httpClient
-              .get(this.tricksListUrl)
-              .pipe(
-                map(
-                  (data: Response) => {
-                    const rawApiResponseObject: any = data;
-                    const TricksListFromApi: Array<TrickI> = rawApiResponseObject;
-                    console.log('TricksListFromApi ==', TricksListFromApi); // (3) [{…}, {…}, {…}]
-                    return TricksListFromApi as TrickI[];
-                  }),
-                retry(3), // retry a failed request up to 3 times
-                catchError(this.handleError('getChallengesList', [])) // then handle the error
-              );
-          } */
-
-      }, {
-        key: "getTreatsList",
-        value: function getTreatsList() {
-          return this.httpClient.get(this.treatsListUrl);
-        }
-      }]);
-
-      return ChallengesApiService;
-    }();
-
-    ChallengesApiService.ctorParameters = function () {
-      return [{
-        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
-      }, {
-        type: _http_error_handler_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorHandler"]
-      }];
-    };
-
-    ChallengesApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _http_error_handler_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorHandler"]])], ChallengesApiService);
-    /***/
-  },
-
-  /***/
   "./src/app/play/services/http-error-handler.service.ts":
   /*!*************************************************************!*\
     !*** ./src/app/play/services/http-error-handler.service.ts ***!
@@ -2717,76 +2617,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function reverseGeocode(lat, lng) {
           var _this8 = this;
 
-          if (this.platform.is('cordova')) {
-            var options = {
-              useLocale: true,
-              maxResults: 5
-            };
-            this.nativeGeocoder.reverseGeocode(lat, lng, this.geoencoderOptions).then(function (result) {
-              console.log(JSON.stringify(result[0]));
-              _this8.address = _this8.generateAddress(result[0]);
-              console.log('ADDRESS==', _this8.address);
-            })["catch"](function (error) {
-              alert('Error getting location' + JSON.stringify(error));
-            });
-          } else {
-            this.getGeoLocation(lat, lng, 'reverseGeocode');
-          }
+          /* if (this.platform.is('cordova')) {
+            const options: NativeGeocoderOptions = {
+                useLocale: true,
+                maxResults: 5
+              }; */
+          this.nativeGeocoder.reverseGeocode(lat, lng, this.geoencoderOptions).then(function (result) {
+            console.log(JSON.stringify(result[0])); // this.address = this.generateAddress(result[0]);
+
+            console.log('ADDRESS==', _this8.address);
+          })["catch"](function (error) {
+            alert('Error getting location' + JSON.stringify(error));
+          });
         }
-      }, {
-        key: "getGeoLocation",
-        value: function getGeoLocation(lat, lng, type) {
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var _this9 = this;
-
-            var geocoder, latlng, request;
-            return regeneratorRuntime.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    if (!navigator.geolocation) {
-                      _context.next = 10;
-                      break;
-                    }
-
-                    _context.next = 3;
-                    return new google.maps.Geocoder();
-
-                  case 3:
-                    geocoder = _context.sent;
-                    _context.next = 6;
-                    return new google.maps.LatLng(lat, lng);
-
-                  case 6:
-                    latlng = _context.sent;
-                    request = {
-                      latLng: latlng
-                    };
-                    _context.next = 10;
-                    return geocoder.geocode(request, function (results, status) {
-                      if (status === google.maps.GeocoderStatus.OK) {
-                        var result = results[0];
-
-                        _this9.zone.run(function () {
-                          if (result != null) {
-                            _this9.userCity = result.formatted_address;
-
-                            if (type === 'reverseGeocode') {
-                              _this9.latLngResult = result.formatted_address;
-                            }
-                          }
-                        });
-                      }
-                    });
-
-                  case 10:
-                  case "end":
-                    return _context.stop();
-                }
-              }
-            }, _callee);
-          }));
-        } // Return Comma separated address
+        /* else {
+        this.getGeoLocation(lat, lng, 'reverseGeocode');
+        } */
+        // Return Comma separated address
 
       }, {
         key: "generateAddress",
@@ -2809,41 +2656,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return address.slice(0, -2);
-        } // ---------
-
-      }, {
-        key: "forwardGeocode",
-        value: function forwardGeocode(address) {
-          var _this10 = this;
-
-          if (this.platform.is('cordova')) {
-            var options = {
-              useLocale: true,
-              maxResults: 5
-            };
-            this.nativeGeocoder.forwardGeocode(address, options).then(function (result) {
-              _this10.zone.run(function () {
-                _this10.lat = result[0].latitude;
-                _this10.lng = result[0].longitude;
-              });
-            })["catch"](function (error) {
-              return console.log(error);
-            });
-          } else {
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({
-              address: address
-            }, function (results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                _this10.zone.run(function () {
-                  _this10.lat = results[0].geometry.location.lat();
-                  _this10.lng = results[0].geometry.location.lng();
-                });
-              } else {
-                alert('Error - ' + results + ' & Status - ' + status);
-              }
-            });
-          }
         }
       }]);
 
@@ -2865,6 +2677,61 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     GeolocService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_2__["Geolocation"], _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeGeocoder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["Platform"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"]])], GeolocService);
+    /*
+    async getGeoLocation(lat: number, lng: number, type?) {
+      if (navigator.geolocation) {
+        const geocoder = await new google.maps.Geocoder();
+        const latlng = await new google.maps.LatLng(lat, lng);
+        const request = { latLng: latlng };
+    
+        await geocoder.geocode(request, (results, status) => {
+          if (status === google.maps.GeocoderStatus.OK) {
+            const result = results[0];
+            this.zone.run(() => {
+              if (result != null) {
+                this.userCity = result.formatted_address;
+                if (type === 'reverseGeocode') {
+                  this.latLngResult = result.formatted_address;
+                }
+              }
+            });
+          }
+        });
+      }
+    }
+    */
+    // ---------
+
+    /*
+      forwardGeocode(address) {
+        if (this.platform.is('cordova')) {
+          const options: NativeGeocoderOptions = {
+            useLocale: true,
+            maxResults: 5
+          };
+          this.nativeGeocoder.forwardGeocode(address, options)
+            .then((result: NativeGeocoderResult[]) => {
+              this.zone.run(() => {
+                this.lat = result[0].latitude;
+                this.lng = result[0].longitude;
+              });
+            })
+            .catch((error: any) => console.log(error));
+        } else {
+          const geocoder = new google.maps.Geocoder();
+          geocoder.geocode({ address }, (results, status) => {
+            if (status == google.maps.GeocoderStatus.OK) {
+              this.zone.run(() => {
+                this.lat = results[0].geometry.location.lat();
+                this.lng = results[0].geometry.location.lng();
+              });
+            } else {
+              alert('Error - ' + results + ' & Status - ' + status)
+            }
+          });
+        }
+      } */
+
     /***/
   },
 
@@ -2910,13 +2777,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _play_services_level_api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../../play/services/level-api.service */
-    "./src/app/play/services/level-api.service.ts");
-    /* harmony import */
-
-
-    var _play_services_challenges_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ../../play/services/challenges-api.service */
-    "./src/app/play/services/challenges-api.service.ts"); // this service exists to :
+    "./src/app/play/services/level-api.service.ts"); // this service exists to :
     // keep track and update / calculate ALL USER STATS :
     // *current backpack content*
     // *current total points*
@@ -2930,13 +2791,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     var UserStatsService = /*#__PURE__*/function () {
-      function UserStatsService(levelApiService, challengesApiService) {
-        var _this11 = this;
+      function UserStatsService(levelApiService) {
+        var _this9 = this;
 
         _classCallCheck(this, UserStatsService);
 
-        this.levelApiService = levelApiService;
-        this.challengesApiService = challengesApiService; // keep track of candy list in backpack --
+        this.levelApiService = levelApiService; // keep track of candy list in backpack --
 
         this.backpackContent$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]([]); // keep track of candy total --
 
@@ -2965,11 +2825,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           amountInBackpack: 0
         };
         this.levelApiService.getLevelList().subscribe(function (data) {
-          _this11.levels = data;
-          _this11.currentLevel = _this11.levels[0];
-          _this11.nextLevel = _this11.levels[1];
-          _this11.currentLevel$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](_this11.currentLevel);
-          _this11.currentLevelName$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]('1');
+          _this9.levels = data;
+          _this9.currentLevel = _this9.levels[0];
+          _this9.nextLevel = _this9.levels[1];
+          _this9.currentLevel$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](_this9.currentLevel);
+          _this9.currentLevelName$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]('1');
         });
       } // ageRange ---------------------------------------------------
 
@@ -3033,27 +2893,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.levels = this.retrieveLevelList();
 
           if (totalPoints > 30 && totalPoints < 60) {
-            this.currentLevel = this.levels[1]; //  this.currentLevel.isActive = true;
-            // this.levels[2].isNext = true;
+            this.currentLevel = this.levels[1];
           } else if (totalPoints >= 60 && totalPoints < 90) {
-            this.currentLevel = this.levels[2]; //  this.currentLevel.isActive = true;
-
+            this.currentLevel = this.levels[2];
             this.nextLevel = this.levels[3];
           } else if (totalPoints >= 90 && totalPoints < 120) {
-            this.currentLevel = this.levels[3]; //  this.currentLevel.isActive = true;
-
+            this.currentLevel = this.levels[3];
             this.nextLevel = this.levels[4];
           } else if (totalPoints >= 120 && totalPoints < 180) {
-            this.currentLevel = this.levels[4]; //  this.currentLevel.isActive = true;
-
+            this.currentLevel = this.levels[4];
             this.nextLevel = this.levels[5];
           } else if (totalPoints > 180) {
-            this.currentLevel = this.levels[5]; //  this.currentLevel.isActive = true;
-
+            this.currentLevel = this.levels[5];
             this.nextLevel = this.levels[6];
           } else {
-            this.currentLevel = this.levels[0]; //  this.currentLevel.isActive = true;
-
+            this.currentLevel = this.levels[0];
             this.nextLevel = this.levels[1];
           }
 
@@ -3065,7 +2919,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "update_level",
         value: function update_level(level) {
-          console.log('update_level triggered');
+          // console.log('update_level triggered');
           this.currentLevel$.next(level);
           this.currentLevel$.next({
             idLevel: level.idLevel,
@@ -3085,7 +2939,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "update_levelName",
         value: function update_levelName(name) {
-          console.log('update levelname triggered');
+          // console.log('update levelname triggered');
           this.currentLevelName$.next(name);
         }
       }, {
@@ -3097,22 +2951,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "displayAllCardsWithState",
         value: function displayAllCardsWithState(currentLevel) {
-          var _this12 = this;
+          var _this10 = this;
 
-          // this.levels = this.retrieveLevelList();
           this.levels.map(function (item) {
-            if (item === currentLevel || item === _this12.nextLevel) {
+            if (item === currentLevel || item === _this10.nextLevel) {
               item.isActive = true;
             } else {
               item.isActive = false;
             }
           });
           return this.levels;
-          /*  this.levels.forEach(item => {
-              return (this.allCards.push( { key: item.levelCard, value: item.isActive }));
-            });
-            return this.allCards; */
         } // challenges ---------------------------------------------------------
+        // TRICKS follow up -----
         // keep list of which tricks have been (randomly) TRIGGERED
 
       }, {
@@ -3135,7 +2985,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getCurrentAchievedTricks",
         value: function getCurrentAchievedTricks() {
           return this.achievedTricks$.asObservable();
-        } // keep list of which treats have been (randomly) TRIGGERED
+        } // TREATS follow up -----
+        // keep list of which treats have been (randomly) TRIGGERED
 
       }, {
         key: "updateCurrentTriggeredTreats",
@@ -3151,20 +3002,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateCurrentAchievedTreats",
         value: function updateCurrentAchievedTreats(achievedTreatList) {
-          this.achievedTricks$.next(achievedTreatList);
+          this.achievedTreats$.next(achievedTreatList);
         }
       }, {
         key: "getCurrentAchievedTreats",
         value: function getCurrentAchievedTreats() {
           return this.achievedTreats$.asObservable();
-        }
+        } // --- completed challenges count
+
       }, {
         key: "getCompletedChallengesCount",
         value: function getCompletedChallengesCount() {
-          var tricksCount = this.getCurrentAchievedTricks();
-          var treatsCount = this.getCurrentAchievedTreats();
-          var allcount = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["zip"])(tricksCount, treatsCount);
-          return allcount;
+          return this.completedChallengesCount$.asObservable();
+        }
+      }, {
+        key: "updateCompletedChallengesCount",
+        value: function updateCompletedChallengesCount(completedChallengesCount) {
+          this.completedChallengesCount$.next(completedChallengesCount);
         } // saved addresses ---------------------------------------------------------
 
       }, {
@@ -3189,34 +3043,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     UserStatsService.ctorParameters = function () {
       return [{
         type: _play_services_level_api_service__WEBPACK_IMPORTED_MODULE_3__["LevelApiService"]
-      }, {
-        type: _play_services_challenges_api_service__WEBPACK_IMPORTED_MODULE_4__["ChallengesApiService"]
       }];
     };
 
     UserStatsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_play_services_level_api_service__WEBPACK_IMPORTED_MODULE_3__["LevelApiService"], _play_services_challenges_api_service__WEBPACK_IMPORTED_MODULE_4__["ChallengesApiService"]])], UserStatsService);
-    /* convert timestamp
-    var timestamp = 1301090400,
-    date = new Date(timestamp * 1000),
-      datevalues = [
-        date.getFullYear(),
-        date.getMonth()+1, ( months based 0 )
-        date.getDate(),
-        date.getHours(),
-        date.getMinutes(),
-        date.getSeconds(),
-    ]; */
-
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_play_services_level_api_service__WEBPACK_IMPORTED_MODULE_3__["LevelApiService"]])], UserStatsService);
     /* ------------------------------------------------------------------------------
       Method to count points depending on specific criteria, e.g candy item weight
+        => not implementable atm for api data = not consistent enough
+    //    => For now total points will be count as 6 points per candy item
+    
         public setTotalPoints() {
           this.itemsInBackpack$ = this.getCurrentBackpackContent();
           this.itemsInBackpack$.forEach( item => {
             if ( item.serving_size ) { ... })
-    } => not implementable atm for api data = not consistent enough */
-    // => For now total points will be count as 6 points per candy item
+        }*/
     //  ------------------------------------------------------------------------------
 
     /***/

@@ -1,4 +1,5 @@
-cordova.define("cordova-plugin-telerik-imagepicker.ImagePicker", function(require, exports, module) { /*global cordova,window,console*/
+cordova.define("cordova-plugin-telerik-imagepicker.ImagePicker", function(require, exports, module) {
+/*global cordova,window,console*/
 /**
  * An Image Picker plugin for Cordova
  *

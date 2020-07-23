@@ -192,28 +192,52 @@ export class GeolocService {
 
 
   // ------ GEOCODER -------
-  /* reverseGeocode(lat: number, lng: number) {
+  reverseGeocode(lat: number, lng: number) {
 
-    if (this.platform.is('cordova')) {
+    /* if (this.platform.is('cordova')) {
       const options: NativeGeocoderOptions = {
           useLocale: true,
           maxResults: 5
-        };
+        }; */
 
       this.nativeGeocoder.reverseGeocode(lat, lng, this.geoencoderOptions)
       .then((result: NativeGeocoderResult[]) => {
         console.log(JSON.stringify(result[0]));
-        this.address = this.generateAddress(result[0]);
+        // this.address = this.generateAddress(result[0]);
         console.log('ADDRESS==', this.address);
       })
       .catch((error: any) => {
         alert('Error getting location' + JSON.stringify(error));
       });
-    } else {
+    } /* else {
       this.getGeoLocation(lat, lng, 'reverseGeocode');
+      } */
+
+
+  // Return Comma separated address
+  public generateAddress(addressObj: any) {
+    const obj = [];
+    let address = '';
+    for (const key in addressObj) {
+      if (addressObj) {
+        obj.push(addressObj[key]);
       }
     }
+    obj.reverse();
+    for (const val in obj) {
+      if (obj[val].length) {
+        address += obj[val] + ', ';
+      }
+    }
+    return address.slice(0, -2);
+  }
 
+
+
+
+    }
+
+    /*
     async getGeoLocation(lat: number, lng: number, type?) {
       if (navigator.geolocation) {
         const geocoder = await new google.maps.Geocoder();
@@ -235,27 +259,10 @@ export class GeolocService {
         });
       }
     }
+*/
 
-
-  // Return Comma separated address
-  public generateAddress(addressObj: any) {
-    const obj = [];
-    let address = '';
-    for (const key in addressObj) {
-      if (addressObj) {
-        obj.push(addressObj[key]);
-      }
-    }
-    obj.reverse();
-    for (const val in obj) {
-      if (obj[val].length) {
-        address += obj[val] + ', ';
-      }
-    }
-    return address.slice(0, -2);
-  }
   // ---------
-
+/*
   forwardGeocode(address) {
     if (this.platform.is('cordova')) {
       const options: NativeGeocoderOptions = {
@@ -285,5 +292,5 @@ export class GeolocService {
     }
   } */
 
-}
+
 

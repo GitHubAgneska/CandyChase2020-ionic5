@@ -16,5 +16,23 @@
         "treatDescription": "Find or pick a ROUNDED candy in your collection and eat it ! ",
         "hasBeenCompleted": false,
         "bonusPoints": 3
+    },
+    {
+        "treatId": 4,
+        "treatDescription": "A",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    },
+    {
+        "treatId": 5,
+        "treatDescription": "B",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
+    },
+    {
+        "treatId": 6,
+        "treatDescription": "C",
+        "hasBeenCompleted": false,
+        "bonusPoints": 3
     }
 ]

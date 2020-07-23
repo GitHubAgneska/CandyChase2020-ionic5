@@ -1,3 +1,4 @@
+cordova.define("cordova-plugin-geolocation.Position", function(require, exports, module) {
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,13 +20,17 @@
  *
 */
 
-module.exports = {
-    id: 'ios',
-    bootstrap: function () {
-        // Attach the console polyfill that is iOS-only to window.console
-        // see the file under plugin/ios/console.js
-        require('cordova/modulemapper').clobbers('cordova/plugin/ios/console', 'window.console');
+var Coordinates = require('./Coordinates');
 
-        require('cordova/channel').onNativeReady.fire();
+var Position = function (coords, timestamp) {
+    if (coords) {
+        this.coords = new Coordinates(coords.latitude, coords.longitude, coords.altitude, coords.accuracy, coords.heading, coords.velocity, coords.altitudeAccuracy);
+    } else {
+        this.coords = new Coordinates();
     }
+    this.timestamp = (timestamp !== undefined) ? timestamp : new Date().getTime();
 };
+
+module.exports = Position;
+
+});

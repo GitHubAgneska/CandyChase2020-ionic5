@@ -35,31 +35,56 @@ export class AddressesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userStatsService.getCurrentAddressesList().subscribe( (data: AddressI[]) => {
-      console.log('RAW==', data);
+    this.userStatsService.getCurrentAddressesList().subscribe((data: AddressI[]) => {
+      // console.log('RAW==', data);
       this.addressList = data;
-      console.log('ADDRESS lIST==', this.addressList);
-      if ( this.addressList.length === 0 ) {
+      // console.log('ADDRESS lIST==', this.addressList);
+      if (this.addressList.length === 0) {
         this.listIsEmpty = true;
       }
     });
   }
 
   removeAddress(address: AddressI) {
-    // this.addressList.
-    this.presentConfirmDelete();
+    this.address = address;
+
+    this.presentConfirmDelete().then(res => {
+      if (res === 'del') {
+        this.addressList = this.addressList.filter(items => items.addressId !== this.address.addressId);
+      }
+    });
+    // console.log('address list after delete=', this.addressList);
   }
 
-  async presentConfirmDelete() {
-    const alert = await this.alertController.create({
-      cssClass: 'dialog',
-      header: 'Are you sure?',
-      subHeader: 'Do you really want to delete this address?',
-      // message: 'Do you really want to delete this address?',
-      buttons: ['No!', 'Delete', 'Cancel']
+
+  async presentConfirmDelete(): Promise<any> {
+    return new Promise(async (resolve) => {
+
+      const alert = await this.alertController.create({
+        cssClass: 'dialog',
+        header: 'Are you sure?',
+        subHeader: 'Do you really want to delete this address?',
+        buttons: [
+          {
+            text: 'Delete',
+            role: 'delete',
+            handler: (del) => {
+              resolve('del');
+            }
+          },
+          {
+            text: 'No!',
+            role: 'don(t delete',
+            handler: (no) => {
+              resolve('del');
+            }
+          },
+        ]
+      });
+      alert.present();
     });
-    await alert.present();
   }
+
 
 }
 

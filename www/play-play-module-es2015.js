@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"customColor\">\n    <ion-title text-center class=\"toolbarTitle\">My addresses</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"addressesPage-container flexColCentered\">\n\n  <div class=\"map-sample\">\n    <img src=\"assets/graphicMat/map_sample.png\" alt=\"map-sample\" />\n  </div>\n\n  <div *ngIf=\"listIsEmpty\" class=\"bubble\">\n    <img [src]=\"noAddressBubble\" alt=\"noAddressesYet\" />\n  </div>\n\n  <div class=\"address-list-container\">\n    <ul *ngFor=\"let address of addressList\" class=\"address-item\">\n      <li class=\"address-item\">\n        <p>Today at : {{ address.timestamp}}</p>\n        {{  address.lat }} : {{ address.long }}\n      </li>\n      <div class=\"btns-container\" (click)=\"removeAddress(address)\">\n        <!-- <img [src]=\"plusBtn\" alt=\"plus-btn\" (click)=\"\" /> -->\n        <img [src]=\"minusBtn\" alt=\"minus-btn\" />\n      </div>\n    </ul>\n  </div>\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"customColor\">\n    <ion-title text-center class=\"toolbarTitle\">My addresses</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"addressesPage-container flexColCentered\">\n\n  <div class=\"map-sample\">\n    <img src=\"assets/graphicMat/map_sample.png\" alt=\"map-sample\" />\n  </div>\n\n  <div *ngIf=\"listIsEmpty\" class=\"bubble\">\n    <img [src]=\"noAddressBubble\" alt=\"noAddressesYet\" />\n  </div>\n\n  <div class=\"address-list-container\">\n    <ul *ngFor=\"let address of addressList\" class=\"address-item\">\n      <li class=\"address-item\">\n        <p>Today at : {{ address.timestamp | date: 'h:mm a z'}}</p>\n        {{  address.lat }} : {{ address.long }}\n      </li>\n      <div class=\"btns-container\" (click)=\"removeAddress(address)\">\n        <!-- <img [src]=\"plusBtn\" alt=\"plus-btn\" (click)=\"\" /> -->\n        <img [src]=\"minusBtn\" alt=\"minus-btn\" />\n      </div>\n    </ul>\n  </div>\n\n</ion-content>");
 
 /***/ }),
 
@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"customColor\">\n    <ion-title text-center class=\"toolbarTitle\">Challenges</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"special-bg\">\n\n  <div *ngIf=\"achievedTricksdisplay || achievedTreatsdisplay;else listIsEmpty\" class=\"main-container\">\n    <h2>You have achieved these so far ! </h2>\n    \n    <div *ngFor=\"let treat of achievedTreatsList\" class=\"flexRowCentered\">\n      <div class=\"flexRowCentered\">\n        <img [src]=iconTrue /><h1>treat:{{ treat.challengeDescription }}</h1>\n      </div>  \n    </div>\n\n    <div *ngFor=\"let trick of achievedTricksList\" class=\"flexRowCentered\">\n      <div class=\"flexRowCentered\">\n        <img [src]=iconTrue /><h1>trick:{{ trick.challengeDescription }}</h1>\n      </div>\n    </div>\n  </div>\n\n  <ng-template #listIsEmpty>\n    <img [src]=\"noChallengesYetImg\" alt=\"noChallengesYet\" class=\"bubble\" />\n  </ng-template >\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"customColor\">\n    <ion-title text-center class=\"toolbarTitle\">Challenges</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"special-bg\">\n\n  <div *ngIf=\"achievedTricksdisplay || achievedTreatsdisplay;else listIsEmpty\" class=\"main-container\">\n    <h2>You have achieved these so far ! </h2>\n    \n    <div *ngFor=\"let treat of achievedTreatsList\" class=\" treat flexRowCentered\">\n      <img [src]=iconTrue />\n      <h1><span>treat:<br></span>{{ treat.challengeDescription }}</h1>\n      <h2>This got you<br><span>{{treat.bonusPoints}}</span> bonus points</h2>\n    </div>\n\n    <div *ngFor=\"let trick of achievedTricksList\" class=\"trick flexRowCentered\">\n      <img [src]=iconTrue />\n      <h1><span>trick:<br></span>{{ trick.challengeDescription }}</h1>\n      <h2>This got you<br><span>{{trick.bonusPoints}}</span> bonus points</h2>\n    </div>\n  </div>\n\n  <ng-template #listIsEmpty>\n    <img [src]=\"noChallengesYetImg\" alt=\"noChallengesYet\" class=\"bubble\" />\n  </ng-template >\n</ion-content>");
 
 /***/ }),
 
@@ -113,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"customColor\">\n    <ion-title text-center class=\"toolbarTitle\">My stats</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div class=\"stats-container\">\n    <!--   <div *ngFor=\"let stat of userStats\" class=\"stats-container\" style=\"background-image: '{{ currentLevel.levelImg }}'\">\n -->\n    <img src=\"{{ currentLevel.levelImg }}\" />\n\n    <div class=\"item-level\">\n      <h1>Current Level</h1>\n      <h2>{{ currentLevel.levelName }}</h2>\n    </div>\n\n    <div class=\"item\">\n      <h1>Total Points</h1>\n      <h2>{{ totalPoints }}</h2>\n    </div>\n\n    <div class=\"item\">\n      <h1>Total Candy</h1>\n      <h2>{{ candyCount }}</h2>\n    </div>\n\n    <div class=\"item\" (click)=\"goToAddresses()\">\n      <h1>Saved Addresses</h1>\n      <h2>{{ savedAddressesCount }}</h2>\n    </div>\n\n    <div class=\"item\" (click)=\"goToChallenges()\">\n      <h1>Completed challenges</h1>\n      <h2>{{ completedChallengesCount }}</h2>\n    </div>\n  </div>\n\n\n  <div class=\"bottom-cards-container\">\n\n    <div class=\"cardsList flexRowCentered\">\n      <div *ngFor=\"let level of levels\">\n        <div class=\"card-container flexColCentered\">\n          <div *ngIf=\"level.isNext\" class=\"bubbleNext\">\n            <h2>Next mission:<br>Get the <span>{{ level.levelCardName }} !</span></h2>\n          </div>\n          <div class=\"card-img-container\">\n            <img src=\"{{ level.levelCard }}\" [class] =\"level.isActive ? 'opacity' : 'noOpacity'\"/>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"customColor\">\n    <ion-title text-center class=\"toolbarTitle\">My stats</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div class=\"stats-container\">\n    <!--   <div *ngFor=\"let stat of userStats\" class=\"stats-container\" style=\"background-image: '{{ currentLevel.levelImg }}'\">\n -->\n    <img src=\"{{ currentLevel.levelImg }}\" />\n\n    <div class=\"item-level\">\n      <h1>Current Level</h1>\n      <h2>{{ currentLevel.levelName }}</h2>\n    </div>\n\n    <div class=\"item\">\n      <h1>Total Points</h1>\n      <h2>{{ totalPoints }}</h2>\n    </div>\n\n    <div class=\"item\">\n      <h1>Total Candy</h1>\n      <h2>{{ candyCount }}</h2>\n    </div>\n\n    <div class=\"item\" (click)=\"goToAddresses()\">\n      <h1>Saved Addresses</h1>\n      <h2>{{ savedAddressesCount }}</h2>\n    </div>\n\n    <div class=\"item\" (click)=\"goToChallenges()\">\n      <h1>Completed challenges</h1>\n      <h2>{{ completedChallengesCount }}</h2>\n    </div>\n  </div>\n\n\n  <div class=\"bottom-cards-container\">\n\n    <div class=\"cardsList flexRowCentered\">\n      <div *ngFor=\"let level of levels\">\n        <div class=\"card-container flexColCentered\">\n          <div *ngIf=\"level.idLevel === currentLevel.idLevel+1\" class=\"bubbleNext\">\n            <h2>Next mission:<br>Get the <span>{{ level.levelCardName }} !</span></h2>\n          </div>\n          <div class=\"card-img-container\">\n            <img src=\"{{ level.levelCard }}\" [class] =\"level.idLevel===currentLevel.idLevel ? 'opacity' : 'noOpacity'\"/>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n</ion-content>");
 
 /***/ }),
 
@@ -162,9 +162,9 @@ let AddressesComponent = class AddressesComponent {
     }
     ngOnInit() {
         this.userStatsService.getCurrentAddressesList().subscribe((data) => {
-            console.log('RAW==', data);
+            // console.log('RAW==', data);
             this.addressList = data;
-            console.log('ADDRESS lIST==', this.addressList);
+            // console.log('ADDRESS lIST==', this.addressList);
             if (this.addressList.length === 0) {
                 this.listIsEmpty = true;
             }
@@ -665,7 +665,7 @@ CandyListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (":root {\n  /*--ion-color-primary:  #ffa500;\n  --ion-color-secondary:  #B4CDFF;\n  --ion-color-tertiary: #ffc0cb; */ }\n\n@font-face {\n  font-family: flyingleather;\n  src: url('flyingleather.ttf') format(\"truetype\"); }\n\n@font-face {\n  font-family: TitanOne;\n  src: url('TitanOne-Regular.ttf') format(\"truetype\"); }\n\n/*  $font-family-base: \"flying_leatherneck\";\n    $font-family-md-base: $font-family-base;\n    $font-family-ios-base: $font-family-base;\n    $font-family-md-base: $font-family-base;\n    $font-family-wp-base: $font-family-base; */\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  margin: 0; }\n\n.special-bg {\n  background-image: url('spiders_bg-half.png');\n  background-size: cover;\n  background-position: center; }\n\n.special-bg .main-container {\n    width: 90%;\n    height: 80%;\n    margin: auto;\n    padding-top: 10%; }\n\n.special-bg .main-container h2 {\n      color: #dfddd5; }\n\n.special-bg .main-container h1 {\n      margin: 2%;\n      padding: 3%;\n      border: 2px solid #b1c9fb;\n      border-radius: 15px;\n      font-family: TitanOne;\n      color: #dfddd5;\n      font-size: 1rem; }\n\n.special-bg .main-container h1 span {\n        font-size: 3.5rem; }\n\n.special-bg .bubble {\n    width: 40%;\n    margin: 10% auto;\n    align-self: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9oaWxkZWdhcmRhZ25lc2dlbmF5L0RvY3VtZW50cy9BbmRCRVlPTkQvQ0FORFlfQ0hBU0VfMjAyMF9pb25pYy9jYW5keUNoYXNlMjAyMElvbmljNS9zcmMvdGhlbWUvdmFyaWFibGVzLnNjc3MiLCJzcmMvYXBwL3BsYXkvY2hhbGxlbmdlcy1saXN0L2NoYWxsZW5nZXMtbGlzdC5jb21wb25lbnQuc2NzcyIsIi9Vc2Vycy9oaWxkZWdhcmRhZ25lc2dlbmF5L0RvY3VtZW50cy9BbmRCRVlPTkQvQ0FORFlfQ0hBU0VfMjAyMF9pb25pYy9jYW5keUNoYXNlMjAyMElvbmljNS9zcmMvYXBwL3BsYXkvY2hhbGxlbmdlcy1saXN0L2NoYWxsZW5nZXMtbGlzdC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUVBOztrQ0NEa0MsRURHQzs7QUFtRGpDO0VBQ0ksMEJBQTBCO0VBQzFCLGdEQUErRCxFQUFBOztBQUduRTtFQUNJLHFCQUFxQjtFQUNyQixtREFBa0UsRUFBQTs7QUFJeEU7Ozs7OENDbkQ4Qzs7QUNkOUM7Ozs7OztFQU1JLFNBQVMsRUFBQTs7QUFHYjtFQUNJLDRDQUFrRTtFQUNsRSxzQkFBc0I7RUFDdEIsMkJBQTJCLEVBQUE7O0FBSC9CO0lBT1EsVUFBVTtJQUNWLFdBQVc7SUFDWCxZQUFZO0lBQ1osZ0JBQWdCLEVBQUE7O0FBVnhCO01BWVksY0Zhb0IsRUFBQTs7QUV6QmhDO01BZVksVUFBUztNQUNULFdBQVc7TUFDWCx5QkZUUztNRVVULG1CQUFtQjtNQUNuQixxQkZrQ1M7TUVqQ1QsY0ZLb0I7TUVKcEIsZUFBZSxFQUFBOztBQXJCM0I7UUFzQm1CLGlCQUFpQixFQUFBOztBQXRCcEM7SUEyQlEsVUFBVTtJQUNWLGdCQUFnQjtJQUNoQixrQkFBa0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3BsYXkvY2hhbGxlbmdlcy1saXN0L2NoYWxsZW5nZXMtbGlzdC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIElvbmljIFZhcmlhYmxlcyBhbmQgVGhlbWluZ1xuXG46cm9vdCB7XG5cbi8qLS1pb24tY29sb3ItcHJpbWFyeTogICNmZmE1MDA7XG4gIC0taW9uLWNvbG9yLXNlY29uZGFyeTogICNCNENERkY7XG4gIC0taW9uLWNvbG9yLXRlcnRpYXJ5OiAjZmZjMGNiOyAqL1xuXG4gICAgJGNvbG9yczogKFxuICAgICAgZGFuZ2VyOiAgICAgI2Y1M2QzZCxcbiAgICAgIGxpZ2h0OiAgICAgICNmNGY0ZjQsXG4gICAgICBjdXN0b21Db2xvcjogdHJhbnNwYXJlbnRcbiAgICApO1xuXG4gIH1cblxuICAkbWFpbi1vcmFuZ2U6ICNmZmE1MDA7XG4gICRzdWItb3JhbmdlIDojZmY5ZTI5OztcbiAgJGxpZ2h0LW9yYW5nZTogI2ZmZWVkZjtcbiAgXG4gICRtYWluLWJsdWU6ICNiMWM5ZmI7XG5cbiAgJG1haW4tcGluazogI2ZmYzBjYjtcbiAgJHN1Yi1waW5rOiAgI2ZiYjFmMTtcblxuICAkbWFpbi1yZWQ6ICNmZjAwMDA7XG4gICRzdWItcmVkOiAjZmYwMDAwOTY7XG5cbiAgJG1haW4tcHVycGxlOiAjM2UxNzNiO1xuICAkc3ViLXB1cnBsZTogIzYxNzhGNTtcbiAgJGxpZ2h0cHVycGxlLWJnOiByZ2JhKDE5OSwgMywgMTk5LCAwLjM0Mik7XG4gIFxuICBcbiAgJGxldmVsLXVwLWJnOiAjZmZhNjAwYjM7XG4gIFxuICAkbWFpbi1kYXJrOiAjMjIyMjIyO1xuICAkbWFpbi1saWdodDogI2Y0ZjRmNDtcbiAgJHN1Yi1saWdodDogcmdiKDIyMywgMjIxLCAyMTMpO1xuXG5cbiAgLy8gRk9OVFMgIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cblxuICAkaDEtZm9udHNpemU6IDJyZW07XG4gICRoMi1mb250c2l6ZTogMS41cmVtO1xuICAkaDMtZm9udHNpemU6IDEuMnJlbTtcbiAgXG4gICRiYXNpYy1mb250U2l6ZTogMXJlbTtcbiAgJHh4cy1mb250U2l6ZTogMS41cmVtO1xuICAkeHMtZm9udFNpemU6IDEuOHJlbTtcbiAgJHMtZm9udFNpemU6IDJyZW07XG4gICRtLWZvbnRTaXplOiAyLjdyZW07XG4gICRsLWZvbnRTaXplOiAzcmVtO1xuICAkeGwtZm9udFNpemU6IDVyZW07XG4gICR4eGwtZm9udFNpemU6IDdyZW07XG5cbiAgJGZvbnQtcGF0aDogXCIuLi9hc3NldHMvZm9udHNcIjtcblxuICBAZm9udC1mYWNlIHtcbiAgICAgIGZvbnQtZmFtaWx5OiBmbHlpbmdsZWF0aGVyO1xuICAgICAgc3JjOiB1cmwoc3JjL2Fzc2V0cy9mb250cy9mbHlpbmdsZWF0aGVyLnR0ZikgZm9ybWF0KCd0cnVldHlwZScpO31cbiAgJGZseWluZ2xlYXRoZXI6IGZseWluZ2xlYXRoZXI7XG5cbiAgQGZvbnQtZmFjZSB7XG4gICAgICBmb250LWZhbWlseTogVGl0YW5PbmU7XG4gICAgICBzcmM6IHVybChzcmMvYXNzZXRzL2ZvbnRzL1RpdGFuT25lLVJlZ3VsYXIudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7fVxuICAkdGl0YW5PbmU6IFRpdGFuT25lO1xuXG5cbi8qICAkZm9udC1mYW1pbHktYmFzZTogXCJmbHlpbmdfbGVhdGhlcm5lY2tcIjtcbiAgICAkZm9udC1mYW1pbHktbWQtYmFzZTogJGZvbnQtZmFtaWx5LWJhc2U7XG4gICAgJGZvbnQtZmFtaWx5LWlvcy1iYXNlOiAkZm9udC1mYW1pbHktYmFzZTtcbiAgICAkZm9udC1mYW1pbHktbWQtYmFzZTogJGZvbnQtZmFtaWx5LWJhc2U7XG4gICAgJGZvbnQtZmFtaWx5LXdwLWJhc2U6ICRmb250LWZhbWlseS1iYXNlOyAqL1xuIiwiOnJvb3Qge1xuICAvKi0taW9uLWNvbG9yLXByaW1hcnk6ICAjZmZhNTAwO1xuICAtLWlvbi1jb2xvci1zZWNvbmRhcnk6ICAjQjRDREZGO1xuICAtLWlvbi1jb2xvci10ZXJ0aWFyeTogI2ZmYzBjYjsgKi8gfVxuXG5AZm9udC1mYWNlIHtcbiAgZm9udC1mYW1pbHk6IGZseWluZ2xlYXRoZXI7XG4gIHNyYzogdXJsKHNyYy9hc3NldHMvZm9udHMvZmx5aW5nbGVhdGhlci50dGYpIGZvcm1hdChcInRydWV0eXBlXCIpOyB9XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogVGl0YW5PbmU7XG4gIHNyYzogdXJsKHNyYy9hc3NldHMvZm9udHMvVGl0YW5PbmUtUmVndWxhci50dGYpIGZvcm1hdChcInRydWV0eXBlXCIpOyB9XG5cbi8qICAkZm9udC1mYW1pbHktYmFzZTogXCJmbHlpbmdfbGVhdGhlcm5lY2tcIjtcbiAgICAkZm9udC1mYW1pbHktbWQtYmFzZTogJGZvbnQtZmFtaWx5LWJhc2U7XG4gICAgJGZvbnQtZmFtaWx5LWlvcy1iYXNlOiAkZm9udC1mYW1pbHktYmFzZTtcbiAgICAkZm9udC1mYW1pbHktbWQtYmFzZTogJGZvbnQtZmFtaWx5LWJhc2U7XG4gICAgJGZvbnQtZmFtaWx5LXdwLWJhc2U6ICRmb250LWZhbWlseS1iYXNlOyAqL1xuaDEsXG5oMixcbmgzLFxuaDQsXG5oNSxcbmg2IHtcbiAgbWFyZ2luOiAwOyB9XG5cbi5zcGVjaWFsLWJnIHtcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKFwic3JjL2Fzc2V0cy9ncmFwaGljTWF0L3NwaWRlcnNfYmctaGFsZi5wbmdcIik7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjsgfVxuICAuc3BlY2lhbC1iZyAubWFpbi1jb250YWluZXIge1xuICAgIHdpZHRoOiA5MCU7XG4gICAgaGVpZ2h0OiA4MCU7XG4gICAgbWFyZ2luOiBhdXRvO1xuICAgIHBhZGRpbmctdG9wOiAxMCU7IH1cbiAgICAuc3BlY2lhbC1iZyAubWFpbi1jb250YWluZXIgaDIge1xuICAgICAgY29sb3I6ICNkZmRkZDU7IH1cbiAgICAuc3BlY2lhbC1iZyAubWFpbi1jb250YWluZXIgaDEge1xuICAgICAgbWFyZ2luOiAyJTtcbiAgICAgIHBhZGRpbmc6IDMlO1xuICAgICAgYm9yZGVyOiAycHggc29saWQgI2IxYzlmYjtcbiAgICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgICBmb250LWZhbWlseTogVGl0YW5PbmU7XG4gICAgICBjb2xvcjogI2RmZGRkNTtcbiAgICAgIGZvbnQtc2l6ZTogMXJlbTsgfVxuICAgICAgLnNwZWNpYWwtYmcgLm1haW4tY29udGFpbmVyIGgxIHNwYW4ge1xuICAgICAgICBmb250LXNpemU6IDMuNXJlbTsgfVxuICAuc3BlY2lhbC1iZyAuYnViYmxlIHtcbiAgICB3aWR0aDogNDAlO1xuICAgIG1hcmdpbjogMTAlIGF1dG87XG4gICAgYWxpZ24tc2VsZjogY2VudGVyOyB9XG4iLCJAaW1wb3J0IFwic3JjL3RoZW1lL3ZhcmlhYmxlcy5zY3NzXCI7XG5cbi8vIG5lY2Vzc2FyeSBmb3IgbGlzdCBlbGVtZW50cyB0byBjb21lIG91dCByaWdodFxuaDEsXG5oMixcbmgzLFxuaDQsXG5oNSxcbmg2IHtcbiAgICBtYXJnaW46IDA7XG59XG5cbi5zcGVjaWFsLWJnIHtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCJzcmMvYXNzZXRzL2dyYXBoaWNNYXQvc3BpZGVyc19iZy1oYWxmLnBuZ1wiKTtcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcblxuICAgIC5tYWluLWNvbnRhaW5lciB7XG5cbiAgICAgICAgd2lkdGg6IDkwJTtcbiAgICAgICAgaGVpZ2h0OiA4MCU7XG4gICAgICAgIG1hcmdpbjogYXV0bztcbiAgICAgICAgcGFkZGluZy10b3A6IDEwJTtcbiAgICAgICAgaDIge1xuICAgICAgICAgICAgY29sb3I6ICRzdWItbGlnaHQ7XG4gICAgICAgIH1cbiAgICAgICAgaDEge1xuICAgICAgICAgICAgbWFyZ2luOjIlO1xuICAgICAgICAgICAgcGFkZGluZzogMyU7XG4gICAgICAgICAgICBib3JkZXI6IDJweCBzb2xpZCAkbWFpbi1ibHVlO1xuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMTVweDtcbiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAkdGl0YW5PbmU7XG4gICAgICAgICAgICBjb2xvcjogJHN1Yi1saWdodDtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMXJlbTtcbiAgICAgICAgICAgIHNwYW4geyBmb250LXNpemU6IDMuNXJlbTsgfVxuICAgICAgICB9XG4gICAgfVxuICAgIC5idWJibGUge1xuXG4gICAgICAgIHdpZHRoOiA0MCU7XG4gICAgICAgIG1hcmdpbjogMTAlIGF1dG87XG4gICAgICAgIGFsaWduLXNlbGY6IGNlbnRlcjtcbiAgICB9XG5cbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (":root {\n  /*--ion-color-primary:  #ffa500;\n  --ion-color-secondary:  #B4CDFF;\n  --ion-color-tertiary: #ffc0cb; */ }\n\n@font-face {\n  font-family: flyingleather;\n  src: url('flyingleather.ttf') format(\"truetype\"); }\n\n@font-face {\n  font-family: TitanOne;\n  src: url('TitanOne-Regular.ttf') format(\"truetype\"); }\n\n/*  $font-family-base: \"flying_leatherneck\";\n    $font-family-md-base: $font-family-base;\n    $font-family-ios-base: $font-family-base;\n    $font-family-md-base: $font-family-base;\n    $font-family-wp-base: $font-family-base; */\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  margin: 0; }\n\n.special-bg {\n  background-image: url('spiders_bg-half.png');\n  background-size: cover;\n  background-position: center; }\n\n.special-bg .main-container {\n    width: 90%;\n    height: 80%;\n    margin: auto;\n    padding-top: 10%; }\n\n.special-bg .main-container h2 {\n      color: #dfddd5; }\n\n.special-bg .main-container .treat, .special-bg .main-container .trick {\n      margin: 3%;\n      border-radius: 15px;\n      justify-content: space-between;\n      background-color: rgba(199, 3, 199, 0.342); }\n\n.special-bg .main-container .treat img, .special-bg .main-container .trick img {\n        padding: 2%;\n        width: 10%; }\n\n.special-bg .main-container .treat h1, .special-bg .main-container .trick h1 {\n        width: 50%;\n        margin: 2%;\n        padding: 3%;\n        color: #dfddd5;\n        font-size: 1.2rem; }\n\n.special-bg .main-container .treat h2, .special-bg .main-container .trick h2 {\n        width: 30%;\n        padding: 3%;\n        color: #ffa500;\n        font-family: TitanOne;\n        font-size: 1rem; }\n\n.special-bg .main-container .treat h2 span, .special-bg .main-container .trick h2 span {\n          color: #ff0000;\n          text-transform: uppercase;\n          font-size: 1.2rem; }\n\n.special-bg .main-container .treat {\n      border: 2px solid #b1c9fb; }\n\n.special-bg .main-container .treat h1 span {\n        color: #b1c9fb;\n        text-transform: uppercase; }\n\n.special-bg .main-container .trick {\n      border: 2px solid pink; }\n\n.special-bg .main-container .trick h1 span {\n        color: #ffc0cb;\n        text-transform: uppercase; }\n\n.special-bg .bubble {\n    width: 40%;\n    margin: 10% auto;\n    align-self: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9oaWxkZWdhcmRhZ25lc2dlbmF5L0RvY3VtZW50cy9BbmRCRVlPTkQvQ0FORFlfQ0hBU0VfMjAyMF9pb25pYy9jYW5keUNoYXNlMjAyMElvbmljNS9zcmMvdGhlbWUvdmFyaWFibGVzLnNjc3MiLCJzcmMvYXBwL3BsYXkvY2hhbGxlbmdlcy1saXN0L2NoYWxsZW5nZXMtbGlzdC5jb21wb25lbnQuc2NzcyIsIi9Vc2Vycy9oaWxkZWdhcmRhZ25lc2dlbmF5L0RvY3VtZW50cy9BbmRCRVlPTkQvQ0FORFlfQ0hBU0VfMjAyMF9pb25pYy9jYW5keUNoYXNlMjAyMElvbmljNS9zcmMvYXBwL3BsYXkvY2hhbGxlbmdlcy1saXN0L2NoYWxsZW5nZXMtbGlzdC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUVBOztrQ0NEa0MsRURHQzs7QUFtRGpDO0VBQ0ksMEJBQTBCO0VBQzFCLGdEQUErRCxFQUFBOztBQUduRTtFQUNJLHFCQUFxQjtFQUNyQixtREFBa0UsRUFBQTs7QUFJeEU7Ozs7OENDbkQ4Qzs7QUNkOUM7Ozs7OztFQU1JLFNBQVMsRUFBQTs7QUFHYjtFQUNJLDRDQUFrRTtFQUNsRSxzQkFBc0I7RUFDdEIsMkJBQTJCLEVBQUE7O0FBSC9CO0lBTVEsVUFBVTtJQUNWLFdBQVc7SUFDWCxZQUFZO0lBQ1osZ0JBQWdCLEVBQUE7O0FBVHhCO01BV1ksY0Zjb0IsRUFBQTs7QUV6QmhDO01BZVksVUFBVTtNQUNWLG1CQUFtQjtNQUNuQiw4QkFBOEI7TUFDOUIsMENBQTBDLEVBQUE7O0FBbEJ0RDtRQW9CZ0IsV0FBVztRQUNYLFVBQVcsRUFBQTs7QUFyQjNCO1FBdUJnQixVQUFVO1FBQ1YsVUFBUztRQUNULFdBQVc7UUFDWCxjRkRnQjtRRUVoQixpQkFBaUIsRUFBQTs7QUEzQmpDO1FBOEJnQixVQUFXO1FBQ1gsV0FBVztRQUNYLGNGNUJPO1FFNkJQLHFCRm9CSztRRW5CTCxlQUFlLEVBQUE7O0FBbEMvQjtVQW1DdUIsY0Z0Qkg7VUVzQnFCLHlCQUF5QjtVQUFDLGlCQUFpQixFQUFBOztBQW5DcEY7TUF1Q1kseUJGL0JTLEVBQUE7O0FFUnJCO1FBeUN1QixjRmpDRjtRRWlDcUIseUJBQXlCLEVBQUE7O0FBekNuRTtNQTZDWSxzQkFBc0IsRUFBQTs7QUE3Q2xDO1FBK0N1QixjRnJDRjtRRXFDcUIseUJBQXlCLEVBQUE7O0FBL0NuRTtJQW9EUSxVQUFVO0lBQ1YsZ0JBQWdCO0lBQ2hCLGtCQUFrQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvcGxheS9jaGFsbGVuZ2VzLWxpc3QvY2hhbGxlbmdlcy1saXN0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gSW9uaWMgVmFyaWFibGVzIGFuZCBUaGVtaW5nXG5cbjpyb290IHtcblxuLyotLWlvbi1jb2xvci1wcmltYXJ5OiAgI2ZmYTUwMDtcbiAgLS1pb24tY29sb3Itc2Vjb25kYXJ5OiAgI0I0Q0RGRjtcbiAgLS1pb24tY29sb3ItdGVydGlhcnk6ICNmZmMwY2I7ICovXG5cbiAgICAkY29sb3JzOiAoXG4gICAgICBkYW5nZXI6ICAgICAjZjUzZDNkLFxuICAgICAgbGlnaHQ6ICAgICAgI2Y0ZjRmNCxcbiAgICAgIGN1c3RvbUNvbG9yOiB0cmFuc3BhcmVudFxuICAgICk7XG5cbiAgfVxuXG4gICRtYWluLW9yYW5nZTogI2ZmYTUwMDtcbiAgJHN1Yi1vcmFuZ2UgOiNmZjllMjk7O1xuICAkbGlnaHQtb3JhbmdlOiAjZmZlZWRmO1xuICBcbiAgJG1haW4tYmx1ZTogI2IxYzlmYjtcblxuICAkbWFpbi1waW5rOiAjZmZjMGNiO1xuICAkc3ViLXBpbms6ICAjZmJiMWYxO1xuXG4gICRtYWluLXJlZDogI2ZmMDAwMDtcbiAgJHN1Yi1yZWQ6ICNmZjAwMDA5NjtcblxuICAkbWFpbi1wdXJwbGU6ICMzZTE3M2I7XG4gICRzdWItcHVycGxlOiAjNjE3OEY1O1xuICAkbGlnaHRwdXJwbGUtYmc6IHJnYmEoMTk5LCAzLCAxOTksIDAuMzQyKTtcbiAgXG4gIFxuICAkbGV2ZWwtdXAtYmc6ICNmZmE2MDBiMztcbiAgXG4gICRtYWluLWRhcms6ICMyMjIyMjI7XG4gICRtYWluLWxpZ2h0OiAjZjRmNGY0O1xuICAkc3ViLWxpZ2h0OiByZ2IoMjIzLCAyMjEsIDIxMyk7XG5cblxuICAvLyBGT05UUyAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG4gICRoMS1mb250c2l6ZTogMnJlbTtcbiAgJGgyLWZvbnRzaXplOiAxLjVyZW07XG4gICRoMy1mb250c2l6ZTogMS4ycmVtO1xuICBcbiAgJGJhc2ljLWZvbnRTaXplOiAxcmVtO1xuICAkeHhzLWZvbnRTaXplOiAxLjVyZW07XG4gICR4cy1mb250U2l6ZTogMS44cmVtO1xuICAkcy1mb250U2l6ZTogMnJlbTtcbiAgJG0tZm9udFNpemU6IDIuN3JlbTtcbiAgJGwtZm9udFNpemU6IDNyZW07XG4gICR4bC1mb250U2l6ZTogNXJlbTtcbiAgJHh4bC1mb250U2l6ZTogN3JlbTtcblxuICAkZm9udC1wYXRoOiBcIi4uL2Fzc2V0cy9mb250c1wiO1xuXG4gIEBmb250LWZhY2Uge1xuICAgICAgZm9udC1mYW1pbHk6IGZseWluZ2xlYXRoZXI7XG4gICAgICBzcmM6IHVybChzcmMvYXNzZXRzL2ZvbnRzL2ZseWluZ2xlYXRoZXIudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7fVxuICAkZmx5aW5nbGVhdGhlcjogZmx5aW5nbGVhdGhlcjtcblxuICBAZm9udC1mYWNlIHtcbiAgICAgIGZvbnQtZmFtaWx5OiBUaXRhbk9uZTtcbiAgICAgIHNyYzogdXJsKHNyYy9hc3NldHMvZm9udHMvVGl0YW5PbmUtUmVndWxhci50dGYpIGZvcm1hdCgndHJ1ZXR5cGUnKTt9XG4gICR0aXRhbk9uZTogVGl0YW5PbmU7XG5cblxuLyogICRmb250LWZhbWlseS1iYXNlOiBcImZseWluZ19sZWF0aGVybmVja1wiO1xuICAgICRmb250LWZhbWlseS1tZC1iYXNlOiAkZm9udC1mYW1pbHktYmFzZTtcbiAgICAkZm9udC1mYW1pbHktaW9zLWJhc2U6ICRmb250LWZhbWlseS1iYXNlO1xuICAgICRmb250LWZhbWlseS1tZC1iYXNlOiAkZm9udC1mYW1pbHktYmFzZTtcbiAgICAkZm9udC1mYW1pbHktd3AtYmFzZTogJGZvbnQtZmFtaWx5LWJhc2U7ICovXG4iLCI6cm9vdCB7XG4gIC8qLS1pb24tY29sb3ItcHJpbWFyeTogICNmZmE1MDA7XG4gIC0taW9uLWNvbG9yLXNlY29uZGFyeTogICNCNENERkY7XG4gIC0taW9uLWNvbG9yLXRlcnRpYXJ5OiAjZmZjMGNiOyAqLyB9XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogZmx5aW5nbGVhdGhlcjtcbiAgc3JjOiB1cmwoc3JjL2Fzc2V0cy9mb250cy9mbHlpbmdsZWF0aGVyLnR0ZikgZm9ybWF0KFwidHJ1ZXR5cGVcIik7IH1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiBUaXRhbk9uZTtcbiAgc3JjOiB1cmwoc3JjL2Fzc2V0cy9mb250cy9UaXRhbk9uZS1SZWd1bGFyLnR0ZikgZm9ybWF0KFwidHJ1ZXR5cGVcIik7IH1cblxuLyogICRmb250LWZhbWlseS1iYXNlOiBcImZseWluZ19sZWF0aGVybmVja1wiO1xuICAgICRmb250LWZhbWlseS1tZC1iYXNlOiAkZm9udC1mYW1pbHktYmFzZTtcbiAgICAkZm9udC1mYW1pbHktaW9zLWJhc2U6ICRmb250LWZhbWlseS1iYXNlO1xuICAgICRmb250LWZhbWlseS1tZC1iYXNlOiAkZm9udC1mYW1pbHktYmFzZTtcbiAgICAkZm9udC1mYW1pbHktd3AtYmFzZTogJGZvbnQtZmFtaWx5LWJhc2U7ICovXG5oMSxcbmgyLFxuaDMsXG5oNCxcbmg1LFxuaDYge1xuICBtYXJnaW46IDA7IH1cblxuLnNwZWNpYWwtYmcge1xuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCJzcmMvYXNzZXRzL2dyYXBoaWNNYXQvc3BpZGVyc19iZy1oYWxmLnBuZ1wiKTtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyOyB9XG4gIC5zcGVjaWFsLWJnIC5tYWluLWNvbnRhaW5lciB7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBoZWlnaHQ6IDgwJTtcbiAgICBtYXJnaW46IGF1dG87XG4gICAgcGFkZGluZy10b3A6IDEwJTsgfVxuICAgIC5zcGVjaWFsLWJnIC5tYWluLWNvbnRhaW5lciBoMiB7XG4gICAgICBjb2xvcjogI2RmZGRkNTsgfVxuICAgIC5zcGVjaWFsLWJnIC5tYWluLWNvbnRhaW5lciAudHJlYXQsIC5zcGVjaWFsLWJnIC5tYWluLWNvbnRhaW5lciAudHJpY2sge1xuICAgICAgbWFyZ2luOiAzJTtcbiAgICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDE5OSwgMywgMTk5LCAwLjM0Mik7IH1cbiAgICAgIC5zcGVjaWFsLWJnIC5tYWluLWNvbnRhaW5lciAudHJlYXQgaW1nLCAuc3BlY2lhbC1iZyAubWFpbi1jb250YWluZXIgLnRyaWNrIGltZyB7XG4gICAgICAgIHBhZGRpbmc6IDIlO1xuICAgICAgICB3aWR0aDogMTAlOyB9XG4gICAgICAuc3BlY2lhbC1iZyAubWFpbi1jb250YWluZXIgLnRyZWF0IGgxLCAuc3BlY2lhbC1iZyAubWFpbi1jb250YWluZXIgLnRyaWNrIGgxIHtcbiAgICAgICAgd2lkdGg6IDUwJTtcbiAgICAgICAgbWFyZ2luOiAyJTtcbiAgICAgICAgcGFkZGluZzogMyU7XG4gICAgICAgIGNvbG9yOiAjZGZkZGQ1O1xuICAgICAgICBmb250LXNpemU6IDEuMnJlbTsgfVxuICAgICAgLnNwZWNpYWwtYmcgLm1haW4tY29udGFpbmVyIC50cmVhdCBoMiwgLnNwZWNpYWwtYmcgLm1haW4tY29udGFpbmVyIC50cmljayBoMiB7XG4gICAgICAgIHdpZHRoOiAzMCU7XG4gICAgICAgIHBhZGRpbmc6IDMlO1xuICAgICAgICBjb2xvcjogI2ZmYTUwMDtcbiAgICAgICAgZm9udC1mYW1pbHk6IFRpdGFuT25lO1xuICAgICAgICBmb250LXNpemU6IDFyZW07IH1cbiAgICAgICAgLnNwZWNpYWwtYmcgLm1haW4tY29udGFpbmVyIC50cmVhdCBoMiBzcGFuLCAuc3BlY2lhbC1iZyAubWFpbi1jb250YWluZXIgLnRyaWNrIGgyIHNwYW4ge1xuICAgICAgICAgIGNvbG9yOiAjZmYwMDAwO1xuICAgICAgICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG4gICAgICAgICAgZm9udC1zaXplOiAxLjJyZW07IH1cbiAgICAuc3BlY2lhbC1iZyAubWFpbi1jb250YWluZXIgLnRyZWF0IHtcbiAgICAgIGJvcmRlcjogMnB4IHNvbGlkICNiMWM5ZmI7IH1cbiAgICAgIC5zcGVjaWFsLWJnIC5tYWluLWNvbnRhaW5lciAudHJlYXQgaDEgc3BhbiB7XG4gICAgICAgIGNvbG9yOiAjYjFjOWZiO1xuICAgICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOyB9XG4gICAgLnNwZWNpYWwtYmcgLm1haW4tY29udGFpbmVyIC50cmljayB7XG4gICAgICBib3JkZXI6IDJweCBzb2xpZCBwaW5rOyB9XG4gICAgICAuc3BlY2lhbC1iZyAubWFpbi1jb250YWluZXIgLnRyaWNrIGgxIHNwYW4ge1xuICAgICAgICBjb2xvcjogI2ZmYzBjYjtcbiAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsgfVxuICAuc3BlY2lhbC1iZyAuYnViYmxlIHtcbiAgICB3aWR0aDogNDAlO1xuICAgIG1hcmdpbjogMTAlIGF1dG87XG4gICAgYWxpZ24tc2VsZjogY2VudGVyOyB9XG4iLCJAaW1wb3J0IFwic3JjL3RoZW1lL3ZhcmlhYmxlcy5zY3NzXCI7XG5cbi8vIG5lY2Vzc2FyeSBmb3IgbGlzdCBlbGVtZW50cyB0byBjb21lIG91dCByaWdodFxuaDEsXG5oMixcbmgzLFxuaDQsXG5oNSxcbmg2IHtcbiAgICBtYXJnaW46IDA7XG59XG5cbi5zcGVjaWFsLWJnIHtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCJzcmMvYXNzZXRzL2dyYXBoaWNNYXQvc3BpZGVyc19iZy1oYWxmLnBuZ1wiKTtcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcblxuICAgIC5tYWluLWNvbnRhaW5lciB7XG4gICAgICAgIHdpZHRoOiA5MCU7XG4gICAgICAgIGhlaWdodDogODAlO1xuICAgICAgICBtYXJnaW46IGF1dG87XG4gICAgICAgIHBhZGRpbmctdG9wOiAxMCU7XG4gICAgICAgIGgyIHtcbiAgICAgICAgICAgIGNvbG9yOiAkc3ViLWxpZ2h0O1xuICAgICAgICB9XG4gICAgICAgIC50cmVhdCwgLnRyaWNrIHtcblxuICAgICAgICAgICAgbWFyZ2luOiAzJTtcbiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDE5OSwgMywgMTk5LCAwLjM0Mik7XG4gICAgICAgICAgICBpbWcge1xuICAgICAgICAgICAgICAgIHBhZGRpbmc6IDIlOyBcbiAgICAgICAgICAgICAgICB3aWR0aDogMTAlIH1cbiAgICAgICAgICAgIGgxIHtcbiAgICAgICAgICAgICAgICB3aWR0aDogNTAlO1xuICAgICAgICAgICAgICAgIG1hcmdpbjoyJTtcbiAgICAgICAgICAgICAgICBwYWRkaW5nOiAzJTtcbiAgICAgICAgICAgICAgICBjb2xvcjogJHN1Yi1saWdodDtcbiAgICAgICAgICAgICAgICBmb250LXNpemU6IDEuMnJlbTtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGgyIHtcbiAgICAgICAgICAgICAgICB3aWR0aDogMzAlIDtcbiAgICAgICAgICAgICAgICBwYWRkaW5nOiAzJTtcbiAgICAgICAgICAgICAgICBjb2xvcjogJG1haW4tb3JhbmdlO1xuICAgICAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAkdGl0YW5PbmU7XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOiAxcmVtO1xuICAgICAgICAgICAgICAgIHNwYW4geyBjb2xvcjogJG1haW4tcmVkOyB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO2ZvbnQtc2l6ZTogMS4ycmVtO31cbiAgICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgICAudHJlYXQge1xuICAgICAgICAgICAgYm9yZGVyOiAycHggc29saWQgJG1haW4tYmx1ZTtcbiAgICAgICAgICAgIGgxIHtcbiAgICAgICAgICAgICAgICBzcGFuIHsgY29sb3I6ICRtYWluLWJsdWU7IHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7fVxuICAgICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICAgIC50cmljayB7XG4gICAgICAgICAgICBib3JkZXI6IDJweCBzb2xpZCBwaW5rO1xuICAgICAgICAgICAgaDEge1xuICAgICAgICAgICAgICAgIHNwYW4geyBjb2xvcjogJG1haW4tcGluazsgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTt9XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICB9XG4gICAgLmJ1YmJsZSB7XG4gICAgICAgIHdpZHRoOiA0MCU7XG4gICAgICAgIG1hcmdpbjogMTAlIGF1dG87XG4gICAgICAgIGFsaWduLXNlbGY6IGNlbnRlcjtcbiAgICB9XG5cbn0iXX0= */");
 
 /***/ }),
 
@@ -693,20 +693,18 @@ let ChallengesListComponent = class ChallengesListComponent {
         this.keyvaluepipe = keyvaluepipe;
         this.noChallengesYetImg = 'assets/graphicMat/noChallengesYet_bubble.png';
         this.iconTrue = 'assets/icon/icon_true.png';
-        /*       this.achievedTricksList = [];
-              this.achievedTreatsList = []; */
     }
     ngOnInit() {
         this.userStatsService.getCurrentAchievedTreats().subscribe(treats => {
             this.achievedTreatsList = treats;
-            console.log('TREATS LIST=', this.achievedTreatsList);
+            // console.log('TREATS LIST=', this.achievedTreatsList);
             if (this.achievedTreatsList.length > 0) {
                 this.achievedTreatsdisplay = true;
             }
         });
         this.userStatsService.getCurrentAchievedTricks().subscribe(tricks => {
             this.achievedTricksList = tricks;
-            console.log('TRICKS LIST=', this.achievedTricksList);
+            // console.log('TRICKS LIST=', this.achievedTricksList);
             if (this.achievedTricksList.length > 0) {
                 this.achievedTricksdisplay = true;
             }
@@ -782,6 +780,7 @@ let ChallengesComponent = class ChallengesComponent {
         this.tricks = [];
         this.totalPoints = 0;
         this.newTotalPoints = 0;
+        this.completedChallengesCount = 0;
     }
     ngOnInit() {
         this.userStatsService.getCurrentTriggeredTreats().subscribe(data => this.triggeredTreatsList = data);
@@ -789,9 +788,12 @@ let ChallengesComponent = class ChallengesComponent {
         this.userStatsService.getCurrentAchievedTreats().subscribe(data => this.achievedTreatsList = data);
         this.userStatsService.getCurrentAchievedTricks().subscribe(data => this.achievedTricksList = data);
         this.userStatsService.getCurrentTotalPoints().subscribe(data => this.totalPoints = data);
+        this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesCount = data);
         this.getChoice();
+        // console.log('TOTAL POINTS before bonus==', this.totalPoints);
+    }
+    ionViewWillEnter() {
         this.getRandomChallenge(this.choice);
-        console.log('TOTAL POINTS before bonus==', this.totalPoints);
     }
     getChoice() {
         this.activatedRoute.paramMap.subscribe(param => {
@@ -814,12 +816,12 @@ let ChallengesComponent = class ChallengesComponent {
                     this.currentChallenge.challengeId = randomTreat.treatId;
                     this.currentChallenge.challengeType = 'treat';
                 }
-                console.log('triggeredTreatsList before update==', this.triggeredTreatsList);
+                // console.log('triggeredTreatsList before update==', this.triggeredTreatsList);
                 this.triggeredTreatsList.push(Object.assign({}, this.currentChallenge));
-                console.log('triggeredTreatsList after update==', this.triggeredTreatsList);
+                // console.log('triggeredTreatsList after update==', this.triggeredTreatsList);
                 this.userStatsService.updateCurrentTriggeredTreats(this.triggeredTreatsList);
-                console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
-                console.log('CURRENT CHALLENGE==', Object.assign({}, this.currentChallenge));
+                // // console.log('TREATSLIST==', this.treats); // (3) [{…}, {…}, {…}]
+                // console.log('CURRENT CHALLENGE==', {... this.currentChallenge } );
                 return Object.assign({}, this.currentChallenge);
             });
         }
@@ -839,22 +841,24 @@ let ChallengesComponent = class ChallengesComponent {
                 }
                 this.triggeredTricksList.push(Object.assign({}, this.currentChallenge));
                 this.userStatsService.updateCurrentTriggeredTricks(this.triggeredTricksList);
-                console.log('CURRENT CHALLENGE==', Object.assign({}, this.currentChallenge));
+                // console.log('CURRENT CHALLENGE==', {... this.currentChallenge } );
                 return Object.assign({}, this.currentChallenge);
             });
         }
         this.dataIsLoaded = true;
     }
     isDone(currentChallenge) {
+        this.completedChallengesCount += 1;
+        this.userStatsService.updateCompletedChallengesCount(this.completedChallengesCount);
         this.currentChallenge = currentChallenge;
-        console.log('CURRENT IS DONE== ', this.currentChallenge);
+        // console.log('CURRENT IS DONE== ', this.currentChallenge);
         this.currentChallenge.challengeType = currentChallenge.challengeType;
-        console.log('CURRENT IS DONE TYPE==', this.currentChallenge.challengeType);
+        // console.log('CURRENT IS DONE TYPE==', this.currentChallenge.challengeType);
         this.newTotalPoints = this.totalPoints + this.currentChallenge.bonusPoints;
         this.userStatsService.update_totalPoints(this.newTotalPoints);
         this.presentToastBonusPoints(this.currentChallenge.bonusPoints, this.newTotalPoints);
-        console.log('CURRENT TRICKS LIST==', this.achievedTricksList);
-        console.log('CURRENT TREATS LIST==', this.achievedTreatsList);
+        // console.log('CURRENT TRICKS LIST==', this.achievedTricksList);
+        // console.log('CURRENT TREATS LIST==', this.achievedTreatsList);
         if (this.currentChallenge.challengeType === 'trick') {
             this.currentChallenge.hasBeenCompleted = true;
             this.achievedTricksList.push(Object.assign({}, this.currentChallenge));
@@ -903,6 +907,10 @@ let ChallengesComponent = class ChallengesComponent {
                 }, 500);
             }
         });
+    }
+    ionViewWillUnload() {
+        this.treats = [];
+        this.tricks = [];
     }
 };
 ChallengesComponent.ctorParameters = () => [
@@ -973,8 +981,6 @@ let MapComponent = class MapComponent {
         this.coords = {};
         this.newAddress = {};
         this.heartIcon = 'assets/graphicMat/heartAsset_red.png';
-        // this.newAddress = { lat:  this.coords.latitude, long: this.coords.longitude };
-        // this.geolocService.getCurrentLocation();
         this.coords = this.geolocService.getGeo();
         this.userStatsService.getCurrentAddressesList().subscribe(data => this.addressList = data);
         this.age = this.geolocService.getAgeRange();
@@ -994,8 +1000,6 @@ let MapComponent = class MapComponent {
             this.initMapWithParams();
         }
     }
-    ionViewDidLoad() {
-    }
     initMapWithParams() {
         this.mapBounds = this.geolocService.calculateMapBounds(this.allowedDistance);
         console.log('mapBounds= ', this.mapBounds);
@@ -1003,17 +1007,17 @@ let MapComponent = class MapComponent {
         // this.geolocService.loadMapWithoutBounds();
     }
     saveAddress() {
-        console.log('COORDS==', this.coords);
+        // console.log('COORDS==', this.coords);
         if (!this.coords) {
             this.geolocation.getCurrentPosition().then((data) => {
                 this.coords.lat = data.coords.latitude;
                 this.coords.long = data.coords.longitude;
-                console.log('COORDS==', this.coords);
+                // console.log('COORDS==', this.coords);
             });
         }
         this.newAddress = { lat: this.coords.coords.latitude, long: this.coords.coords.longitude };
-        console.log('NEW ADDRESS==', this.newAddress);
-        console.log('ADDRESSLIST=', this.addressList, 'LENGHT=', this.addressList.length);
+        // console.log('NEW ADDRESS==', this.newAddress);
+        // console.log('ADDRESSLIST=', this.addressList, 'LENGHT=', this.addressList.length);
         this.geolocService.reverseGeocode(this.coords.coords.latitude, this.coords.coords.longitude);
         if (this.addressList.length > 0) {
             // tslint:disable-next-line: prefer-for-of
@@ -1027,7 +1031,7 @@ let MapComponent = class MapComponent {
                     this.newAddress.timestamp = Date.now();
                     this.addressList.push(this.newAddress);
                     this.userStatsService.updateCurrentAddressesList(this.addressList);
-                    this.presentToastWithOptions('Address saved to favorites ');
+                    this.presentToastWithOptions('Address saved to favorites');
                 }
             });
         }
@@ -1035,7 +1039,7 @@ let MapComponent = class MapComponent {
             this.newAddress.timestamp = Date.now();
             this.addressList.push(this.newAddress);
             this.userStatsService.updateCurrentAddressesList(this.addressList);
-            this.presentToastWithOptions('Address saved to favorites ');
+            this.presentToastWithOptions('Address saved to favorites');
         }
     }
     presentToastWithOptions(message) {
@@ -1335,6 +1339,72 @@ CandyApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/play/services/challenges-api.service.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/play/services/challenges-api.service.ts ***!
+  \*********************************************************/
+/*! exports provided: ChallengesApiService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChallengesApiService", function() { return ChallengesApiService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _http_error_handler_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./http-error-handler.service */ "./src/app/play/services/http-error-handler.service.ts");
+
+
+
+
+let ChallengesApiService = class ChallengesApiService {
+    constructor(httpClient, httpErrorHandler) {
+        this.httpClient = httpClient;
+        this.tricksListUrl = 'assets/tricksData.json';
+        this.treatsListUrl = 'assets/treatsData.json';
+        this.handleError = httpErrorHandler.createHandleError('ChallengesApiService');
+    }
+    getTricksList() {
+        return this.httpClient
+            .get(this.tricksListUrl);
+    }
+    /*
+      public getTricksList(): Observable<TrickI[]> {
+        return this.httpClient
+          .get(this.tricksListUrl)
+          .pipe(
+            map(
+              (data: Response) => {
+                const rawApiResponseObject: any = data;
+                const TricksListFromApi: Array<TrickI> = rawApiResponseObject;
+                console.log('TricksListFromApi ==', TricksListFromApi); // (3) [{…}, {…}, {…}]
+                return TricksListFromApi as TrickI[];
+              }),
+            retry(3), // retry a failed request up to 3 times
+            catchError(this.handleError('getChallengesList', [])) // then handle the error
+          );
+      } */
+    getTreatsList() {
+        return this.httpClient
+            .get(this.treatsListUrl);
+    }
+};
+ChallengesApiService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _http_error_handler_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorHandler"] }
+];
+ChallengesApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+        _http_error_handler_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorHandler"]])
+], ChallengesApiService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/play/trick-or-treat/trick-or-treat.component.scss":
 /*!*******************************************************************!*\
   !*** ./src/app/play/trick-or-treat/trick-or-treat.component.scss ***!
@@ -1422,7 +1492,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _shared_services_user_stats_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/services/user-stats.service */ "./src/app/shared/services/user-stats.service.ts");
-/* harmony import */ var _shared_pipes_keyvalue_keyvalue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/pipes/keyvalue/keyvalue */ "./src/app/shared/pipes/keyvalue/keyvalue.ts");
+/* harmony import */ var _shared_models_level_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/models/level.model */ "./src/app/shared/models/level.model.ts");
+/* harmony import */ var _shared_pipes_keyvalue_keyvalue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../shared/pipes/keyvalue/keyvalue */ "./src/app/shared/pipes/keyvalue/keyvalue.ts");
+
 
 
 
@@ -1433,10 +1505,10 @@ let UserStatsComponent = class UserStatsComponent {
         this.userStatsService = userStatsService;
         this.keyvaluepipe = keyvaluepipe;
         this.router = router;
-        this.currentLevel = { idLevel: 0, levelName: '', levelImg: '', levelCard: '', isActive: false, isNext: false };
+        this.currentLevel = new _shared_models_level_model__WEBPACK_IMPORTED_MODULE_4__["Level"]();
         this.levels = this.userStatsService.retrieveLevelList();
+        this.completedChallenges = [];
         this.completedChallengesCount = 0;
-        this.completedChallengesTest = [];
     }
     ngOnInit() {
         this.setStats();
@@ -1444,35 +1516,16 @@ let UserStatsComponent = class UserStatsComponent {
     setStats() {
         // totalPoints
         this.userStatsService.getCurrentTotalPoints().subscribe(data => this.totalPoints = data);
-        console.log('totalPoints------', this.totalPoints);
+        // console.log('totalPoints------', this.totalPoints);
         // totalCandy
         this.userStatsService.getCurrentBackpackCount().subscribe(data => this.candyCount = data);
-        console.log('candy count------', this.candyCount);
+        // console.log('candy count------', this.candyCount);
         // level
-        this.userStatsService.getCurrentLevel().subscribe(data => {
-            this.currentLevel.idLevel = data.idLevel,
-                this.currentLevel.levelName = data.levelName,
-                this.currentLevel.levelImg = data.levelImg;
-            this.currentLevel.levelCard = data.levelCard;
-            this.currentLevel.isActive = data.isActive;
-            this.currentLevel.isNext = data.isNext;
-        });
-        console.log('currentlevel levelcard-----', this.currentLevel.levelCard);
-        // bottom cards
-        console.log('levels---', this.levels);
-        for (let i = 0; i < this.levels.length; i++) {
-            if (this.levels[i].idLevel === this.currentLevel.idLevel) {
-                this.levels[i].isActive = true;
-                this.levels[i + 1].isNext = true;
-            }
-        }
-        // current done challenges count
-        this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesTest = data);
-        console.log('RESULT OF ZIP==', this.completedChallengesTest);
-        this.completedChallengesTest.map(item => {
-            console.log(item.length);
-            return this.completedChallengesCount += item.length;
-        });
+        this.userStatsService.getCurrentLevel().subscribe(data => this.currentLevel = Object.assign({}, data));
+        // console.log('this.currentLevel=', this.currentLevel);
+        // challenges count
+        this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesCount = data);
+        // console.log( 'count=', this.completedChallengesCount);
         // current saved addresses count
         this.userStatsService.getCurrentAddressesList().subscribe(data => this.savedAddresses = data);
         this.savedAddressesCount = this.savedAddresses.length;
@@ -1486,7 +1539,7 @@ let UserStatsComponent = class UserStatsComponent {
 };
 UserStatsComponent.ctorParameters = () => [
     { type: _shared_services_user_stats_service__WEBPACK_IMPORTED_MODULE_3__["UserStatsService"] },
-    { type: _shared_pipes_keyvalue_keyvalue__WEBPACK_IMPORTED_MODULE_4__["KeyvaluePipe"] },
+    { type: _shared_pipes_keyvalue_keyvalue__WEBPACK_IMPORTED_MODULE_5__["KeyvaluePipe"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
 ];
 UserStatsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1496,7 +1549,7 @@ UserStatsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./user-stats.component.scss */ "./src/app/play/user-stats/user-stats.component.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_services_user_stats_service__WEBPACK_IMPORTED_MODULE_3__["UserStatsService"],
-        _shared_pipes_keyvalue_keyvalue__WEBPACK_IMPORTED_MODULE_4__["KeyvaluePipe"],
+        _shared_pipes_keyvalue_keyvalue__WEBPACK_IMPORTED_MODULE_5__["KeyvaluePipe"],
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
 ], UserStatsComponent);
 
@@ -1593,6 +1646,34 @@ class Treat {
         this.bonusPoints = 0;
         this.hasBeenTriggered = false;
         this.hasBeenCompleted = false;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/shared/models/level.model.ts":
+/*!**********************************************!*\
+  !*** ./src/app/shared/models/level.model.ts ***!
+  \**********************************************/
+/*! exports provided: Level */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Level", function() { return Level; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class Level {
+    constructor() {
+        this.idLevel = 0;
+        this.levelName = '';
+        this.levelImg = '';
+        this.bannerMessage = '';
+        this.levelCard = '';
+        this.levelCardName = '';
+        this.isActive = false;
+        this.isNext = false;
     }
 }
 

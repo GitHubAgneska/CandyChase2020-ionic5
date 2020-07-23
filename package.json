@@ -35,10 +35,12 @@
     "@ionic/angular": "^5.0.0",
     "browser": "^0.2.6",
     "cordova-browser": "^6.0.0",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-inappbrowser": "^3.2.0",
     "cordova-plugin-nativegeocoder": "^3.3.0",
     "cordova-plugin-telerik-imagepicker": "^2.3.3",
+    "cordova-res": "^0.15.1",
     "core-js": "^2.5.4",
     "express": "^4.17.1",
     "firebase": "^7.14.0",
@@ -103,7 +105,8 @@
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
-      "browser"
+      "browser",
+      "ios"
     ]
   }
 }

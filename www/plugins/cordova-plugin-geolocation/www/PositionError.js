@@ -1,3 +1,4 @@
+cordova.define("cordova-plugin-geolocation.PositionError", function(require, exports, module) {
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,13 +20,22 @@
  *
 */
 
-module.exports = {
-    id: 'ios',
-    bootstrap: function () {
-        // Attach the console polyfill that is iOS-only to window.console
-        // see the file under plugin/ios/console.js
-        require('cordova/modulemapper').clobbers('cordova/plugin/ios/console', 'window.console');
-
-        require('cordova/channel').onNativeReady.fire();
-    }
+/**
+ * Position error object
+ *
+ * @constructor
+ * @param code
+ * @param message
+ */
+var PositionError = function (code, message) {
+    this.code = code || null;
+    this.message = message || '';
 };
+
+PositionError.prototype.PERMISSION_DENIED = PositionError.PERMISSION_DENIED = 1;
+PositionError.prototype.POSITION_UNAVAILABLE = PositionError.POSITION_UNAVAILABLE = 2;
+PositionError.prototype.TIMEOUT = PositionError.TIMEOUT = 3;
+
+module.exports = PositionError;
+
+});

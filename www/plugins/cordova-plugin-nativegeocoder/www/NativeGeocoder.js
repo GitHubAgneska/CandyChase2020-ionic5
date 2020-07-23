@@ -1,4 +1,5 @@
-cordova.define("cordova-plugin-nativegeocoder.NativeGeocoder", function(require, exports, module) { var exec = require('cordova/exec');
+cordova.define("cordova-plugin-nativegeocoder.NativeGeocoder", function(require, exports, module) {
+var exec = require('cordova/exec');
 
 /**
  * Reverse geocode a given latitude and longitude to find location address.
