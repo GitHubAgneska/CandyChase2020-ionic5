@@ -24,17 +24,24 @@ h6 {
             color: $sub-light;
         }
         .treat, .trick {
+
             margin: 3%;
             border-radius: 15px;
+            justify-content: space-between;
             background-color: rgba(199, 3, 199, 0.342);
-            img { padding: 2%; }
+            img {
+                padding: 2%; 
+                width: 10% }
             h1 {
+                width: 50%;
                 margin:2%;
                 padding: 3%;
                 color: $sub-light;
                 font-size: 1.2rem;
             }
             h2 {
+                width: 30% ;
+                padding: 3%;
                 color: $main-orange;
                 font-family: $titanOne;
                 font-size: 1rem;

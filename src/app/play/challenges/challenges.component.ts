@@ -54,10 +54,11 @@ export class ChallengesComponent implements OnInit {
     this.userStatsService.getCompletedChallengesCount().subscribe(data => this.completedChallengesCount = data);
 
     this.getChoice();
-    this.getRandomChallenge(this.choice);
     // console.log('TOTAL POINTS before bonus==', this.totalPoints);
   }
-
+  ionViewWillEnter() {
+    this.getRandomChallenge(this.choice);
+  }
 
   public getChoice() {
     this.activatedRoute.paramMap.subscribe(param => {
@@ -86,6 +87,7 @@ export class ChallengesComponent implements OnInit {
             this.currentChallenge.challengeType = 'treat';
           }
           // console.log('triggeredTreatsList before update==', this.triggeredTreatsList);
+
           this.triggeredTreatsList.push({ ...this.currentChallenge } as TreatI);
           // console.log('triggeredTreatsList after update==', this.triggeredTreatsList);
 
@@ -149,11 +151,9 @@ export class ChallengesComponent implements OnInit {
     this.router.navigate(['play/user-stats']);
   }
 
-
   public isSkipped() {
     this.router.navigate(['play/user-stats']);
   }
-
 
   async presentToastBonusPoints(bonusPoints: number, newTotalPoints: number) {
     const toast1 = await this.toastController.create({
@@ -186,6 +186,11 @@ export class ChallengesComponent implements OnInit {
           toast3.present();
       }, 500);
     }
+  }
+
+  ionViewWillUnload() {
+    this.treats = [];
+    this.tricks = [];
   }
 
 }
