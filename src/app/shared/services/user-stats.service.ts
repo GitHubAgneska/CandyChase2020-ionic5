@@ -48,6 +48,7 @@ export class UserStatsService {
 
   public savedAddresses: AddressI[];
   public savedAddressesCount: number;
+  public timestamp: number;
 
 
   // keep track of candy list in backpack --
@@ -260,7 +261,6 @@ export class UserStatsService {
   }
 
 
-
   // saved addresses ---------------------------------------------------------
 
   getCurrentAddressesList() {
@@ -271,24 +271,10 @@ export class UserStatsService {
     this.savedAddressesBehavior$.next(addressesList);
   }
 
-
   // reset all  ---------------------------------------------------------
   public resetAllStats() {}
 
 }
-
-/* convert timestamp
-var timestamp = 1301090400,
-date = new Date(timestamp * 1000),
-  datevalues = [
-    date.getFullYear(),
-    date.getMonth()+1, ( months based 0 )
-    date.getDate(),
-    date.getHours(),
-    date.getMinutes(),
-    date.getSeconds(),
-]; */
-
 /* ------------------------------------------------------------------------------
   Method to count points depending on specific criteria, e.g candy item weight
     => not implementable atm for api data = not consistent enough

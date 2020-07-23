@@ -284,6 +284,6 @@ export class GeolocService {
       });
     }
   } */
-  
+
 }
 

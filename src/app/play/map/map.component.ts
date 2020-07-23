@@ -33,8 +33,6 @@ export class MapComponent implements OnInit {
     private userStatsService: UserStatsService
 
   ) {
-    // this.newAddress = { lat:  this.coords.latitude, long: this.coords.longitude };
-    // this.geolocService.getCurrentLocation();
     this.coords =  this.geolocService.getGeo();
     this.userStatsService.getCurrentAddressesList().subscribe(data => this.addressList = data);
     this.age = this.geolocService.getAgeRange();
@@ -54,9 +52,6 @@ export class MapComponent implements OnInit {
     }
   }
 
-  ionViewDidLoad() {
-  }
-
   public initMapWithParams() {
     this.mapBounds = this.geolocService.calculateMapBounds(this.allowedDistance);
     console.log('mapBounds= ', this.mapBounds);
@@ -67,16 +62,15 @@ export class MapComponent implements OnInit {
 
 
   saveAddress() {
-    console.log('COORDS==', this.coords);
+    // console.log('COORDS==', this.coords);
 
     if (!this.coords) {
       this.geolocation.getCurrentPosition().then((data) => {
         this.coords.lat = data.coords.latitude;
         this.coords.long = data.coords.longitude;
-        console.log('COORDS==', this.coords);
+        // console.log('COORDS==', this.coords);
       });
     }
-
     this.newAddress = { lat: this.coords.coords.latitude, long: this.coords.coords.longitude };
     console.log('NEW ADDRESS==', this.newAddress);
     console.log('ADDRESSLIST=', this.addressList, 'LENGHT=', this.addressList.length);
