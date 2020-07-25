@@ -14,7 +14,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 //  firebase imports
 import { AngularFireModule } from '@angular/fire';
@@ -59,6 +59,7 @@ import { MessageService } from './play/services/message.service';
     MessageService,
     StatusBar,
     SplashScreen,
+    NativeAudio,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]

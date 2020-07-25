@@ -440,3 +440,17 @@ https://ionicthemes.com/tutorials/about/building-a-ionic-firebase-app-step-by-st
     npm install @ionic-native/firebase-analytics  
 
 ----
+
+SOUND
+
+    ionic cordova plugin add cordova-plugin-nativeaudio
+    npm install @ionic-native/native-audio/ngx
+
+[ Supported Platforms
+
+    Android
+    Browser
+    iOS  ]
+
+    
++ create a service to handle switching between the HTML5 and native audio

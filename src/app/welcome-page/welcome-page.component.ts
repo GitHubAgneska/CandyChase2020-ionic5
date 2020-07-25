@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SmartAudioService } from '../shared/services/smart-audio.service';
 
 @Component({
   selector: 'app-welcome-page',
@@ -9,9 +10,13 @@ import { Router } from '@angular/router';
 export class WelcomePageComponent implements OnInit {
   public imgCandyTitle = 'assets/graphicMat/title_candy.png';
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    public smartAudioService: SmartAudioService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.smartAudioService.play('welcome');
+  }
 
   start() {
     this.router.navigate(['/letsplay']);

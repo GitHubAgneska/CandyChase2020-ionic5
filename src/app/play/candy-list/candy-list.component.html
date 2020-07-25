@@ -7,7 +7,7 @@
 
 <ion-content class="candyPageContainer">
 
-  <div class="add-label flexRowCentered ">
+  <div class="add-label flexRowCentered" slot="fixed">
     <ion-searchbar animated class="custom-searchbar"
     [formControl]="searchControl"
     (ionChange)="onSearchInput()">
@@ -15,8 +15,8 @@
     <img src="assets/graphicMat/bubble_add2.png" alt="" />
   </div>
 
-  <div *ngIf="candyList$ | async as candyList; else loading">
-    <div *ngFor="let candyItem of candyList$ | async" class="candyList">
+  <div *ngIf="candyList$ | async as candyList; else loading" class="candyList">
+    <div *ngFor="let candyItem of candyList$ | async" >
       <div class="candyItem">
         <div class="candyThumbnail" (click)="seeCandyInfos(candyItem._id)">
           <img src="{{candyItem.image_front_url}}">
@@ -43,10 +43,12 @@
     -->
   
   <ng-template #loading>
-    <img src= "{{ anim }}"/>
-    <h1 class="loading">
-      loading...    
-    </h1>
+    <div class="animPumpkin-container">
+      <img src= "{{ anim }}"/>
+      <h1 class="loading">
+        loading...    
+      </h1>
+    </div>
   </ng-template>  
 
   <div class="newChallenge-btn" *ngIf="newChallenge">

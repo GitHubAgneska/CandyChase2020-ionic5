@@ -13,10 +13,12 @@ h6 {
 .candyPageContainer {
 
     .add-label {
+        width: 100%;
         height: 20vh;
         background-image: url("src/assets/graphicMat/sparkles.png");
         background-size: cover;
         background-position: center;
+        background-color: black;
         img {
             max-width: 100px;
             float: right;
@@ -27,10 +29,9 @@ h6 {
         flex-direction: column;
         width: 80%;
         margin: auto;
-        /* margin: -10% 10%; */
+        padding-top: 30%;
+
         .candyItem {
-    /*    border: 4px solid yellow;
-            background-color:pink; */
             height: 7rem;
             display: flex;
             flex-direction: row;
@@ -80,13 +81,15 @@ h6 {
             }
         }
     }
-    .loading {
-        color: $main-blue;
-        font-size: 4rem;
-        text-align: center;
+    .animPumpkin-container { 
+        margin-top: 30vh; 
+        .loading {
+            color: $main-blue;
+            font-size: 4rem;
+            text-align: center;
+        }
     }
     .newChallenge-btn {
-
         width: 90%;
         margin-left:50%;
         bottom: 2%;

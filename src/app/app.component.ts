@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Geolocation } from '@ionic-native/geolocation';
+import { SmartAudioService } from './shared/services/smart-audio.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public smartAudioService: SmartAudioService
   ) {
     // firebase.initializeApp(firebaseConfig);
     // firebase.analytics();
@@ -25,6 +27,9 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.smartAudioService.preload('welcome', './assets/sounds/halloween.mp3');
     });
+    this.smartAudioService.play('welcome');
   }
 }
