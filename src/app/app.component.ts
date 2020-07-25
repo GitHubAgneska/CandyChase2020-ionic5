@@ -17,7 +17,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public smartAudioService: SmartAudioService
+    // public smartAudioService: SmartAudioService
   ) {
     // firebase.initializeApp(firebaseConfig);
     // firebase.analytics();
@@ -28,8 +28,8 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.smartAudioService.preload('welcome', './assets/sounds/halloween.mp3');
+      // this.smartAudioService.preload('welcome', './assets/sounds/halloween.mp3');
     });
-    this.smartAudioService.play('welcome');
+    // this.smartAudioService.play('welcome');
   }
 }
