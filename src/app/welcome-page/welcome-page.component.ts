@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SmartAudioService } from '../shared/services/smart-audio.service';
+// import { SmartAudioService } from '../shared/services/smart-audio.service';
 
 @Component({
   selector: 'app-welcome-page',
@@ -12,7 +12,8 @@ export class WelcomePageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public smartAudioService: SmartAudioService) { }
+    // public smartAudioService: SmartAudioService
+    ) { }
 
   ngOnInit() {
     // this.smartAudioService.play('welcome');
