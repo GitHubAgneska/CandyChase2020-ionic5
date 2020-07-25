@@ -1,37 +1,37 @@
 [
     {
         "treatId": 1,
-        "treatDescription": "Find or pick a PINK candy in your collection and eat it ! ",
+        "treatDescription": "Find or pick a PINK candy in your collection and eat it !",
         "hasBeenCompleted": false,
         "bonusPoints": 3
     },
     {
         "treatId": 2,
-        "treatDescription": "Find or pick a CHOCOLATE candy in your collection and eat it ! ",
+        "treatDescription": "Find or pick a CHOCOLATE candy in your collection and eat it !",
         "hasBeenCompleted": false,
         "bonusPoints": 3
     },
     {
         "treatId": 3,
-        "treatDescription": "Find or pick a ROUNDED candy in your collection and eat it ! ",
+        "treatDescription": "Find or pick a ROUNDED candy in your collection and eat it !",
         "hasBeenCompleted": false,
         "bonusPoints": 3
     },
     {
         "treatId": 4,
-        "treatDescription": "A",
+        "treatDescription": "Find or pick a orange candy in your collection and eat it !",
         "hasBeenCompleted": false,
         "bonusPoints": 3
     },
     {
         "treatId": 5,
-        "treatDescription": "B",
+        "treatDescription": "Find or pick a red candy in your collection and eat it !",
         "hasBeenCompleted": false,
         "bonusPoints": 3
     },
     {
         "treatId": 6,
-        "treatDescription": "C",
+        "treatDescription": "Find or pick a square candy in your collection and eat it !",
         "hasBeenCompleted": false,
         "bonusPoints": 3
     }

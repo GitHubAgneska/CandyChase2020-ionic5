@@ -16,5 +16,11 @@
         "trickDescription": "You have to give a candy to a ZOMBIE !",
         "hasBeenCompleted": false,
         "bonusPoints": 9
+    },
+    {
+        "trickId": 4,
+        "trickDescription": "Next time you see a princess, let her chose a candy in your collection !",
+        "hasBeenCompleted": false,
+        "bonusPoints": 9
     }
 ]
