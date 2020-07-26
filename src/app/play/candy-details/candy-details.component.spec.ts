@@ -11,7 +11,8 @@ import { RemoveUnderscorePipe } from 'src/app/shared/pipes/remove-underscore/rem
 import { RemoveCharsPipe } from 'src/app/shared/pipes/remove-chars/remove-chars';
 import { CandyDetailsComponent } from './candy-details.component';
 import { DebugElement } from '@angular/core';
-
+import { PopoverComponent } from '../../shared/elements/popover/popover.component';
+import { PopoverController } from '@ionic/angular';
 
 const candyApiServiceStub = {
   getCandyById(candyItemId: string | number) {
@@ -31,14 +32,15 @@ describe('CandyDetailsComponent', () => {
                       KeyvaluePipe,
                       RemoveUnderscorePipe,
                       RemoveCharsPipe,
-                      ShortenStringPipe ],
+                      ShortenStringPipe,
+                      PopoverComponent ],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule
       ],
       providers: [
         { provide: CandyApiService, useValue: candyApiServiceStub },
-        KeyvaluePipe, RemoveUnderscorePipe, RemoveCharsPipe, ShortenStringPipe
+        KeyvaluePipe, RemoveUnderscorePipe, RemoveCharsPipe, ShortenStringPipe, PopoverComponent
       ]
     }).compileComponents();
 
