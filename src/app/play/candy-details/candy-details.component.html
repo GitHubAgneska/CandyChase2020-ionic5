@@ -8,11 +8,11 @@
   <div class="candyDetailsPage" *ngIf="candyItem">
 
     <div class="candyItemTitle flexRowCentered">
-      <div class="candyThumbnail" (click)='openPop(event)'>
+      <div class="candyThumbnail" (click)='openPop($event)'>
+        <img src="{{ candyItem.image_front_url }}" class="candyImg">
         <ng-template *ngIf="present">
-          <app-popover cssClass='candyPics'></app-popover>
+          <app-popover cssClass='candyPics' [content]='popoverContent'></app-popover>
         </ng-template>
-        <img src="{{ candyItem.image_front_url }}">
       </div>
       <div>
         <h1>{{ candyItem.product_name | shortenString:30 }}</h1>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
 @Component({
@@ -7,10 +7,13 @@ import { PopoverController } from '@ionic/angular';
   styleUrls: ['./popover.component.scss'],
 })
 export class PopoverComponent implements OnInit {
+  @Input() content: any;
+
+  public currentPopover = null;
 
   constructor(public popoverController: PopoverController) {}
 
-  ngOnInit() {}
+  ngOnInit() { this.content = 'zob'; }
 
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
@@ -19,6 +22,7 @@ export class PopoverComponent implements OnInit {
       event: ev,
       translucent: true
     });
+    this.currentPopover = popover;
     return await popover.present();
   }
 

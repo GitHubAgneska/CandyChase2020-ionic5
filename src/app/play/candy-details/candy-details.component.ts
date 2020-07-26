@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { CandyApiService } from '../services/candy-api.service';
 import { KeyvaluePipe } from '../../shared/pipes/keyvalue/keyvalue';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
@@ -37,6 +37,8 @@ export class CandyDetailsComponent implements OnInit {
 
   public popovercssClass: string;
   public present: boolean;
+  public popoverContent: any;
+  public currentPopover = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -69,6 +71,35 @@ export class CandyDetailsComponent implements OnInit {
     this.displayCandyInfo(this.candyId);
   }
 
+  openPop(event: any) {
+    this.present = true;
+    this.popoverContent = this.definePopoverContent();
+    const presentPop = () => { this.popover.presentPopover(event); };
+    presentPop();
+  }
+
+  public definePopoverContent(): any {
+    const img = document.querySelector('.candyThumbnail > img');
+    const candyUrl = img.getAttribute('src');
+
+    customElements.define('app-popover', class extends HTMLElement {
+      connectedCallback() {
+
+        this.innerHTML = `
+        <div>
+        <img src=${candyUrl} />
+        <ion-item lines="none" detail="false" button onClick="dismissPopover(event)">Close</ion-item>
+        </div>
+        `;
+      }
+    });
+  }
+
+  public dismissPopover(event: any) {
+    if (this.popoverContent) {
+      this.popoverContent.dismiss().then(() => { this.popoverContent = null; });
+    }
+  }
 
   public displayCandyInfo(candyId: string | number)  {
 
@@ -128,11 +159,7 @@ export class CandyDetailsComponent implements OnInit {
     });
   }
 
-  openPop(event: any) {
-    this.present = true;
-    const presentPop = () => { this.popover.presentPopover(event); };
-    presentPop();
-  }
+ 
 
   toggleIngredients() {
     this.showIngredients = !this.showIngredients;
