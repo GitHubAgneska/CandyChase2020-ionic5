@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CandyApiService } from '../services/candy-api.service';
 import { KeyvaluePipe } from '../../shared/pipes/keyvalue/keyvalue';
 import { ShortenStringPipe } from '../../shared/pipes/shorten-string/shorten-string';
@@ -7,6 +7,8 @@ import { RemoveCharsPipe } from '../../shared/pipes/remove-chars/remove-chars';
 import { Candy, CandyChecklist } from '../../shared/models/candy.model';
 import { CandyI, CandyChecklistI } from '../../shared/models/candy.interface';
 import { ActivatedRoute } from '@angular/router';
+import { PopoverComponent } from '../../shared/elements/popover/popover.component';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-candy-details',
@@ -14,7 +16,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./candy-details.component.scss'],
 })
 export class CandyDetailsComponent implements OnInit {
-
 
   public candy: Candy;
   public candyItem: CandyI;
@@ -34,13 +35,18 @@ export class CandyDetailsComponent implements OnInit {
 
   public noKnownAllergen: boolean;
 
+  public popovercssClass: string;
+  public present: boolean;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public candyApiService: CandyApiService,
     public keyvaluepipe: KeyvaluePipe,
     public removeUnderscore: RemoveUnderscorePipe,
     public removeChars: RemoveCharsPipe,
-    public shortenString: ShortenStringPipe
+    public shortenString: ShortenStringPipe,
+    public popoverController: PopoverController,
+    public popover: PopoverComponent
   ) {
 
     this.candy = new Candy();
@@ -54,6 +60,9 @@ export class CandyDetailsComponent implements OnInit {
     this.showNutriscore = false;
     this.showAllergens = false;
     this.noKnownAllergen = false;
+
+    this.popover = new PopoverComponent(popoverController);
+    this.present = false;
   }
 
   ngOnInit() {
@@ -117,6 +126,12 @@ export class CandyDetailsComponent implements OnInit {
         this.allergens = true;
       }
     });
+  }
+
+  openPop(event: any) {
+    this.present = true;
+    const presentPop = () => { this.popover.presentPopover(event); };
+    presentPop();
   }
 
   toggleIngredients() {
