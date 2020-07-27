@@ -13,11 +13,11 @@ export class PopoverComponent implements OnInit {
 
   constructor(public popoverController: PopoverController) {}
 
-  ngOnInit() { this.content = 'zob'; }
+  ngOnInit() { }
 
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
-      component: PopoverComponent,
+      component: 'PopoverComponent',
       cssClass: 'my-custom-class',
       event: ev,
       translucent: true
@@ -26,4 +26,9 @@ export class PopoverComponent implements OnInit {
     return await popover.present();
   }
 
+  dismissPopover() {
+    if (this.currentPopover) {
+      this.currentPopover.dismiss().then(() => { this.currentPopover = null; });
+    }
+  }
 }

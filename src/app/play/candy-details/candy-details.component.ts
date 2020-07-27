@@ -38,7 +38,7 @@ export class CandyDetailsComponent implements OnInit {
   public popovercssClass: string;
   public present: boolean;
   public popoverContent: any;
-  public currentPopover = null;
+  // public currentPopover = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -71,12 +71,21 @@ export class CandyDetailsComponent implements OnInit {
     this.displayCandyInfo(this.candyId);
   }
 
+// thumbnail + popover ..................................................
   openPop(event: any) {
     this.present = true;
-    this.popoverContent = this.definePopoverContent();
     const presentPop = () => { this.popover.presentPopover(event); };
+    this.popoverContent = this.definePopoverContent();
     presentPop();
   }
+
+ /* closePop() {
+    this.popoverContent = null;
+    this.popoverContent = this.definePopoverContent().disconnectedCallback(); 
+    const close = () => { this.popover.dismissPopover(); };
+    close();
+    this.present = false;
+  }*/
 
   public definePopoverContent(): any {
     const img = document.querySelector('.candyThumbnail > img');
@@ -84,22 +93,20 @@ export class CandyDetailsComponent implements OnInit {
 
     customElements.define('app-popover', class extends HTMLElement {
       connectedCallback() {
-
         this.innerHTML = `
-        <div>
-        <img src=${candyUrl} />
-        <ion-item lines="none" detail="false" button onClick="dismissPopover(event)">Close</ion-item>
-        </div>
-        `;
+          <div>
+            <img src=${candyUrl} />
+          </div>
+          `;
+      }
+      disconnectedCallback() {
+        console.log('disconnected from the DOM');
+        // this.innerHTML = `` ;
       }
     });
   }
+// ............................................................
 
-  public dismissPopover(event: any) {
-    if (this.popoverContent) {
-      this.popoverContent.dismiss().then(() => { this.popoverContent = null; });
-    }
-  }
 
   public displayCandyInfo(candyId: string | number)  {
 
@@ -129,7 +136,6 @@ export class CandyDetailsComponent implements OnInit {
       if (containsGelatin()) {
         this.candyItem.ingredients_tags.push('gelatin');
       }
-
       // vegan / vegetarian check ---
       for (const x of this.candyItem.ingredients_tags ) {
         const animalProductsTerms = /dairy | milk | butter| eggs | honey/g;
@@ -149,7 +155,7 @@ export class CandyDetailsComponent implements OnInit {
       if ( this.candyItem.labels !== ''  || this.candyItem.labels_hierarchy) {
         const terms = /bio | ab | biologique/g;
         if (this.candyItem.labels.match(terms) ) {
-          console.log('BIO');
+          // console.log('BIO');
           this.candyChecklist.organic = true; }
       }
       // allergens check ---
@@ -159,7 +165,6 @@ export class CandyDetailsComponent implements OnInit {
     });
   }
 
- 
 
   toggleIngredients() {
     this.showIngredients = !this.showIngredients;

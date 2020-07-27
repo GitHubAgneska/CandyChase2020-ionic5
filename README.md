@@ -54,11 +54,9 @@ Run tests with Karma
 Known issues (as of 070220)
 ========================================================================================
 
-- Geolocation : coords non accurate under chrome : issue apparently related to mac os catalina update (unresolved atm - 05152020)
+- Geolocation : coords non accurate under chrome mac os : issue apparently related to mac os catalina update (unresolved atm - 05152020)
 
 - Reverse geocode cordova implementation
-
-- Inconsistencies when using as a PWA vs browser
 
 
 Npm issue(s)
