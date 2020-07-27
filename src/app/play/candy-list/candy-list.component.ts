@@ -72,12 +72,14 @@ export class CandyListComponent implements OnInit {
 
 // search ..........................................................
   public filterItems(searchTerm: string) {
+ 
+    console.log('SERCHTERM==', this.searchTerm);
     const searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', this.handleInput);
   }
 
   public handleInput(event: any) {
-    const elementsToFilter = Array.from(document.getElementsByClassName('candyList')as HTMLCollectionOf<HTMLElement>);
+    const elementsToFilter = Array.from(document.getElementsByClassName('candyItemsList')as HTMLCollectionOf<HTMLElement>);
     const query = event.target.value.toLowerCase();
     requestAnimationFrame(() => {
       elementsToFilter.forEach(item => {

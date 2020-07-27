@@ -16,7 +16,7 @@
   </div>
 
   <div *ngIf="candyList$ | async as candyList; else loading" class="candyList">
-    <div *ngFor="let candyItem of candyList$ | async" >
+    <div *ngFor="let candyItem of candyList$ | async" class="candyItemsList">
       <div class="candyItem">
         <div class="candyThumbnail" (click)="seeCandyInfos(candyItem._id)">
           <img src="{{candyItem.image_front_url}}">
