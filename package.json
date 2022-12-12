@@ -44,7 +44,7 @@
     "cordova-plugin-telerik-imagepicker": "^2.3.3",
     "cordova-res": "^0.15.1",
     "core-js": "^2.5.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "firebase": "^7.14.0",
     "firefox": "0.0.1",
     "jasmine-marbles": "^0.6.0",
